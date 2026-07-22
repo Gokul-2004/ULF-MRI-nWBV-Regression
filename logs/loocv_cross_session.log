@@ -1,0 +1,179 @@
+==============================================================
+Cross-Session LOOCV  (HFC train  →  HFE test)
+Device: cpu  |  Epochs: 80  |  LR: 0.0001
+==============================================================
+Subjects loaded: 23
+
+[Fold  1/23]  held-out=sub-HYPE00  train n=22
+      Epoch  20/80  loss=0.000326
+      Epoch  40/80  loss=0.000273
+      Epoch  60/80  loss=0.000284
+      Epoch  80/80  loss=0.000274
+  HFE  pred=0.7812  GT=0.7939  err=-0.0127  |absErr|=0.0127
+
+[Fold  2/23]  held-out=sub-HYPE01  train n=22
+      Epoch  20/80  loss=0.000378
+      Epoch  40/80  loss=0.000279
+      Epoch  60/80  loss=0.000267
+      Epoch  80/80  loss=0.000251
+  HFE  pred=0.7772  GT=0.8060  err=-0.0288  |absErr|=0.0288
+
+[Fold  3/23]  held-out=sub-HYPE02  train n=22
+      Epoch  20/80  loss=0.000272
+      Epoch  40/80  loss=0.000301
+      Epoch  60/80  loss=0.000316
+      Epoch  80/80  loss=0.000254
+  HFE  pred=0.7747  GT=0.7941  err=-0.0194  |absErr|=0.0194
+
+[Fold  4/23]  held-out=sub-HYPE03  train n=22
+      Epoch  20/80  loss=0.000422
+      Epoch  40/80  loss=0.000276
+      Epoch  60/80  loss=0.000275
+      Epoch  80/80  loss=0.000267
+  HFE  pred=0.7801  GT=0.7882  err=-0.0081  |absErr|=0.0081
+
+[Fold  5/23]  held-out=sub-HYPE04  train n=22
+      Epoch  20/80  loss=0.000329
+      Epoch  40/80  loss=0.000304
+      Epoch  60/80  loss=0.000211
+      Epoch  80/80  loss=0.000276
+  HFE  pred=0.7797  GT=0.7962  err=-0.0165  |absErr|=0.0165
+
+[Fold  6/23]  held-out=sub-HYPE05  train n=22
+      Epoch  20/80  loss=0.000295
+      Epoch  40/80  loss=0.000317
+      Epoch  60/80  loss=0.000262
+      Epoch  80/80  loss=0.000285
+  HFE  pred=0.7896  GT=0.7916  err=-0.0020  |absErr|=0.0020
+
+[Fold  7/23]  held-out=sub-HYPE06  train n=22
+      Epoch  20/80  loss=0.000308
+      Epoch  40/80  loss=0.000324
+      Epoch  60/80  loss=0.000268
+      Epoch  80/80  loss=0.000288
+  HFE  pred=0.7812  GT=0.7755  err=+0.0057  |absErr|=0.0057
+
+[Fold  8/23]  held-out=sub-HYPE07  train n=22
+      Epoch  20/80  loss=0.000328
+      Epoch  40/80  loss=0.000266
+      Epoch  60/80  loss=0.000269
+      Epoch  80/80  loss=0.000270
+  HFE  pred=0.7802  GT=0.7866  err=-0.0064  |absErr|=0.0064
+
+[Fold  9/23]  held-out=sub-HYPE08  train n=22
+      Epoch  20/80  loss=0.000414
+      Epoch  40/80  loss=0.000397
+      Epoch  60/80  loss=0.000293
+      Epoch  80/80  loss=0.000252
+  HFE  pred=0.7795  GT=0.7903  err=-0.0108  |absErr|=0.0108
+
+[Fold 10/23]  held-out=sub-HYPE09  train n=22
+      Epoch  20/80  loss=0.000456
+      Epoch  40/80  loss=0.000242
+      Epoch  60/80  loss=0.000272
+      Epoch  80/80  loss=0.000227
+  HFE  pred=0.7809  GT=0.7990  err=-0.0181  |absErr|=0.0181
+
+[Fold 11/23]  held-out=sub-HYPE10  train n=22
+      Epoch  20/80  loss=0.000369
+      Epoch  40/80  loss=0.000298
+      Epoch  60/80  loss=0.000291
+      Epoch  80/80  loss=0.000243
+  HFE  pred=0.7813  GT=0.7782  err=+0.0031  |absErr|=0.0031
+
+[Fold 12/23]  held-out=sub-HYPE11  train n=22
+      Epoch  20/80  loss=0.000379
+      Epoch  40/80  loss=0.000319
+      Epoch  60/80  loss=0.000253
+      Epoch  80/80  loss=0.000269
+  HFE  pred=0.7806  GT=0.7672  err=+0.0134  |absErr|=0.0134
+
+[Fold 13/23]  held-out=sub-HYPE12  train n=22
+      Epoch  20/80  loss=0.000316
+      Epoch  40/80  loss=0.000278
+      Epoch  60/80  loss=0.000311
+      Epoch  80/80  loss=0.000296
+  HFE  pred=0.7828  GT=0.7881  err=-0.0053  |absErr|=0.0053
+
+[Fold 14/23]  held-out=sub-HYPE13  train n=22
+      Epoch  20/80  loss=0.000355
+      Epoch  40/80  loss=0.000274
+      Epoch  60/80  loss=0.000306
+      Epoch  80/80  loss=0.000250
+  HFE  pred=0.7780  GT=0.7911  err=-0.0131  |absErr|=0.0131
+
+[Fold 15/23]  held-out=sub-HYPE14  train n=22
+      Epoch  20/80  loss=0.000280
+      Epoch  40/80  loss=0.000280
+      Epoch  60/80  loss=0.000251
+      Epoch  80/80  loss=0.000281
+  HFE  pred=0.7893  GT=0.7715  err=+0.0178  |absErr|=0.0178
+
+[Fold 16/23]  held-out=sub-HYPE15  train n=22
+      Epoch  20/80  loss=0.000348
+      Epoch  40/80  loss=0.000302
+      Epoch  60/80  loss=0.000266
+      Epoch  80/80  loss=0.000270
+  HFE  pred=0.7786  GT=0.7596  err=+0.0190  |absErr|=0.0190
+
+[Fold 17/23]  held-out=sub-HYPE16  train n=22
+      Epoch  20/80  loss=0.000348
+      Epoch  40/80  loss=0.000226
+      Epoch  60/80  loss=0.000242
+      Epoch  80/80  loss=0.000254
+  HFE  pred=0.7837  GT=0.7580  err=+0.0257  |absErr|=0.0257
+
+[Fold 18/23]  held-out=sub-HYPE17  train n=22
+      Epoch  20/80  loss=0.000335
+      Epoch  40/80  loss=0.000305
+      Epoch  60/80  loss=0.000265
+      Epoch  80/80  loss=0.000284
+  HFE  pred=0.7867  GT=0.7840  err=+0.0027  |absErr|=0.0027
+
+[Fold 19/23]  held-out=sub-HYPE18  train n=22
+      Epoch  20/80  loss=0.000342
+      Epoch  40/80  loss=0.000304
+      Epoch  60/80  loss=0.000307
+      Epoch  80/80  loss=0.000270
+  HFE  pred=0.7825  GT=0.7752  err=+0.0073  |absErr|=0.0073
+
+[Fold 20/23]  held-out=sub-HYPE19  train n=22
+      Epoch  20/80  loss=0.000322
+      Epoch  40/80  loss=0.000302
+      Epoch  60/80  loss=0.000256
+      Epoch  80/80  loss=0.000302
+  HFE  pred=0.7803  GT=0.8010  err=-0.0207  |absErr|=0.0207
+
+[Fold 21/23]  held-out=sub-HYPE20  train n=22
+      Epoch  20/80  loss=0.000305
+      Epoch  40/80  loss=0.000291
+      Epoch  60/80  loss=0.000263
+      Epoch  80/80  loss=0.000319
+  HFE  pred=0.7793  GT=0.7789  err=+0.0004  |absErr|=0.0004
+
+[Fold 22/23]  held-out=sub-HYPE21  train n=22
+      Epoch  20/80  loss=0.000226
+      Epoch  40/80  loss=0.000297
+      Epoch  60/80  loss=0.000279
+      Epoch  80/80  loss=0.000242
+  HFE  pred=0.7857  GT=0.7523  err=+0.0334  |absErr|=0.0334
+
+[Fold 23/23]  held-out=sub-HYPE22  train n=22
+      Epoch  20/80  loss=0.000272
+      Epoch  40/80  loss=0.000286
+      Epoch  60/80  loss=0.000245
+      Epoch  80/80  loss=0.000245
+  HFE  pred=0.7910  GT=0.8084  err=-0.0174  |absErr|=0.0174
+
+==============================================================
+CROSS-SESSION LOOCV RESULTS  (n=23)
+==============================================================
+MAE           = 0.0134  [95% CI: 0.0100–0.0170]
+RMSE          = 0.0160
+Bias          = -0.0022
+Subjects MAE<0.020: 19/23
+Pearson r     = -0.1191  (p=0.5882)  [narrow range — informational only]
+Spearman ρ    = -0.2461  (p=0.2576)
+ICC(3,1) HFC vs HFE = 0.6146  [95% CI: [0.2364, 0.8658]]
+
+Saved → /home/gk-krishnan/Desktop/VIT Paper/experiments/loocv_cross_session/results.json

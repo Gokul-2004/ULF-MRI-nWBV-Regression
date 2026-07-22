@@ -1,0 +1,188 @@
+{
+  "method": "LOOCV domain adaptation",
+  "n_subjects": 23,
+  "epochs_per_fold": 80,
+  "trainable_params": 769,
+  "pearson_r": 0.1702,
+  "pearson_r_ci_lo": -0.2603,
+  "pearson_r_ci_hi": 0.5442,
+  "pearson_p": 0.4376,
+  "spearman_rho": 0.1818,
+  "spearman_p": 0.4064,
+  "mae": 0.0124,
+  "rmse": 0.0148,
+  "bias": -0.0015,
+  "synthseg_reference": {
+    "r": 0.918,
+    "mae": 0.005,
+    "n": 23
+  },
+  "previous_split": {
+    "r": 0.247,
+    "mae": 0.01,
+    "n_test": 8
+  },
+  "per_subject": [
+    {
+      "subject": "S00",
+      "pred": 0.7864,
+      "gt": 0.7939,
+      "error": -0.0075,
+      "abs_error": 0.0075
+    },
+    {
+      "subject": "S01",
+      "pred": 0.7824,
+      "gt": 0.806,
+      "error": -0.0236,
+      "abs_error": 0.0236
+    },
+    {
+      "subject": "S02",
+      "pred": 0.7873,
+      "gt": 0.7941,
+      "error": -0.0068,
+      "abs_error": 0.0068
+    },
+    {
+      "subject": "S03",
+      "pred": 0.7816,
+      "gt": 0.7882,
+      "error": -0.0066,
+      "abs_error": 0.0066
+    },
+    {
+      "subject": "S04",
+      "pred": 0.7823,
+      "gt": 0.7962,
+      "error": -0.0139,
+      "abs_error": 0.0139
+    },
+    {
+      "subject": "S05",
+      "pred": 0.785,
+      "gt": 0.7916,
+      "error": -0.0066,
+      "abs_error": 0.0066
+    },
+    {
+      "subject": "S06",
+      "pred": 0.7831,
+      "gt": 0.7755,
+      "error": 0.0076,
+      "abs_error": 0.0076
+    },
+    {
+      "subject": "S07",
+      "pred": 0.7782,
+      "gt": 0.7866,
+      "error": -0.0084,
+      "abs_error": 0.0084
+    },
+    {
+      "subject": "S08",
+      "pred": 0.7741,
+      "gt": 0.7903,
+      "error": -0.0162,
+      "abs_error": 0.0162
+    },
+    {
+      "subject": "S09",
+      "pred": 0.7836,
+      "gt": 0.799,
+      "error": -0.0154,
+      "abs_error": 0.0154
+    },
+    {
+      "subject": "S10",
+      "pred": 0.7842,
+      "gt": 0.7782,
+      "error": 0.006,
+      "abs_error": 0.006
+    },
+    {
+      "subject": "S11",
+      "pred": 0.773,
+      "gt": 0.7672,
+      "error": 0.0058,
+      "abs_error": 0.0058
+    },
+    {
+      "subject": "S12",
+      "pred": 0.783,
+      "gt": 0.7881,
+      "error": -0.0051,
+      "abs_error": 0.0051
+    },
+    {
+      "subject": "S13",
+      "pred": 0.78,
+      "gt": 0.7911,
+      "error": -0.0111,
+      "abs_error": 0.0111
+    },
+    {
+      "subject": "S14",
+      "pred": 0.785,
+      "gt": 0.7715,
+      "error": 0.0135,
+      "abs_error": 0.0135
+    },
+    {
+      "subject": "S15",
+      "pred": 0.7832,
+      "gt": 0.7596,
+      "error": 0.0236,
+      "abs_error": 0.0236
+    },
+    {
+      "subject": "S16",
+      "pred": 0.7808,
+      "gt": 0.758,
+      "error": 0.0228,
+      "abs_error": 0.0228
+    },
+    {
+      "subject": "S17",
+      "pred": 0.7934,
+      "gt": 0.784,
+      "error": 0.0094,
+      "abs_error": 0.0094
+    },
+    {
+      "subject": "S18",
+      "pred": 0.7809,
+      "gt": 0.7752,
+      "error": 0.0057,
+      "abs_error": 0.0057
+    },
+    {
+      "subject": "S19",
+      "pred": 0.7896,
+      "gt": 0.801,
+      "error": -0.0114,
+      "abs_error": 0.0114
+    },
+    {
+      "subject": "S20",
+      "pred": 0.7793,
+      "gt": 0.7789,
+      "error": 0.0004,
+      "abs_error": 0.0004
+    },
+    {
+      "subject": "S21",
+      "pred": 0.7836,
+      "gt": 0.7523,
+      "error": 0.0313,
+      "abs_error": 0.0313
+    },
+    {
+      "subject": "S22",
+      "pred": 0.781,
+      "gt": 0.8084,
+      "error": -0.0274,
+      "abs_error": 0.0274
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "oasis_test": {
+    "n": 38,
+    "mae_overall": 0.0584,
+    "bias_overall": 0.0533,
+    "max_abs_error": 0.1957,
+    "mae_by_tertile": {
+      "low_nwbv": {
+        "thresh": 0.761,
+        "mae": 0.1254,
+        "bias": 0.1254,
+        "n": 13
+      },
+      "mid_nwbv": {
+        "mae": 0.0393,
+        "bias": 0.0393,
+        "n": 12
+      },
+      "high_nwbv": {
+        "thresh": 0.833,
+        "mae": 0.009,
+        "bias": -0.0058,
+        "n": 13
+      }
+    },
+    "worst_cases": [
+      {
+        "idx": 16,
+        "true": 0.645,
+        "pred": 0.8407,
+        "error": 0.1957,
+        "cdr": 0.0
+      },
+      {
+        "idx": 32,
+        "true": 0.668,
+        "pred": 0.8426,
+        "error": 0.1746,
+        "cdr": 1.0
+      },
+      {
+        "idx": 17,
+        "true": 0.687,
+        "pred": 0.8414,
+        "error": 0.1544,
+        "cdr": 1.0
+      },
+      {
+        "idx": 25,
+        "true": 0.693,
+        "pred": 0.845,
+        "error": 0.152,
+        "cdr": 0.5
+      },
+      {
+        "idx": 1,
+        "true": 0.695,
+        "pred": 0.8447,
+        "error": 0.1497,
+        "cdr": 0.5
+      }
+    ]
+  },
+  "real_64mt": {
+    "n": 23,
+    "age_vs_error_pearson_r": 0.6776,
+    "age_vs_error_p": 0.0004,
+    "ci_vs_error_pearson_r": -0.1644,
+    "ci_vs_error_p": 0.4535,
+    "mae_by_age_group": {
+      "under35": 0.0317,
+      "35_55": 0.0357,
+      "over55": 0.0529
+    }
+  },
+  "key_finding": "Model predicts near-constant ~0.84 nWBV; fails for atrophied brains (low nWBV). MC-Dropout CIs not calibrated to actual errors."
+}

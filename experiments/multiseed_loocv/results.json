@@ -1,0 +1,756 @@
+{
+  "experiment": "multiseed_loocv",
+  "protocol": "cross_session_loocv_ln_head",
+  "seeds": [
+    42,
+    1,
+    7,
+    123,
+    2024
+  ],
+  "summary": {
+    "mae_mean": 0.013,
+    "mae_std": 0.0004,
+    "mae_min": 0.0123,
+    "mae_max": 0.0134,
+    "icc_mean": 0.6437,
+    "icc_std": 0.0583
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "mae": 0.0133,
+      "bias": -0.0021,
+      "n_below_threshold": 21,
+      "icc_31": 0.6287,
+      "per_subject": [
+        {
+          "subject": "sub-HYPE00",
+          "true_nwbv": 0.7939,
+          "pred_hfe": 0.7845,
+          "pred_hfc": 0.7893
+        },
+        {
+          "subject": "sub-HYPE01",
+          "true_nwbv": 0.806,
+          "pred_hfe": 0.78,
+          "pred_hfc": 0.7824
+        },
+        {
+          "subject": "sub-HYPE02",
+          "true_nwbv": 0.7941,
+          "pred_hfe": 0.784,
+          "pred_hfc": 0.7872
+        },
+        {
+          "subject": "sub-HYPE03",
+          "true_nwbv": 0.7882,
+          "pred_hfe": 0.7807,
+          "pred_hfc": 0.781
+        },
+        {
+          "subject": "sub-HYPE04",
+          "true_nwbv": 0.7962,
+          "pred_hfe": 0.7797,
+          "pred_hfc": 0.7825
+        },
+        {
+          "subject": "sub-HYPE05",
+          "true_nwbv": 0.7916,
+          "pred_hfe": 0.7783,
+          "pred_hfc": 0.7796
+        },
+        {
+          "subject": "sub-HYPE06",
+          "true_nwbv": 0.7755,
+          "pred_hfe": 0.7839,
+          "pred_hfc": 0.7834
+        },
+        {
+          "subject": "sub-HYPE07",
+          "true_nwbv": 0.7866,
+          "pred_hfe": 0.779,
+          "pred_hfc": 0.7798
+        },
+        {
+          "subject": "sub-HYPE08",
+          "true_nwbv": 0.7903,
+          "pred_hfe": 0.7791,
+          "pred_hfc": 0.7814
+        },
+        {
+          "subject": "sub-HYPE09",
+          "true_nwbv": 0.799,
+          "pred_hfe": 0.7809,
+          "pred_hfc": 0.7827
+        },
+        {
+          "subject": "sub-HYPE10",
+          "true_nwbv": 0.7782,
+          "pred_hfe": 0.7845,
+          "pred_hfc": 0.7878
+        },
+        {
+          "subject": "sub-HYPE11",
+          "true_nwbv": 0.7672,
+          "pred_hfe": 0.7812,
+          "pred_hfc": 0.7815
+        },
+        {
+          "subject": "sub-HYPE12",
+          "true_nwbv": 0.7881,
+          "pred_hfe": 0.7807,
+          "pred_hfc": 0.7816
+        },
+        {
+          "subject": "sub-HYPE13",
+          "true_nwbv": 0.7911,
+          "pred_hfe": 0.7753,
+          "pred_hfc": 0.7761
+        },
+        {
+          "subject": "sub-HYPE14",
+          "true_nwbv": 0.7715,
+          "pred_hfe": 0.7886,
+          "pred_hfc": 0.7849
+        },
+        {
+          "subject": "sub-HYPE15",
+          "true_nwbv": 0.7596,
+          "pred_hfe": 0.7779,
+          "pred_hfc": 0.7805
+        },
+        {
+          "subject": "sub-HYPE16",
+          "true_nwbv": 0.758,
+          "pred_hfe": 0.7775,
+          "pred_hfc": 0.7773
+        },
+        {
+          "subject": "sub-HYPE17",
+          "true_nwbv": 0.784,
+          "pred_hfe": 0.7816,
+          "pred_hfc": 0.7906
+        },
+        {
+          "subject": "sub-HYPE18",
+          "true_nwbv": 0.7752,
+          "pred_hfe": 0.7824,
+          "pred_hfc": 0.7807
+        },
+        {
+          "subject": "sub-HYPE19",
+          "true_nwbv": 0.801,
+          "pred_hfe": 0.7883,
+          "pred_hfc": 0.788
+        },
+        {
+          "subject": "sub-HYPE20",
+          "true_nwbv": 0.7789,
+          "pred_hfe": 0.7774,
+          "pred_hfc": 0.7786
+        },
+        {
+          "subject": "sub-HYPE21",
+          "true_nwbv": 0.7523,
+          "pred_hfe": 0.7902,
+          "pred_hfc": 0.7879
+        },
+        {
+          "subject": "sub-HYPE22",
+          "true_nwbv": 0.8084,
+          "pred_hfe": 0.7909,
+          "pred_hfc": 0.7805
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "mae": 0.0134,
+      "bias": -0.002,
+      "n_below_threshold": 18,
+      "icc_31": 0.6285,
+      "per_subject": [
+        {
+          "subject": "sub-HYPE00",
+          "true_nwbv": 0.7939,
+          "pred_hfe": 0.7799,
+          "pred_hfc": 0.7844
+        },
+        {
+          "subject": "sub-HYPE01",
+          "true_nwbv": 0.806,
+          "pred_hfe": 0.7795,
+          "pred_hfc": 0.7818
+        },
+        {
+          "subject": "sub-HYPE02",
+          "true_nwbv": 0.7941,
+          "pred_hfe": 0.7825,
+          "pred_hfc": 0.7856
+        },
+        {
+          "subject": "sub-HYPE03",
+          "true_nwbv": 0.7882,
+          "pred_hfe": 0.7805,
+          "pred_hfc": 0.7808
+        },
+        {
+          "subject": "sub-HYPE04",
+          "true_nwbv": 0.7962,
+          "pred_hfe": 0.7799,
+          "pred_hfc": 0.7827
+        },
+        {
+          "subject": "sub-HYPE05",
+          "true_nwbv": 0.7916,
+          "pred_hfe": 0.7847,
+          "pred_hfc": 0.7858
+        },
+        {
+          "subject": "sub-HYPE06",
+          "true_nwbv": 0.7755,
+          "pred_hfe": 0.7818,
+          "pred_hfc": 0.7811
+        },
+        {
+          "subject": "sub-HYPE07",
+          "true_nwbv": 0.7866,
+          "pred_hfe": 0.7763,
+          "pred_hfc": 0.7772
+        },
+        {
+          "subject": "sub-HYPE08",
+          "true_nwbv": 0.7903,
+          "pred_hfe": 0.7781,
+          "pred_hfc": 0.7806
+        },
+        {
+          "subject": "sub-HYPE09",
+          "true_nwbv": 0.799,
+          "pred_hfe": 0.7814,
+          "pred_hfc": 0.7833
+        },
+        {
+          "subject": "sub-HYPE10",
+          "true_nwbv": 0.7782,
+          "pred_hfe": 0.7842,
+          "pred_hfc": 0.7873
+        },
+        {
+          "subject": "sub-HYPE11",
+          "true_nwbv": 0.7672,
+          "pred_hfe": 0.7774,
+          "pred_hfc": 0.7776
+        },
+        {
+          "subject": "sub-HYPE12",
+          "true_nwbv": 0.7881,
+          "pred_hfe": 0.7828,
+          "pred_hfc": 0.7837
+        },
+        {
+          "subject": "sub-HYPE13",
+          "true_nwbv": 0.7911,
+          "pred_hfe": 0.7758,
+          "pred_hfc": 0.7765
+        },
+        {
+          "subject": "sub-HYPE14",
+          "true_nwbv": 0.7715,
+          "pred_hfe": 0.7882,
+          "pred_hfc": 0.7845
+        },
+        {
+          "subject": "sub-HYPE15",
+          "true_nwbv": 0.7596,
+          "pred_hfe": 0.7843,
+          "pred_hfc": 0.7869
+        },
+        {
+          "subject": "sub-HYPE16",
+          "true_nwbv": 0.758,
+          "pred_hfe": 0.7787,
+          "pred_hfc": 0.7786
+        },
+        {
+          "subject": "sub-HYPE17",
+          "true_nwbv": 0.784,
+          "pred_hfe": 0.7835,
+          "pred_hfc": 0.7924
+        },
+        {
+          "subject": "sub-HYPE18",
+          "true_nwbv": 0.7752,
+          "pred_hfe": 0.7826,
+          "pred_hfc": 0.7806
+        },
+        {
+          "subject": "sub-HYPE19",
+          "true_nwbv": 0.801,
+          "pred_hfe": 0.7887,
+          "pred_hfc": 0.7884
+        },
+        {
+          "subject": "sub-HYPE20",
+          "true_nwbv": 0.7789,
+          "pred_hfe": 0.7787,
+          "pred_hfc": 0.7799
+        },
+        {
+          "subject": "sub-HYPE21",
+          "true_nwbv": 0.7523,
+          "pred_hfe": 0.7907,
+          "pred_hfc": 0.7884
+        },
+        {
+          "subject": "sub-HYPE22",
+          "true_nwbv": 0.8084,
+          "pred_hfe": 0.7876,
+          "pred_hfc": 0.7769
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "mae": 0.0129,
+      "bias": -0.0022,
+      "n_below_threshold": 19,
+      "icc_31": 0.5629,
+      "per_subject": [
+        {
+          "subject": "sub-HYPE00",
+          "true_nwbv": 0.7939,
+          "pred_hfe": 0.7812,
+          "pred_hfc": 0.7855
+        },
+        {
+          "subject": "sub-HYPE01",
+          "true_nwbv": 0.806,
+          "pred_hfe": 0.7752,
+          "pred_hfc": 0.7776
+        },
+        {
+          "subject": "sub-HYPE02",
+          "true_nwbv": 0.7941,
+          "pred_hfe": 0.7843,
+          "pred_hfc": 0.7873
+        },
+        {
+          "subject": "sub-HYPE03",
+          "true_nwbv": 0.7882,
+          "pred_hfe": 0.78,
+          "pred_hfc": 0.7804
+        },
+        {
+          "subject": "sub-HYPE04",
+          "true_nwbv": 0.7962,
+          "pred_hfe": 0.7754,
+          "pred_hfc": 0.7781
+        },
+        {
+          "subject": "sub-HYPE05",
+          "true_nwbv": 0.7916,
+          "pred_hfe": 0.7825,
+          "pred_hfc": 0.7836
+        },
+        {
+          "subject": "sub-HYPE06",
+          "true_nwbv": 0.7755,
+          "pred_hfe": 0.7806,
+          "pred_hfc": 0.78
+        },
+        {
+          "subject": "sub-HYPE07",
+          "true_nwbv": 0.7866,
+          "pred_hfe": 0.7811,
+          "pred_hfc": 0.782
+        },
+        {
+          "subject": "sub-HYPE08",
+          "true_nwbv": 0.7903,
+          "pred_hfe": 0.7807,
+          "pred_hfc": 0.783
+        },
+        {
+          "subject": "sub-HYPE09",
+          "true_nwbv": 0.799,
+          "pred_hfe": 0.7796,
+          "pred_hfc": 0.7816
+        },
+        {
+          "subject": "sub-HYPE10",
+          "true_nwbv": 0.7782,
+          "pred_hfe": 0.7837,
+          "pred_hfc": 0.7871
+        },
+        {
+          "subject": "sub-HYPE11",
+          "true_nwbv": 0.7672,
+          "pred_hfe": 0.7802,
+          "pred_hfc": 0.7804
+        },
+        {
+          "subject": "sub-HYPE12",
+          "true_nwbv": 0.7881,
+          "pred_hfe": 0.7841,
+          "pred_hfc": 0.7846
+        },
+        {
+          "subject": "sub-HYPE13",
+          "true_nwbv": 0.7911,
+          "pred_hfe": 0.7797,
+          "pred_hfc": 0.7805
+        },
+        {
+          "subject": "sub-HYPE14",
+          "true_nwbv": 0.7715,
+          "pred_hfe": 0.7885,
+          "pred_hfc": 0.7846
+        },
+        {
+          "subject": "sub-HYPE15",
+          "true_nwbv": 0.7596,
+          "pred_hfe": 0.7784,
+          "pred_hfc": 0.781
+        },
+        {
+          "subject": "sub-HYPE16",
+          "true_nwbv": 0.758,
+          "pred_hfe": 0.7829,
+          "pred_hfc": 0.7831
+        },
+        {
+          "subject": "sub-HYPE17",
+          "true_nwbv": 0.784,
+          "pred_hfe": 0.7823,
+          "pred_hfc": 0.7913
+        },
+        {
+          "subject": "sub-HYPE18",
+          "true_nwbv": 0.7752,
+          "pred_hfe": 0.7791,
+          "pred_hfc": 0.7774
+        },
+        {
+          "subject": "sub-HYPE19",
+          "true_nwbv": 0.801,
+          "pred_hfe": 0.7885,
+          "pred_hfc": 0.7882
+        },
+        {
+          "subject": "sub-HYPE20",
+          "true_nwbv": 0.7789,
+          "pred_hfe": 0.7793,
+          "pred_hfc": 0.7803
+        },
+        {
+          "subject": "sub-HYPE21",
+          "true_nwbv": 0.7523,
+          "pred_hfe": 0.7875,
+          "pred_hfc": 0.7851
+        },
+        {
+          "subject": "sub-HYPE22",
+          "true_nwbv": 0.8084,
+          "pred_hfe": 0.79,
+          "pred_hfc": 0.7797
+        }
+      ]
+    },
+    {
+      "seed": 123,
+      "mae": 0.0131,
+      "bias": -0.0014,
+      "n_below_threshold": 19,
+      "icc_31": 0.7142,
+      "per_subject": [
+        {
+          "subject": "sub-HYPE00",
+          "true_nwbv": 0.7939,
+          "pred_hfe": 0.7877,
+          "pred_hfc": 0.7923
+        },
+        {
+          "subject": "sub-HYPE01",
+          "true_nwbv": 0.806,
+          "pred_hfe": 0.7821,
+          "pred_hfc": 0.7847
+        },
+        {
+          "subject": "sub-HYPE02",
+          "true_nwbv": 0.7941,
+          "pred_hfe": 0.7871,
+          "pred_hfc": 0.7904
+        },
+        {
+          "subject": "sub-HYPE03",
+          "true_nwbv": 0.7882,
+          "pred_hfe": 0.7797,
+          "pred_hfc": 0.7799
+        },
+        {
+          "subject": "sub-HYPE04",
+          "true_nwbv": 0.7962,
+          "pred_hfe": 0.7709,
+          "pred_hfc": 0.7735
+        },
+        {
+          "subject": "sub-HYPE05",
+          "true_nwbv": 0.7916,
+          "pred_hfe": 0.7815,
+          "pred_hfc": 0.7826
+        },
+        {
+          "subject": "sub-HYPE06",
+          "true_nwbv": 0.7755,
+          "pred_hfe": 0.7888,
+          "pred_hfc": 0.788
+        },
+        {
+          "subject": "sub-HYPE07",
+          "true_nwbv": 0.7866,
+          "pred_hfe": 0.776,
+          "pred_hfc": 0.7768
+        },
+        {
+          "subject": "sub-HYPE08",
+          "true_nwbv": 0.7903,
+          "pred_hfe": 0.781,
+          "pred_hfc": 0.7833
+        },
+        {
+          "subject": "sub-HYPE09",
+          "true_nwbv": 0.799,
+          "pred_hfe": 0.781,
+          "pred_hfc": 0.7828
+        },
+        {
+          "subject": "sub-HYPE10",
+          "true_nwbv": 0.7782,
+          "pred_hfe": 0.7836,
+          "pred_hfc": 0.787
+        },
+        {
+          "subject": "sub-HYPE11",
+          "true_nwbv": 0.7672,
+          "pred_hfe": 0.7788,
+          "pred_hfc": 0.7791
+        },
+        {
+          "subject": "sub-HYPE12",
+          "true_nwbv": 0.7881,
+          "pred_hfe": 0.7824,
+          "pred_hfc": 0.7834
+        },
+        {
+          "subject": "sub-HYPE13",
+          "true_nwbv": 0.7911,
+          "pred_hfe": 0.7801,
+          "pred_hfc": 0.7809
+        },
+        {
+          "subject": "sub-HYPE14",
+          "true_nwbv": 0.7715,
+          "pred_hfe": 0.7905,
+          "pred_hfc": 0.7868
+        },
+        {
+          "subject": "sub-HYPE15",
+          "true_nwbv": 0.7596,
+          "pred_hfe": 0.7782,
+          "pred_hfc": 0.7808
+        },
+        {
+          "subject": "sub-HYPE16",
+          "true_nwbv": 0.758,
+          "pred_hfe": 0.78,
+          "pred_hfc": 0.78
+        },
+        {
+          "subject": "sub-HYPE17",
+          "true_nwbv": 0.784,
+          "pred_hfe": 0.784,
+          "pred_hfc": 0.793
+        },
+        {
+          "subject": "sub-HYPE18",
+          "true_nwbv": 0.7752,
+          "pred_hfe": 0.7834,
+          "pred_hfc": 0.7816
+        },
+        {
+          "subject": "sub-HYPE19",
+          "true_nwbv": 0.801,
+          "pred_hfe": 0.7871,
+          "pred_hfc": 0.7868
+        },
+        {
+          "subject": "sub-HYPE20",
+          "true_nwbv": 0.7789,
+          "pred_hfe": 0.7806,
+          "pred_hfc": 0.7817
+        },
+        {
+          "subject": "sub-HYPE21",
+          "true_nwbv": 0.7523,
+          "pred_hfe": 0.7863,
+          "pred_hfc": 0.7838
+        },
+        {
+          "subject": "sub-HYPE22",
+          "true_nwbv": 0.8084,
+          "pred_hfe": 0.7913,
+          "pred_hfc": 0.7805
+        }
+      ]
+    },
+    {
+      "seed": 2024,
+      "mae": 0.0123,
+      "bias": -0.0019,
+      "n_below_threshold": 20,
+      "icc_31": 0.6842,
+      "per_subject": [
+        {
+          "subject": "sub-HYPE00",
+          "true_nwbv": 0.7939,
+          "pred_hfe": 0.7807,
+          "pred_hfc": 0.7851
+        },
+        {
+          "subject": "sub-HYPE01",
+          "true_nwbv": 0.806,
+          "pred_hfe": 0.779,
+          "pred_hfc": 0.7813
+        },
+        {
+          "subject": "sub-HYPE02",
+          "true_nwbv": 0.7941,
+          "pred_hfe": 0.7845,
+          "pred_hfc": 0.7876
+        },
+        {
+          "subject": "sub-HYPE03",
+          "true_nwbv": 0.7882,
+          "pred_hfe": 0.7862,
+          "pred_hfc": 0.7865
+        },
+        {
+          "subject": "sub-HYPE04",
+          "true_nwbv": 0.7962,
+          "pred_hfe": 0.7794,
+          "pred_hfc": 0.7821
+        },
+        {
+          "subject": "sub-HYPE05",
+          "true_nwbv": 0.7916,
+          "pred_hfe": 0.7833,
+          "pred_hfc": 0.7844
+        },
+        {
+          "subject": "sub-HYPE06",
+          "true_nwbv": 0.7755,
+          "pred_hfe": 0.7741,
+          "pred_hfc": 0.7733
+        },
+        {
+          "subject": "sub-HYPE07",
+          "true_nwbv": 0.7866,
+          "pred_hfe": 0.7801,
+          "pred_hfc": 0.781
+        },
+        {
+          "subject": "sub-HYPE08",
+          "true_nwbv": 0.7903,
+          "pred_hfe": 0.7794,
+          "pred_hfc": 0.7818
+        },
+        {
+          "subject": "sub-HYPE09",
+          "true_nwbv": 0.799,
+          "pred_hfe": 0.7829,
+          "pred_hfc": 0.7849
+        },
+        {
+          "subject": "sub-HYPE10",
+          "true_nwbv": 0.7782,
+          "pred_hfe": 0.7832,
+          "pred_hfc": 0.7866
+        },
+        {
+          "subject": "sub-HYPE11",
+          "true_nwbv": 0.7672,
+          "pred_hfe": 0.7809,
+          "pred_hfc": 0.781
+        },
+        {
+          "subject": "sub-HYPE12",
+          "true_nwbv": 0.7881,
+          "pred_hfe": 0.7816,
+          "pred_hfc": 0.7823
+        },
+        {
+          "subject": "sub-HYPE13",
+          "true_nwbv": 0.7911,
+          "pred_hfe": 0.779,
+          "pred_hfc": 0.7798
+        },
+        {
+          "subject": "sub-HYPE14",
+          "true_nwbv": 0.7715,
+          "pred_hfe": 0.7885,
+          "pred_hfc": 0.7848
+        },
+        {
+          "subject": "sub-HYPE15",
+          "true_nwbv": 0.7596,
+          "pred_hfe": 0.7712,
+          "pred_hfc": 0.7737
+        },
+        {
+          "subject": "sub-HYPE16",
+          "true_nwbv": 0.758,
+          "pred_hfe": 0.7804,
+          "pred_hfc": 0.7801
+        },
+        {
+          "subject": "sub-HYPE17",
+          "true_nwbv": 0.784,
+          "pred_hfe": 0.7833,
+          "pred_hfc": 0.7924
+        },
+        {
+          "subject": "sub-HYPE18",
+          "true_nwbv": 0.7752,
+          "pred_hfe": 0.7903,
+          "pred_hfc": 0.7883
+        },
+        {
+          "subject": "sub-HYPE19",
+          "true_nwbv": 0.801,
+          "pred_hfe": 0.7856,
+          "pred_hfc": 0.7853
+        },
+        {
+          "subject": "sub-HYPE20",
+          "true_nwbv": 0.7789,
+          "pred_hfe": 0.7798,
+          "pred_hfc": 0.781
+        },
+        {
+          "subject": "sub-HYPE21",
+          "true_nwbv": 0.7523,
+          "pred_hfe": 0.7863,
+          "pred_hfc": 0.7841
+        },
+        {
+          "subject": "sub-HYPE22",
+          "true_nwbv": 0.8084,
+          "pred_hfe": 0.7912,
+          "pred_hfc": 0.7806
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "age_groups": [
+    {
+      "group": "<35",
+      "n": 8,
+      "mean_age": 29.1,
+      "mae": 0.0317,
+      "bias": 0.0317,
+      "max_err": 0.0514
+    },
+    {
+      "group": "35\u201355",
+      "n": 7,
+      "mean_age": 42.9,
+      "mae": 0.0357,
+      "bias": 0.0357,
+      "max_err": 0.0502
+    },
+    {
+      "group": ">55",
+      "n": 8,
+      "mean_age": 63.1,
+      "mae": 0.0529,
+      "bias": 0.0529,
+      "max_err": 0.0718
+    }
+  ],
+  "overall_mae": 0.0403,
+  "overall_bias": 0.0403
+}

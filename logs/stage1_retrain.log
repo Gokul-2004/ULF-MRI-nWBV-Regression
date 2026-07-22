@@ -1,0 +1,151 @@
+================================================================================
+Stage 1: Biomarker Inference from Low-Field MRI
+================================================================================
+Device: cuda
+Image size: [64, 64, 64]
+Biomarkers: ['btf', 'tcr', 'vbr', 'mci']
+================================================================================
+
+[Step 1] Extracting biomarkers from high-field MRI data...
+  Extracted biomarkers for 56 volumes
+    IXI_001: BTF=0.2029, TCR=0.4073, VBR=0.2536, MCI=0.4816
+    IXI_002: BTF=0.2303, TCR=0.3334, VBR=0.0839, MCI=0.4208
+    IXI_003: BTF=0.2286, TCR=0.3737, VBR=0.1091, MCI=0.3981
+    IXI_004: BTF=0.2246, TCR=0.3933, VBR=0.2600, MCI=0.4229
+    IXI_005: BTF=0.2135, TCR=0.3575, VBR=0.1050, MCI=0.4927
+    IXI_006: BTF=0.2121, TCR=0.3879, VBR=0.1995, MCI=0.4060
+    IXI_007: BTF=0.2127, TCR=0.3700, VBR=0.1316, MCI=0.5026
+    IXI_008: BTF=0.2177, TCR=0.3978, VBR=0.1142, MCI=0.4332
+    IXI_009: BTF=0.2387, TCR=0.3915, VBR=0.0751, MCI=0.4253
+    IXI_010: BTF=0.2125, TCR=0.4031, VBR=0.2476, MCI=0.4213
+    IXI_011: BTF=0.2226, TCR=0.4269, VBR=0.1086, MCI=0.3776
+    IXI_012: BTF=0.2440, TCR=0.3775, VBR=0.1409, MCI=0.3272
+    IXI_013: BTF=0.2269, TCR=0.3763, VBR=0.1087, MCI=0.3751
+    IXI_014: BTF=0.2164, TCR=0.2995, VBR=0.2159, MCI=0.5391
+    IXI_015: BTF=0.2166, TCR=0.3798, VBR=0.1066, MCI=0.4245
+    IXI_016: BTF=0.2440, TCR=0.4185, VBR=0.1715, MCI=0.3758
+    IXI_017: BTF=0.2011, TCR=0.4272, VBR=0.2208, MCI=0.4514
+    IXI_018: BTF=0.2276, TCR=0.3115, VBR=0.1075, MCI=0.4482
+    IXI_019: BTF=0.2260, TCR=0.4022, VBR=0.1174, MCI=0.4226
+    IXI_020: BTF=0.2239, TCR=0.3488, VBR=0.0607, MCI=0.5078
+    IXI_021: BTF=0.2349, TCR=0.3633, VBR=0.1275, MCI=0.3590
+    IXI_022: BTF=0.2299, TCR=0.4095, VBR=0.0964, MCI=0.4074
+    IXI_023: BTF=0.2219, TCR=0.3941, VBR=0.1094, MCI=0.5054
+    IXI_024: BTF=0.2552, TCR=0.4381, VBR=0.0852, MCI=0.3269
+    IXI_025: BTF=0.2346, TCR=0.3776, VBR=0.0392, MCI=0.4614
+    IXI_026: BTF=0.2189, TCR=0.4016, VBR=0.1289, MCI=0.4822
+    IXI_027: BTF=0.2049, TCR=0.4260, VBR=0.2024, MCI=0.4201
+    IXI_028: BTF=0.2563, TCR=0.3580, VBR=0.0452, MCI=0.3880
+    IXI_029: BTF=0.2279, TCR=0.3791, VBR=0.0898, MCI=0.4534
+    IXI_030: BTF=0.2135, TCR=0.3569, VBR=0.1045, MCI=0.4438
+    IXI_031: BTF=0.2255, TCR=0.3455, VBR=0.1043, MCI=0.4467
+    IXI_032: BTF=0.2184, TCR=0.3775, VBR=0.1205, MCI=0.4116
+    IXI_033: BTF=0.2235, TCR=0.3641, VBR=0.1010, MCI=0.4419
+    IXI_034: BTF=0.2165, TCR=0.3482, VBR=0.0701, MCI=0.4079
+    IXI_035: BTF=0.2185, TCR=0.3484, VBR=0.1491, MCI=0.4123
+    IXI_036: BTF=0.2283, TCR=0.3614, VBR=0.0913, MCI=0.4412
+    IXI_037: BTF=0.2332, TCR=0.3952, VBR=0.0437, MCI=0.5542
+    IXI_038: BTF=0.2253, TCR=0.3751, VBR=0.1008, MCI=0.4291
+    IXI_039: BTF=0.2315, TCR=0.3254, VBR=0.0540, MCI=0.4667
+    IXI_040: BTF=0.2063, TCR=0.4300, VBR=0.2009, MCI=0.5212
+    IXI_041: BTF=0.2365, TCR=0.4007, VBR=0.0651, MCI=0.3965
+    IXI_042: BTF=0.2305, TCR=0.3605, VBR=0.0724, MCI=0.4195
+    IXI_043: BTF=0.2021, TCR=0.3758, VBR=0.2364, MCI=0.4296
+    IXI_044: BTF=0.2233, TCR=0.4068, VBR=0.1703, MCI=0.4322
+    IXI_045: BTF=0.2133, TCR=0.3983, VBR=0.1170, MCI=0.4121
+    IXI_046: BTF=0.2265, TCR=0.4106, VBR=0.1486, MCI=0.4015
+    IXI_047: BTF=0.2261, TCR=0.3900, VBR=0.0933, MCI=0.4706
+    IXI_048: BTF=0.1984, TCR=0.4298, VBR=0.2361, MCI=0.5083
+    IXI_049: BTF=0.2025, TCR=0.4075, VBR=0.1049, MCI=0.4346
+    IXI_050: BTF=0.2181, TCR=0.4091, VBR=0.1006, MCI=0.4092
+    haxby_high_field: BTF=0.2866, TCR=0.2922, VBR=0.0147, MCI=0.1165
+    high_field_volume_001: BTF=0.2432, TCR=0.4491, VBR=0.0000, MCI=0.1459
+    high_field_volume_002: BTF=0.2428, TCR=0.4471, VBR=0.0000, MCI=0.1460
+    high_field_volume_003: BTF=0.2413, TCR=0.4412, VBR=0.0000, MCI=0.1491
+    oasis_high_field_001: BTF=0.1329, TCR=0.3871, VBR=0.0878, MCI=0.3286
+    oasis_high_field_002: BTF=0.1284, TCR=0.3902, VBR=0.0966, MCI=0.2560
+
+[Step 2] Creating paired data loaders...
+  Train samples: 190
+  Val samples:   9
+  Test samples:  9
+  Volume shape:  [4, 1, 64, 64, 64]
+  Label shape:   [4, 4]
+
+[Step 3] Training baseline models...
+  Training CNN...
+    Epoch 5/30 - Train: 0.0114, Val: 0.0073
+    Epoch 10/30 - Train: 0.0089, Val: 0.0028
+    Epoch 15/30 - Train: 0.0084, Val: 0.0015
+    Epoch 20/30 - Train: 0.0063, Val: 0.0031
+    Epoch 25/30 - Train: 0.0044, Val: 0.0014
+    Epoch 30/30 - Train: 0.0046, Val: 0.0014
+  CNN trained successfully
+  Training ViT...
+    Epoch 5/30 - Train: 0.0048, Val: 0.0035
+    Epoch 10/30 - Train: 0.0034, Val: 0.0026
+    Epoch 15/30 - Train: 0.0045, Val: 0.0015
+    Epoch 20/30 - Train: 0.0025, Val: 0.0023
+    Epoch 25/30 - Train: 0.0022, Val: 0.0014
+    Epoch 30/30 - Train: 0.0020, Val: 0.0015
+  ViT trained successfully
+  Training UNet...
+    Epoch 5/30 - Train: 0.0017, Val: 0.0015
+    Epoch 10/30 - Train: 0.0012, Val: 0.0035
+    Epoch 15/30 - Train: 0.0010, Val: 0.0028
+    Epoch 20/30 - Train: 0.0010, Val: 0.0202
+    Early stopping at epoch 21
+  U-Net trained successfully
+
+[Step 4] Skipping hybrid model (--skip-hybrid)
+
+[Step 5] Evaluating 3 models...
+  CNN                  - MSE: 0.0123, MAE: 0.0837
+  ViT                  - MSE: 0.0114, MAE: 0.0767
+  UNet                 - MSE: 0.0095, MAE: 0.0707
+  Saved ViT checkpoint → checkpoints/best_model.pt
+
+================================================================================
+Model Comparison Report — Biomarker Inference from Low-Field MRI
+================================================================================
+
+Best MSE: UNet (0.0095)
+Best MAE: UNet (0.0707)
+Best R2: UNet (0.5669)
+Best CORRELATION: ViT (0.8128)
+
+--------------------------------------------------------------------------------
+Per-Biomarker Results:
+--------------------------------------------------------------------------------
+
+  BTF:
+    CNN                       MSE=0.0027  MAE=0.0432  R2=-0.1151
+    ViT                       MSE=0.0049  MAE=0.0509  R2=-1.0124
+    UNet                      MSE=0.0021  MAE=0.0324  R2=0.1277
+
+  TCR:
+    CNN                       MSE=0.0054  MAE=0.0668  R2=-1.5667
+    ViT                       MSE=0.0041  MAE=0.0414  R2=-0.9370
+    UNet                      MSE=0.0033  MAE=0.0509  R2=-0.5896
+
+  VBR:
+    CNN                       MSE=0.0070  MAE=0.0710  R2=-0.3044
+    ViT                       MSE=0.0124  MAE=0.1000  R2=-1.2974
+    UNet                      MSE=0.0072  MAE=0.0695  R2=-0.3300
+
+  MCI:
+    CNN                       MSE=0.0342  MAE=0.1537  R2=-0.7568
+    ViT                       MSE=0.0244  MAE=0.1143  R2=-0.2517
+    UNet                      MSE=0.0253  MAE=0.1302  R2=-0.3009
+
+================================================================================
+Full Metrics Table:
+================================================================================
+model      mse      mae     rmse       r2  correlation
+  CNN 0.012341 0.083659 0.111091 0.437001     0.697435
+  ViT 0.011434 0.076654 0.106930 0.478389     0.812798
+ UNet 0.009494 0.070742 0.097439 0.566878     0.807289
+
+Results saved to experiments/stage1/results/
+
+Stage 1 completed successfully!

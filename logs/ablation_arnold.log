@@ -1,0 +1,43 @@
+Loading biomarker labels...
+  56 volumes with labels
+  56 usable pairs
+  Split: train=39, val=8, test=9
+
+============================================================
+Training ViT — Physics-Informed (physics simulation)
+============================================================
+  Epoch  5/30 | train=0.0071 val=0.0041
+  Epoch 10/30 | train=0.0053 val=0.0069
+  Epoch 15/30 | train=0.0042 val=0.0038
+  Early stop at epoch 19
+  Best val_loss: 0.0019
+
+============================================================
+Training ViT — Arnold Gaussian (arnold simulation)
+============================================================
+  Epoch  5/30 | train=0.0056 val=0.0116
+  Epoch 10/30 | train=0.0043 val=0.0010
+  Epoch 15/30 | train=0.0030 val=0.0022
+  Early stop at epoch 18
+  Best val_loss: 0.0010
+
+===========================================================================
+Ablation: Physics-Informed Sim vs Arnold Gaussian Blur
+n_test = 9  |  ↑ higher is better, ↓ lower is better
+===========================================================================
+Method                           MSE↓     MAE↓    BTF-R2↑   BTF-r↑
+-----------------------------------------------------------------
+Ours (Physics-Informed)       0.00338   0.0381    -0.8349  -0.5470
+Arnold et al. (Gaussian)      0.00231   0.0363     0.2436   0.7113
+===========================================================================
+
+Per-Biomarker R2 (Physics vs Arnold):
+Biomarker    Phys R2    Arnold R2     Phys r   Arnold r
+-------------------------------------------------------
+BTF         -0.8349       0.2436    -0.5470     0.7113
+TCR          0.3946      -1.0145     0.6855     0.7607
+VBR          0.0490       0.0470     0.6055     0.3358
+MCI          0.2587       0.6989     0.6419     0.9650
+===========================================================================
+
+Results saved to /home/gk-krishnan/Desktop/VIT Paper/experiments/ablation_arnold/

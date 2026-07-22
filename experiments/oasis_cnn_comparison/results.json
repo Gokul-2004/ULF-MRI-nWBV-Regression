@@ -1,0 +1,386 @@
+{
+  "experiment": "CNN3D vs ViT3D on OASIS-1 test set",
+  "n_test": 38,
+  "seed": 42,
+  "cnn_training": {
+    "epochs_run": 20,
+    "best_val_pearson_r": 0.8986,
+    "lr": 5e-05,
+    "weight_decay": 0.0001,
+    "patience": 10
+  },
+  "ViT3D": {
+    "pearson_r": 0.722,
+    "fisher_ci_lo": 0.523,
+    "fisher_ci_hi": 0.8463,
+    "mae": 0.0584,
+    "rmse": 0.0805,
+    "mean_bias": 0.0533,
+    "n_test": 38
+  },
+  "CNN3D": {
+    "pearson_r": 0.8774,
+    "pearson_p": 0.0,
+    "fisher_ci_lo": 0.7751,
+    "fisher_ci_hi": 0.9348,
+    "spearman_r": 0.7481,
+    "spearman_p": 0.0,
+    "mae": 0.0242,
+    "rmse": 0.0326,
+    "mean_bias": -0.0069,
+    "n_test": 38,
+    "per_subject": [
+      {
+        "subject": "OAS1_0145_MR1",
+        "pred": 0.8211,
+        "gt": 0.831,
+        "error": -0.0099
+      },
+      {
+        "subject": "OAS1_0142_MR1",
+        "pred": 0.7355,
+        "gt": 0.695,
+        "error": 0.0405
+      },
+      {
+        "subject": "OAS1_0050_MR1",
+        "pred": 0.7985,
+        "gt": 0.841,
+        "error": -0.0425
+      },
+      {
+        "subject": "OAS1_0060_MR1",
+        "pred": 0.729,
+        "gt": 0.734,
+        "error": -0.005
+      },
+      {
+        "subject": "OAS1_0404_MR1",
+        "pred": 0.7813,
+        "gt": 0.776,
+        "error": 0.0053
+      },
+      {
+        "subject": "OAS1_0070_MR1",
+        "pred": 0.8065,
+        "gt": 0.801,
+        "error": 0.0055
+      },
+      {
+        "subject": "OAS1_0043_MR1",
+        "pred": 0.8335,
+        "gt": 0.846,
+        "error": -0.0125
+      },
+      {
+        "subject": "OAS1_0147_MR1",
+        "pred": 0.8442,
+        "gt": 0.845,
+        "error": -0.0008
+      },
+      {
+        "subject": "OAS1_0129_MR1",
+        "pred": 0.7968,
+        "gt": 0.846,
+        "error": -0.0492
+      },
+      {
+        "subject": "OAS1_0282_MR1",
+        "pred": 0.8167,
+        "gt": 0.819,
+        "error": -0.0023
+      },
+      {
+        "subject": "OAS1_0340_MR1",
+        "pred": 0.7997,
+        "gt": 0.853,
+        "error": -0.0533
+      },
+      {
+        "subject": "OAS1_0336_MR1",
+        "pred": 0.8266,
+        "gt": 0.852,
+        "error": -0.0254
+      },
+      {
+        "subject": "OAS1_0350_MR1",
+        "pred": 0.7746,
+        "gt": 0.869,
+        "error": -0.0944
+      },
+      {
+        "subject": "OAS1_0292_MR1",
+        "pred": 0.7698,
+        "gt": 0.766,
+        "error": 0.0038
+      },
+      {
+        "subject": "OAS1_0062_MR1",
+        "pred": 0.7641,
+        "gt": 0.754,
+        "error": 0.0101
+      },
+      {
+        "subject": "OAS1_0249_MR2",
+        "pred": 0.8194,
+        "gt": 0.865,
+        "error": -0.0456
+      },
+      {
+        "subject": "OAS1_0065_MR1",
+        "pred": 0.6991,
+        "gt": 0.645,
+        "error": 0.0541
+      },
+      {
+        "subject": "OAS1_0430_MR1",
+        "pred": 0.7348,
+        "gt": 0.687,
+        "error": 0.0478
+      },
+      {
+        "subject": "OAS1_0307_MR1",
+        "pred": 0.7303,
+        "gt": 0.735,
+        "error": -0.0047
+      },
+      {
+        "subject": "OAS1_0270_MR1",
+        "pred": 0.7112,
+        "gt": 0.703,
+        "error": 0.0082
+      },
+      {
+        "subject": "OAS1_0444_MR1",
+        "pred": 0.8605,
+        "gt": 0.86,
+        "error": 0.0005
+      },
+      {
+        "subject": "OAS1_0152_MR1",
+        "pred": 0.8143,
+        "gt": 0.83,
+        "error": -0.0157
+      },
+      {
+        "subject": "OAS1_0155_MR1",
+        "pred": 0.7324,
+        "gt": 0.753,
+        "error": -0.0206
+      },
+      {
+        "subject": "OAS1_0190_MR1",
+        "pred": 0.8064,
+        "gt": 0.813,
+        "error": -0.0066
+      },
+      {
+        "subject": "OAS1_0418_MR1",
+        "pred": 0.7451,
+        "gt": 0.747,
+        "error": -0.0019
+      },
+      {
+        "subject": "OAS1_0098_MR1",
+        "pred": 0.7388,
+        "gt": 0.693,
+        "error": 0.0458
+      },
+      {
+        "subject": "OAS1_0228_MR1",
+        "pred": 0.7412,
+        "gt": 0.759,
+        "error": -0.0178
+      },
+      {
+        "subject": "OAS1_0285_MR1",
+        "pred": 0.8131,
+        "gt": 0.843,
+        "error": -0.0299
+      },
+      {
+        "subject": "OAS1_0002_MR1",
+        "pred": 0.8268,
+        "gt": 0.81,
+        "error": 0.0168
+      },
+      {
+        "subject": "OAS1_0088_MR1",
+        "pred": 0.806,
+        "gt": 0.865,
+        "error": -0.059
+      },
+      {
+        "subject": "OAS1_0403_MR1",
+        "pred": 0.8115,
+        "gt": 0.833,
+        "error": -0.0215
+      },
+      {
+        "subject": "OAS1_0374_MR1",
+        "pred": 0.7781,
+        "gt": 0.76,
+        "error": 0.0181
+      },
+      {
+        "subject": "OAS1_0056_MR1",
+        "pred": 0.7071,
+        "gt": 0.668,
+        "error": 0.0391
+      },
+      {
+        "subject": "OAS1_0213_MR1",
+        "pred": 0.7867,
+        "gt": 0.801,
+        "error": -0.0143
+      },
+      {
+        "subject": "OAS1_0097_MR1",
+        "pred": 0.8211,
+        "gt": 0.816,
+        "error": 0.0051
+      },
+      {
+        "subject": "OAS1_0239_MR1",
+        "pred": 0.8403,
+        "gt": 0.823,
+        "error": 0.0173
+      },
+      {
+        "subject": "OAS1_0390_MR1",
+        "pred": 0.8052,
+        "gt": 0.794,
+        "error": 0.0112
+      },
+      {
+        "subject": "OAS1_0111_MR1",
+        "pred": 0.7954,
+        "gt": 0.855,
+        "error": -0.0596
+      }
+    ]
+  },
+  "cnn_training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.08478243863210082,
+      "val_pearson_r": 0.3275,
+      "val_mae": 0.0589
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.030196409216150643,
+      "val_pearson_r": 0.7514,
+      "val_mae": 0.0457
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.022733231307938695,
+      "val_pearson_r": 0.8005,
+      "val_mae": 0.1087
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.02360129461934169,
+      "val_pearson_r": 0.5959,
+      "val_mae": 0.0454
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.022118357879420122,
+      "val_pearson_r": 0.8301,
+      "val_mae": 0.0445
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.02013760433221857,
+      "val_pearson_r": 0.7967,
+      "val_mae": 0.0818
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.021885619716097912,
+      "val_pearson_r": 0.7124,
+      "val_mae": 0.0626
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.020619792787668605,
+      "val_pearson_r": 0.7617,
+      "val_mae": 0.0567
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.02211549380250896,
+      "val_pearson_r": 0.8155,
+      "val_mae": 0.0528
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.019636644860729576,
+      "val_pearson_r": 0.8986,
+      "val_mae": 0.0288
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.020771616746981938,
+      "val_pearson_r": 0.8419,
+      "val_mae": 0.0756
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.01875105107203126,
+      "val_pearson_r": 0.8484,
+      "val_mae": 0.0568
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.019802512403888008,
+      "val_pearson_r": 0.8933,
+      "val_mae": 0.0299
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.01828641296053926,
+      "val_pearson_r": 0.8822,
+      "val_mae": 0.0314
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.017225828339966633,
+      "val_pearson_r": 0.8349,
+      "val_mae": 0.121
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.01606820287493368,
+      "val_pearson_r": 0.8749,
+      "val_mae": 0.0253
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.01925422521928946,
+      "val_pearson_r": 0.8054,
+      "val_mae": 0.0447
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.018761057159863412,
+      "val_pearson_r": 0.8542,
+      "val_mae": 0.0488
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.017263922741015753,
+      "val_pearson_r": 0.8372,
+      "val_mae": 0.0373
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.01601236783278485,
+      "val_pearson_r": 0.8848,
+      "val_mae": 0.073
+    }
+  ],
+  "conclusion": "CNN3D outperforms ViT3D on clean OASIS-1 in both metrics, but ViT3D generalises better under domain shift (real 64mT MAE 0.040 vs 0.076)."
+}

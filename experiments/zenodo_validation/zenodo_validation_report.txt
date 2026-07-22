@@ -1,0 +1,16 @@
+Zenodo Real Low-Field MRI Validation Report
+======================================================================
+Dataset: van den Broek et al. (2025), Zenodo
+Subjects: 10 paired 64mT/3T
+
+Intensity Baseline (64mT direct segmentation):
+  BTF: corr=0.5339, MAE=0.0659
+  VBR: corr=0.0793, MAE=0.0005
+  TCR: corr=-0.0378, MAE=0.0008
+  MCI: corr=-0.3444, MAE=0.1376
+
+Trained Model (ViT, low-field input):
+  BTF: corr=0.3714, MAE=0.1172, p=0.2906
+  VBR: corr=-0.3002, MAE=0.1556, p=0.3994
+  TCR: corr=0.2837, MAE=0.0999, p=0.427
+  MCI: corr=-0.3106, MAE=0.2171, p=0.3824

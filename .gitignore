@@ -1,0 +1,66 @@
+# ============================================================
+# .gitignore for VIT Paper 2 research repository
+#
+# Included in git: all code, manuscript, figures, experiment
+#   RESULTS (JSON/CSV), model checkpoints (~16MB each),
+#   research-paper PDFs, and documentation.
+# Excluded: raw public MRI datasets (98GB, re-downloadable),
+#   website data, and regenerable FastSurfer segmentation
+#   volumes (.nii/.mgz). See CLAUDE.md for how to fetch data.
+# ============================================================
+
+# ── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ── Virtual environments ────────────────────────────────────
+venv/
+env/
+ENV/
+.venv
+
+# ── IDE / OS ────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── Raw datasets (98GB — public, re-downloadable via scripts) ─
+data/
+Website_dat/
+
+# ── FastSurfer / SynthSeg raw segmentation output ───────────
+#    (regenerable NIfTI/MGZ volumes; the derived nWBV ground-truth
+#     CSV and per-subject logs ARE kept)
+experiments/fastsurfer_output/**/*.nii
+experiments/fastsurfer_output/**/*.nii.gz
+experiments/fastsurfer_output/**/*.mgz
+experiments/synthseg_output/**/*.nii
+experiments/synthseg_output/**/*.nii.gz
+experiments/synthseg_output/**/*.mgz
+
+# ── Jupyter ─────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Wandb / Tensorboard ─────────────────────────────────────
+wandb/
+runs/
+*.tfevents.*
+
+# NOTE: checkpoints/*.pt, Research_Papers/*.pdf, experiment
+#       result JSONs, and *.log files are intentionally TRACKED.

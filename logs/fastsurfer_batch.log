@@ -1,0 +1,82 @@
+=== FastSurfer batch run: Thu Apr  2 09:55:06 PM IST 2026 ===
+Dataset : /home/gk-krishnan/Desktop/VIT Paper/data/ds006557_data
+Output  : /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output
+Parallel: 4 jobs
+
+Found 23 subjects
+
+=== Starting segmentation ===
+  [RUN ] sub-HYPE00 — started 21:55:06
+  [RUN ] sub-HYPE01 — started 21:55:06
+  [RUN ] sub-HYPE02 — started 21:55:06
+  [RUN ] sub-HYPE03 — started 21:55:06
+  [FAIL] sub-HYPE02 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE02/fastsurfer.log
+  [RUN ] sub-HYPE04 — started 00:17:56
+  [FAIL] sub-HYPE01 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE01/fastsurfer.log
+  [RUN ] sub-HYPE05 — started 00:17:58
+  [FAIL] sub-HYPE00 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE00/fastsurfer.log
+  [RUN ] sub-HYPE06 — started 00:18:31
+  [FAIL] sub-HYPE03 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE03/fastsurfer.log
+  [RUN ] sub-HYPE07 — started 00:18:39
+  [FAIL] sub-HYPE04 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE04/fastsurfer.log
+  [RUN ] sub-HYPE08 — started 02:28:15
+  [FAIL] sub-HYPE05 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE05/fastsurfer.log
+  [RUN ] sub-HYPE09 — started 02:28:18
+  [FAIL] sub-HYPE07 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE07/fastsurfer.log
+  [RUN ] sub-HYPE10 — started 02:29:17
+  [FAIL] sub-HYPE06 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE06/fastsurfer.log
+  [RUN ] sub-HYPE11 — started 02:29:50
+  [FAIL] sub-HYPE08 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE08/fastsurfer.log
+  [RUN ] sub-HYPE12 — started 04:34:22
+  [FAIL] sub-HYPE09 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE09/fastsurfer.log
+  [RUN ] sub-HYPE13 — started 04:35:10
+  [FAIL] sub-HYPE10 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE10/fastsurfer.log
+  [RUN ] sub-HYPE14 — started 04:36:44
+  [FAIL] sub-HYPE11 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE11/fastsurfer.log
+  [RUN ] sub-HYPE15 — started 04:37:31
+  [FAIL] sub-HYPE12 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE12/fastsurfer.log
+  [RUN ] sub-HYPE16 — started 06:34:32
+  [FAIL] sub-HYPE13 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE13/fastsurfer.log
+  [RUN ] sub-HYPE17 — started 06:36:23
+  [FAIL] sub-HYPE14 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE14/fastsurfer.log
+  [RUN ] sub-HYPE18 — started 06:37:20
+  [FAIL] sub-HYPE15 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE15/fastsurfer.log
+  [RUN ] sub-HYPE19 — started 06:37:42
+  [FAIL] sub-HYPE16 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE16/fastsurfer.log
+  [RUN ] sub-HYPE20 — started 08:34:15
+  [FAIL] sub-HYPE17 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE17/fastsurfer.log
+  [RUN ] sub-HYPE21 — started 08:37:02
+  [FAIL] sub-HYPE18 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE18/fastsurfer.log
+  [RUN ] sub-HYPE22 — started 08:37:21
+  [FAIL] sub-HYPE19 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE19/fastsurfer.log
+  [FAIL] sub-HYPE20 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE20/fastsurfer.log
+  [FAIL] sub-HYPE21 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE21/fastsurfer.log
+  [FAIL] sub-HYPE22 — check /home/gk-krishnan/Desktop/VIT Paper/experiments/fastsurfer_output/sub-HYPE22/fastsurfer.log
+
+=== All segmentations complete: Fri Apr  3 10:09:53 AM IST 2026 ===
+
+=== Extracting nWBV values ===
+  MISSING: sub-HYPE00
+  MISSING: sub-HYPE01
+  MISSING: sub-HYPE02
+  MISSING: sub-HYPE03
+  MISSING: sub-HYPE04
+  MISSING: sub-HYPE05
+  MISSING: sub-HYPE06
+  MISSING: sub-HYPE07
+  MISSING: sub-HYPE08
+  MISSING: sub-HYPE09
+  MISSING: sub-HYPE10
+  MISSING: sub-HYPE11
+  MISSING: sub-HYPE12
+  MISSING: sub-HYPE13
+  MISSING: sub-HYPE14
+  MISSING: sub-HYPE15
+  MISSING: sub-HYPE16
+  MISSING: sub-HYPE17
+  MISSING: sub-HYPE18
+  MISSING: sub-HYPE19
+  MISSING: sub-HYPE20
+  MISSING: sub-HYPE21
+  MISSING: sub-HYPE22
+No results extracted — check segmentation logs

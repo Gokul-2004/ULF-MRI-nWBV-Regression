@@ -1,0 +1,127 @@
+# Configuration file for Transformer-GNN Biomarker Estimation System
+
+# Data Configuration
+data:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  high_field_dir: "data/high_field"
+  low_field_dir: "data/low_field"
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  batch_size: 4
+  num_workers: 0
+  image_size: [64, 64, 64]  # 3D MRI dimensions
+  augmentations_per_volume: 5  # Number of augmented copies per training volume
+
+# High-field to Low-field Conversion
+field_conversion:
+  enabled: true
+  method: "hyperfine"  # Options: "hyperfine" (64mT physics), "simulation", "degradation", "combined"
+  # Hyperfine mode uses physics-derived parameters automatically (SNR, resolution, B0 inhomogeneity)
+  # Legacy params below are only used in non-hyperfine modes:
+  noise_level: 0.1
+  resolution_factor: 0.625  # 1mm/1.6mm = Hyperfine actual resolution
+  contrast_reduction: 0.3
+
+# Model Configuration
+model:
+  name: "HybridTransformerGNN"
+  architecture:
+    transformer:
+      hidden_dim: 256
+      num_heads: 8
+      num_layers: 4
+      dropout: 0.1
+      patch_size: [16, 16, 16]
+    gnn:
+      num_layers: 3
+      hidden_dim: 128
+      aggregation: "mean"  # Options: "mean", "max", "sum", "attention"
+      edge_features: true
+      graph_type: "knn_spatial"  # Options: "knn_spatial", "fully_connected"
+    fusion:
+      method: "attention"  # Options: "attention", "concat", "weighted"
+      fusion_dim: 256
+
+# Uncertainty Quantification
+uncertainty:
+  method: "dropout"  # Options: "ensemble", "dropout", "evidential", "bayesian"
+  num_samples: 10
+  dropout_rate: 0.1
+  temperature: 1.0
+  calibration: true
+
+# Training Configuration
+training:
+  epochs: 50
+  learning_rate: 5e-4
+  weight_decay: 1e-5
+  optimizer: "adamw"
+  scheduler: "cosine"
+  warmup_epochs: 5
+  gradient_clip: 1.0
+  early_stopping:
+    patience: 10
+    min_delta: 0.001
+  checkpoint_dir: "checkpoints"
+  log_dir: "logs"
+  save_frequency: 5
+
+# Inference Configuration
+inference:
+  batch_size: 1
+  uncertainty_threshold: 0.8  # Confidence threshold for predictions
+  cost_aware:
+    enabled: true
+    strategies: ["early_exit", "model_cascade", "adaptive_sampling"]
+    min_confidence: 0.7
+  device: "cuda"  # Options: "cuda", "cpu", "auto"
+
+# Biomarker Configuration
+biomarkers:
+  target_biomarkers: ["btf", "tcr", "vbr", "mci"]
+  num_classes: 4  # 4 biomarkers: BTF, TCR, VBR, MCI
+  loss_function: "mse"  # Options: "mse", "mae", "huber", "quantile"
+  metrics: ["mse", "mae", "r2", "per_biomarker_mse"]
+
+# Augmentation Configuration
+augmentation:
+  enabled: true
+  rotation_range: [-10, 10]
+  translation_range: [-5, 5]
+  scale_range: [0.9, 1.1]
+  noise_std: 0.03
+  flip_prob: 0.5
+  intensity_shift: 0.1
+  intensity_scale: [0.85, 1.15]
+
+# Evaluation Configuration
+evaluation:
+  results_dir: "experiments/stage1/results"
+  comparison_methods:
+    - "baseline_cnn"
+    - "baseline_transformer"
+    - "baseline_gnn"
+    - "existing_techniques"
+  metrics:
+    - "mse"
+    - "mae"
+    - "r2"
+    - "uncertainty_calibration"
+    - "inference_time"
+    - "compute_cost"
+
+# Resource Constraints
+resources:
+  max_memory_gb: 8
+  max_compute_hours: 24
+  enable_mixed_precision: true
+  enable_gradient_checkpointing: true
+
+# Logging
+logging:
+  level: "INFO"
+  log_to_file: true
+  log_to_console: true
+  experiment_tracking: "tensorboard"  # Options: "wandb", "tensorboard", "none"

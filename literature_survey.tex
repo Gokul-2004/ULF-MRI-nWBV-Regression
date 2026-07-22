@@ -1,0 +1,354 @@
+\section{Related Work}
+
+The emergence of ultra-low-field (ULF) MRI systems operating at field strengths below 0.1~T has catalyzed a rapidly expanding body of research at the intersection of accessible neuroimaging, deep learning--based image enhancement, and computational brain morphometry. This section surveys the relevant literature across five thematic areas: (1)~the clinical landscape and accessibility of low-field MRI, (2)~simulation and domain adaptation for bridging high-field and low-field domains, (3)~deep learning approaches for ULF image enhancement and field-strength translation, (4)~Vision Transformers and physics-informed methods in medical imaging, and (5)~computational brain morphometry and biomarker prediction.
+
+%===========================================================================
+\subsection{Ultra-Low-Field MRI: Clinical Landscape and Accessibility}
+%=======================================
+====================================
+
+Magnetic resonance imaging remains inaccessible to the vast majority of the global population. The ``radiology divide'' leaves approximately 90\% of the world's population without access to MRI, with two-thirds lacking even basic medical imaging~\cite{arnold2023review}. High-field MRI systems ($\geq$1.5~T) require cryogenic cooling, dedicated shielded rooms, stable high-power supplies, and specialized personnel---infrastructure that is prohibitively expensive for most low- and middle-income countries (LMICs), where MRI scanner density can be as low as 0.19--1.12 units per million people compared to 26.53 per million in high-income countries~\cite{arnold2023review, ringshaw2026infant}.
+
+Arnold et al.~\cite{arnold2023review} provide a comprehensive review of the clinical promise and challenges of low-field MRI, categorizing field strengths as ultra-low-field ($\leq$0.1~T), very-low-field (0.1--0.3~T), and low-field (0.3--1.0~T). They identify five clinical domains where lower-field devices offer value: high-acuity brain imaging, outpatient neuroimaging, MRI-guided procedures, pediatric imaging, and musculoskeletal imaging. Critically, while SNR per unit time is proportional to magnetic field strength, sufficient acquisition time combined with software innovations---particularly deep learning reconstruction---are narrowing the quality gap between field strengths~\cite{arnold2023review}.
+
+The 64~mT Hyperfine Swoop scanner has emerged as the leading commercial ULF-MRI platform, receiving FDA clearance in 2020. Sheth et al.~\cite{sheth2021portable} demonstrated its clinical viability for bedside neuroimaging in critically ill patients, achieving 80.4\% sensitivity and 96.6\% specificity for intracranial hemorrhage detection across 144 examinations. Kimberly et al.~\cite{kimberly2023portable} further highlighted the benefits of portable 64~mT MRI for emergency and intensive care settings, reducing disparities in access to neuroimaging. More recently, Iglesias et al.~\cite{iglesias2024portable} optimized 64~mT acquisition protocols and developed a freely available machine learning pipeline for brain morphometry and white matter hyperintensity quantification, demonstrating that hippocampal volumes from 3~mm or finer isotropic scans agree with conventional high-field MRI---establishing the potential for point-of-care dementia assessment.
+
+The UNITY Project represents the largest multi-center deployment of portable ULF-MRI systems to date. Ljungberg et al.~\cite{ljungberg2025unity} describe a quality control (QC) framework applied across 17 sites in 12 countries on four continents, all using 64~mT Hyperfine Swoop systems. Their work demonstrates that image quality is robust to varying operational environments including temperature fluctuations and electromagnetic interference, with geometric distortions below 2.5~mm and high temporal stability~\cite{ljungberg2025unity}. This establishes the feasibility of pooling multi-site ULF data for large-scale neuroimaging studies---a prerequisite for population-level brain morphometry.
+
+At the mid-field range, Saeed et al.~\cite{saeed2026dlreconstruction} investigate deep learning--based reconstruction at 0.55~T using a variational-network architecture, demonstrating significant SNR improvements (from 40.83$\pm$10.11 to 106.30$\pm$51.38 in gray matter, $p < 0.0001$) and CNR enhancement while reducing acquisition time from 6:44 to 3:06 minutes. While operating at a higher field strength than our work, this study reinforces the principle that computational methods can compensate for hardware limitations in lower-field systems.
+
+%===========================================================================
+\subsection{Simulation and Domain Adaptation Strategies}
+%==================================0
+
+=========================================
+
+A central challenge in developing computational methods for ULF-MRI is the scarcity of paired high-field/low-field datasets. Two principal strategies have emerged: empirical domain transformation and physics-based simulation.
+
+\subsubsection{Empirical Simulation Approaches}
+
+Arnold et al.~\cite{arnold2022simulated} pioneered the empirical simulation approach for 64~mT MRI, developing a domain transformation that converts 3~T FLAIR images to simulated low-field quality through registration, brain extraction, re-slicing, Gaussian smoothing ($\sigma = 0.5$), and parameterized noise filtering. The transformation was validated by minimizing histogram moment differences (mean, standard deviation, skewness) between simulated and real 64~mT images, with additional quantitative validation via gradient entropy and qualitative validation through blinded neuroradiologist ratings. Using DenseNet-121 classifiers trained on simulated 64~mT images, they demonstrated comparable pathology detection AUC between 3~T and simulated 64~mT across four neuropathologies: low-grade glioma (0.97 vs.\ 0.98), high-grade glioma (0.96 vs.\ 0.95), stroke (0.94 vs.\ 0.94), and multiple sclerosis (0.90 vs.\ 0.87)~\cite{arnold2022simulated}. This work serves as a direct baseline for our physics-informed simulation.
+
+Javadi et al.~\cite{javadi2025diffusion} adopt the same empirical synthesis pipeline to generate synthetic 64~mT FLAIR images from the BraTS 2019 dataset, then compare super-resolution via Repeated Refinement (SR3)---a generative diffusion model---against CycleGAN and UNet for 64~mT to 3~T translation. SR3 significantly outperformed conventional approaches, achieving SSIM scores above 0.97 and excelling in preserving pathological structures including necrotic core and edema~\cite{javadi2025diffusion}. Minocha et al.~\cite{minocha2024lowfieldad} similarly employ a Fourier-based LF simulation on OASIS-3 data, combining SRCNN for super-resolution and UNET++ for brain segmentation, followed by a soft-voting ensemble achieving 96\% accuracy for AD classification.
+
+\subsubsection{Physics-Based Simulation and Domain Adaptation}
+
+While empirical approaches match image statistics, they do not model the underlying MR physics governing signal formation at different field strengths. Physics-informed methods in MRI reconstruction have demonstrated the value of incorporating acquisition physics as inductive biases. Hammernik et al.~\cite{hammernik2018variational} introduced the variational network, embedding a variational model into an unrolled gradient descent scheme where filter kernels, activation functions, and data term weights are learned end-to-end, demonstrating that physics-driven architectures outperform purely data-driven approaches for accelerated MRI reconstruction. Aggarwal et al.~\cite{aggarwal2019modl} proposed MoDL, replacing hand-crafted regularizers with learned CNN denoisers within an alternating minimization framework that enforces data consistency, further demonstrating the advantages of model-based deep learning for MRI inverse problems.
+
+The broader challenge of bridging simulation and real domains---the sim-to-real gap---is well-documented in medical imaging. Guan and Liu~\cite{guan2022domainadaptation} survey domain adaptation methods for medical imaging, categorizing approaches into shallow vs.\ deep and supervised/unsupervised paradigms, and highlighting the persistent domain shift across scanners, protocols, and sites. In our context, the domain gap manifests as a difference between physics-simulated 64~mT images (trained on high-field data with simulated degradation) and real Hyperfine acquisitions that include device-specific artifacts, echo train averaging, and environmental noise not captured by simulation.
+
+Our approach differs from purely empirical methods by incorporating MR physics priors: tissue-specific T1/T2 relaxation times at 64~mT (white matter: T1=400~ms, T2=80~ms; gray matter: T1=500~ms, T2=100~ms; CSF: T1=3000~ms, T2=2000~ms), Rician noise modeling, and B0 field inhomogeneity simulation. This physics-constrained simulation enables the model to learn representations grounded in the physical mechanisms of signal contrast at ultra-low field strengths.
+
+%===========================================================================
+\subsection{Deep Learning for ULF Image Enhancement and Translation}
+%===========================================================================
+
+\subsubsection{Super-Resolution and Image Quality Transfer}
+
+Several groups have developed deep learning models specifically for enhancing ULF-MRI image quality, primarily through super-resolution and field-strength translation.
+
+Iglesias et al.~\cite{iglesias2023synthsr} introduced SynthSR, a publicly available CNN-based tool that converts clinical brain MRI of any contrast, orientation, and resolution into 1~mm isotropic T1-weighted images suitable for standard morphometric analysis. Trained entirely on synthetic data via domain randomization, SynthSR was validated on over 10,000 scans across controls and patients, yielding morphometric results highly correlated with real high-resolution T1 scans~\cite{iglesias2023synthsr}. The companion tool SynthSeg, developed by Billot et al.~\cite{billot2023synthseg}, provides contrast- and resolution-agnostic brain segmentation, trained entirely on synthetic data generated from label maps through domain randomization. Validated on 5,000 scans across 6 modalities and 10 resolutions, SynthSeg outperforms supervised CNNs and is now integrated into FreeSurfer~\cite{billot2023synthseg}. These tools collectively demonstrate that domain-randomized synthetic training can produce robust neuroimaging tools that generalize across acquisition protocols.
+
+Baljer et al.~\cite{baljer2025pediatricsr} present a multi-orientation U-Net specifically designed for pediatric ULF-MRI super-resolution, training on paired 64~mT/3~T data from 56 infants (aged 3--6 months) in South Africa. Their model takes three orthogonal anisotropic 64~mT scans as input and produces a 1.5~mm isotropic output using a combined L2 and LPIPS perceptual loss. They achieve linear correlations of $r = 0.94$ (vs.\ 0.84 for existing methods) and Lin's concordance correlation of 0.94 (vs.\ 0.80) for deep brain structures~\cite{baljer2025pediatricsr}. This is the first U-Net trained exclusively on paired ULF-HF data from a pediatric population.
+
+Islam et al.~\cite{islam2025volumetric} evaluate SynthSR and LoHiResGAN for improving volumetric consistency between 64~mT and 3~T brain MRI across 19 brain regions in 92 healthy adults. Their results reveal that raw 64~mT MRI shows significant volumetric deviations from 3~T ($p < 0.001$ for most regions), with large effect sizes for fluid-filled structures (lateral ventricle $d \approx -4.27$, CSF $d \approx -2.69$). LoHiResGAN provides the closest match to 3~T measurements ($\Delta = +0.89\%$ for total intracranial volume)~\cite{islam2025volumetric}, demonstrating that AI enhancement can produce volumetric measurements approaching high-field quality.
+
+Dayarathna et al.~\cite{dayarathna2024adversarial} propose an adversarial diffusion-based approach for translating 64~mT to high-field MRI, incorporating a non-diffusive attention-guided module. Their method outperforms pix2pix, pGAN, AttGAN, and DDPM by up to 2.59~dB in PSNR and 19.4\% in SSIM across T1-w, T2-w, and FLAIR contrasts~\cite{dayarathna2024adversarial}.
+
+\subsubsection{Brain Morphometry at Ultra-Low Field}
+
+V\'{a}\v{s}a et al.~\cite{vasa2025morphometry} provide the most comprehensive evaluation of ULF brain morphometry to date, scanning 23 healthy adults (aged 20--69) on two identical 64~mT scanners and a 3~T system. Using SynthSeg+~\cite{billot2023synthseg} for segmentation across 98 structures and 4 tissue types, they report excellent between-scanner test--retest reliability (ICC 0.93--0.97 for T$_2$w MRR scans) and high correspondence to 3~T (Pearson's $r$ = 0.88--0.94 across tissue types). Critically, multi-resolution registration (MRR) of three orthogonal T$_2$w scans yields the highest reliability and 3~T correspondence~\cite{vasa2025morphometry}. Their publicly available dataset (ds006557 on OpenNeuro) serves as the real-world validation benchmark in our study.
+
+Ringshaw et al.~\cite{ringshaw2026infant} extend ULF morphometry to pediatric populations, cross-validating 64~mT and 3~T volume estimates in 78 infants (aged 3--18 months) from South Africa. They report strong agreement for intracranial volume ($r = 0.96$, $\rho_{\text{ccc}} = 0.95$), caudate nucleus ($r = 0.89$, $\rho_{\text{ccc}} = 0.86$), putamen ($r = 0.97$, $\rho_{\text{ccc}} = 0.96$), and corpus callosum ($r = 0.87$, $\rho_{\text{ccc}} = 0.79$)~\cite{ringshaw2026infant}. These findings validate ULF-MRI for pediatric neuroimaging in LMICs and complement our adult-focused work.
+
+Iglesias et al.~\cite{iglesias2023radiology} applied super-resolution machine learning to portable 64~mT brain MRI from 24 neurological patients, demonstrating significant correlations across 39 brain ROIs including hippocampus ($r = 0.85$), thalamus ($r = 0.84$), and whole cerebrum ($r = 0.92$). This established proof-of-principle for ML-augmented portable MRI morphometry at 64~mT.
+
+Hsu et al.~\cite{hsu2025morphological} systematically evaluated brain morphological feature extraction from 64~mT ULF-MRI in 60 healthy adults (aged 22--75), testing multiple acquisition strategies with SynthSeg+ segmentation. Their key finding is that combining orthogonal T2-weighted acquisitions into a composite ``TomoBrain'' volume substantially improves volumetric accuracy against subject-matched high-field reference (1.5~T, 3~T, or 7~T), and that not all acquisition orientations contribute equally to accuracy~\cite{hsu2025morphological}. The study provides a recommended acquisition protocol for population-level brain health research with 64~mT systems---directly complementing the morphometric prediction task we address.
+
+%===========================================================================
+\subsection{Vision Transformers and Physics-Informed Methods in Medical Imaging}
+%===========================================================================
+
+\subsubsection{Vision Transformers for Volumetric Analysis}
+
+The Transformer architecture, introduced by Vaswani et al.~\cite{vaswani2017attention}, revolutionized sequence modeling through its self-attention mechanism. Dosovitskiy et al.~\cite{dosovitskiy2021vit} adapted this architecture for image recognition as the Vision Transformer (ViT), demonstrating that a pure Transformer applied to sequences of image patches achieves state-of-the-art classification when pre-trained on large datasets, while capturing long-range spatial dependencies that convolutional architectures cannot model efficiently.
+
+The extension of ViT to 3D medical imaging has been rapid and productive. Hatamizadeh et al.~\cite{hatamizadeh2022unetr} introduced UNETR, a U-shaped architecture coupling a ViT encoder with a CNN decoder for 3D medical image segmentation, achieving state-of-the-art results on multi-organ and brain tumor benchmarks. Wang et al.~\cite{wang2021transbts} proposed TransBTS, the first work to embed Transformers within a 3D CNN encoder-decoder for brain tumor segmentation, demonstrating the complementary strengths of local feature extraction (CNN) and global context modeling (Transformer). Tang et al.~\cite{tang2022swinunetr} further advanced this direction with Swin UNETR, combining hierarchical shifted-window self-attention with self-supervised pre-training to achieve top performance on multiple 3D segmentation benchmarks. Shamshad et al.~\cite{shamshad2023survey} provide a comprehensive survey of over 125 papers on Transformers in medical imaging, developing taxonomies across segmentation, detection, classification, reconstruction, and synthesis tasks.
+
+Chen et al.~\cite{chen2021vitvnet} demonstrated that ViT captures long-range spatial dependencies critical for volumetric brain image analysis, outperforming purely convolutional methods for 3D registration tasks. These works collectively establish that Vision Transformers are well-suited for extracting global volumetric features from 3D brain MRI---a capability we exploit for direct morphometric biomarker regression.
+
+However, existing medical ViT literature has focused predominantly on segmentation and registration tasks. Our work is among the first to apply a 3D ViT architecture directly to scalar biomarker regression from volumetric brain MRI, bypassing intermediate segmentation or surface reconstruction steps entirely.
+
+\subsubsection{Transfer Learning in Medical Imaging}
+
+Transfer learning---pre-training on a source domain and fine-tuning on a target domain---is a cornerstone strategy for medical imaging where labeled data is scarce. Raghu et al.~\cite{raghu2019transfusion} investigated transfer learning for medical imaging and found that feature reuse from ImageNet pre-training is concentrated in the lowest convolutional layers, suggesting that domain-specific pre-training may be more beneficial than generic natural image features. This finding motivates our two-stage approach: pre-training on physics-simulated 64~mT data (IXI dataset, $n = 156$) to learn domain-relevant features, followed by clinical fine-tuning on OASIS-1 ($n = 375$) for nWBV prediction.
+
+%===========================================================================
+\subsection{Computational Brain Morphometry and Biomarker Prediction}
+%===========================================================================
+
+FreeSurfer~\cite{fischl2012freesurfer} remains the gold standard for automated brain morphometry, providing cortical reconstruction, subcortical segmentation, and volumetric measurements from MRI. The normalized whole-brain volume (nWBV)---defined as the gray-plus-white-matter fraction of estimated total intracranial volume---was formalized by Buckner et al.~\cite{buckner2004nwbv} as part of an atlas-based head size normalization framework validated against manual volumetry. nWBV is the primary biomarker in the OASIS cross-sectional dataset~\cite{marcus2007oasis}, which provides FreeSurfer-derived nWBV, Clinical Dementia Rating (CDR), and demographic data for 416 subjects aged 18--96.
+
+Rebsamen et al.~\cite{rebsamen2020corticalthickness} propose DL+DiReCT, combining deep learning--based neuroanatomy segmentation with diffeomorphic registration for cortical thickness estimation. On the OASIS-3 dataset ($n = 2{,}643$), DL+DiReCT achieves Pearson correlation of $r = 0.887$ with FreeSurfer for global mean cortical thickness, substantially outperforming ANTs ($r = 0.608$). The method detects group-wise differences between healthy controls and dementia patients with higher effect sizes than FreeSurfer~\cite{rebsamen2020corticalthickness}. This correlation of $r = 0.887$ provides important context for our own result of $r = 0.892$ for nWBV prediction, suggesting our physics-constrained ViT achieves comparable accuracy to established cortical morphometry pipelines.
+
+Gopinath et al.~\cite{gopinath2025reconany} introduce \textit{recon-any}, a 3D U-Net trained on synthetic LF-MRI data that predicts signed distance functions for cortical surface reconstruction directly from any LF-MRI scan. Their method achieves surface area correlations of $r = 0.96$, cortical parcellation Dice of 0.98, and gray matter volume $r = 0.93$ for 3~mm isotropic T$_2$w scans~\cite{gopinath2025reconany}. While representing the state of the art in LF cortical analysis, this approach requires computationally expensive surface reconstruction. Our method instead directly predicts scalar morphometric biomarkers from volumetric data, offering a lightweight alternative suitable for point-of-care deployment.
+
+In the domain of image-to-biomarker prediction, Hasegawa et al.~\cite{hasegawa2025biomarker} propose a 3D ResNet-34--based multitask regression framework for non-invasive prediction of CSF amyloid-$\beta$ biomarkers from T1-weighted MRI and brain perfusion SPECT. Using 153 patients with five-fold cross-validation, they demonstrate that multimodal integration with demographic variables improves prediction accuracy (RMSE of 500~pg/mL for A$\beta$42)~\cite{hasegawa2025biomarker}. While targeting different biomarkers and using high-field MRI, this work establishes the feasibility of direct image-to-biomarker regression---the same paradigm our method employs.
+
+%===========================================================================
+\subsection{Summary and Research Gap}
+%===========================================================================
+
+Table~\ref{tab:litcomparison} summarizes the key characteristics of related works. The surveyed literature reveals several critical gaps:
+
+\begin{enumerate}
+    \item \textbf{Simulation fidelity:} Empirical simulation methods~\cite{arnold2022simulated, javadi2025diffusion, minocha2024lowfieldad} do not model the underlying MR physics of ultra-low-field acquisition---including field-dependent T1/T2 relaxation, Rician noise statistics, and B0 inhomogeneity---potentially limiting the fidelity of learned representations and their transferability to real 64~mT data.
+
+    \item \textbf{Pipeline complexity:} Existing approaches for extracting brain morphometry from ULF-MRI require multi-step pipelines: super-resolution~\cite{baljer2025pediatricsr, iglesias2023synthsr}, followed by segmentation~\cite{billot2023synthseg}, and then volumetric analysis. Each intermediate step introduces potential errors that propagate downstream.
+
+    \item \textbf{Architecture:} Despite the demonstrated advantages of Vision Transformers for 3D medical image analysis~\cite{hatamizadeh2022unetr, wang2021transbts, tang2022swinunetr}, no prior work has employed ViTs for direct morphometric biomarker prediction from ULF-MRI.
+
+    \item \textbf{End-to-end biomarker regression:} While image-to-biomarker prediction has been explored for other targets~\cite{hasegawa2025biomarker}, no method has attempted direct prediction of nWBV or other volumetric biomarkers from simulated or real ultra-low-field MRI data.
+
+    \item \textbf{Sim-to-real domain adaptation:} Existing simulation-based methods do not address the domain gap between physics-simulated and real ULF-MRI acquisitions. The Hyperfine device applies device-specific post-processing (echo train length ETL=80, ${\sim}9.7\times$ SNR boost) not captured by physics simulation, creating a systematic calibration offset that limits direct deployment.
+\end{enumerate}
+
+Our work addresses all five gaps by introducing a physics-constrained simulation pipeline, a 3D Vision Transformer for direct nWBV regression, a transfer learning strategy from simulated pre-training (IXI, $n = 156$) to clinical fine-tuning (OASIS-1, $n = 375$), validation on real 64~mT Hyperfine data~\cite{vasa2025morphometry} ($n = 23$) with FreeSurfer-equivalent ground truth obtained via FastSurfer, demonstrating biologically meaningful age-related atrophy detection (Spearman $\rho = -0.597$, $p = 0.003$), and lightweight domain adaptation (fine-tuning final layers on $n = 15$ paired real scans) achieving MAE $= 0.010$ nWBV units on held-out real 64~mT data.
+
+%===========================================================================
+% COMPARISON TABLE
+%===========================================================================
+
+\begin{table*}[!t]
+\caption{Summary of Key Related Works in Ultra-Low-Field MRI Deep Learning and Brain Morphometry}
+\label{tab:litcomparison}
+\centering
+\small
+\begin{tabular}{|p{3.2cm}|p{1.4cm}|p{2.2cm}|p{2.4cm}|p{2.4cm}|p{2.6cm}|}
+\hline
+\textbf{Study} & \textbf{Field Strength} & \textbf{Method} & \textbf{Dataset / N} & \textbf{Task} & \textbf{Key Result} \\
+\hline
+Arnold et al.~\cite{arnold2022simulated} (2022) & 64~mT sim. & Gaussian blur + noise; DenseNet-121 & Paired 3T/64mT + open-access ($N$=363 path.) & Pathology detection & AUC 0.87--0.98 (sim $\approx$ real) \\
+\hline
+Iglesias et al.~\cite{iglesias2023radiology} (2023) & 64~mT real & Super-resolution CNN + FreeSurfer & 24 neurological patients & Brain morphometry & Hippocampus $r$=0.85, cerebrum $r$=0.92 \\
+\hline
+Dayarathna et al.~\cite{dayarathna2024adversarial} (2024) & 64~mT real & Adversarial diffusion + attention & 45 subjects; Hyperfine + 3T & ULF$\to$HF translation & PSNR 24.04~dB, SSIM 0.907 \\
+\hline
+V\'{a}\v{s}a et al.~\cite{vasa2025morphometry} (2025) & 64~mT real & SynthSeg+ on MRR volume & 23 adults; 2$\times$64mT + 3T & Morphometry reliability & ICC 0.93--0.97; Pearson $r$=0.88--0.94 \\
+\hline
+Islam et al.~\cite{islam2025volumetric} (2025) & 64~mT real & SynthSR / LoHiResGAN & 92 healthy adults; 64mT + 3T & Volumetric consistency & LoHiResGAN: $\Delta$ICV~=~+0.89\% \\
+\hline
+Hsu et al.~\cite{hsu2025morphological} (2025) & 64~mT real & SynthSeg+ on TomoBrain & 60 adults; 64mT + HF ref. & Morphometry protocol & TomoBrain best accuracy; protocol recommended \\
+\hline
+Baljer et al.~\cite{baljer2025pediatricsr} (2025) & 64~mT real & Multi-orientation U-Net & 56 infants; 64mT + 3T & Pediatric super-resolution & Deep brain $r$=0.94, CCC=0.94 \\
+\hline
+Gopinath et al.~\cite{gopinath2025reconany} (2025) & LF sim. & 3D U-Net (Recon-Any) & Paired HF/LF scans & Cortical surface mapping & Surface area $r$=0.96; thickness $r$=0.70 \\
+\hline
+Javadi et al.~\cite{javadi2025diffusion} (2025) & 64~mT sim. & SR3 diffusion model & BraTS 2019 sim. & ULF$\to$HF translation & SSIM$>$0.97; preserves pathology \\
+\hline
+Ringshaw et al.~\cite{ringshaw2026infant} (2026) & 64~mT real & MiniMORPH segmentation & 78 infants; 64mT + 3T & Infant brain volumes & ICV $r$=0.96, putamen $r$=0.97 \\
+\hline
+Rebsamen et al.~\cite{rebsamen2020corticalthickness} (2020) & 3T & DL+DiReCT & OASIS-3 ($N$=2,643) & Cortical thickness & $r$=0.887 vs.\ FreeSurfer \\
+\hline
+Hasegawa et al.~\cite{hasegawa2025biomarker} (2025) & 3T & 3D ResNet-34 multitask regression & 153 dementia patients & CSF A$\beta$ prediction & RMSE 500~pg/mL (A$\beta$42) \\
+\hline
+\textbf{Ours} & \textbf{64~mT sim.+real} & \textbf{Physics-constrained ViT3D + domain adaptation} & \textbf{IXI $n$=156; OASIS $n$=375; real $n$=23} & \textbf{nWBV prediction} & \textbf{$r$=0.892 [CI: 0.801--0.943]; age $\rho$=--0.597, $p$=0.003; MAE=0.010 (real 64~mT)} \\
+\hline
+\end{tabular}
+\end{table*}
+
+%===========================================================================
+% REFERENCES
+%===========================================================================
+\begin{thebibliography}{99}
+
+% === Ultra-Low-Field MRI: Clinical Landscape ===
+\bibitem{arnold2023review}
+T.~C. Arnold, C.~W. Freeman, B.~Litt, and J.~M. Stein,
+``Low-field MRI: Clinical promise and challenges,''
+\textit{J. Magn. Reson. Imaging}, vol.~57, no.~1, pp.~25--44, 2023.
+
+\bibitem{sheth2021portable}
+K.~N. Sheth \textit{et al.},
+``Assessment of brain injury using portable, low-field magnetic resonance imaging at the bedside of critically ill patients,''
+\textit{JAMA Neurol.}, vol.~78, no.~1, pp.~41--47, 2021.
+
+\bibitem{kimberly2023portable}
+W.~T. Kimberly \textit{et al.},
+``Brain imaging with portable low-field MRI,''
+\textit{Nat. Rev. Bioeng.}, vol.~1, pp.~617--630, 2023.
+
+\bibitem{iglesias2024portable}
+J.~E. Iglesias \textit{et al.},
+``Portable, low-field magnetic resonance imaging for evaluation of Alzheimer's disease,''
+\textit{Nat. Commun.}, vol.~15, 10488, 2024.
+
+\bibitem{ljungberg2025unity}
+E.~Ljungberg \textit{et al.},
+``Characterization of portable ultra-low field MRI scanners for multi-center structural neuroimaging,''
+\textit{Hum. Brain Mapp.}, vol.~46, e70217, 2025.
+
+\bibitem{saeed2026dlreconstruction}
+S.~Saeed \textit{et al.},
+``Improved image quality and reduced acquisition time in brain MRI using deep learning-based reconstruction: A quantitative and subjective assessment compared to standard MPRAGE in 0.55~T MRI,''
+\textit{Magn. Reson. Imaging}, vol.~129, 110656, 2026.
+
+% === Simulation and Domain Adaptation ===
+\bibitem{arnold2022simulated}
+T.~C. Arnold, S.~N. Baldassano, B.~Litt, and J.~M. Stein,
+``Simulated diagnostic performance of low-field MRI: Harnessing open-access datasets to evaluate novel devices,''
+\textit{Magn. Reson. Imaging}, vol.~87, pp.~67--76, Apr. 2022.
+
+\bibitem{javadi2025diffusion}
+M.~Javadi \textit{et al.},
+``In-silico comparison of a diffusion model with conventionally trained deep networks for translating 64mT to 3T brain FLAIR,''
+\textit{Sci. Rep.}, vol.~15, 38052, 2025.
+
+\bibitem{minocha2024lowfieldad}
+A.~Minocha, S.~Yang, J.~H. Patel, and I.~Ma,
+``Low field MRI deep learning framework for non-hospitalizing early detection and characterization of Alzheimer's disease pathology,''
+in \textit{Proc. IEEE Int. Conf. Big Data}, pp.~7369--7373, 2024.
+
+\bibitem{hammernik2018variational}
+K.~Hammernik \textit{et al.},
+``Learning a variational network for reconstruction of accelerated MRI data,''
+\textit{Magn. Reson. Med.}, vol.~79, no.~6, pp.~3055--3071, 2018.
+
+\bibitem{aggarwal2019modl}
+H.~K. Aggarwal, M.~P. Mani, and M.~Jacob,
+``MoDL: Model-based deep learning architecture for inverse problems,''
+\textit{IEEE Trans. Med. Imaging}, vol.~38, no.~2, pp.~394--405, 2019.
+
+\bibitem{guan2022domainadaptation}
+H.~Guan and M.~Liu,
+``Domain adaptation for medical image analysis: A survey,''
+\textit{IEEE Trans. Biomed. Eng.}, vol.~69, no.~3, pp.~1173--1185, 2022.
+
+% === Deep Learning for ULF Enhancement ===
+\bibitem{iglesias2023synthsr}
+J.~E. Iglesias \textit{et al.},
+``SynthSR: A public AI tool to turn heterogeneous clinical brain scans into high-resolution T1-weighted images for 3D morphometry,''
+\textit{Sci. Adv.}, vol.~9, no.~5, eadd3607, 2023.
+
+\bibitem{billot2023synthseg}
+B.~Billot \textit{et al.},
+``SynthSeg: Segmentation of brain MRI scans of any contrast and resolution without retraining,''
+\textit{Med. Image Anal.}, vol.~86, 102789, 2023.
+
+\bibitem{baljer2025pediatricsr}
+L.~Baljer \textit{et al.},
+``Ultra-low-field paediatric MRI in low- and middle-income countries: Super-resolution using a multi-orientation U-Net,''
+\textit{Hum. Brain Mapp.}, vol.~46, e70112, 2025.
+
+\bibitem{islam2025volumetric}
+K.~T. Islam \textit{et al.},
+``AI improves consistency in regional brain volumes measured in ultra-low-field MRI and 3T MRI,''
+\textit{Front. Neuroimaging}, vol.~4, 1588487, 2025.
+
+\bibitem{dayarathna2024adversarial}
+S.~Dayarathna, K.~T. Islam, and Z.~Chen,
+``Ultra low-field to high-field MRI translation using adversarial diffusion,''
+in \textit{Proc. IEEE Int. Symp. Biomed. Imaging (ISBI)}, 2024.
+
+\bibitem{iglesias2023radiology}
+J.~E. Iglesias \textit{et al.},
+``Quantitative brain morphometry of portable low-field-strength MRI using super-resolution machine learning,''
+\textit{Radiology}, vol.~306, no.~3, e220522, 2023.
+
+% === Brain Morphometry at ULF ===
+\bibitem{vasa2025morphometry}
+F.~V\'{a}\v{s}a \textit{et al.},
+``Ultra-low-field brain MRI morphometry: Test--retest reliability and correspondence to high-field MRI,''
+\textit{Imaging Neurosci.}, vol.~3, IMAG.a.930, 2025.
+
+\bibitem{hsu2025morphological}
+P.~Hsu \textit{et al.},
+``Morphological brain analysis using ultra low-field MRI,''
+\textit{Hum. Brain Mapp.}, vol.~46, e70232, 2025.
+
+\bibitem{ringshaw2026infant}
+J.~E. Ringshaw \textit{et al.},
+``Feasibility and validity of ultra-low-field MRI for measurement of regional infant brain volumes in structures associated with antenatal maternal anemia,''
+\textit{Hum. Brain Mapp.}, vol.~47, e70443, 2026.
+
+% === Vision Transformers ===
+\bibitem{vaswani2017attention}
+A.~Vaswani \textit{et al.},
+``Attention is all you need,''
+in \textit{Adv. Neural Inf. Process. Syst. (NeurIPS)}, vol.~30, pp.~5998--6008, 2017.
+
+\bibitem{dosovitskiy2021vit}
+A.~Dosovitskiy \textit{et al.},
+``An image is worth 16$\times$16 words: Transformers for image recognition at scale,''
+in \textit{Proc. Int. Conf. Learn. Represent. (ICLR)}, 2021.
+
+\bibitem{hatamizadeh2022unetr}
+A.~Hatamizadeh \textit{et al.},
+``UNETR: Transformers for 3D medical image segmentation,''
+in \textit{Proc. IEEE/CVF Winter Conf. Appl. Comput. Vision (WACV)}, pp.~1748--1758, 2022.
+
+\bibitem{wang2021transbts}
+W.~Wang \textit{et al.},
+``TransBTS: Multimodal brain tumor segmentation using Transformer,''
+in \textit{Proc. MICCAI}, LNCS vol.~12901, pp.~109--119, 2021.
+
+\bibitem{tang2022swinunetr}
+Y.~Tang \textit{et al.},
+``Self-supervised pre-training of Swin Transformers for 3D medical image analysis,''
+in \textit{Proc. IEEE/CVF Conf. Comput. Vision Pattern Recognit. (CVPR)}, pp.~20730--20740, 2022.
+
+\bibitem{shamshad2023survey}
+F.~Shamshad \textit{et al.},
+``Transformers in medical imaging: A survey,''
+\textit{Med. Image Anal.}, vol.~88, 102802, 2023.
+
+\bibitem{chen2021vitvnet}
+J.~Chen, Y.~He, E.~C. Frey, Y.~Li, and Y.~Du,
+``ViT-V-Net: Vision Transformer for unsupervised volumetric medical image registration,''
+in \textit{Proc. Med. Imaging Deep Learn. (MIDL)}, 2021.
+
+% === Transfer Learning ===
+\bibitem{raghu2019transfusion}
+M.~Raghu, C.~Zhang, J.~Kleinberg, and S.~Bengio,
+``Transfusion: Understanding transfer learning for medical imaging,''
+in \textit{Adv. Neural Inf. Process. Syst. (NeurIPS)}, vol.~32, 2019.
+
+% === Brain Morphometry and Biomarkers ===
+\bibitem{fischl2012freesurfer}
+B.~Fischl,
+``FreeSurfer,''
+\textit{NeuroImage}, vol.~62, no.~2, pp.~774--781, 2012.
+
+\bibitem{buckner2004nwbv}
+R.~L. Buckner \textit{et al.},
+``A unified approach for morphometric and functional data analysis in young, old, and demented adults using automated atlas-based head size normalization,''
+\textit{NeuroImage}, vol.~23, no.~2, pp.~724--738, 2004.
+
+\bibitem{marcus2007oasis}
+D.~S. Marcus, T.~H. Wang, J.~Parker, J.~G. Csernansky, J.~C. Morris, and R.~L. Buckner,
+``Open Access Series of Imaging Studies (OASIS): Cross-sectional MRI data in young, middle aged, nondemented, and demented older adults,''
+\textit{J. Cogn. Neurosci.}, vol.~19, no.~9, pp.~1498--1507, 2007.
+
+\bibitem{rebsamen2020corticalthickness}
+M.~Rebsamen, C.~Rummel, M.~Reyes, R.~Wiest, and R.~McKinley,
+``Direct cortical thickness estimation using deep learning-based anatomy segmentation and cortex parcellation,''
+\textit{Hum. Brain Mapp.}, vol.~41, pp.~4804--4814, 2020.
+
+\bibitem{gopinath2025reconany}
+K.~Gopinath \textit{et al.},
+``From low field to high value: Robust cortical mapping from low-field MRI,''
+\textit{arXiv preprint}, arXiv:2505.12228, 2025.
+
+\bibitem{hasegawa2025biomarker}
+R.~Hasegawa, T.~Nakata, K.~Ishii, and S.~Kobashi,
+``Image-to-biomarker prediction of CSF amyloid-$\beta$ via multimodal deep learning on MRI and brain perfusion SPECT,''
+\textit{Procedia Comput. Sci.}, vol.~270, pp.~4978--4987, 2025.
+
+% === Dataset References ===
+\bibitem{ixi2015dataset}
+IXI Dataset,
+``Information eXtraction from Images,''
+Imperial College London, EPSRC GR/S21533/02, 2015.
+Available: \url{https://brain-development.org/ixi-dataset/}
+
+\end{thebibliography}

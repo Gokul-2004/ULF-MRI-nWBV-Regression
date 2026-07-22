@@ -1,0 +1,54 @@
+# Stage 1 Configuration: High-field to Low-field Conversion and Comparison
+
+stage:
+  name: "stage1"
+  description: "Convert high-field images to low-field and compare with existing techniques"
+
+# Data Configuration for Stage 1
+data:
+  high_field_source: "data/high_field"
+  low_field_output: "data/low_field"
+  ground_truth_dir: "data/processed/ground_truth"
+  use_synthetic_conversion: true
+
+# Conversion Parameters
+conversion:
+  methods:
+    - "noise_degradation"
+    - "resolution_downsampling"
+    - "contrast_reduction"
+    - "combined"
+  noise_levels: [0.05, 0.1, 0.15, 0.2]
+  resolution_factors: [0.5, 0.6, 0.7, 0.8]
+  contrast_factors: [0.3, 0.4, 0.5, 0.6]
+
+# Baseline Models for Comparison
+baselines:
+  - name: "ResNet3D"
+    config:
+      depth: 50
+      pretrained: false
+  - name: "ViT3D"
+    config:
+      patch_size: 16
+      num_layers: 12
+  - name: "GCN"
+    config:
+      num_layers: 3
+      hidden_dim: 128
+  - name: "U-Net"
+    config:
+      encoder_depth: 4
+      decoder_depth: 4
+
+# Evaluation Metrics
+evaluation:
+  metrics:
+    - "psnr"
+    - "ssim"
+    - "mse"
+    - "biomarker_accuracy"
+    - "inference_speed"
+  save_comparison_results: true
+  results_dir: "experiments/stage1/results"
+

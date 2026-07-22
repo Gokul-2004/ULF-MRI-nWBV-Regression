@@ -1,0 +1,74 @@
+============================================================
+Real 64mT Domain Adaptation Fine-tuning
+Device: cuda
+============================================================
+Ground truth loaded: 23 subjects
+
+Loading real 64mT scans (axial T2w)...
+  sub-HYPE00: nWBV=0.7939
+  sub-HYPE01: nWBV=0.8060
+  sub-HYPE02: nWBV=0.7941
+  sub-HYPE03: nWBV=0.7882
+  sub-HYPE04: nWBV=0.7962
+  sub-HYPE05: nWBV=0.7916
+  sub-HYPE06: nWBV=0.7755
+  sub-HYPE07: nWBV=0.7866
+  sub-HYPE08: nWBV=0.7903
+  sub-HYPE09: nWBV=0.7990
+  sub-HYPE10: nWBV=0.7782
+  sub-HYPE11: nWBV=0.7672
+  sub-HYPE12: nWBV=0.7881
+  sub-HYPE13: nWBV=0.7911
+  sub-HYPE14: nWBV=0.7715
+  sub-HYPE15: nWBV=0.7596
+  sub-HYPE16: nWBV=0.7580
+  sub-HYPE17: nWBV=0.7840
+  sub-HYPE18: nWBV=0.7752
+  sub-HYPE19: nWBV=0.8010
+  sub-HYPE20: nWBV=0.7789
+  sub-HYPE21: nWBV=0.7523
+  sub-HYPE22: nWBV=0.8084
+
+Loaded 23 subjects
+Train: 15, Test: 8
+Test subjects: ['sub-HYPE21', 'sub-HYPE04', 'sub-HYPE18', 'sub-HYPE07', 'sub-HYPE08', 'sub-HYPE00', 'sub-HYPE03', 'sub-HYPE20']
+
+Training samples: 105 (15 subjects × 7 aug)
+Trainable params: 769 / 4,225,537 (0.0%)
+
+Fine-tuning for 80 epochs...
+  Epoch  10/80  loss=0.000354  lr=9.62e-05
+  Epoch  20/80  loss=0.000340  lr=8.54e-05
+  Epoch  30/80  loss=0.000303  lr=6.91e-05
+  Epoch  40/80  loss=0.000329  lr=5.00e-05
+  Epoch  50/80  loss=0.000298  lr=3.09e-05
+  Epoch  60/80  loss=0.000299  lr=1.46e-05
+  Epoch  70/80  loss=0.000287  lr=3.81e-06
+  Epoch  80/80  loss=0.000261  lr=0.00e+00
+
+============================================================
+Evaluation on held-out test subjects
+============================================================
+  sub-HYPE21: pred=0.7837  GT=0.7523  err=+0.0314
+  sub-HYPE04: pred=0.7836  GT=0.7962  err=-0.0126
+  sub-HYPE18: pred=0.7815  GT=0.7752  err=+0.0063
+  sub-HYPE07: pred=0.7823  GT=0.7866  err=-0.0043
+  sub-HYPE08: pred=0.7836  GT=0.7903  err=-0.0067
+  sub-HYPE00: pred=0.7871  GT=0.7939  err=-0.0068
+  sub-HYPE03: pred=0.7819  GT=0.7882  err=-0.0063
+  sub-HYPE20: pred=0.7815  GT=0.7789  err=+0.0026
+
+=== Fine-tuned Model: Real 64mT Test Results ===
+n_test        = 8
+Pearson r     = 0.2467  (p=0.5558)
+Spearman ρ    = 0.3571  (p=0.3851)
+MAE           = 0.0096
+RMSE          = 0.0129
+Mean bias     = +0.0004
+
+Pre-finetune:  r=0.2911  MAE=0.0403  bias=+0.0403
+Post-finetune: r=0.2467  MAE=0.0096  bias=+0.0004
+Improvement:   Δr = -0.0444
+
+Checkpoint saved: /home/gk-krishnan/Desktop/VIT Paper/checkpoints/real64mt_finetuned.pt
+Results saved: /home/gk-krishnan/Desktop/VIT Paper/experiments/real64mt_finetune/results.json

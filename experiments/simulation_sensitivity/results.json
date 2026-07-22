@@ -1,0 +1,56 @@
+{
+  "experiment": "simulation_sensitivity",
+  "test_n": 38,
+  "baseline_mae": 0.0583,
+  "max_abs_delta_mae": 0.0062,
+  "runs": [
+    {
+      "perturbation": "SNR +20% (less noise)",
+      "param": "SNR_64MT_EFFECTIVE",
+      "value": 4.8,
+      "pct_change": 20.0,
+      "mae": 0.0578,
+      "delta_mae": -0.0005
+    },
+    {
+      "perturbation": "SNR -20% (more noise)",
+      "param": "SNR_64MT_EFFECTIVE",
+      "value": 3.2,
+      "pct_change": -20.0,
+      "mae": 0.0588,
+      "delta_mae": 0.0005
+    },
+    {
+      "perturbation": "B0 +20%",
+      "param": "B0_INHOMO_STRENGTH",
+      "value": 0.12,
+      "pct_change": 20.0,
+      "mae": 0.0581,
+      "delta_mae": -0.0002
+    },
+    {
+      "perturbation": "B0 -20%",
+      "param": "B0_INHOMO_STRENGTH",
+      "value": 0.08,
+      "pct_change": -20.0,
+      "mae": 0.0584,
+      "delta_mae": 0.0001
+    },
+    {
+      "perturbation": "Relaxation +20%",
+      "param": "T1/T2_64MT_all",
+      "value": 1.2,
+      "pct_change": 20.0,
+      "mae": 0.0557,
+      "delta_mae": -0.0025
+    },
+    {
+      "perturbation": "Relaxation -20%",
+      "param": "T1/T2_64MT_all",
+      "value": 0.8,
+      "pct_change": -20.0,
+      "mae": 0.0644,
+      "delta_mae": 0.0062
+    }
+  ]
+}

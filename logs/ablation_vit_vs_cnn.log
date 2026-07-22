@@ -1,0 +1,97 @@
+=======================================================
+Ablation: ViT3D vs CNN3D on Real 64mT (n=23)
+Device: cuda
+=======================================================
+Loaded 23 real 64mT subjects
+
+Loading OASIS fine-tuned ViT...
+
+=======================================================
+ViT3D (OASIS fine-tuned) — Real 64mT Results (n=23)
+=======================================================
+  sub-HYPE00: pred=0.8278  GT=0.7939  err=+0.0339
+  sub-HYPE01: pred=0.8238  GT=0.8060  err=+0.0178
+  sub-HYPE02: pred=0.8302  GT=0.7941  err=+0.0361
+  sub-HYPE03: pred=0.8220  GT=0.7882  err=+0.0338
+  sub-HYPE04: pred=0.8231  GT=0.7962  err=+0.0269
+  sub-HYPE05: pred=0.8250  GT=0.7916  err=+0.0334
+  sub-HYPE06: pred=0.8213  GT=0.7755  err=+0.0458
+  sub-HYPE07: pred=0.8222  GT=0.7866  err=+0.0356
+  sub-HYPE08: pred=0.8239  GT=0.7903  err=+0.0336
+  sub-HYPE09: pred=0.8243  GT=0.7990  err=+0.0253
+  sub-HYPE10: pred=0.8292  GT=0.7782  err=+0.0510
+  sub-HYPE11: pred=0.8215  GT=0.7672  err=+0.0543
+  sub-HYPE12: pred=0.8255  GT=0.7881  err=+0.0374
+  sub-HYPE13: pred=0.8214  GT=0.7911  err=+0.0303
+  sub-HYPE14: pred=0.8265  GT=0.7715  err=+0.0550
+  sub-HYPE15: pred=0.8199  GT=0.7596  err=+0.0603
+  sub-HYPE16: pred=0.8200  GT=0.7580  err=+0.0620
+  sub-HYPE17: pred=0.8350  GT=0.7840  err=+0.0510
+  sub-HYPE18: pred=0.8213  GT=0.7752  err=+0.0461
+  sub-HYPE19: pred=0.8287  GT=0.8010  err=+0.0277
+  sub-HYPE20: pred=0.8215  GT=0.7789  err=+0.0426
+  sub-HYPE21: pred=0.8245  GT=0.7523  err=+0.0722
+  sub-HYPE22: pred=0.8233  GT=0.8084  err=+0.0149
+
+Pearson r     = 0.2907  (p=0.1784)
+Spearman ρ    = 0.3715  (p=0.0809)
+MAE           = 0.0403
+RMSE          = 0.0428
+Mean bias     = +0.0403
+Age-nWBV r    = -0.4912  ρ=-0.5198
+  OASIS labels loaded: 436
+  OASIS paired (scan+label): 375
+
+Fine-tuning CNN on 375 OASIS volumes...
+  Training samples: 1500
+  Epoch 10/30  loss=0.016217
+  Epoch 20/30  loss=0.013029
+  Epoch 30/30  loss=0.011017
+
+=======================================================
+CNN3D (OASIS fine-tuned) — Real 64mT Results (n=23)
+=======================================================
+  sub-HYPE00: pred=0.7316  GT=0.7939  err=-0.0623
+  sub-HYPE01: pred=0.7322  GT=0.8060  err=-0.0738
+  sub-HYPE02: pred=0.7174  GT=0.7941  err=-0.0767
+  sub-HYPE03: pred=0.7088  GT=0.7882  err=-0.0794
+  sub-HYPE04: pred=0.7485  GT=0.7962  err=-0.0477
+  sub-HYPE05: pred=0.6981  GT=0.7916  err=-0.0935
+  sub-HYPE06: pred=0.7000  GT=0.7755  err=-0.0755
+  sub-HYPE07: pred=0.7110  GT=0.7866  err=-0.0756
+  sub-HYPE08: pred=0.7139  GT=0.7903  err=-0.0764
+  sub-HYPE09: pred=0.7335  GT=0.7990  err=-0.0655
+  sub-HYPE10: pred=0.7023  GT=0.7782  err=-0.0759
+  sub-HYPE11: pred=0.7005  GT=0.7672  err=-0.0667
+  sub-HYPE12: pred=0.7022  GT=0.7881  err=-0.0859
+  sub-HYPE13: pred=0.6971  GT=0.7911  err=-0.0940
+  sub-HYPE14: pred=0.6921  GT=0.7715  err=-0.0794
+  sub-HYPE15: pred=0.7073  GT=0.7596  err=-0.0523
+  sub-HYPE16: pred=0.7041  GT=0.7580  err=-0.0539
+  sub-HYPE17: pred=0.6898  GT=0.7840  err=-0.0942
+  sub-HYPE18: pred=0.7013  GT=0.7752  err=-0.0739
+  sub-HYPE19: pred=0.6910  GT=0.8010  err=-0.1100
+  sub-HYPE20: pred=0.7091  GT=0.7789  err=-0.0698
+  sub-HYPE21: pred=0.6816  GT=0.7523  err=-0.0707
+  sub-HYPE22: pred=0.7071  GT=0.8084  err=-0.1013
+
+Pearson r     = 0.5135  (p=0.0122)
+Spearman ρ    = 0.4644  (p=0.0256)
+MAE           = 0.0763
+RMSE          = 0.0777
+Mean bias     = -0.0763
+Age-nWBV r    = -0.5797  ρ=-0.4862
+
+=======================================================
+SUMMARY: ViT3D vs CNN3D on Real 64mT
+=======================================================
+Metric                    ViT3D      CNN3D     Winner
+-------------------------------------------------------
+  Pearson r              0.2907     0.5135      CNN3D
+  Spearman ρ             0.3715     0.4644      CNN3D
+  MAE                    0.0403     0.0763      ViT3D
+  RMSE                   0.0428     0.0777      ViT3D
+  Age r                 -0.4912    -0.5797      ViT3D
+  Age ρ                 -0.5198    -0.4862      CNN3D
+
+Saved: /home/gk-krishnan/Desktop/VIT Paper/experiments/ablation_vit_vs_cnn/results.json

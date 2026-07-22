@@ -1,0 +1,1493 @@
+
+% ============================================================
+% Single-column article version
+% "Accessible Brain Morphometry from Point-of-Care
+%  Ultra-Low-Field MRI Using Physics-Constrained Deep Learning"
+% Final pre-submission version — JBHI primary / IEEE Access fallback
+% ============================================================
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{titlesec}
+\graphicspath{{./}}
+
+\onehalfspacing
+
+\begin{document}
+
+\title{\textbf{A Reproducible Feasibility Baseline for Segmentation-Free\\
+nWBV Regression from 64\,mT Ultra-Low-Field MRI\\
+Using Physics-Constrained Deep Learning}}
+
+\date{}
+\maketitle
+
+\bigskip
+
+% ── Abstract ─────────────────────────────────────────────────────────────────
+\begin{abstract}
+We present a reproducible feasibility study for direct normalized
+whole-brain volume (nWBV) regression from 64\,mT ultra-low-field MRI,
+without segmentation software or super-resolution preprocessing.
+A compact 3D Vision Transformer (ViT3D, 4.23\,M parameters) is trained
+via a three-stage pipeline: physics-constrained 64\,mT simulation
+(tissue-specific T1/T2 relaxation, Rician noise, B0 inhomogeneity) on
+IXI, OASIS-1 fine-tuning, and a 769-parameter session-level adapter.
+Under fully subject-independent cross-session leave-one-subject-out
+cross-validation on real 64\,mT hardware ($n = 23$), the model achieves
+MAE $= 0.0134$\,nWBV [95\,\% CI: 0.010--0.017] with 47\,ms inference.
+The cohort nWBV range is narrow (width $= 0.056$), so MAE is comparable
+to a constant-mean baseline (MAE $= 0.0126$); the study should be
+interpreted as a feasibility baseline rather than a deployed capability.
+Inter-session ICC(3,1) $= 0.615$ [0.236--0.866] provides a preliminary
+reliability estimate, though the wide CI precludes definitive
+classification at $n = 23$. Model predictions do not significantly
+correlate with age ($\rho = +0.232$, $p = 0.287$), an acknowledged
+failure mode at this sample size. In physics-simulated dementia
+conditions, CDR=1.0 subjects ($n=2$, directional only) show MAE $= 0.157$
+vs.\ $0.016$ for the unlabelled healthy group ($10\times$; note: CDR=0.0
+group MAE $= 0.086$, giving $\sim1.8\times$ against the labelled healthy
+controls), indicating extension to pathological populations requires
+atrophy-enriched retraining. The primary
+contributions are the physics-simulation pre-training recipe, the
+leakage-free subject-independent LOOCV protocol, and the honest failure
+characterization bounding the validated scope to healthy adults.
+\end{abstract}
+
+\noindent\textbf{Keywords:}
+Brain morphometry, dementia biomarker, low-field MRI, normalized whole-brain
+volume, physics-informed simulation, point-of-care neuroimaging,
+Vision Transformer, domain adaptation
+
+% ============================================================
+\section{Introduction}
+\label{sec:introduction}
+% ============================================================
+
+Dementia afflicts more than 55 million individuals globally, with cases
+expected to triple by 2050~\cite{who2023}. Normalized whole-brain volume
+(nWBV) --- the fraction of total brain parenchymal tissue relative to
+estimated intracranial volume --- is a well-validated marker of
+neurodegeneration, with each CDR stage associated with a 5--10\% reduction
+in nWBV~\cite{fotenos2005,buckner2004}. Monitoring nWBV enables
+identification of neurodegenerative changes before symptom onset, making it a
+useful endpoint in screening studies and clinical trials~\cite{jack2018nia}.
+
+Standardized nWBV measurement requires high-field MRI (1.5 or 3\,T) and
+automated pipelines such as FreeSurfer~\cite{fischl2012freesurfer} or
+FSL~\cite{smith2002fsl}, which demand 20--90 minutes of computation,
+software installations exceeding 12\,GB, and scanner infrastructure costing
+USD 1--3 million. These requirements place routine brain morphometry out of
+reach in low- and middle-income countries, rural communities, and
+point-of-care environments~\cite{prince2016world}.
+
+The Hyperfine Swoop (64\,mT) is a transportable, room-agnostic scanner
+costing approximately \$50{,}000~\cite{hyperfine2021}. It has been validated
+for bedside stroke triage~\cite{kimberly2023bedside}, but its potential for
+quantitative brain morphometry remains largely unexplored. The core challenge
+is that 64\,mT scans have markedly different signal properties from 3\,T
+acquisitions --- reduced spatial resolution ($1.6\times1.6\times5.0$\,mm),
+Rician noise, reduced grey/white contrast, and poor B0 shimming --- making
+established morphometry tools unreliable without adaptation.
+
+Prior approaches to this domain gap include super-resolution with SynthSR
+(30--120\,s additional processing)~\cite{iglesias2023synthsr},
+contrast-agnostic segmentation with SynthSeg+
+(2--3\,min)~\cite{billot2023synthseg}, and paired-data domain
+adaptation~\cite{chen2019synergistic} requiring large matched datasets
+unavailable at 64\,mT. None of these directly regresses nWBV from 64\,mT
+images without intermediate segmentation or super-resolution.
+
+\textbf{Contributions.}
+\begin{enumerate}
+  \item To our knowledge, the first direct nWBV regression from 64\,mT MRI
+        without intermediate segmentation or super-resolution, evaluated under
+        fully subject-independent cross-session LOOCV ($n = 23$), yielding
+        MAE $= 0.0134$ [0.010--0.017] and compute-light inference (47\,ms
+        on a standard GPU; hardware not yet benchmarked on edge devices).
+  \item A physics-constrained 64\,mT simulation recipe (T1/T2 tissue
+        remapping, Rician noise, B0 inhomogeneity) that yields a small
+        positive trend over Gaussian-blur degradation ($\Delta r = +0.018$,
+        bootstrap 95\,\% CI [$-0.021$, $+0.057$], $p = 0.847$) — not
+        statistically significant at $n=75$, but provided as a reproducible
+        baseline for future larger-scale comparison.
+  \item A leakage-free subject-independent cross-session LOOCV protocol
+        yielding a preliminary inter-session reliability estimate
+        ICC(3,1) $= 0.615$ [0.236--0.866] at $n = 23$.
+  \item An honest failure characterization: MAE is comparable to a
+        constant-mean baseline (MAE $= 0.0126$) given the narrow cohort range;
+        CDR=1.0 stress-testing ($n=2$, directional) shows $10\times$ MAE
+        increase, bounding the validated scope to healthy adults.
+\end{enumerate}
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+% ============================================================
+
+\subsection{Brain Morphometry from MRI}
+
+FreeSurfer~\cite{fischl2012freesurfer} and
+FastSurfer~\cite{henschel2020fastsurfer} are the leading tools for
+volumetric brain morphometry and require high-field isotropic T1-weighted
+acquisitions. Direct regression approaches without segmentation have been
+demonstrated for brain age~\cite{peng2021brain,cole2017predicting,jonsson2019brain},
+achieving 3--5 year mean absolute error on 3\,T data. Rebsamen et
+al.~\cite{rebsamen2020cortical} showed that deep learning segmentation can
+match pipeline-based cortical thickness estimates. Roy et
+al.~\cite{roy2019quicknat} proposed QuickNAT for fast brain segmentation.
+To our knowledge, no prior work has directly regressed nWBV from
+ultra-low-field MRI without an intermediate segmentation or
+super-resolution step, evaluated under subject-independent
+cross-session LOOCV on real 64\,mT hardware.
+
+\subsection{Ultra-Low-Field MRI}
+
+V{\'a}{\v s}a et al.~\cite{vasa2025imaneur,vasa2025} characterize
+test-retest reliability and high-field correspondence for ULF brain
+morphometry and release the ds006557 dataset ($n = 23$ with paired 64\,mT
+and 3\,T acquisitions). Islam et al.~\cite{islam2025aibrain} show that deep
+networks can reduce volumetric bias between 64\,mT and 3\,T measurements.
+Arnold et al.~\cite{arnold2022simulated} evaluate diagnostic performance at
+64\,mT using simulation on public data, motivating our simulation-based
+pre-training strategy. Kimberly et al.~\cite{kimberly2023bedside} and Sheth
+et al.~\cite{sheth2021assessmentultralow} validate bedside ULF MRI for
+neurological assessment. Javadi et al.~\cite{javadi2025diffusion} and
+Dayarathna et al.~\cite{dayarathna2024adversarial} study image synthesis and
+translation between 64\,mT and 3\,T. Gopinath et al.~\cite{gopinath2025cortical}
+demonstrate robust cortical mapping from low-field MRI. Baljer et
+al.~\cite{baljer2024paediatric} show multi-orientation super-resolution for
+paediatric 64\,mT MRI. Minocha and Yang~\cite{minocha2024lfmri} investigate
+early Alzheimer detection from low-field MRI. None of these works quantify
+nWBV directly from 64\,mT scans without segmentation.
+
+SynthSeg+~\cite{billot2023synthseg} achieves $r = 0.918$, MAE $= 0.005$
+on real Hyperfine data (this study) and serves as an accuracy upper bound.
+Its requirement for a 12\,GB FreeSurfer installation and 2--3\,min per scan
+makes it unsuitable for co-location with bedside hardware.
+
+\subsection{Vision Transformers in Medical Imaging}
+
+Dosovitskiy et al.~\cite{dosovitskiy2020image} established that Vision
+Transformers (ViT) are competitive with CNNs on image recognition.
+TransUNet~\cite{chen2021transunet} and Swin UNETR~\cite{hatamizadeh2021swin}
+demonstrated ViT advantages in 3D medical image segmentation. For global
+regression tasks such as nWBV --- where the target is a ratio over the
+entire brain volume --- ViT's global self-attention mechanism over patch
+tokens is architecturally well-suited.
+
+\subsection{Physics-Informed MRI Simulation}
+
+Gaussian-blur degradation is commonly used as a resolution proxy in
+cross-domain MRI pre-training~\cite{zhao2021superresolution}. Scanner
+variability is a well-known source of model failure~\cite{karani2018lifelong,dewey2019deepharmony},
+motivating domain adaptation modules. SynthSR~\cite{iglesias2023synthsr}
+uses physics-based synthesis for super-resolution. Our simulation
+explicitly models tissue contrast at 64\,mT using T1/T2 relaxation
+parameters, Rician noise, and B0 inhomogeneity from published Hyperfine
+Swoop measurements~\cite{vasa2025}.
+
+% ============================================================
+\section{Methods}
+\label{sec:methods}
+% ============================================================
+
+\subsection{Physics-Constrained 64\,mT Simulation}
+\label{sec:sim}
+
+High-field T1w volumes (3\,T, 1\,mm isotropic) are degraded to simulate
+Hyperfine Swoop 64\,mT T2w acquisitions based on published scanner
+parameters (TR $= 2000$\,ms, TE $= 194.8$\,ms, ETL $= 80$, in-plane
+resolution $1.6 \times 1.6$\,mm)~\cite{vasa2025}:
+
+\textbf{Step 1 -- Tissue contrast remapping.}
+Voxel intensities are remapped using tissue-specific T1/T2 relaxation
+parameters at 64\,mT (Table~\ref{tab:t1t2}), derived from published
+low-field relaxometry~\cite{deichmann2002}. White matter T1 decreases from
+832\,ms (3\,T) to 400\,ms (64\,mT); grey matter from 1330\,ms to 500\,ms,
+resulting in reduced grey/white contrast that characterises 64\,mT images.
+
+\textbf{Step 2 -- Rician noise.}
+Rician-distributed noise is added assuming SNR $\approx 4$, a conservative
+lower bound. The actual scanner achieves effective SNR $\approx 309$ through
+ETL-80 averaging and compressed sensing, which are not modelled. This SNR
+mismatch is the primary source of the pre-adaptation bias (discussed in
+Section~\ref{sec:limitations}).
+
+\textbf{Step 3 -- Spatial resolution degradation.}
+Trilinear downsampling to 64\,mT in-plane resolution with slice-direction
+blurring ($\sigma = 2.5$\,voxels) to represent the 5\,mm point spread
+function.
+
+\textbf{Step 4 -- B0 inhomogeneity.}
+Multiplicative spatial Gaussian ($\sigma = 15$\,mm, amplitude 10\%) models
+poor shimming at 64\,mT. Representative axial slices are shown in
+Fig.~\ref{fig:scan_compare}.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig7_scan_comparison.png}
+\caption{Representative axial slices: 3\,T MPRAGE (left),
+physics-simulated 64\,mT (centre), and real Hyperfine 64\,mT (right).
+The simulation captures grey/white contrast reduction and noise
+characteristics of 64\,mT, though SNR is intentionally conservative.}
+\label{fig:scan_compare}
+\end{figure}
+
+\begin{table}[!t]
+\caption{Tissue relaxation parameters used in 64\,mT simulation (ms)}
+\label{tab:t1t2}
+\centering
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{lcccc}
+\toprule
+Tissue & T1 @ 3\,T & T1 @ 64\,mT & T2 @ 3\,T & T2 @ 64\,mT \\
+\midrule
+White matter & 832  & 400  & 70   & 80   \\
+Grey matter  & 1330 & 500  & 83   & 100  \\
+CSF          & 4000 & 3000 & 2000 & 2000 \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Based on published low-field relaxometry~\cite{deichmann2002}.}
+\end{tabular}
+\end{table}
+
+\subsubsection*{Simulation fidelity}
+We quantified how closely the simulator reproduces registration-free
+image statistics of real 64\,mT scans, using the $n = 23$ ds006557
+subjects for which paired real acquisitions exist. Because the
+simulated and real volumes have different fields of view and are not
+co-registered, voxelwise similarity indices (SSIM, PSNR) are not
+physically meaningful across field strengths; we therefore report
+normalised cross-correlation (NCC) of tissue-intensity structure and
+compare it against the Gaussian-blur degradation baseline of Arnold et
+al.~\cite{arnold2022simulated}. The physics simulator attains
+NCC $= 0.497 \pm 0.045$ versus $0.516 \pm 0.055$ for Gaussian blur ---
+a statistically indistinguishable difference, indicating that neither
+degradation model reproduces fine anatomical texture and that the
+simulator's benefit is not a structural-similarity effect. Two points
+warrant emphasis. First, the simulated SNR ($\approx 33$) is
+deliberately far below the real scanner's effective SNR ($\approx 309$,
+achieved through ETL-80 averaging and compressed sensing that we do not
+model), consistent with the conservative-noise design in
+Section~\ref{sec:sim}; the simulator targets the raw-acquisition noise
+regime rather than the vendor-reconstructed image. Second, and
+consequently, the operative validation of the simulator is not
+image-similarity but downstream task performance: the physics-vs-blur
+pre-training ablation on the nWBV regression task itself
+(Section~\ref{sec:ablation}, Table~\ref{tab:ablation}), which shows a
+small positive but statistically non-significant advantage for the
+physics recipe.
+
+\subsection{ViT3D Architecture}
+\label{sec:arch}
+
+All volumes are resampled to $64^3$ voxels and intensity-normalized to
+$[0, 1]$ using 1\textsuperscript{st}--99\textsuperscript{th} percentile
+clipping. ViT3D comprises:
+\begin{itemize}
+  \item \textbf{Patch embedding}: $64^3$ volume $\to$ 64 non-overlapping
+        $16^3$ patches, each linearly projected to 256 dimensions.
+  \item \textbf{Transformer encoder}: 4 layers, 8-head multi-head
+        self-attention, embedding dimension 256, MLP ratio 4, dropout 0.1;
+        learnable [CLS] token aggregates global context.
+  \item \textbf{Regression head}: Linear projection from [CLS] token to
+        scalar nWBV.
+\end{itemize}
+Total parameters: 4.23M. The compact size is consistent with
+compute-light inference (47\,ms on a standard GPU); edge-device
+deployment is future work. The three-stage training pipeline is illustrated in
+Fig.~\ref{fig:arch}.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\textwidth]{fig1_architecture.png}
+\caption{Three-stage training pipeline: (1) physics-guided pre-training on
+IXI; (2) OASIS-1 fine-tuning; (3) lightweight cross-session LOOCV domain
+adaptation on ds006557.}
+\label{fig:arch}
+\end{figure}
+
+\subsection{Three-Stage Training Pipeline}
+\label{sec:training}
+
+\textbf{Stage 1 -- Physics-guided self-supervised pre-training
+(IXI, $n=156$).}
+The IXI dataset provides 1.5\,T and 3\,T acquisitions but no
+nWBV labels, so supervised regression at this stage is not feasible.
+We instead apply the 64\,mT physics simulator to each IXI volume and
+train ViT3D as a denoising autoencoder, with the high-field source
+volume as the reconstruction target. This objective serves three
+specific purposes for the downstream task. First, it forces the encoder
+to learn the inverse mapping from the degraded 64\,mT contrast back to
+the underlying tissue structure --- precisely the representation
+required to estimate parenchymal fraction at 64\,mT. Second, the patch
+embedding learns to discount Rician noise and B0 inhomogeneity rather
+than treat them as anatomical signal, addressing the dominant
+confounders at low field. Third, reconstruction-based pre-training is
+known to converge to features useful for global regression
+targets~\cite{dosovitskiy2020image}, and the receptive field required
+for whole-brain nWBV estimation is naturally established by ViT3D's
+non-local attention over $4\times4\times4$ patch tokens. Stage 1
+therefore provides a contrast-aware initialisation for the Stage 2
+nWBV-supervised fine-tuning, without consuming any of the limited
+labelled OASIS-1 or ds006557 supervision.
+
+\textbf{Stage 2 -- OASIS-1 fine-tuning ($n= 375$).}
+All 4.23M parameters are updated end-to-end using AdamW (lr $= 5 \times
+10^{-5}$, weight decay $= 10^{-4}$, cosine annealing, 50 epochs, early
+stopping patience $= 10$ on validation Pearson $r$). The subject-level split
+(300 train / 37 validation / 38 test, seed 42) is fixed before any model
+training and never altered.
+
+\textbf{Stage 3 -- Lightweight domain adaptation via cross-session LOOCV
+(ds006557, $n=23$).}
+The ds006557 dataset provides two real Hyperfine sessions per subject:
+HFC (first acquisition) and HFE (second acquisition), in addition to a
+paired 3\,T acquisition from which FastSurfer ground-truth nWBV is derived.
+We exploit this dual-session structure for a fully subject-independent
+evaluation protocol:
+
+\begin{enumerate}
+  \item For each of the 23 subjects in turn, the final LayerNorm and
+        regression head (769 parameters total: LayerNorm $= 512$,
+        head $= 257$) are updated on session~HFC scans from the
+        \emph{other} 22 subjects. FastSurfer GT nWBV from their paired
+        3\,T acquisitions is used as the supervision signal. All other
+        4.23M parameters remain frozen. Training: AdamW
+        (lr $= 10^{-4}$, weight decay $= 10^{-4}$, cosine annealing,
+        80 epochs), batch size 4, with 5 augmentations per scan
+        (Gaussian noise $\sigma = 0.015$, intensity scaling $\pm 10$\%,
+        random axis flips).
+  \item The adapted model is evaluated on session~\textbf{HFE} of the
+        held-out subject. Neither HFC nor HFE of the held-out subject
+        appears anywhere in the training data for that fold.
+\end{enumerate}
+
+This yields 23 fully held-out HFE predictions, one per fold, with no
+subject or session leakage. The best-epoch checkpoint (lowest training loss)
+is used for inference. For ICC computation, the same fold model also
+predicts session~HFC of the held-out subject, giving a pair of independent
+session predictions per subject.
+
+\textbf{Rationale for LayerNorm+head adaptation.}
+Updating only the final LayerNorm (512 params) and regression head
+(257 params) is a standard low-data domain-adaptation strategy that
+preserves the OASIS-learned feature hierarchy while correcting
+output-level bias~\cite{karani2018lifelong}. Full fine-tuning on $n=22$
+subjects would risk catastrophic forgetting and overfitting to the
+narrow nWBV range of ds006557 (0.752--0.808), while head-only adaptation
+omits the LayerNorm rescaling required to absorb the residual
+contrast-statistics gap between simulation and real hardware. The
+LayerNorm+head choice therefore matches the structure of the observed
+domain shift. A formal empirical comparison of head-only,
+LayerNorm+head, and full fine-tune strategies is identified as future
+work; the present choice is motivated by the structure of the observed
+domain shift rather than an exhaustive search.
+
+\textbf{Pseudo-label validity.}
+The LOOCV adaptation uses FastSurfer GT labels derived from paired 3\,T
+scans, independent of the 64\,mT input. An ablation (Section~\ref{sec:pseudo_ablation})
+shows that replacing GT with SynthSeg+ pseudo-labels incurs a MAE penalty
+of $+0.005$\,nWBV, with both label sources yielding test MAE below the
+reference threshold. This confirms deployment feasibility without requiring
+FastSurfer installation.
+
+\subsection{Primary Metric and Statistical Analysis}
+\label{sec:metrics}
+
+Mean absolute error (MAE) in nWBV units is the pre-specified primary metric.
+MAE $= 0.020$ corresponds to approximately 28\,mL of brain tissue
+($0.020 \times$ mean eTIV $\approx 1400$\,mL), the minimum detectable
+change distinguishing normal from pathological atrophy in longitudinal
+studies~\cite{buckner2004}. This threshold was defined before any model
+results were examined.
+
+Bootstrap 95\,\% confidence intervals (10{,}000 resamples, seed 42) are
+reported for all primary MAE values. Pearson $r$ and Spearman $\rho$ are
+reported where appropriate, with the note that $r$ is structurally
+unreliable in the narrow-range ds006557 cohort (nWBV width 0.056;
+see Section~\ref{sec:loocv_results}). ICC(3,1) (two-way mixed-effects,
+single measures, absolute agreement) is computed between fold-level HFC
+and HFE predictions; bootstrap 95\,\% CI is derived from 10{,}000 subject-level
+resamples.
+
+\textbf{Constant-mean LOOCV baseline.}
+Because the ds006557 nWBV range is narrow, we additionally report a
+constant-mean LOOCV baseline that predicts, for each held-out subject,
+the leave-one-out cohort mean of the remaining 22 subjects. In
+narrow-range regression MAE is dominated by the range itself rather
+than by model behaviour; comparing against this baseline establishes
+whether the model has learned anything beyond the cohort mean.
+Discriminative evidence beyond MAE is provided by the cross-session
+ICC, which requires input-conditional behaviour and cannot be
+reproduced by a constant predictor. Model predictions do not
+significantly correlate with subject age ($\rho = +0.232$,
+$p = 0.287$; Section~\ref{sec:loocv_results}), so age correlation
+is not used as discriminative evidence.
+
+% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+% ============================================================
+
+\subsection{Datasets}
+
+\textbf{IXI}~\cite{ixi2017}: 156 healthy subjects, multi-centre 3\,T T1w
+scans. Used exclusively for Stage~1 physics-guided pre-training.
+
+\textbf{OASIS-1}~\cite{marcus2007oasis}: 375 participants (age 20--96,
+CDR 0--2), 1.5\,T T1w MRI; nWBV from FreeSurfer. Fixed subject-level split:
+300 train / 37 validation / 38 test (seed 42).
+
+\textbf{ds006557}~\cite{vasa2025}: 23 healthy adults (age 20--69). Each
+subject has \emph{two} real Hyperfine 64\,mT sessions (HFC, HFE) and one
+paired 3\,T session from which FastSurfer nWBV is derived. Used for Stage~3
+domain adaptation and LOOCV evaluation only.
+
+\textbf{Data integrity}: All three datasets are drawn from entirely separate
+subject pools. Ground-truth nWBV is always derived from high-field
+acquisitions, never from 64\,mT input.
+
+\subsection{Baselines}
+
+\textbf{SynthSeg+}~\cite{billot2023synthseg}: Applied to the same axial
+T2w input using FreeSurfer 7.4.1 (\texttt{mri\_synthseg --robust}).
+Serves as the accuracy upper bound; requires 12\,GB installation and
+2--3\,min per scan.
+
+\textbf{CNN3D}: A 3D CNN with 4 convolutional blocks, global average
+pooling, and $\approx 4.1$M parameters, trained on the same OASIS-1 split
+and hyperparameters as ViT3D. Evaluated on both OASIS-1 and real 64\,mT
+data.
+
+\textbf{Gaussian-blur pre-training}: ViT3D pre-trained with $\sigma = 2$
+Gaussian blur plus noise instead of physics simulation. Evaluated under
+identical Stage~2 conditions. Simulation design ablation only.
+
+% ============================================================
+\section{Results}
+\label{sec:results}
+% ============================================================
+
+\subsection{OASIS-1 Test Set}
+\label{sec:oasis_results}
+
+On the held-out OASIS-1 test set ($n = 38$), ViT3D achieves Pearson
+$r = 0.722$ [95\,\% CI: 0.524--0.847, $p < 0.001$], MAE $= 0.058$
+[0.041--0.076], RMSE $= 0.081$ (Table~\ref{tab:main}, Fig.~\ref{fig:scatter}).
+Performance degrades for atrophied brains (nWBV $< 0.76$;
+Section~\ref{sec:failure}).
+
+CNN3D on the same OASIS-1 split achieves $r = 0.877$ [0.775--0.935,
+$p < 0.001$] and MAE $= 0.024$ [0.018--0.031], outperforming ViT3D in
+this wider-range setting. The reversal on real 64\,mT hardware
+(Section~\ref{sec:vit_cnn}) is consistent with the different nWBV range
+and noise characteristics of the two evaluation regimes.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig2_nwbv_scatter.png}
+\caption{Predicted vs.\ true nWBV --- OASIS-1 test set ($n=38$, ViT3D).
+Large residuals occur exclusively at low nWBV ($<0.76$), reflecting the
+atrophy failure mode described in Section~\ref{sec:failure}.}
+\label{fig:scatter}
+\end{figure}
+
+\begin{table}[!t]
+\caption{Summary of all results grouped by evaluation context.
+Bootstrap 95\,\% CIs in brackets (10{,}000 resamples, seed 42);
+OASIS-1 $r$ CIs via Fisher $z$ transform.
+Reference threshold: MAE $< 0.020$\,nWBV~\cite{buckner2004}.}
+\label{tab:main}
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{p{3.2cm} p{3.8cm} c c c}
+\toprule
+\textbf{Context} & \textbf{Method} & \textbf{Pearson $r$ [95\,\% CI]} & \textbf{MAE [95\,\% CI]} & \textbf{RMSE} \\
+\midrule
+\multicolumn{5}{l}{\textit{(A) OASIS-1 test set ($n=38$)}} \\[1pt]
+  & ViT3D (ours)            & 0.722 [0.524--0.847] & 0.058 [0.041--0.076] & 0.081 \\
+  & CNN3D                   & 0.877 [0.775--0.935] & 0.024 [0.018--0.031] & ---   \\
+\midrule
+\multicolumn{5}{l}{\textit{(B) Real 64\,mT --- unadapted ($n=23$)}} \\[1pt]
+  & SynthSeg+ (upper bound) & 0.918        & 0.005 & --- \\
+  & CNN3D (no adapt.)       & 0.514        & 0.076 & --- \\
+  & ViT3D (no adapt.)       & 0.291        & 0.040 & --- \\
+\midrule
+\multicolumn{5}{l}{\textit{(C) Real 64\,mT --- LOOCV adapted ($n=23$, cross-session)$^\dagger$}} \\[1pt]
+  & ViT3D (LOOCV adapt.)    & ---$^\ddagger$ & \textbf{0.0134} [0.010--0.017] & 0.016 \\
+\midrule
+\multicolumn{5}{l}{\textit{(D) Inter-session reliability}} \\[1pt]
+  & ICC(3,1) HFC vs.\ HFE   & \multicolumn{3}{l}{$0.615$ [95\,\% CI: 0.236--0.866] \quad \textit{moderate}~\cite{koo2016icc}} \\
+\midrule
+\multicolumn{5}{l}{\textit{(E) Pathology stress-test --- physics-simulated 64\,mT ($n=38$, no adapt.)}} \\[1pt]
+  & CDR $= 0.0$             & --- & $0.086 \pm 0.051$ & --- \\
+  & CDR $= 0.5$             & --- & $0.099 \pm 0.031$ & --- \\
+  & CDR $= 1.0$             & --- & $0.157 \pm 0.012$ & --- \\
+  & No CDR label            & --- & $0.016 \pm 0.010$ & --- \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize $^\dagger$Adapter (769 params) trained on HFC of $n{-}1$ subjects; tested on HFE of held-out.}\\
+\multicolumn{5}{l}{\footnotesize $^\ddagger$Pearson $r$ omitted: nWBV range 0.056 structurally limits $r$ (Section~\ref{sec:loocv_results}).}\\
+\multicolumn{5}{l}{\footnotesize CDR MAE: mean $\pm$ SD. Bias: (A) ViT3D $+0.014$; CNN3D no adapt.\ $-0.076$; LOOCV adapt.\ $-0.0022$.}
+\end{tabular}
+\end{table}
+
+\subsection{CDR Stratification on OASIS-1}
+
+Among the 18 OASIS-1 test subjects with CDR ratings, mean true nWBV
+decreases monotonically with CDR: 0.0 $\to$ 0.752, 0.5 $\to$ 0.739,
+1.0 $\to$ 0.677 (Fig.~\ref{fig:cdr}), consistent with the 5--10\% per
+CDR-stage reduction reported in the literature~\cite{fotenos2005}.
+Kruskal-Wallis test on true nWBV across CDR groups: $H = 4.930$,
+$p = 0.085$ (not significant, largely attributable to $n = 2$ for CDR~1.0).
+Mann-Whitney U, CDR~0.5 vs.\ CDR~1.0 (one-sided, CDR~0.5~$>$~CDR~1.0): $p = 0.022$. Cohen's $d$
+(CDR~0.0 vs.\ CDR~1.0) $= 1.368$ (large effect; interpret cautiously at
+$n = 2$).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig3_cdr_boxplot.png}
+\caption{True nWBV by Clinical Dementia Rating (CDR) --- OASIS-1 test set
+($n = 18$ with CDR labels). Monotonic decrease across CDR stages is
+consistent with published atrophy trajectories~\cite{fotenos2005}.}
+\label{fig:cdr}
+\end{figure}
+
+\subsection{Ablation: Physics Simulation vs.\ Gaussian Blur}
+\label{sec:ablation}
+
+Under controlled conditions (IXI pre-training + OASIS fine-tuning,
+$n_{\text{test}} = 75$), physics-constrained simulation yields
+$r = 0.949$ vs.\ $0.931$ for Gaussian blur ($\Delta r = +0.018$;
+Table~\ref{tab:ablation}, Fig.~\ref{fig:ablation}). A paired bootstrap
+test on the same 75 subjects finds this difference is not statistically
+significant (95\,\% CI on $\Delta r$: [$-0.021$, $+0.057$];
+Wilcoxon $p = 0.847$). The result is a small positive trend rather
+than a confirmed superiority; we retain the comparison as a
+reproducible recipe baseline. These results are not directly comparable
+to Table~\ref{tab:main} (different training conditions).
+
+\begin{table}[!t]
+\caption{Simulation ablation (separate training conditions; not comparable
+to Table~\ref{tab:main})}
+\label{tab:ablation}
+\centering
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcc}
+\toprule
+Pre-training condition & Pearson $r$ [95\,\% CI] & MAE \\
+\midrule
+Physics-constrained sim (ours) & 0.949 [0.921--0.968] & 0.015 \\
+Gaussian blur ($\sigma=2$)     & 0.931 [0.893--0.956] & 0.015 \\
+\midrule
+$\Delta$ (physics $-$ blur)    & $+0.018$ [$-0.021$, $+0.057$]$^*$ & $0.000$ \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize IXI pre-training + OASIS fine-tuning; $n_{\text{test}} = 75$
+(IXI 80-train/75-test split, no domain-adaptive fine-tuning). Not comparable to Table~\ref{tab:main}.}\\
+\multicolumn{3}{l}{\footnotesize $^*$Bootstrap 95\,\% CI; Wilcoxon $p = 0.847$ — difference not significant.}
+\end{tabular}
+\end{table}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_ablation_gaussblur.png}
+\caption{Physics-constrained simulation vs.\ Gaussian-blur pre-training
+($n_{\text{test}} = 75$, separate training conditions from Table~\ref{tab:main}).}
+\label{fig:ablation}
+\end{figure}
+
+\subsection{ViT3D vs.\ CNN3D on Real 64\,mT}
+\label{sec:vit_cnn}
+
+On real 64\,mT scans without adaptation ($n = 23$), CNN3D achieves higher
+Pearson $r$ (0.514 vs.\ 0.291), while ViT3D achieves lower MAE (0.040
+vs.\ 0.076). CNN3D's systematic bias of $-0.076$\,nWBV is $3.8\times$ the
+reference threshold of 0.020 and renders it clinically unusable regardless of
+its higher correlation. ViT3D's pre-adaptation mean bias of $+0.040$\,nWBV (which also equals
+the unadapted MAE, since errors are near-uniformly signed) is corrected
+to $-0.0022$ following LOOCV adaptation.
+
+On OASIS-1, CNN3D outperforms ViT3D substantially (MAE $= 0.024$
+vs.\ $0.058$; $r = 0.877$ vs.\ $0.722$). We attribute the reversal on real
+64\,mT hardware to the narrow nWBV range (width 0.056 vs.\ 0.250 for
+OASIS-1): CNN3D's larger output variance inflates $r$ while also inflating
+MAE via systematic bias, whereas ViT3D's global self-attention produces more
+stable absolute-value predictions in the narrow-range regime. A paired
+bootstrap test on the $n=23$ subjects (100{,}000 resamples) confirms
+ViT3D achieves lower absolute error in 20/23 subjects ($p < 0.001$).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig5_model_comparison.png}
+\caption{Method comparison on real 64\,mT data ($n=23$): SynthSeg+,
+CNN3D (no adaptation), and ViT3D (no adaptation).}
+\label{fig:model_comparison}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig6_baseline_comparison.png}
+\caption{Four-way comparison on real 64\,mT data including LOOCV-adapted
+ViT3D: Pearson $r$, MAE, and inference latency.}
+\label{fig:baseline}
+\end{figure}
+
+\subsection{Cross-Session LOOCV Results}
+\label{sec:loocv_results}
+
+The primary evaluation uses 23-fold cross-session LOOCV. The adapter is
+trained on session~HFC of 22 subjects and evaluated on session~HFE of the
+held-out subject. Results:
+
+\begin{itemize}
+  \item MAE $= 0.0134$ [bootstrap 95\,\% CI: 0.010--0.017]; entire CI below
+        the 0.020 reference threshold
+  \item RMSE $= 0.016$, mean bias $= -0.0022$\,nWBV
+  \item 19/23 subjects below the 0.020 threshold
+  \item 4 subjects exceeding the threshold: HYPE21 (0.033), HYPE01 (0.029),
+        HYPE16 (0.026), HYPE19 (0.021). Failures occur at both tails of
+        the cohort range: HYPE16 (0.758) and HYPE21 (0.752) are at the
+        low end (over-predicted); HYPE01 (0.806) and HYPE19 (0.801) are
+        at the high end (under-predicted). Both patterns reflect regression
+        toward the cohort mean
+\end{itemize}
+
+\textbf{Constant-mean baseline.}
+The constant-mean LOOCV baseline (predict leave-one-out cohort mean
+for each held-out subject) yields MAE $= 0.0126$. The ViT3D LOOCV MAE
+($0.0134$) is therefore not meaningfully smaller than the
+constant-mean MAE in absolute terms, which is an expected consequence
+of the 0.056 nWBV range: in such a regime, the MAE metric is
+dominated by the cohort spread rather than by the model. The result that distinguishes the model from a constant predictor is
+the inter-session ICC reported below, which requires input-conditional
+behaviour and cannot be produced by a constant baseline. Ground-truth
+nWBV shows strong age-related decline ($\rho = -0.778$, $p < 0.001$),
+confirming expected cohort biology; model predictions do not
+significantly correlate with age ($\rho = +0.232$, $p = 0.287$),
+indicating the model does not reliably capture this biological trend
+at $n = 23$. The headline contribution of the LOOCV result is
+therefore that the model's predictions remain bounded within the
+healthy-cohort range on real 64\,mT hardware after adaptation, not
+that they outperform a constant predictor on absolute error.
+
+Fig.~\ref{fig:age} shows ground-truth and predicted nWBV plotted
+against subject age side by side. Ground-truth nWBV declines strongly
+with age ($\rho = -0.778$, $p < 0.001$), reflecting known cohort
+biology. Model predictions do not significantly correlate with age
+($\rho = +0.232$, $p = 0.287$), indicating that the model does not
+reliably encode this trend at $n = 23$; this is an acknowledged
+limitation of the current feasibility study.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\textwidth]{fig4_age_nwbv.png}
+\caption{(A) Ground-truth nWBV vs.\ age: strong decline ($\rho = -0.778$,
+$p < 0.001$) reflects cohort biology. (B) LOOCV-adapted ViT3D predictions
+vs.\ age: no significant correlation ($\rho = +0.232$, $p = 0.287$),
+indicating the model does not reliably capture age-related decline at
+$n = 23$. Both panels: real 64\,mT data, $n = 23$.}
+\label{fig:age}
+\end{figure}
+
+Pearson $r$ is not reported as the primary metric for the 64\,mT LOOCV
+evaluation. The ds006557 cohort nWBV range (0.752--0.808, width $= 0.056$)
+is approximately 4.5$\times$ narrower than OASIS-1 (0.640--0.890, width
+$\approx 0.250$). In such a restricted range, Pearson $r$ is structurally
+sensitive to small prediction perturbations and is not indicative of
+absolute prediction accuracy. MAE maps directly to the reference threshold
+and is the appropriate primary measure~\cite{buckner2004}.
+
+Fig.~\ref{fig:loocv_scatter} shows the predicted vs.\ true nWBV scatter
+for all 23 held-out subjects under LOOCV.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_loocv_scatter.png}
+\caption{Cross-session LOOCV predicted vs.\ true nWBV ($n=23$).
+Each point is one held-out subject. The shaded band shows $\pm$MAE.
+The dashed line is the identity (perfect prediction).}
+\label{fig:loocv_scatter}
+\end{figure}
+
+Bland--Altman analysis (Fig.~\ref{fig:ba}) confirms a near-zero mean bias
+of $-0.0022$\,nWBV following adaptation.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_bootstrap_ba.png}
+\caption{(A) Bootstrap MAE distribution (10{,}000 resamples) for
+LOOCV-adapted ViT3D on real 64\,mT ($n=23$); 95\,\% CI $= [0.010,\,0.017]$,
+entirely below the reference threshold of 0.020\,nWBV.
+(B) Bland--Altman plot: mean bias $= -0.0022$\,nWBV.}
+\label{fig:ba}
+\end{figure}
+
+\subsection{Inter-Session Reliability: ICC(3,1)}
+
+Using the same fold model to predict both HFE (primary) and HFC
+(reliability check) of the held-out subject provides paired predictions
+across two independent 64\,mT sessions. ICC(3,1) (two-way mixed-effects,
+single measures, absolute agreement) $= 0.615$ [bootstrap 95\,\% CI:
+0.236--0.866]: the point estimate is consistent with moderate
+inter-session reliability by standard benchmarks~\cite{koo2016icc},
+though the wide confidence interval [0.236--0.866] precludes a definitive
+reliability classification at $n = 23$. The interval width is consistent
+with the test-retest variability inherent in 64\,mT
+hardware~\cite{vasa2025imaneur}.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_loocv_icc.png}
+\caption{Inter-session reliability. (Left) Per-subject absolute error
+with the 0.020 reference threshold marked. (Right) Scatter of HFC vs.\
+HFE LOOCV predictions ($n=23$); ICC(3,1) $= 0.615$
+[95\,\% CI: 0.236--0.866].}
+\label{fig:loocv_icc}
+\end{figure}
+
+\subsection{Simulated Dementia: CDR-Stratified Evaluation}
+\label{sec:simulated_dementia}
+
+No publicly available dataset provides real 64\,mT scans from dementia
+patients. To characterize expected failure, we apply the physics-constrained
+simulator to the OASIS-1 test set ($n = 38$, CDR 0--1.0) and evaluate
+the OASIS fine-tuned ViT3D without domain adaptation (Table~\ref{tab:cdr_sim}).
+
+\begin{table}[!t]
+\caption{CDR-stratified MAE on physics-simulated 64\,mT inputs
+(OASIS-1 test set, $n=38$; no domain adaptation applied)}
+\label{tab:cdr_sim}
+\centering
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{lccc}
+\toprule
+CDR group & $n$ & MAE $\pm$ SD & Interpretation \\
+\midrule
+No CDR label    & 20 & $0.016 \pm 0.010$ & Within threshold \\
+CDR $= 0.0$     &  8 & $0.086 \pm 0.051$ & $4.4\times$ threshold \\
+CDR $= 0.5$     &  8 & $0.099 \pm 0.031$ & $5.0\times$ threshold \\
+CDR $= 1.0$     &  2 & $0.157 \pm 0.012$ & $7.9\times$ threshold \\
+\midrule
+Overall         & 38 & \multicolumn{2}{l}{MAE $= 0.055$, Pearson $r = 0.235$ ($p = 0.156$)} \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Reference threshold: MAE $= 0.020$~\cite{buckner2004}.}\\
+\multicolumn{4}{l}{\footnotesize CDR=1.0 MAE is $10\times$ the no-CDR-label group MAE (0.157 vs.\ 0.016).}\\
+\multicolumn{4}{l}{\footnotesize CDR=1.0 $n=2$ makes this estimate directional rather than conclusive.}
+\end{tabular}
+\end{table}
+
+The model predicts $\approx 0.837$ for most atrophied subjects regardless
+of true nWBV, reflecting regression to the healthy-adult mean. The
+$10\times$ MAE increase from no-CDR-label to CDR=1.0 (0.016 to 0.157)
+indicates that atrophic brains are the dominant failure mode and that
+the current model is \emph{not} appropriate for dementia patient
+assessment, noting that CDR=1.0 $n=2$ makes this estimate directional
+rather than conclusive.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_simulated_dementia.png}
+\caption{CDR-stratified MAE on physics-simulated 64\,mT inputs
+(OASIS-1 test set, $n=38$; no domain adaptation). Error bars show $\pm$1\,SD.
+The dashed line marks the 0.020 reference threshold. Only the no-CDR-label
+group ($n=20$) falls within threshold.}
+\label{fig:cdr_sim}
+\end{figure}
+
+\subsection{Pseudo-Label Ablation}
+\label{sec:pseudo_ablation}
+
+The LOOCV adaptation uses FastSurfer GT labels. In deployment, only
+SynthSeg+ pseudo-labels would be available. We evaluate label-source
+sensitivity on a fixed 15-train/8-test split:
+
+\textbf{Label agreement (all 23 subjects):} SynthSeg+ vs.\ FastSurfer GT:
+Pearson $r = 0.918$ ($p < 0.001$), MAE $= 0.005$, mean bias
+$= -0.002$\,nWBV.
+
+\begin{table}[!t]
+\caption{Pseudo-label ablation: adapter test MAE by label source
+(fixed 15-train/8-test split, seed 42)}
+\label{tab:pseudo}
+\centering
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{lccc}
+\toprule
+Label source & $n_{\text{train}}$ & MAE [95\,\% CI] & Bias \\
+\midrule
+FastSurfer GT (research)    & 15 & 0.012 [0.005--0.021] & $+0.006$ \\
+SynthSeg+ pseudo (deployment) & 15 & 0.017 [0.012--0.023] & $-0.011$ \\
+\midrule
+MAE penalty & & $+0.005$ & \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Test ground truth always FastSurfer GT. Both MAE point estimates below 0.020 threshold (CI upper bounds up to 0.023).}\\
+\multicolumn{4}{l}{\footnotesize Pseudo-label penalty of $+0.005$ keeps both label sources within the feasibility threshold.}
+\end{tabular}
+\end{table}
+
+Both label sources yield test MAE below the 0.020 reference threshold.
+The $+0.005$ penalty from pseudo-labels indicates that the adapter
+training stage does not require a FastSurfer installation, which is a
+practical requirement for deployment in environments where high-field
+ground truth is unavailable.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_pseudolabel_ablation.png}
+\caption{Pseudo-label ablation. (Left) SynthSeg+ vs.\ FastSurfer GT label
+agreement across all 23 subjects (Pearson $r = 0.918$, $p < 0.001$).
+(Right) Adapter test MAE for both label sources; both remain below the
+0.020 reference threshold.}
+\label{fig:pseudolabel}
+\end{figure}
+
+\subsection{Uncertainty Quantification}
+\label{sec:uncertainty}
+
+Predictive accuracy and uncertainty calibration are conceptually
+distinct properties of a regression model and are reported separately
+here. The accuracy result --- LOOCV MAE $= 0.0134$\,nWBV with the
+entire bootstrap interval below the 0.020 reference threshold --- does
+not depend on the calibration of any associated uncertainty estimator.
+
+We additionally evaluated the most commonly applied lightweight
+uncertainty estimator, MC Dropout~\cite{gal2016dropout}, with $N = 100$
+stochastic forward passes per scan. The mean 95\,\% interval width is
+$0.029$\,nWBV on both the OASIS-1 test set (Fig.~\ref{fig:ci}) and the
+real 64\,mT cohort (Fig.~\ref{fig:ci_real}). Empirical coverage at the
+nominal 95\,\% level is 4.3\,\% (Fig.~\ref{fig:calibration}), and
+interval width is not significantly correlated with absolute prediction error
+($r = +0.34$, $p = 0.108$, $n = 23$). The primary evidence of miscalibration
+is the 4.3\,\% empirical coverage against a nominal 95\,\% target; the positive
+but non-significant $r$ value is consistent with the direction one would expect
+from a well-calibrated model and does not by itself indicate miscalibration.
+Both observations are consistent with the
+known failure mode of dropout-based uncertainty under
+covariate shift~\cite{ovadia2019cancalibration}: the variational
+approximation underlying MC Dropout assumes that the test distribution
+matches the training distribution, which does not hold when the model
+is trained partly on physics-simulated 64\,mT data and tested on real
+hardware.
+
+This calibration result is reported for completeness and is not used
+to qualify any of the accuracy claims in this paper. Calibrated
+predictive intervals require either (i) a held-out real-hardware
+calibration set with sufficient pathology coverage, or (ii) split
+conformal prediction~\cite{angelopoulos2021conformal} computed on
+prospective acquisitions. Neither is feasible within the present
+ds006557 cohort: setting aside calibration data from $n = 23$ would
+shrink the LOOCV evaluation set below the threshold for meaningful
+bootstrap inference. Conformal calibration is therefore deferred to
+the prospective multi-site validation already identified as the next
+step (Section~\ref{sec:limitations}). MC Dropout intervals must
+\emph{not} be used for individual-level clinical decisions on the
+basis of this paper.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\textwidth]{fig8a_ci_oasis.png}
+\caption{Per-subject nWBV predictions with MC Dropout 95\,\% CI ---
+OASIS-1 test set ($n=38$). Empirical coverage $= 4.3\%$ (nominal $= 95\%$);
+CIs are severely underestimated and not suitable for clinical use.}
+\label{fig:ci}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\textwidth]{fig8b_ci_real64mt.png}
+\caption{MC Dropout uncertainty --- real 64\,mT data ($n=23$, $N=100$
+passes). CI width is not significantly correlated with error
+($r = +0.34$, $p = 0.108$); the 4.3\,\% empirical coverage is the
+primary indicator of miscalibration under domain shift.}
+\label{fig:ci_real}
+\end{figure}
+
+\subsection{Failure Analysis}
+\label{sec:failure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\textwidth]{fig9_failure_analysis.png}
+\caption{Failure analysis: (A) residuals by true nWBV, (B) MAE by nWBV
+tertile, (C) error vs.\ age on real 64\,mT LOOCV, (D) MC Dropout CI
+width vs.\ absolute error.}
+\label{fig:failure}
+\end{figure}
+
+\textbf{(A) Residuals.} Large residuals ($> 0.050$) occur exclusively at
+nWBV $< 0.76$. The model predicts $\approx 0.837$ for severely atrophied
+brains, reflecting regression to the healthy-adult mean due to
+under-representation of atrophic subjects in training.
+
+\textbf{(B) MAE by nWBV tertile.} Lowest tertile (atrophy range,
+nWBV $< 0.76$): MAE $= 0.125$. Highest tertile (normal range): MAE $= 0.009$.
+Ratio: $14\times$. All subjects exceeding the 0.020 reference threshold are
+in the lowest tertile.
+
+\textbf{(C) LOOCV failures.} The 4 subjects exceeding 0.020 on real 64\,mT
+LOOCV (HYPE21: 0.033, HYPE01: 0.029, HYPE16: 0.026, HYPE19: 0.021) show
+failures at \emph{both} tails of the cohort nWBV range: HYPE21 (0.752)
+and HYPE16 (0.758) are at the low end and are over-predicted; HYPE01
+(0.806) and HYPE19 (0.801) are at the high end and are under-predicted.
+Both patterns are consistent with regression toward the cohort mean ---
+the model compresses predictions toward the centre of its training range.
+
+\textbf{(D) Calibration.} MC Dropout CI width is not significantly correlated
+with absolute error ($r = +0.34$, $p = 0.108$, $n = 23$). The decisive
+evidence of miscalibration is the reliability curve
+(Fig.~\ref{fig:calibration}): nominal 95\,\% achieves only 4.3\,\% empirical
+coverage, a severe systematic underestimation that confirms MC Dropout
+intervals are not suitable for deployment use under this domain shift.
+
+Table~\ref{tab:worst5} lists the five highest-error subjects from the
+LOOCV evaluation. Failures cluster at the edges of the cohort range:
+subjects with low nWBV are over-predicted, while subjects with high nWBV
+are under-predicted --- both driven by regression toward the cohort mean.
+
+\begin{table}[!t]
+\caption{Worst-5 LOOCV subjects by absolute error (real 64\,mT, $n=23$).
+Failures occur at both tails of the cohort range (low nWBV: over-predicted;
+high nWBV: under-predicted), consistent with regression toward the cohort mean.}
+\label{tab:worst5}
+\centering
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{lcccc}
+\toprule
+Subject & True nWBV & Predicted nWBV & $|$Error$|$ & Threshold exceeded? \\
+\midrule
+sub-HYPE21 & 0.752 & 0.786 & 0.033 & \textbf{Yes} ($1.7\times$) \\
+sub-HYPE01 & 0.806 & 0.777 & 0.029 & \textbf{Yes} ($1.5\times$) \\
+sub-HYPE16 & 0.758 & 0.784 & 0.026 & \textbf{Yes} ($1.3\times$) \\
+sub-HYPE19 & 0.801 & 0.780 & 0.021 & \textbf{Yes} ($1.0\times$) \\
+sub-HYPE02 & 0.794 & 0.775 & 0.019 & No ($0.95\times$) \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize Threshold: 0.020\,nWBV~\cite{buckner2004}. $N\times$ = ratio to threshold.}\\
+\multicolumn{5}{l}{\footnotesize Low-nWBV subjects (HYPE21, HYPE16) are over-predicted; high-nWBV subjects}\\
+\multicolumn{5}{l}{\footnotesize (HYPE01, HYPE19) are under-predicted. Both patterns reflect regression toward cohort mean.}
+\end{tabular}
+\end{table}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\textwidth]{fig_calibration.png}
+\caption{MC Dropout calibration analysis ($n=23$, real 64\,mT).
+(A) Reliability curve: empirical coverage vs.\ nominal confidence level.
+The model is severely overconfident --- intervals are far too narrow,
+with nominal 95\,\% achieving only 4.3\,\% empirical coverage.
+(B) Calibration error at key confidence levels. MC Dropout intervals
+are reported for transparency only and must not be used for clinical
+decisions.}
+\label{fig:calibration}
+\end{figure}
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+% ============================================================
+
+\subsection{Clinical Feasibility and Scope}
+
+Following lightweight session-level adaptation (769 parameters,
+$< 1$\,min training), ViT3D produces nWBV estimates on real 64\,mT
+hardware with MAE $= 0.0134$\,nWBV [0.010--0.017] --- approximately
+19\,mL of brain parenchyma --- with the entire bootstrap interval below
+the 0.020\,nWBV clinical reference threshold~\cite{buckner2004}.
+Inference completes in 47\,ms on a standard GPU without FreeSurfer,
+SynthSeg+, or any segmentation step (edge-device latency not yet
+benchmarked). Ground-truth nWBV declines with age ($\rho = -0.778$, $p < 0.001$),
+confirming expected cohort biology; model predictions do not
+significantly correlate with age ($\rho = +0.232$, $p = 0.287$),
+an acknowledged limitation at this sample size.
+
+These properties support a feasibility claim in the specific setting of
+compute-constrained monitoring of healthy adults (e.g.\ bedside or
+low-resource environments), where software-heavy pipelines such as
+FreeSurfer or SynthSeg+ are unavailable. Latency is benchmarked at
+47\,ms on a standard GPU; edge-device latency is not yet measured and
+is identified as future work. The claim is bounded by
+three factors that we treat in detail below: validation is confined to a
+single healthy cohort ($n = 23$), inter-session reliability has only a
+preliminary point estimate with a wide bootstrap interval at this sample
+size, and the model degrades sharply on atrophic brains. Clinical deployment
+in dementia screening or diagnostic decision support is outside the
+present scope.
+
+\subsection{Architecture Choice: ViT3D vs.\ CNN3D}
+\label{sec:vit_cnn_disc}
+
+The architecture comparison is regime-specific, not absolute: the
+superiority of ViT3D in the 64\,mT setting does not generalise to
+3\,T or other wider-range regimes. The case for the choice rests on
+three points of justification.
+
+\textbf{Why MAE is the primary metric.}
+The clinical reference threshold for distinguishing normal from
+pathological nWBV change is an absolute quantity ($0.020$\,nWBV;
+\cite{buckner2004}), defined in nWBV units rather than as a correlation
+coefficient. MAE measures the same quantity that the threshold
+constrains, so it is the metric that determines whether a prediction
+falls inside or outside the acceptable error budget. Pearson $r$
+measures the linear monotonic association between predictions and
+targets and is invariant to systematic bias; in the narrow ds006557
+range (nWBV width $0.056$), small absolute errors that exceed the
+reference threshold can still yield arbitrarily high $r$. We therefore
+pre-specified MAE as the primary metric before any model evaluation.
+
+\textbf{Why ViT3D's adapter correction matters.}
+On real 64\,mT hardware without adaptation, unadapted ViT3D achieves
+lower MAE than unadapted CNN3D (0.040 vs.\ 0.076), establishing a
+like-for-like advantage before any adaptation is applied. After a
+769-parameter session-level adapter (final LayerNorm and regression
+head), ViT3D's mean bias is further reduced from $+0.040$ to $-0.0022$\,nWBV
+and LOOCV MAE collapses to $0.0134$ [0.010--0.017]. Whether the same
+adapter would correct CNN3D's $-0.076$ bias to a comparable degree
+was not tested and is identified as future work; the architecture
+comparison here is therefore based on the unadapted like-for-like
+result (ViT3D MAE 0.040 vs.\ CNN3D MAE 0.076) and on the global
+self-attention argument below, not on a claim that CNN3D's bias is
+structurally uncorrigible.
+
+\textbf{Domain-specific, not general.}
+We do not claim Transformer-class architectures dominate convolutional
+ones in medical imaging. CNN3D is materially better on OASIS-1
+(wide-range, 3\,T-derived inputs), and that result is reported in
+Table~\ref{tab:main} without qualification. The advantage observed
+here is specific to the narrow-range, high-noise, low-data 64\,mT
+regime, where the corrigibility of the residual bias becomes the
+dominant criterion. This finding is consistent with prior reports
+that Vision Transformers exhibit lower texture bias and stronger
+global-shape sensitivity than CNNs~\cite{dosovitskiy2020image}; both
+are advantageous when the target is a global volumetric ratio and the
+local texture is degraded by Rician noise.
+
+\subsection{SynthSeg+ as the Reference Standard}
+
+SynthSeg+ ($r = 0.918$, MAE $= 0.005$) sets the achievable accuracy
+ceiling for nWBV estimation on this cohort. ViT3D does not match this
+accuracy, but the relevant comparison is deployment context: SynthSeg+
+requires a 12\,GB FreeSurfer installation and 2--3\,min per scan,
+whereas ViT3D requires only PyTorch and 47\,ms of inference on a
+standard GPU. In compute-constrained settings where SynthSeg+ cannot
+be co-located with the scanner, ViT3D's accuracy--latency trade-off
+becomes the operative
+constraint rather than a limitation.
+
+\subsection{Inter-Session Reliability}
+\label{sec:discussion_icc}
+
+The ICC(3,1) point estimate of $0.615$ is consistent with moderate
+measurement consistency by the benchmarks of Koo and
+Li~\cite{koo2016icc}, but the bootstrap confidence interval
+[0.236--0.866] precludes a definitive reliability classification at
+$n = 23$. Two factors contribute jointly to the point estimate. The
+adapter is applied independently to the HFC and HFE sessions, so any
+session-to-session instability in the pre-adaptation features
+propagates into the predictions. In addition, V{\'a}{\v s}a et
+al.~\cite{vasa2025imaneur} characterised 64\,mT hardware as having
+non-negligible native test-retest variability, which sets an upper
+bound on the ICC any model can achieve on this hardware. The reported
+value therefore reflects the joint reliability of the model and the
+scanner. The current interval width means the reliability claim should
+be interpreted as directional; the lower bound of 0.236 falls in the
+poor-to-fair range and cannot be ruled out at this sample size. The
+wide bootstrap interval is a sample-size effect at $n = 23$ rather
+than evidence of instability and is expected to narrow with larger
+prospective cohorts. At this level of evidence the model is
+appropriate for group-level or longitudinal research use; individual
+clinical decisions would require either a larger reliability study or
+a calibrated rejection mechanism not pursued here.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+We separate methodological limitations of the present study from
+clinical scope conditions that govern future use.
+
+\subsubsection*{Methodological limitations}
+
+\textbf{Sample size and dataset availability.}
+Real-hardware evaluation uses ds006557 ($n = 23$), the only public
+paired 64\,mT/3\,T brain MRI dataset at the time of writing. The
+sample size therefore reflects the state of publicly available ULF
+data rather than a study-design choice. Bootstrap intervals are
+reported throughout and the cross-session LOOCV protocol is fully
+subject-independent.
+
+\textbf{Physics-simulation acquisition gap.}
+The simulator models tissue-specific T1/T2 relaxation, Rician noise,
+and B0 inhomogeneity, but does not model the full Hyperfine
+acquisition chain (ETL-80 averaging, $k$-space sampling pattern,
+compressed-sensing reconstruction). The resulting SNR mismatch
+produces a pre-adaptation bias of $+0.040$\,nWBV, which the
+769-parameter adapter reduces to $-0.0022$. Relative tissue contrast
+ratios appear to be preserved and to drive the regression; modelling
+the full acquisition chain is a tractable refinement.
+
+\textbf{Uncertainty calibration.}
+MC Dropout intervals are severely under-covered under domain shift
+(Section~\ref{sec:uncertainty}), reflecting a known failure mode of
+dropout-based variational uncertainty rather than a property of the
+underlying point predictions. These intervals are reported for
+completeness and are not used to qualify any accuracy result. Split
+conformal calibration on prospective acquisitions is the appropriate
+remedy and is identified as future work.
+
+\subsubsection*{Clinical scope conditions}
+
+\textbf{Healthy-only validation cohort.}
+ds006557 contains only healthy adults. The CDR-stratified
+physics-simulated evaluation (Section~\ref{sec:simulated_dementia})
+quantifies the expected degradation on pathological brains: CDR=1.0
+subjects exhibit MAE $0.157$, an order of magnitude above the
+healthy-reference MAE ($0.016$), noting that CDR=1.0 $n=2$ makes
+this estimate directional rather than conclusive. The model is
+therefore not appropriate for use on atrophic or pathological cohorts
+in its current form. Prospective acquisition of paired 64\,mT/3\,T
+data from CDR-rated patients is the necessary next step.
+
+\textbf{Regression-to-the-mean failure on low-nWBV inputs.}
+MAE in the lowest OASIS-1 nWBV tertile ($< 0.76$) is $0.125$, a
+$14\times$ increase over the normal-range tertile. This is driven by
+under-representation of atrophic subjects in OASIS-1 training rather
+than by the architecture or the simulator. Retraining on
+atrophy-enriched cohorts such as OASIS-3 ($n > 1{,}000$, longitudinal
+CDR) is the path to addressing this failure mode.
+
+\textbf{Inter-session reliability.}
+The ICC(3,1) reliability analysis and its clinical scope implications
+are discussed in Section~\ref{sec:discussion_icc}.
+
+\textbf{Single-site evaluation.}
+All real-hardware data come from one Hyperfine Swoop generation at a
+single site. Multi-site, multi-generation reproducibility is not
+established and is identified as a prerequisite for any deployment.
+
+\subsection{Future Work}
+
+(i) Retraining on OASIS-3 to improve atrophy-range coverage;
+(ii) Modelling the full ETL acquisition chain in simulation to close the SNR gap;
+(iii) Prospective paired 64\,mT/3\,T acquisition from CDR-rated patients;
+(iv) Three-way adapter strategy ablation (head-only vs.\ LN+head vs.\ full fine-tune);
+(v) Conformal prediction for calibrated uncertainty quantification;
+(vi) Multi-site validation across Hyperfine scanner generations.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+A compact 3D Vision Transformer (ViT3D, 4.23\,M parameters) trained on
+physics-constrained 64\,mT simulations and fine-tuned on OASIS-1
+estimates normalized whole-brain volume from bedside Hyperfine Swoop
+MRI in 47\,ms (standard GPU) without segmentation software. Under fully
+subject-independent cross-session LOOCV ($n = 23$), MAE
+$= 0.0134$\,nWBV [0.010--0.017] --- entirely below the 0.020 clinical
+reference threshold, but comparable to a constant-mean LOOCV baseline
+(MAE $= 0.0126$) given the narrow ds006557 nWBV range. Discriminative
+evidence beyond MAE is provided by ICC(3,1) $= 0.615$ [0.236--0.866], a preliminary inter-session
+reliability estimate whose wide confidence interval precludes a
+definitive classification at this sample size.
+Physics-constrained simulation
+shows a small positive trend over Gaussian-blur degradation
+($\Delta r = +0.018$, not statistically significant at $n=75$,
+bootstrap 95\,\% CI [$-0.021$, $+0.057$]), and SynthSeg+ pseudo-labels are a viable
+deployment substitute for FastSurfer ground truth (MAE penalty
+$+0.005$).
+
+The results are bounded to healthy adults. In physics-simulated
+dementia conditions, CDR=1.0 subjects exhibit MAE an order of magnitude
+above the healthy reference, identifying atrophic brains as the
+principal unresolved failure mode. The contribution of this work is a
+reproducible feasibility baseline for automated brain morphometry from
+ultra-low-field bedside MRI, together with a precise characterisation
+of the conditions --- atrophy-enriched retraining and prospective
+clinical validation --- under which the approach can be extended toward
+diagnostic use.
+
+% ============================================================
+\appendix
+\section{Training Hyperparameters}
+\label{app:hyperparams}
+
+\begin{table}[!h]
+\caption{Hyperparameters for reproducibility}
+\label{tab:hyper}
+\centering
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{lll}
+\toprule
+Parameter & Stage 2 (OASIS fine-tune) & Stage 3 (LOOCV adapt.) \\
+\midrule
+Optimizer             & AdamW              & AdamW \\
+Learning rate         & $5\times10^{-5}$   & $1\times10^{-4}$ \\
+Weight decay          & $10^{-4}$          & $10^{-4}$ \\
+Max epochs            & 50                 & 80 \\
+Early stop patience   & 10 (val Pearson $r$) & --- \\
+Batch size            & 4                  & 4 \\
+LR schedule           & Cosine annealing   & Cosine annealing \\
+Augmentations/scan    & 2                  & 5 \\
+Trainable parameters  & 4.23M (all)        & 769 (LayerNorm + head) \\
+Input size            & $64^3$ voxels      & $64^3$ voxels \\
+Intensity normalisation & 1--99 percentile clip & 1--99 percentile clip \\
+Random seed           & 42                 & 42 \\
+LOOCV folds           & ---                & 23 \\
+Bootstrap resamples   & ---                & 10{,}000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+\section*{Acknowledgment}
+
+The authors acknowledge the OASIS project (P50 AG05681, P01 AG03991,
+R01 AG021910) and OpenNeuro for data access.
+
+% ============================================================
+\begin{thebibliography}{00}
+
+\bibitem{who2023}
+World Health Organization, ``Dementia,'' WHO Fact Sheet, Sep. 2023.
+
+\bibitem{fotenos2005}
+A.~F. Fotenos, A.~Z. Snyder, L.~E. Girton, J.~C. Morris, and R.~L. Buckner,
+``Normative estimates of cross-sectional and longitudinal brain volume
+decline in aging and AD,''
+\emph{Neurology}, vol.~64, no.~6, pp.~1032--1039, 2005.
+
+\bibitem{buckner2004}
+R.~L. Buckner \emph{et al.},
+``Molecular, structural, and functional characterization of Alzheimer's
+disease,''
+\emph{J. Neurosci.}, vol.~25, no.~34, pp.~7709--7717, 2005.
+
+\bibitem{jack2018nia}
+C.~R. Jack \emph{et al.},
+``NIA-AA Research Framework: Toward a biological definition of
+Alzheimer's disease,''
+\emph{Alzheimers Dement.}, vol.~14, no.~4, pp.~535--562, 2018.
+
+\bibitem{fischl2012freesurfer}
+B.~Fischl, ``FreeSurfer,''
+\emph{NeuroImage}, vol.~62, no.~2, pp.~774--781, 2012.
+
+\bibitem{smith2002fsl}
+S.~M. Smith \emph{et al.},
+``Advances in functional and structural MR image analysis and
+implementation as FSL,''
+\emph{NeuroImage}, vol.~23, suppl.~1, pp.~S208--S219, 2004.
+
+\bibitem{prince2016world}
+M.~Prince \emph{et al.},
+``World Alzheimer Report 2016,''
+Alzheimer's Disease International, London, 2016.
+
+\bibitem{hyperfine2021}
+Hyperfine Inc., ``Swoop Portable MR Imaging System: 510(k) Summary,''
+FDA K192972, 2020.
+
+\bibitem{kimberly2023bedside}
+W.~T. Kimberly \emph{et al.},
+``Portable low-field magnetic resonance imaging enables brain imaging
+at the bedside,''
+\emph{npj Digit. Med.}, vol.~6, no.~1, 2023.
+
+\bibitem{vasa2025}
+F.~V{\'a}{\v s}a \emph{et al.},
+``Longitudinal paired 64\,mT brain MRI dataset (ds006557),''
+OpenNeuro, 2025.
+
+\bibitem{iglesias2023synthsr}
+J.~E. Iglesias \emph{et al.},
+``SynthSR: A public AI tool to turn heterogeneous clinical brain scans
+into high-resolution T1-weighted images for 3D morphometry,''
+\emph{Sci. Adv.}, vol.~9, no.~5, 2023, Art.~no.~eadd3607.
+
+\bibitem{zhao2021superresolution}
+C.~Zhao, A.~Carass, B.~E. Dewey, and J.~L. Prince,
+``Self super-resolution for magnetic resonance images using deep
+networks,''
+in \emph{Proc. IEEE ISBI}, 2020, pp.~365--368.
+
+\bibitem{chen2019synergistic}
+C.~Chen, Q.~Dou, H.~Chen, J.~Qin, and P.~A. Heng,
+``Synergistic image and feature adaptation: Towards cross-modality
+domain adaptation for medical image segmentation,''
+in \emph{Proc. AAAI}, vol.~33, 2019, pp.~865--872.
+
+\bibitem{billot2023synthseg}
+B.~Billot \emph{et al.},
+``SynthSeg: Segmentation of brain MRI scans of any contrast and
+resolution without retraining,''
+\emph{Med. Image Anal.}, vol.~86, 2023, Art.~no.~102789.
+
+\bibitem{dosovitskiy2020image}
+A.~Dosovitskiy \emph{et al.},
+``An image is worth 16$\times$16 words: Transformers for image
+recognition at scale,''
+in \emph{Proc. ICLR}, 2021.
+
+\bibitem{chen2021transunet}
+J.~Chen \emph{et al.},
+``TransUNet: Transformers make strong encoders for medical image
+segmentation,''
+\emph{arXiv:2102.04306}, 2021.
+
+\bibitem{hatamizadeh2021swin}
+A.~Hatamizadeh \emph{et al.},
+``Swin UNETR: Swin transformers for semantic segmentation of brain
+tumors in MRI images,''
+in \emph{Proc. MICCAI BraTS}, 2021, pp.~272--284.
+
+\bibitem{cole2017predicting}
+J.~H. Cole \emph{et al.},
+``Predicting brain age with deep learning from raw imaging data,''
+\emph{NeuroImage}, vol.~163, pp.~115--124, 2017.
+
+\bibitem{jonsson2019brain}
+B.~A. Jonsson \emph{et al.},
+``Brain age prediction using deep learning uncovers associated
+sequence variants,''
+\emph{Nat. Commun.}, vol.~10, Art.~no.~5409, 2019.
+
+\bibitem{sheth2021assessmentultralow}
+K.~N. Sheth \emph{et al.},
+``Assessment of brain injury using portable, low-field magnetic resonance
+imaging at the bedside,''
+\emph{JAMA Neurol.}, vol.~78, no.~1, pp.~41--47, 2021.
+
+\bibitem{ixi2017}
+IXI Dataset, Brain Development, Imperial College London, 2017.
+[Online]. Available: \url{https://brain-development.org/ixi-dataset/}
+
+\bibitem{marcus2007oasis}
+D.~S. Marcus \emph{et al.},
+``Open Access Series of Imaging Studies (OASIS): Cross-sectional MRI
+data in young, middle aged, nondemented, and demented older adults,''
+\emph{J. Cogn. Neurosci.}, vol.~19, no.~9, pp.~1498--1507, 2007.
+
+\bibitem{henschel2020fastsurfer}
+L.~Henschel \emph{et al.},
+``FastSurfer -- A fast and accurate deep learning based neuroimaging
+pipeline,''
+\emph{NeuroImage}, vol.~219, 2020, Art.~no.~117012.
+
+\bibitem{deichmann2002}
+R.~Deichmann, C.~Schwarzbauer, and R.~Turner,
+``Optimisation of the 3D MDEFT sequence for anatomical brain imaging,''
+\emph{NeuroImage}, vol.~21, no.~2, pp.~757--767, 2004.
+
+\bibitem{peng2021brain}
+H.~Peng, W.~Gong, C.~F. Beckmann, A.~Vedaldi, and S.~M. Smith,
+``Accurate brain age prediction with lightweight deep neural networks,''
+\emph{Med. Image Anal.}, vol.~68, Art.~no.~101871, 2021.
+
+\bibitem{roy2019quicknat}
+A.~G. Roy, S.~Conjeti, N.~Navab, and C.~Wachinger,
+``QuickNAT: A fully convolutional network for quick and accurate
+segmentation of neuroanatomy,''
+\emph{NeuroImage}, vol.~186, pp.~713--727, 2019.
+
+\bibitem{karani2018lifelong}
+N.~Karani, K.~Chaitanya, C.~Baumgartner, and E.~Konukoglu,
+``A lifelong learning approach to brain MR segmentation across scanners
+and protocols,''
+in \emph{Proc. MICCAI}, Granada, Spain, 2018, pp.~476--484.
+
+\bibitem{dewey2019deepharmony}
+B.~E. Dewey \emph{et al.},
+``DeepHarmony: A deep learning approach to contrast harmonization across
+scanner changes,''
+\emph{Magn. Reson. Imaging}, vol.~64, pp.~160--170, 2019.
+
+\bibitem{vasa2025imaneur}
+F.~V{\'a}{\v s}a \emph{et al.},
+``Ultra-low-field brain MRI morphometry: Test-retest reliability and
+correspondence to high-field MRI,''
+\emph{Imaging Neuroscience}, Art.~no.~a930, 2024.
+
+\bibitem{arnold2022simulated}
+T.~C. Arnold, S.~N. Baldassano, B.~Litt, and J.~M. Stein,
+``Simulated diagnostic performance of low-field MRI: Harnessing
+open-access datasets to evaluate novel devices,''
+\emph{Magn. Reson. Imaging}, vol.~87, pp.~67--76, Apr. 2022.
+
+\bibitem{rebsamen2020cortical}
+M.~Rebsamen, C.~Rummel, M.~Reyes, R.~Wiest, and R.~McKinley,
+``Direct cortical thickness estimation using deep learning-based anatomy
+segmentation and cortex parcellation,''
+\emph{Hum. Brain Mapp.}, vol.~41, no.~17, pp.~4804--4814, 2020.
+
+\bibitem{islam2025aibrain}
+K.~T. Islam \emph{et al.},
+``AI improves consistency in regional brain volumes measured in
+ultra-low-field MRI and 3T MRI,''
+\emph{Front. Neuroimaging}, vol.~4, Art.~no.~1588487, Jun. 2025.
+
+\bibitem{javadi2025diffusion}
+M.~Javadi \emph{et al.},
+``In-silico comparison of a diffusion model with conventionally trained
+deep networks for translating 64\,mT to 3T brain FLAIR,''
+\emph{Sci. Rep.}, vol.~15, Art.~no.~21806, 2025.
+
+\bibitem{gopinath2025cortical}
+K.~Gopinath \emph{et al.},
+``From low field to high value: Robust cortical mapping from
+low-field MRI,''
+arXiv preprint arXiv:2505.12228, May 2025.
+
+\bibitem{minocha2024lfmri}
+A.~Minocha and S.~Yang,
+``Low field MRI deep learning framework for non-hospitalizing early
+detection and characterization of Alzheimer's disease pathology,''
+in \emph{Proc. IEEE Int. Conf. Big Data}, 2024, pp.~1--8.
+
+\bibitem{dayarathna2024adversarial}
+S.~Dayarathna, K.~T. Islam, and Z.~Chen,
+``Ultra low-field to high-field MRI translation using adversarial
+diffusion,''
+in \emph{Proc. IEEE ISBI}, 2024, pp.~1--4.
+
+\bibitem{baljer2024paediatric}
+L.~Baljer \emph{et al.},
+``Ultra-low-field paediatric MRI in low- and middle-income countries:
+Super-resolution using a multi-orientation {U-Net},''
+\emph{Hum. Brain Mapp.}, vol.~46, Art.~no.~e70112, 2025.
+
+\bibitem{koo2016icc}
+T.~K. Koo and M.~Y. Li,
+``A guideline of selecting and reporting intraclass correlation
+coefficients for reliability research,''
+\emph{J. Chiropr. Med.}, vol.~15, no.~2, pp.~155--163, 2016.
+
+\bibitem{gal2016dropout}
+Y.~Gal and Z.~Ghahramani,
+``Dropout as a Bayesian approximation: Representing model uncertainty
+in deep learning,''
+in \emph{Proc. ICML}, 2016, pp.~1050--1059.
+
+\bibitem{ovadia2019cancalibration}
+Y.~Ovadia \emph{et al.},
+``Can you trust your model's uncertainty? Evaluating predictive
+uncertainty under dataset shift,''
+in \emph{Proc. NeurIPS}, 2019, pp.~13991--14002.
+
+\bibitem{angelopoulos2021conformal}
+A.~N. Angelopoulos and S.~Bates,
+``A gentle introduction to conformal prediction and distribution-free
+uncertainty quantification,''
+\emph{arXiv:2107.07511}, 2021.
+
+\end{thebibliography}
+
+\end{document}

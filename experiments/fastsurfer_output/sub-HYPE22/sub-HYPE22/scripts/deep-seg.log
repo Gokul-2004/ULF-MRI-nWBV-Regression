@@ -1,0 +1,117 @@
+Version: 2.3.3+bd65b36
+Log file for segmentation FastSurferCNN/run_prediction.py
+Fri Apr  3 03:07:22 UTC 2026
+
+python3.10 -s /fastsurfer/FastSurferCNN/run_prediction.py --t1 /input/sub-HYPE22_ses-GE_acq-MPRAGE_T1w.nii.gz --asegdkt_segfile /output/sub-HYPE22/mri/aparc.DKTatlas+aseg.deep.mgz --conformed_name /output/sub-HYPE22/mri/orig.mgz --brainmask_name /output/sub-HYPE22/mri/mask.mgz --aseg_name /output/sub-HYPE22/mri/aseg.auto_noCCseg.mgz --sid sub-HYPE22 --seg_log /output/sub-HYPE22/scripts/deep-seg.log --vox_size min --batch_size 1 --viewagg_device auto --device auto --sd /output
+[INFO: run_prediction.py:  648]: Checking or downloading default checkpoints ...
+[INFO: common.py:  827]: Single subject with absolute file path for input.
+[INFO: common.py:  885]: Analyzing single subject /input/sub-HYPE22_ses-GE_acq-MPRAGE_T1w.nii.gz
+[INFO: common.py:  986]: Output will be stored in Subjects Directory: /output
+[INFO: common.py:  114]: Using device: cpu
+[INFO: run_prediction.py:  245]: Running view aggregation on cpu
+[INFO: inference.py:  200]: Loading checkpoint /fastsurfer/checkpoints/aparc_vinn_coronal_v2.0.0.pkl
+[INFO: inference.py:  200]: Loading checkpoint /fastsurfer/checkpoints/aparc_vinn_sagittal_v2.0.0.pkl
+[INFO: inference.py:  200]: Loading checkpoint /fastsurfer/checkpoints/aparc_vinn_axial_v2.0.0.pkl
+[INFO: run_prediction.py:  324]: Successfully loaded image from /input/sub-HYPE22_ses-GE_acq-MPRAGE_T1w.nii.gz.
+[INFO: run_prediction.py:  441]: Output image directory /output/sub-HYPE22/mri/orig does not exist. Creating it now...
+[INFO: run_prediction.py:  454]: Successfully saved image   as /output/sub-HYPE22/mri/orig/001.mgz.
+[INFO: run_prediction.py:  337]: Conforming image
+[INFO: run_prediction.py:  454]: Successfully saved image   as /output/sub-HYPE22/mri/orig.mgz.
+[INFO: run_prediction.py:  400]: Run coronal prediction
+[INFO: dataset.py:   78]: Loading Coronal with input voxelsize (1.0, 1.0)
+[INFO: inference.py:  406]: Inference on 256 batches for coronal successful
+[INFO: inference.py:  468]: Coronal inference on /input/sub-HYPE22_ses-GE_acq-MPRAGE_T1w.nii.gz finished in 1166.4091 seconds
+[INFO: run_prediction.py:  400]: Run sagittal prediction
+[INFO: dataset.py:   69]: Loading Sagittal with input voxelsize (1.0, 1.0)
+[INFO: inference.py:  406]: Inference on 256 batches for sagittal successful
+[INFO: inference.py:  468]: Sagittal inference on /input/sub-HYPE22_ses-GE_acq-MPRAGE_T1w.nii.gz finished in 1171.0368 seconds
+[INFO: run_prediction.py:  400]: Run axial prediction
+[INFO: dataset.py:   74]: Loading Axial with input voxelsize (1.0, 1.0)
+[INFO: inference.py:  406]: Inference on 256 batches for axial successful
+[INFO: inference.py:  468]: Axial inference on /input/sub-HYPE22_ses-GE_acq-MPRAGE_T1w.nii.gz finished in 1198.5500 seconds
+[INFO: run_prediction.py:  454]: Successfully saved image   as /output/sub-HYPE22/mri/aparc.DKTatlas+aseg.deep.mgz.
+[INFO: run_prediction.py:  725]: Creating brainmask based on segmentation...
+[INFO: run_prediction.py:  454]: Successfully saved image   as /output/sub-HYPE22/mri/mask.mgz.
+[INFO: run_prediction.py:  744]: Creating aseg based on segmentation...
+[INFO: run_prediction.py:  454]: Successfully saved image   as /output/sub-HYPE22/mri/aseg.auto_noCCseg.mgz.
+[INFO: run_prediction.py:  763]: Running volume-based QC check on segmentation...
+INFO: Running N4 bias-field correction
+python3.10 -s /fastsurfer/recon_surf/N4_bias_correct.py --in /output/sub-HYPE22/mri/orig.mgz --rescale /output/sub-HYPE22/mri/orig_nu.mgz --aseg /output/sub-HYPE22/mri/aparc.DKTatlas+aseg.deep.mgz --threads 3
+
+N4 Bias Correction Parameters:
+
+- verbosity: -1
+- input volume: /output/sub-HYPE22/mri/orig.mgz
+- output volume: do not save
+- rescaled volume: /output/sub-HYPE22/mri/orig_nu.mgz
+- mask: default (>0)
+- aseg: /output/sub-HYPE22/mri/aparc.DKTatlas+aseg.deep.mgz
+- shrink factor: 4
+- number fitting levels: 4
+- number iterations: 50
+- convergence threshold: 0.0
+- threads: 3
+read MGZ (FreeSurfer) image via nibabel...
+executing N4 correction ...
+- mask: ones (default)
+normalize WM to 105.0 (find WM from aseg)
+read MGZ (FreeSurfer) image via nibabel...
+- source white matter intensity: 127.05
+- m: 0.8028
+converting rescaled to UCHAR
+writing PosixPath: /output/sub-HYPE22/mri/orig_nu.mgz
+write MGZ (FreeSurfer) image via nibabel...
+python3.10 -s /fastsurfer/FastSurferCNN/segstats.py --segfile /output/sub-HYPE22/mri/aparc.DKTatlas+aseg.deep.mgz --segstatsfile /output/sub-HYPE22/stats/aseg+DKT.stats --normfile /output/sub-HYPE22/mri/orig_nu.mgz --threads 3 --empty --excludeid 0 --sd /output --sid sub-HYPE22 --ids 2 4 5 7 8 10 11 12 13 14 15 16 17 18 24 26 28 31 41 43 44 46 47 49 50 51 52 53 54 58 60 63 77 251 252 253 254 255 1002 1003 1005 1006 1007 1008 1009 1010 1011 1012 1013 1014 1015 1016 1017 1018 1019 1020 1021 1022 1023 1024 1025 1026 1027 1028 1029 1030 1031 1034 1035 2002 2003 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026 2027 2028 2029 2030 2031 2034 2035 --lut /fastsurfer/FastSurferCNN/config/FreeSurferColorLUT.txt measures --compute Mask(/output/sub-HYPE22/mri/mask.mgz) BrainSeg BrainSegNotVent SupraTentorial SupraTentorialNotVent SubCortGray rhCerebralWhiteMatter lhCerebralWhiteMatter CerebralWhiteMatter
+None of the labels [251, 252, 253, 254, 255] for merged label 10007 exist in the segmentation.
+Partial volume stats for 100 labels written to /output/sub-HYPE22/stats/aseg+DKT.stats.
+Calculation took 9.09 seconds using up to 3 threads.
+python3.10 -s /fastsurfer/HypVINN/run_prediction.py --sd /output --sid sub-HYPE22 --threads 3 --async_io --batch_size 1 --seg_log /output/sub-HYPE22/scripts/deep-seg.log --device auto --viewagg_device auto --t1 /output/sub-HYPE22/mri/orig_nu.mgz
+[INFO: mode_config.py:   51]: Setting up input mode...
+[INFO: run_prediction.py:  271]: Running HypVINN segmentation pipeline on subject sub-HYPE22
+[INFO: run_prediction.py:  274]: Output will be stored in: /output/sub-HYPE22
+[INFO: run_prediction.py:  275]: T1 image input /output/sub-HYPE22/mri/orig_nu.mgz
+[INFO: run_prediction.py:  276]: T2 image input None
+[INFO: run_prediction.py:  295]: Setting up HypVINN run
+[INFO: run_prediction.py:  300]: axial model configuration from /fastsurfer/HypVINN/config/HypVINN_axial_v1.1.0.yaml
+[INFO: run_prediction.py:  426]: Checking or downloading default checkpoints ...
+[INFO: run_prediction.py:  300]: coronal model configuration from /fastsurfer/HypVINN/config/HypVINN_coronal_v1.1.0.yaml
+[INFO: run_prediction.py:  300]: sagittal model configuration from /fastsurfer/HypVINN/config/HypVINN_sagittal_v1.1.0.yaml
+[INFO: run_prediction.py:  492]: Loading T1 image from : /output/sub-HYPE22/mri/orig_nu.mgz
+[INFO: common.py:  114]: Using device: cpu
+[INFO: inference.py:  109]: Running view aggregation on cpu
+[INFO: run_prediction.py:  329]: ------------------------------------------------------------------------------------------------------------------------
+[INFO: run_prediction.py:  330]: Evaluating hypothalamus model on sub-HYPE22
+[INFO: run_prediction.py:  339]: Scale factor: (1.0, 1.0, 1.0)
+[INFO: run_prediction.py:  595]: Evaluating axial model, cpkt :/fastsurfer/checkpoints/HypVINN_axial_v1.1.0.pkl
+[INFO: inference.py:  183]: Loading checkpoint /fastsurfer/checkpoints/HypVINN_axial_v1.1.0.pkl
+[INFO: dataset.py:  168]: Loading t1 axial with input voxelsize (1.0, 1.0)
+[INFO: dataset.py:  116]: Successfully loaded Image from sub-HYPE22 for axial model
+[INFO: dataset.py:  128]: For inference T1 block weight was set to: 1.0 and the T2 block was set to: 0.0
+[INFO: inference.py:  344]: --->  axial Model Testing Done.
+[INFO: inference.py:  410]: axial Inference on sub-HYPE22 finished in 618.8263 seconds
+[INFO: run_prediction.py:  595]: Evaluating coronal model, cpkt :/fastsurfer/checkpoints/HypVINN_coronal_v1.1.0.pkl
+[INFO: inference.py:  183]: Loading checkpoint /fastsurfer/checkpoints/HypVINN_coronal_v1.1.0.pkl
+[INFO: dataset.py:  162]: Loading t1 coronal with input voxelsize (1.0, 1.0)
+[INFO: dataset.py:  116]: Successfully loaded Image from sub-HYPE22 for coronal model
+[INFO: dataset.py:  128]: For inference T1 block weight was set to: 1.0 and the T2 block was set to: 0.0
+[INFO: inference.py:  344]: --->  coronal Model Testing Done.
+[INFO: inference.py:  410]: coronal Inference on sub-HYPE22 finished in 639.7584 seconds
+[INFO: run_prediction.py:  595]: Evaluating sagittal model, cpkt :/fastsurfer/checkpoints/HypVINN_sagittal_v1.1.0.pkl
+[INFO: inference.py:  183]: Loading checkpoint /fastsurfer/checkpoints/HypVINN_sagittal_v1.1.0.pkl
+[INFO: dataset.py:  155]: Loading t1 sagittal with input voxelsize (1.0, 1.0)
+[INFO: dataset.py:  116]: Successfully loaded Image from sub-HYPE22 for sagittal model
+[INFO: dataset.py:  128]: For inference T1 block weight was set to: 1.0 and the T2 block was set to: 0.0
+[INFO: inference.py:  344]: --->  sagittal Model Testing Done.
+[INFO: inference.py:  410]: sagittal Inference on sub-HYPE22 finished in 605.4065 seconds
+[INFO: run_prediction.py:  352]: Model prediction finished in 1868.1632 seconds
+[INFO: run_prediction.py:  353]: Saving results in /output/sub-HYPE22
+[INFO: img_processing_utils.py:   97]: Orig data orientation : ('L', 'I', 'A')
+[INFO: img_processing_utils.py:  101]: HypVINN Mask orientation: ('R', 'A', 'S')
+[INFO: img_processing_utils.py:  103]: HypVINN Mask after re-orientation: ('L', 'I', 'A')
+[INFO: img_processing_utils.py:  109]: HypVINN Prediction orientation: ('R', 'A', 'S')
+[INFO: img_processing_utils.py:  111]: HypVINN Prediction after re-orientation: ('L', 'I', 'A')
+[INFO: run_prediction.py:  370]: Prediction successfully saved in 2.1813838481903076 seconds.
+[INFO: run_prediction.py:  384]: Computing stats
+[INFO: brainvolstats.py: 1406]: Replacing segmentation volume to compute volume measures from with the segmentation file /output/sub-HYPE22/mri/hypothalamus.HypVINN.nii.gz.
+[INFO: run_prediction.py:  394]: Processing segmentation finished in 1871.9749 seconds.
+[INFO: run_prediction.py:  405]: Processing whole pipeline finished in 1872.0084 seconds.
