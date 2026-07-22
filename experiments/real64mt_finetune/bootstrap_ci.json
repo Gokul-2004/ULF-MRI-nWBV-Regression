@@ -1,0 +1,11 @@
+{
+  "mae_point": 0.0096,
+  "mae_ci_low": 0.0051,
+  "mae_ci_high": 0.0165,
+  "bland_altman": {
+    "mean_bias": 0.0004,
+    "sd": 0.0138,
+    "loa_upper": 0.0276,
+    "loa_lower": -0.0267
+  }
+}

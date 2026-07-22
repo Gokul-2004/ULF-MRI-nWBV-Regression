@@ -1,0 +1,46 @@
+======================================================================
+Simulation Fidelity Validation vs Real 64mT (ds006557)
+======================================================================
+Found 23 subjects with paired GE 3T + Hyperfine 64mT T2w
+
+[ 1/23] sub-HYPE00  SNR_err phys=0.903 arnold=0.149  CNR_err phys=0.891 arnold=0.602  NCC phys=0.490 arnold=0.479
+[ 2/23] sub-HYPE01  SNR_err phys=0.899 arnold=0.101  CNR_err phys=0.895 arnold=0.564  NCC phys=0.553 arnold=0.592
+[ 3/23] sub-HYPE02  SNR_err phys=0.900 arnold=0.115  CNR_err phys=0.880 arnold=0.757  NCC phys=0.521 arnold=0.481
+[ 4/23] sub-HYPE03  SNR_err phys=0.893 arnold=0.141  CNR_err phys=0.898 arnold=0.409  NCC phys=0.509 arnold=0.534
+[ 5/23] sub-HYPE04  SNR_err phys=0.915 arnold=0.239  CNR_err phys=0.906 arnold=0.455  NCC phys=0.520 arnold=0.513
+[ 6/23] sub-HYPE05  SNR_err phys=0.906 arnold=0.173  CNR_err phys=0.892 arnold=0.638  NCC phys=0.357 arnold=0.383
+[ 7/23] sub-HYPE06  SNR_err phys=0.897 arnold=0.211  CNR_err phys=0.894 arnold=0.411  NCC phys=0.510 arnold=0.519
+[ 8/23] sub-HYPE07  SNR_err phys=0.892 arnold=0.095  CNR_err phys=0.902 arnold=0.408  NCC phys=0.530 arnold=0.538
+[ 9/23] sub-HYPE08  SNR_err phys=0.902 arnold=0.135  CNR_err phys=0.904 arnold=0.441  NCC phys=0.509 arnold=0.508
+[10/23] sub-HYPE09  SNR_err phys=0.909 arnold=0.226  CNR_err phys=0.901 arnold=0.457  NCC phys=0.530 arnold=0.493
+[11/23] sub-HYPE10  SNR_err phys=0.890 arnold=0.099  CNR_err phys=0.887 arnold=0.544  NCC phys=0.478 arnold=0.457
+[12/23] sub-HYPE11  SNR_err phys=0.882 arnold=0.098  CNR_err phys=0.896 arnold=0.337  NCC phys=0.511 arnold=0.563
+[13/23] sub-HYPE12  SNR_err phys=0.881 arnold=0.019  CNR_err phys=0.891 arnold=0.486  NCC phys=0.507 arnold=0.541
+[14/23] sub-HYPE13  SNR_err phys=0.892 arnold=0.142  CNR_err phys=0.902 arnold=0.340  NCC phys=0.522 arnold=0.513
+[15/23] sub-HYPE14  SNR_err phys=0.884 arnold=0.001  CNR_err phys=0.888 arnold=0.531  NCC phys=0.501 arnold=0.552
+[16/23] sub-HYPE15  SNR_err phys=0.883 arnold=0.061  CNR_err phys=0.896 arnold=0.403  NCC phys=0.534 arnold=0.602
+[17/23] sub-HYPE16  SNR_err phys=0.884 arnold=0.180  CNR_err phys=0.901 arnold=0.214  NCC phys=0.508 arnold=0.561
+[18/23] sub-HYPE17  SNR_err phys=0.875 arnold=0.002  CNR_err phys=0.872 arnold=0.656  NCC phys=0.452 arnold=0.524
+[19/23] sub-HYPE18  SNR_err phys=0.886 arnold=0.092  CNR_err phys=0.884 arnold=0.557  NCC phys=0.472 arnold=0.532
+[20/23] sub-HYPE19  SNR_err phys=0.910 arnold=0.207  CNR_err phys=0.896 arnold=0.587  NCC phys=0.408 arnold=0.391
+[21/23] sub-HYPE20  SNR_err phys=0.899 arnold=0.162  CNR_err phys=0.905 arnold=0.377  NCC phys=0.540 arnold=0.564
+[22/23] sub-HYPE21  SNR_err phys=0.895 arnold=0.252  CNR_err phys=0.888 arnold=0.393  NCC phys=0.432 arnold=0.456
+[23/23] sub-HYPE22  SNR_err phys=0.891 arnold=0.015  CNR_err phys=0.892 arnold=0.692  NCC phys=0.530 arnold=0.563
+
+===========================================================================
+Simulation Fidelity vs Real Hyperfine 64mT (ds006557, n=23)
+Primary metrics: SNR/CNR error vs real 64mT (lower = better match)
+NOTE: SSIM unreliable for cross-field-strength without registration.
+===========================================================================
+Method                        SNR-err↓   CNR-err↓   Noise-err↓     NCC↑
+----------------------------------------------------------------------
+Ours (Physics-Informed)     0.8942±0.0103  0.8940±0.0083  0.00980±0.00020  0.4967±0.0453
+Arnold (Gaussian Blur)      0.1267±0.0732  0.4896±0.1275  0.00000±0.00000  0.5156±0.0546
+===========================================================================
+n = 23 subjects  |  ↓ lower is better (error), ↑ NCC higher is better
+
+Interpretation:
+  Physics-informed: T1/T2 relaxation at 64mT, Rician noise, B0 inhomogeneity
+  Arnold baseline:  Gaussian blur + additive noise (no physics)
+
+Results saved to /home/gk-krishnan/Desktop/VIT Paper/experiments/sim_validation/

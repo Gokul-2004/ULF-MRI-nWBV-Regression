@@ -1,0 +1,190 @@
+{
+  "protocol": "cross_session_loocv",
+  "description": "Adapter trained on HFC of n-1 subjects; tested on HFE of held-out subject",
+  "n_subjects": 23,
+  "n_train_per_fold": 22,
+  "adapter_params": 769,
+  "adapter_components": "final_layernorm + regression_head",
+  "epochs_per_fold": 80,
+  "mae": 0.0134,
+  "rmse": 0.016,
+  "bias": -0.0022,
+  "mae_bootstrap_ci_95": [
+    0.01,
+    0.017
+  ],
+  "n_bootstrap": 10000,
+  "pearson_r": -0.1191,
+  "pearson_p": 0.5882,
+  "spearman_rho": -0.2461,
+  "spearman_p": 0.2576,
+  "icc_31_hfc_hfe": 0.6146,
+  "icc_31_bootstrap_ci_95": [
+    0.2364,
+    0.8658
+  ],
+  "subjects_below_mae020": 19,
+  "per_subject": [
+    {
+      "subject": "sub-HYPE00",
+      "true_nwbv": 0.7939,
+      "pred_hfe": 0.7812,
+      "pred_hfc": 0.786,
+      "abs_error_hfe": 0.0127
+    },
+    {
+      "subject": "sub-HYPE01",
+      "true_nwbv": 0.806,
+      "pred_hfe": 0.7772,
+      "pred_hfc": 0.7796,
+      "abs_error_hfe": 0.0288
+    },
+    {
+      "subject": "sub-HYPE02",
+      "true_nwbv": 0.7941,
+      "pred_hfe": 0.7747,
+      "pred_hfc": 0.778,
+      "abs_error_hfe": 0.0194
+    },
+    {
+      "subject": "sub-HYPE03",
+      "true_nwbv": 0.7882,
+      "pred_hfe": 0.7801,
+      "pred_hfc": 0.7805,
+      "abs_error_hfe": 0.0081
+    },
+    {
+      "subject": "sub-HYPE04",
+      "true_nwbv": 0.7962,
+      "pred_hfe": 0.7797,
+      "pred_hfc": 0.7825,
+      "abs_error_hfe": 0.0165
+    },
+    {
+      "subject": "sub-HYPE05",
+      "true_nwbv": 0.7916,
+      "pred_hfe": 0.7896,
+      "pred_hfc": 0.7908,
+      "abs_error_hfe": 0.002
+    },
+    {
+      "subject": "sub-HYPE06",
+      "true_nwbv": 0.7755,
+      "pred_hfe": 0.7812,
+      "pred_hfc": 0.7807,
+      "abs_error_hfe": 0.0057
+    },
+    {
+      "subject": "sub-HYPE07",
+      "true_nwbv": 0.7866,
+      "pred_hfe": 0.7802,
+      "pred_hfc": 0.781,
+      "abs_error_hfe": 0.0064
+    },
+    {
+      "subject": "sub-HYPE08",
+      "true_nwbv": 0.7903,
+      "pred_hfe": 0.7795,
+      "pred_hfc": 0.7819,
+      "abs_error_hfe": 0.0108
+    },
+    {
+      "subject": "sub-HYPE09",
+      "true_nwbv": 0.799,
+      "pred_hfe": 0.7809,
+      "pred_hfc": 0.7828,
+      "abs_error_hfe": 0.0181
+    },
+    {
+      "subject": "sub-HYPE10",
+      "true_nwbv": 0.7782,
+      "pred_hfe": 0.7813,
+      "pred_hfc": 0.7845,
+      "abs_error_hfe": 0.0031
+    },
+    {
+      "subject": "sub-HYPE11",
+      "true_nwbv": 0.7672,
+      "pred_hfe": 0.7806,
+      "pred_hfc": 0.7809,
+      "abs_error_hfe": 0.0134
+    },
+    {
+      "subject": "sub-HYPE12",
+      "true_nwbv": 0.7881,
+      "pred_hfe": 0.7828,
+      "pred_hfc": 0.7837,
+      "abs_error_hfe": 0.0053
+    },
+    {
+      "subject": "sub-HYPE13",
+      "true_nwbv": 0.7911,
+      "pred_hfe": 0.778,
+      "pred_hfc": 0.7788,
+      "abs_error_hfe": 0.0131
+    },
+    {
+      "subject": "sub-HYPE14",
+      "true_nwbv": 0.7715,
+      "pred_hfe": 0.7893,
+      "pred_hfc": 0.7856,
+      "abs_error_hfe": 0.0178
+    },
+    {
+      "subject": "sub-HYPE15",
+      "true_nwbv": 0.7596,
+      "pred_hfe": 0.7786,
+      "pred_hfc": 0.7812,
+      "abs_error_hfe": 0.019
+    },
+    {
+      "subject": "sub-HYPE16",
+      "true_nwbv": 0.758,
+      "pred_hfe": 0.7837,
+      "pred_hfc": 0.7836,
+      "abs_error_hfe": 0.0257
+    },
+    {
+      "subject": "sub-HYPE17",
+      "true_nwbv": 0.784,
+      "pred_hfe": 0.7867,
+      "pred_hfc": 0.7957,
+      "abs_error_hfe": 0.0027
+    },
+    {
+      "subject": "sub-HYPE18",
+      "true_nwbv": 0.7752,
+      "pred_hfe": 0.7825,
+      "pred_hfc": 0.7806,
+      "abs_error_hfe": 0.0073
+    },
+    {
+      "subject": "sub-HYPE19",
+      "true_nwbv": 0.801,
+      "pred_hfe": 0.7803,
+      "pred_hfc": 0.7801,
+      "abs_error_hfe": 0.0207
+    },
+    {
+      "subject": "sub-HYPE20",
+      "true_nwbv": 0.7789,
+      "pred_hfe": 0.7793,
+      "pred_hfc": 0.7805,
+      "abs_error_hfe": 0.0004
+    },
+    {
+      "subject": "sub-HYPE21",
+      "true_nwbv": 0.7523,
+      "pred_hfe": 0.7857,
+      "pred_hfc": 0.7835,
+      "abs_error_hfe": 0.0334
+    },
+    {
+      "subject": "sub-HYPE22",
+      "true_nwbv": 0.8084,
+      "pred_hfe": 0.791,
+      "pred_hfc": 0.7806,
+      "abs_error_hfe": 0.0174
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "kruskal_wallis": {
+    "H": 2.883,
+    "p": 0.2366
+  },
+  "mannwhitney_0_vs_05": {
+    "U": 36.0,
+    "p": 0.3564
+  },
+  "mannwhitney_0_vs_10": {
+    "U": 12.0,
+    "p": 0.2
+  },
+  "mannwhitney_05_vs_10": {
+    "U": 16.0,
+    "p": 0.0222
+  },
+  "trend_pearson_r": -0.2904,
+  "trend_p": 0.2424,
+  "group_means": {
+    "CDR_0": 0.8444,
+    "CDR_0_5": 0.8442,
+    "CDR_1": 0.842
+  }
+}

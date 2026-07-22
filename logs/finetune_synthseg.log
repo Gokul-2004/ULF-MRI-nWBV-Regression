@@ -1,0 +1,53 @@
+============================================================
+Full Fine-tune: Real 64mT + SynthSeg+ Pseudo-Labels
+Device: cuda | Epochs: 120 | LR: 3e-05
+============================================================
+SynthSeg labels: 23
+FastSurfer GT:   23
+
+Loading real 64mT scans...
+Loaded: 23 subjects
+Train: 15 | Test: 8
+Test:  ['sub-HYPE21', 'sub-HYPE04', 'sub-HYPE18', 'sub-HYPE07', 'sub-HYPE08', 'sub-HYPE00', 'sub-HYPE03', 'sub-HYPE20']
+Train samples: 165 (15 × 11 aug)
+Trainable: ALL 4,225,537 params
+
+Fine-tuning for 120 epochs...
+  Epoch  20/120  loss=0.000260  lr=2.81e-05
+  Epoch  40/120  loss=0.000185  lr=2.28e-05
+  Epoch  60/120  loss=0.000058  lr=1.55e-05
+  Epoch  80/120  loss=0.000042  lr=8.25e-06
+  Epoch 100/120  loss=0.000024  lr=2.94e-06
+  Epoch 120/120  loss=0.000023  lr=1.00e-06
+
+============================================================
+Evaluation on held-out test subjects
+============================================================
+  sub-HYPE21: pred=0.7871  SynthSeg=0.7457  FreeSurfer=0.7523
+  sub-HYPE04: pred=0.7945  SynthSeg=0.7922  FreeSurfer=0.7962
+  sub-HYPE18: pred=0.7874  SynthSeg=0.7774  FreeSurfer=0.7752
+  sub-HYPE07: pred=0.7801  SynthSeg=0.7788  FreeSurfer=0.7866
+  sub-HYPE08: pred=0.7907  SynthSeg=0.7889  FreeSurfer=0.7903
+  sub-HYPE00: pred=0.7846  SynthSeg=0.7951  FreeSurfer=0.7939
+  sub-HYPE03: pred=0.7857  SynthSeg=0.7846  FreeSurfer=0.7882
+  sub-HYPE20: pred=0.7899  SynthSeg=0.7845  FreeSurfer=0.7789
+
+============================================================
+RESULTS vs FreeSurfer Ground Truth
+============================================================
+n_test        = 8
+Pearson r     = 0.1196  (p=0.7778)
+Spearman ρ    = 0.2143  (p=0.6103)
+MAE           = 0.0098
+RMSE          = 0.0142
+Mean bias     = +0.0048
+Age Pearson r = -0.2967
+Age Spearman ρ= -0.4524  (p=0.2604)
+
+--- Comparison ---
+Before (OASIS only):     r=0.2911  MAE=0.0403
+After (SynthSeg adapt):  r=0.1196  MAE=0.0098
+Improvement:             Δr=-0.1715  ΔMAE=-0.0305
+
+Checkpoint: /home/gk-krishnan/Desktop/VIT Paper/checkpoints/synthseg_finetuned.pt
+Results: /home/gk-krishnan/Desktop/VIT Paper/experiments/synthseg_finetune/results.json

@@ -1,0 +1,46 @@
+Loaded OASIS fine-tuned model from /home/gk-krishnan/Desktop/VIT Paper/checkpoints/oasis_finetuned.pt
+
+=================================================================
+Generalization: Real 64mT (ds006557) Evaluation
+=================================================================
+Found 23 subjects
+
+  sub-HYPE00: real=0.8278  sim=0.8436
+  sub-HYPE01: real=0.8238  sim=0.8438
+  sub-HYPE02: real=0.8302  sim=0.8454
+  sub-HYPE03: real=0.8220  sim=0.8431
+  sub-HYPE04: real=0.8231  sim=0.8441
+  sub-HYPE05: real=0.8250  sim=0.8437
+  sub-HYPE06: real=0.8213  sim=0.8461
+  sub-HYPE07: real=0.8222  sim=0.8433
+  sub-HYPE08: real=0.8239  sim=0.8447
+  sub-HYPE09: real=0.8243  sim=0.8426
+  sub-HYPE10: real=0.8292  sim=0.8447
+  sub-HYPE11: real=0.8215  sim=0.8433
+  sub-HYPE12: real=0.8255  sim=0.8441
+  sub-HYPE13: real=0.8214  sim=0.8453
+  sub-HYPE14: real=0.8265  sim=0.8440
+  sub-HYPE15: real=0.8199  sim=0.8428
+  sub-HYPE16: real=0.8200  sim=0.8426
+  sub-HYPE17: real=0.8350  sim=0.8443
+  sub-HYPE18: real=0.8213  sim=0.8442
+  sub-HYPE19: real=0.8287  sim=0.8398
+  sub-HYPE20: real=0.8215  sim=0.8394
+  sub-HYPE21: real=0.8245  sim=0.8421
+  sub-HYPE22: real=0.8233  sim=0.8436
+
+=================================================================
+n = 23 subjects with real 64mT predictions
+nWBV predictions from real HFC: mean=0.8244 ± 0.0036
+  Range: [0.8199, 0.8350]
+
+Cross-modality agreement (real HFC vs physics sim):
+  Pearson r = 0.119  (p=0.5894,  n=23)
+  High r confirms: sim-trained model generalizes to real 64mT
+  Mean absolute difference: 0.0191
+
+Age-nWBV Correlation (biological validation, n=23):
+  Pearson r  = -0.490  (p=0.0176)
+  Spearman r = -0.514  (p=0.0121)
+
+Results saved to /home/gk-krishnan/Desktop/VIT Paper/experiments/real64mt_eval/

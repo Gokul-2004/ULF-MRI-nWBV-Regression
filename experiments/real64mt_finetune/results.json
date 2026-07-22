@@ -1,0 +1,77 @@
+{
+  "model": "real64mt_finetuned",
+  "fine_tuning": {
+    "n_train_subjects": 15,
+    "n_test_subjects": 8,
+    "aug_per_vol": 6,
+    "total_train_samples": 105,
+    "epochs": 80,
+    "layers_trained": "norm + head (last 2)",
+    "lr": 0.0001
+  },
+  "test_results": {
+    "pearson_r": 0.2467,
+    "pearson_p": 0.5558,
+    "spearman_r": 0.3571,
+    "spearman_p": 0.3851,
+    "mae": 0.0096,
+    "rmse": 0.0129,
+    "mean_bias": 0.0004,
+    "n_test": 8
+  },
+  "baseline_before_finetune": {
+    "pearson_r": 0.2911,
+    "pearson_p": 0.1778,
+    "mae": 0.0403
+  },
+  "per_subject": [
+    {
+      "subject": "sub-HYPE21",
+      "pred": 0.7837,
+      "gt": 0.7523,
+      "error": 0.0314
+    },
+    {
+      "subject": "sub-HYPE04",
+      "pred": 0.7836,
+      "gt": 0.7962,
+      "error": -0.0126
+    },
+    {
+      "subject": "sub-HYPE18",
+      "pred": 0.7815,
+      "gt": 0.7752,
+      "error": 0.0063
+    },
+    {
+      "subject": "sub-HYPE07",
+      "pred": 0.7823,
+      "gt": 0.7866,
+      "error": -0.0043
+    },
+    {
+      "subject": "sub-HYPE08",
+      "pred": 0.7836,
+      "gt": 0.7903,
+      "error": -0.0067
+    },
+    {
+      "subject": "sub-HYPE00",
+      "pred": 0.7871,
+      "gt": 0.7939,
+      "error": -0.0068
+    },
+    {
+      "subject": "sub-HYPE03",
+      "pred": 0.7819,
+      "gt": 0.7882,
+      "error": -0.0063
+    },
+    {
+      "subject": "sub-HYPE20",
+      "pred": 0.7815,
+      "gt": 0.7789,
+      "error": 0.0026
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+=== SynthSeg+ batch run: Fri Apr  3 08:25:09 PM IST 2026 ===
+Input: single axial T2w (ses-HFC)
+Parallel: 4 jobs
+
+Found 23 subjects
+
+=== Starting SynthSeg+ segmentation ===
+  [DONE] sub-HYPE00 — already complete, skipping
+  [RUN ] sub-HYPE01 — started 20:25:09
+  [RUN ] sub-HYPE02 — started 20:25:09
+  [RUN ] sub-HYPE03 — started 20:25:09
+  [RUN ] sub-HYPE04 — started 20:25:09
+  [OK  ] sub-HYPE01 — complete 20:31:40
+  [RUN ] sub-HYPE05 — started 20:31:40
+  [OK  ] sub-HYPE04 — complete 20:31:41
+  [RUN ] sub-HYPE06 — started 20:31:41
+  [OK  ] sub-HYPE03 — complete 20:31:42
+  [RUN ] sub-HYPE07 — started 20:31:42
+  [OK  ] sub-HYPE02 — complete 20:31:43
+  [RUN ] sub-HYPE08 — started 20:31:43
+  [OK  ] sub-HYPE08 — complete 20:37:01
+  [RUN ] sub-HYPE09 — started 20:37:01
+  [OK  ] sub-HYPE06 — complete 20:37:03
+  [RUN ] sub-HYPE10 — started 20:37:03
+  [OK  ] sub-HYPE07 — complete 20:37:03
+  [RUN ] sub-HYPE11 — started 20:37:03
+  [OK  ] sub-HYPE05 — complete 20:37:04
+  [RUN ] sub-HYPE12 — started 20:37:04
+  [OK  ] sub-HYPE09 — complete 20:42:08
+  [RUN ] sub-HYPE13 — started 20:42:08
+  [OK  ] sub-HYPE10 — complete 20:42:08
+  [RUN ] sub-HYPE14 — started 20:42:08
+  [OK  ] sub-HYPE11 — complete 20:42:09
+  [RUN ] sub-HYPE15 — started 20:42:09
+  [OK  ] sub-HYPE12 — complete 20:42:09
+  [RUN ] sub-HYPE16 — started 20:42:09
+  [OK  ] sub-HYPE13 — complete 20:47:39
+  [RUN ] sub-HYPE17 — started 20:47:39
+  [OK  ] sub-HYPE14 — complete 20:47:40
+  [RUN ] sub-HYPE18 — started 20:47:40
+  [OK  ] sub-HYPE16 — complete 20:47:41
+  [RUN ] sub-HYPE19 — started 20:47:41
+  [OK  ] sub-HYPE15 — complete 20:47:42
+  [RUN ] sub-HYPE20 — started 20:47:42
+  [OK  ] sub-HYPE17 — complete 20:53:33
+  [RUN ] sub-HYPE21 — started 20:53:33
+  [OK  ] sub-HYPE18 — complete 20:53:34
+  [RUN ] sub-HYPE22 — started 20:53:34
+  [OK  ] sub-HYPE19 — complete 20:53:35
+  [OK  ] sub-HYPE20 — complete 20:53:35
+  [OK  ] sub-HYPE21 — complete 20:56:31
+  [OK  ] sub-HYPE22 — complete 20:56:32
+
+=== All segmentations complete: Fri Apr  3 08:56:32 PM IST 2026 ===
+
+=== Extracting nWBV from SynthSeg+ volumes ===
+  sub-HYPE00: nWBV=0.7951  GM=714021  WM=558732  TIV=1600647
+  sub-HYPE01: nWBV=0.8004  GM=751768  WM=563747  TIV=1643514
+  sub-HYPE02: nWBV=0.7982  GM=829399  WM=652449  TIV=1856564
+  sub-HYPE03: nWBV=0.7846  GM=700902  WM=552615  TIV=1597718
+  sub-HYPE04: nWBV=0.7922  GM=700266  WM=513030  TIV=1531626
+  sub-HYPE05: nWBV=0.7921  GM=660877  WM=502434  TIV=1468691
+  sub-HYPE06: nWBV=0.7803  GM=700954  WM=524035  TIV=1569891
+  sub-HYPE07: nWBV=0.7788  GM=660734  WM=498373  TIV=1488326
+  sub-HYPE08: nWBV=0.7889  GM=694942  WM=516889  TIV=1536042
+  sub-HYPE09: nWBV=0.7961  GM=700977  WM=544381  TIV=1564336
+  sub-HYPE10: nWBV=0.7737  GM=711093  WM=533376  TIV=1608538
+  sub-HYPE11: nWBV=0.7638  GM=704722  WM=558097  TIV=1653441
+  sub-HYPE12: nWBV=0.7807  GM=736789  WM=569303  TIV=1672997
+  sub-HYPE13: nWBV=0.7710  GM=615874  WM=455969  TIV=1390136
+  sub-HYPE14: nWBV=0.7753  GM=787967  WM=623252  TIV=1820188
+  sub-HYPE15: nWBV=0.7696  GM=724777  WM=550001  TIV=1656348
+  sub-HYPE16: nWBV=0.7491  GM=577627  WM=416736  TIV=1327371
+  sub-HYPE17: nWBV=0.7781  GM=862869  WM=684150  TIV=1988235
+  sub-HYPE18: nWBV=0.7774  GM=756933  WM=571658  TIV=1708912
+  sub-HYPE19: nWBV=0.7988  GM=621649  WM=483183  TIV=1383100
+  sub-HYPE20: nWBV=0.7845  GM=611136  WM=482809  TIV=1394477
+  sub-HYPE21: nWBV=0.7457  GM=590759  WM=444432  TIV=1388142
+  sub-HYPE22: nWBV=0.8096  GM=853212  WM=684581  TIV=1899452
+
+Saved 23 subjects to /home/gk-krishnan/Desktop/VIT Paper/experiments/synthseg_output/nwbv_synthseg.csv
+
+=== SynthSeg+ vs FreeSurfer Ground Truth (n=23) ===
+Pearson r  = 0.9183  (p=0.0000)
+Spearman ρ = 0.9209  (p=0.0000)
+MAE        = 0.0051
+
+Age-nWBV correlation (SynthSeg+):
+Pearson r  = -0.7425
+Spearman ρ = -0.7875  (p=0.0000)
+
+Comparison saved to /home/gk-krishnan/Desktop/VIT Paper/experiments/synthseg_output/synthseg_comparison.json

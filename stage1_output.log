@@ -1,0 +1,52 @@
+/home/gk-krishnan/.local/lib/python3.12/site-packages/torch/cuda/__init__.py:174: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+Traceback (most recent call last):
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 302, in main
+    hybrid_model = train_hybrid_model(config, train_loader, val_loader)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 54, in train_hybrid_model
+    trainer = Trainer(config, device=config['inference']['device'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/training/trainer.py", line 38, in __init__
+    self._build_model()
+  File "/home/gk-krishnan/Desktop/VIT Paper/training/trainer.py", line 59, in _build_model
+    self.model = HybridTransformerGNN(self.config).to(self.device)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/models/transformer_gnn/hybrid_model.py", line 226, in __init__
+    img_size=config['data']['image_size'],
+             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'image_size'
+Traceback (most recent call last):
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 313, in main
+    baseline_models = train_baseline_models(config, train_loader, val_loader)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 130, in train_baseline_models
+    image_size = tuple(config['data']['image_size'])
+                       ~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'image_size'
+================================================================================
+Stage 1: High-field to Low-field Conversion and Comparison
+================================================================================
+Data directory: data/high_field
+Using synthetic data: False
+Device: cuda
+================================================================================
+
+[Step 1] Creating data loaders...
+  Train samples: 4
+  Val samples: 1
+  Test samples: 1
+
+[Step 2] Setting up field conversion...
+Setting up high-field to low-field conversion...
+Field conversion will be applied during data processing
+
+[Step 3] Training hybrid Transformer-GNN model...
+Training hybrid Transformer-GNN model...
+  ✗ Failed to train hybrid model: 'image_size'
+
+[Step 4] Training baseline models...
+Training baseline models...
+  ✗ Failed to train baseline models: 'image_size'
+
+✗ No models available for evaluation

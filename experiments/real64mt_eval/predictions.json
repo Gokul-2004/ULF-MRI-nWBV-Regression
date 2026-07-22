@@ -1,0 +1,137 @@
+{
+  "n_subjects": 23,
+  "model": "oasis_finetuned",
+  "real_hfc": {
+    "mean": 0.8244,
+    "std": 0.0036,
+    "min": 0.8199,
+    "max": 0.835
+  },
+  "cross_modality_r": 0.119,
+  "cross_modality_p": 0.5894,
+  "age_correlation": {
+    "pearson_r": -0.49,
+    "pearson_p": 0.0176,
+    "spearman_r": -0.514,
+    "spearman_p": 0.0121,
+    "n": 23,
+    "interpretation": "Negative r: older subjects have lower predicted nWBV (age-related brain atrophy). Biologically expected."
+  },
+  "per_subject": [
+    {
+      "subject": "sub-HYPE00",
+      "pred_real": 0.8278,
+      "pred_sim": 0.8436
+    },
+    {
+      "subject": "sub-HYPE01",
+      "pred_real": 0.8238,
+      "pred_sim": 0.8438
+    },
+    {
+      "subject": "sub-HYPE02",
+      "pred_real": 0.8302,
+      "pred_sim": 0.8454
+    },
+    {
+      "subject": "sub-HYPE03",
+      "pred_real": 0.822,
+      "pred_sim": 0.8431
+    },
+    {
+      "subject": "sub-HYPE04",
+      "pred_real": 0.8231,
+      "pred_sim": 0.8441
+    },
+    {
+      "subject": "sub-HYPE05",
+      "pred_real": 0.825,
+      "pred_sim": 0.8437
+    },
+    {
+      "subject": "sub-HYPE06",
+      "pred_real": 0.8213,
+      "pred_sim": 0.8461
+    },
+    {
+      "subject": "sub-HYPE07",
+      "pred_real": 0.8222,
+      "pred_sim": 0.8433
+    },
+    {
+      "subject": "sub-HYPE08",
+      "pred_real": 0.8239,
+      "pred_sim": 0.8447
+    },
+    {
+      "subject": "sub-HYPE09",
+      "pred_real": 0.8243,
+      "pred_sim": 0.8426
+    },
+    {
+      "subject": "sub-HYPE10",
+      "pred_real": 0.8292,
+      "pred_sim": 0.8447
+    },
+    {
+      "subject": "sub-HYPE11",
+      "pred_real": 0.8215,
+      "pred_sim": 0.8433
+    },
+    {
+      "subject": "sub-HYPE12",
+      "pred_real": 0.8255,
+      "pred_sim": 0.8441
+    },
+    {
+      "subject": "sub-HYPE13",
+      "pred_real": 0.8214,
+      "pred_sim": 0.8453
+    },
+    {
+      "subject": "sub-HYPE14",
+      "pred_real": 0.8265,
+      "pred_sim": 0.844
+    },
+    {
+      "subject": "sub-HYPE15",
+      "pred_real": 0.8199,
+      "pred_sim": 0.8428
+    },
+    {
+      "subject": "sub-HYPE16",
+      "pred_real": 0.82,
+      "pred_sim": 0.8426
+    },
+    {
+      "subject": "sub-HYPE17",
+      "pred_real": 0.835,
+      "pred_sim": 0.8443
+    },
+    {
+      "subject": "sub-HYPE18",
+      "pred_real": 0.8213,
+      "pred_sim": 0.8442
+    },
+    {
+      "subject": "sub-HYPE19",
+      "pred_real": 0.8287,
+      "pred_sim": 0.8398
+    },
+    {
+      "subject": "sub-HYPE20",
+      "pred_real": 0.8215,
+      "pred_sim": 0.8394
+    },
+    {
+      "subject": "sub-HYPE21",
+      "pred_real": 0.8245,
+      "pred_sim": 0.8421
+    },
+    {
+      "subject": "sub-HYPE22",
+      "pred_real": 0.8233,
+      "pred_sim": 0.8436
+    }
+  ]
+}

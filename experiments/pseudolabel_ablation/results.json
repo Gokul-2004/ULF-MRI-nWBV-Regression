@@ -1,0 +1,280 @@
+{
+  "experiment": "pseudolabel_ablation",
+  "description": "SynthSeg+ pseudo-labels vs FastSurfer GT for adapter training",
+  "split": {
+    "train_n": 15,
+    "test_n": 8,
+    "seed": 42
+  },
+  "label_agreement": {
+    "n": 23,
+    "pearson_r": 0.9183,
+    "pearson_p": 0.0,
+    "mae": 0.0051,
+    "bias": -0.0022,
+    "per_subject": [
+      {
+        "subject": "sub-HYPE00",
+        "synthseg": 0.7951,
+        "fastsurfer": 0.7939,
+        "diff": 0.0012
+      },
+      {
+        "subject": "sub-HYPE01",
+        "synthseg": 0.8004,
+        "fastsurfer": 0.806,
+        "diff": -0.0056
+      },
+      {
+        "subject": "sub-HYPE02",
+        "synthseg": 0.7982,
+        "fastsurfer": 0.7941,
+        "diff": 0.0041
+      },
+      {
+        "subject": "sub-HYPE03",
+        "synthseg": 0.7846,
+        "fastsurfer": 0.7882,
+        "diff": -0.0036
+      },
+      {
+        "subject": "sub-HYPE04",
+        "synthseg": 0.7922,
+        "fastsurfer": 0.7962,
+        "diff": -0.004
+      },
+      {
+        "subject": "sub-HYPE05",
+        "synthseg": 0.7921,
+        "fastsurfer": 0.7916,
+        "diff": 0.0005
+      },
+      {
+        "subject": "sub-HYPE06",
+        "synthseg": 0.7803,
+        "fastsurfer": 0.7755,
+        "diff": 0.0048
+      },
+      {
+        "subject": "sub-HYPE07",
+        "synthseg": 0.7788,
+        "fastsurfer": 0.7866,
+        "diff": -0.0078
+      },
+      {
+        "subject": "sub-HYPE08",
+        "synthseg": 0.7889,
+        "fastsurfer": 0.7903,
+        "diff": -0.0014
+      },
+      {
+        "subject": "sub-HYPE09",
+        "synthseg": 0.7961,
+        "fastsurfer": 0.799,
+        "diff": -0.0029
+      },
+      {
+        "subject": "sub-HYPE10",
+        "synthseg": 0.7737,
+        "fastsurfer": 0.7782,
+        "diff": -0.0045
+      },
+      {
+        "subject": "sub-HYPE11",
+        "synthseg": 0.7638,
+        "fastsurfer": 0.7672,
+        "diff": -0.0034
+      },
+      {
+        "subject": "sub-HYPE12",
+        "synthseg": 0.7807,
+        "fastsurfer": 0.7881,
+        "diff": -0.0074
+      },
+      {
+        "subject": "sub-HYPE13",
+        "synthseg": 0.771,
+        "fastsurfer": 0.7911,
+        "diff": -0.0201
+      },
+      {
+        "subject": "sub-HYPE14",
+        "synthseg": 0.7753,
+        "fastsurfer": 0.7715,
+        "diff": 0.0038
+      },
+      {
+        "subject": "sub-HYPE15",
+        "synthseg": 0.7696,
+        "fastsurfer": 0.7596,
+        "diff": 0.01
+      },
+      {
+        "subject": "sub-HYPE16",
+        "synthseg": 0.7491,
+        "fastsurfer": 0.758,
+        "diff": -0.0089
+      },
+      {
+        "subject": "sub-HYPE17",
+        "synthseg": 0.7781,
+        "fastsurfer": 0.784,
+        "diff": -0.0059
+      },
+      {
+        "subject": "sub-HYPE18",
+        "synthseg": 0.7774,
+        "fastsurfer": 0.7752,
+        "diff": 0.0022
+      },
+      {
+        "subject": "sub-HYPE19",
+        "synthseg": 0.7988,
+        "fastsurfer": 0.801,
+        "diff": -0.0022
+      },
+      {
+        "subject": "sub-HYPE20",
+        "synthseg": 0.7845,
+        "fastsurfer": 0.7789,
+        "diff": 0.0056
+      },
+      {
+        "subject": "sub-HYPE21",
+        "synthseg": 0.7457,
+        "fastsurfer": 0.7523,
+        "diff": -0.0066
+      },
+      {
+        "subject": "sub-HYPE22",
+        "synthseg": 0.8096,
+        "fastsurfer": 0.8084,
+        "diff": 0.0012
+      }
+    ]
+  },
+  "adapter_results": {
+    "FastSurfer_GT": {
+      "n_train": 15,
+      "n_test": 8,
+      "mae": 0.0121,
+      "mae_ci": [
+        0.0048,
+        0.0212
+      ],
+      "bias": 0.006,
+      "per_subject": [
+        {
+          "subject": "sub-HYPE14",
+          "pred": 0.793,
+          "true_nwbv": 0.7715,
+          "abs_error": 0.0215
+        },
+        {
+          "subject": "sub-HYPE21",
+          "pred": 0.7911,
+          "true_nwbv": 0.7523,
+          "abs_error": 0.0388
+        },
+        {
+          "subject": "sub-HYPE02",
+          "pred": 0.7966,
+          "true_nwbv": 0.7941,
+          "abs_error": 0.0025
+        },
+        {
+          "subject": "sub-HYPE04",
+          "pred": 0.79,
+          "true_nwbv": 0.7962,
+          "abs_error": 0.0062
+        },
+        {
+          "subject": "sub-HYPE20",
+          "pred": 0.7883,
+          "true_nwbv": 0.7789,
+          "abs_error": 0.0094
+        },
+        {
+          "subject": "sub-HYPE01",
+          "pred": 0.7906,
+          "true_nwbv": 0.806,
+          "abs_error": 0.0154
+        },
+        {
+          "subject": "sub-HYPE13",
+          "pred": 0.7883,
+          "true_nwbv": 0.7911,
+          "abs_error": 0.0028
+        },
+        {
+          "subject": "sub-HYPE08",
+          "pred": 0.7906,
+          "true_nwbv": 0.7903,
+          "abs_error": 0.0003
+        }
+      ]
+    },
+    "SynthSeg_pseudo": {
+      "n_train": 15,
+      "n_test": 8,
+      "mae": 0.0171,
+      "mae_ci": [
+        0.0116,
+        0.0227
+      ],
+      "bias": -0.0105,
+      "per_subject": [
+        {
+          "subject": "sub-HYPE14",
+          "pred": 0.7761,
+          "true_nwbv": 0.7715,
+          "abs_error": 0.0046
+        },
+        {
+          "subject": "sub-HYPE21",
+          "pred": 0.774,
+          "true_nwbv": 0.7523,
+          "abs_error": 0.0217
+        },
+        {
+          "subject": "sub-HYPE02",
+          "pred": 0.7799,
+          "true_nwbv": 0.7941,
+          "abs_error": 0.0142
+        },
+        {
+          "subject": "sub-HYPE04",
+          "pred": 0.774,
+          "true_nwbv": 0.7962,
+          "abs_error": 0.0222
+        },
+        {
+          "subject": "sub-HYPE20",
+          "pred": 0.7718,
+          "true_nwbv": 0.7789,
+          "abs_error": 0.0071
+        },
+        {
+          "subject": "sub-HYPE01",
+          "pred": 0.7744,
+          "true_nwbv": 0.806,
+          "abs_error": 0.0316
+        },
+        {
+          "subject": "sub-HYPE13",
+          "pred": 0.7718,
+          "true_nwbv": 0.7911,
+          "abs_error": 0.0193
+        },
+        {
+          "subject": "sub-HYPE08",
+          "pred": 0.774,
+          "true_nwbv": 0.7903,
+          "abs_error": 0.0163
+        }
+      ]
+    }
+  },
+  "mae_penalty": 0.005,
+  "conclusion": "Pseudo-label degrades performance \u2014 use GT where available"
+}

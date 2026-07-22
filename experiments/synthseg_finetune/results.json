@@ -1,0 +1,82 @@
+{
+  "model": "ViT3D full fine-tune on real 64mT (SynthSeg+ labels)",
+  "supervision": "SynthSeg+ nWBV pseudo-labels (r=0.918 vs FreeSurfer)",
+  "fine_tuning": {
+    "n_train": 15,
+    "n_test": 8,
+    "aug_per_vol": 10,
+    "total_train_samples": 165,
+    "epochs": 120,
+    "lr": 3e-05,
+    "layers": "all (full fine-tune)"
+  },
+  "test_vs_freesurfer_gt": {
+    "pearson_r": 0.1196,
+    "pearson_p": 0.7778,
+    "spearman_r": 0.2143,
+    "spearman_p": 0.6103,
+    "mae": 0.0098,
+    "rmse": 0.0142,
+    "mean_bias": 0.0048,
+    "n": 8
+  },
+  "age_correlation": {
+    "pearson_r": -0.2967,
+    "spearman_r": -0.4524,
+    "spearman_p": 0.2604
+  },
+  "baseline_oasis_only": {
+    "pearson_r": 0.2911,
+    "mae": 0.0403
+  },
+  "per_subject": [
+    {
+      "subject": "sub-HYPE21",
+      "pred": 0.7871,
+      "synthseg_gt": 0.7457,
+      "freesurfer_gt": 0.7523
+    },
+    {
+      "subject": "sub-HYPE04",
+      "pred": 0.7945,
+      "synthseg_gt": 0.7922,
+      "freesurfer_gt": 0.7962
+    },
+    {
+      "subject": "sub-HYPE18",
+      "pred": 0.7874,
+      "synthseg_gt": 0.7774,
+      "freesurfer_gt": 0.7752
+    },
+    {
+      "subject": "sub-HYPE07",
+      "pred": 0.7801,
+      "synthseg_gt": 0.7788,
+      "freesurfer_gt": 0.7866
+    },
+    {
+      "subject": "sub-HYPE08",
+      "pred": 0.7907,
+      "synthseg_gt": 0.7889,
+      "freesurfer_gt": 0.7903
+    },
+    {
+      "subject": "sub-HYPE00",
+      "pred": 0.7846,
+      "synthseg_gt": 0.7951,
+      "freesurfer_gt": 0.7939
+    },
+    {
+      "subject": "sub-HYPE03",
+      "pred": 0.7857,
+      "synthseg_gt": 0.7846,
+      "freesurfer_gt": 0.7882
+    },
+    {
+      "subject": "sub-HYPE20",
+      "pred": 0.7899,
+      "synthseg_gt": 0.7845,
+      "freesurfer_gt": 0.7789
+    }
+  ]
+}

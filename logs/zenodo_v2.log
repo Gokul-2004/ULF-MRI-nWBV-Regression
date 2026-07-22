@@ -1,0 +1,104 @@
+======================================================================
+Zenodo Real Low-Field MRI Validation
+======================================================================
+
+[1/4] Loading trained model...
+Loading checkpoint: /home/gk-krishnan/Desktop/VIT Paper/checkpoints/best_model.pt
+Model type: BaselineViT3D
+
+[2/4] Processing 11 paired subjects...
+
+  Processing sub-0011...
+    3T scan:   sub-0011_acq-highres_T1w.nii.gz
+    64mT scan: sub-0011_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.335, VBR=0.330, TCR=0.323, MCI=0.620
+    Intensity pred (64mT): BTF=0.278, VBR=0.330, TCR=0.322, MCI=0.438
+    Model pred (64mT):     BTF=0.223, VBR=0.177, TCR=0.427, MCI=0.361
+
+  Processing sub-0015...
+    3T scan:   sub-0015_acq-highres_T1w.nii.gz
+    64mT scan: sub-0015_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.302, VBR=0.330, TCR=0.321, MCI=0.595
+    Intensity pred (64mT): BTF=0.402, VBR=0.330, TCR=0.323, MCI=0.500
+    Model pred (64mT):     BTF=0.219, VBR=0.164, TCR=0.416, MCI=0.402
+
+  Processing sub-0023...
+    3T scan:   sub-0023_acq-highres_T1w.nii.gz
+    64mT scan: sub-0023_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.359, VBR=0.329, TCR=0.322, MCI=0.588
+    Intensity pred (64mT): BTF=0.431, VBR=0.330, TCR=0.323, MCI=0.486
+    Model pred (64mT):     BTF=0.219, VBR=0.167, TCR=0.417, MCI=0.395
+
+  Processing sub-0025...
+    3T scan:   sub-0025_acq-highres_T1w.nii.gz
+    64mT scan: sub-0025_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.311, VBR=0.329, TCR=0.322, MCI=0.573
+    Intensity pred (64mT): BTF=0.405, VBR=0.330, TCR=0.321, MCI=0.451
+    Model pred (64mT):     BTF=0.223, VBR=0.177, TCR=0.424, MCI=0.368
+
+  Processing sub-0027...
+    3T scan:   sub-0027_acq-highres_T1w.nii.gz
+    64mT scan: sub-0027_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.321, VBR=0.329, TCR=0.322, MCI=0.592
+    Intensity pred (64mT): BTF=0.368, VBR=0.330, TCR=0.323, MCI=0.449
+    Model pred (64mT):     BTF=0.223, VBR=0.175, TCR=0.423, MCI=0.371
+
+  Processing sub-0035...
+    3T scan:   sub-0035_acq-highres_T1w.nii.gz
+    64mT scan: sub-0035_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.419, VBR=0.329, TCR=0.322, MCI=0.619
+    Intensity pred (64mT): BTF=0.493, VBR=0.330, TCR=0.322, MCI=0.402
+    Model pred (64mT):     BTF=0.225, VBR=0.182, TCR=0.426, MCI=0.352
+
+  Processing sub-0046...
+    3T scan:   sub-0046_acq-highres_T1w.nii.gz
+    64mT scan: sub-0046_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.370, VBR=0.330, TCR=0.322, MCI=0.588
+    Intensity pred (64mT): BTF=0.425, VBR=0.330, TCR=0.323, MCI=0.474
+    Model pred (64mT):     BTF=0.221, VBR=0.170, TCR=0.418, MCI=0.389
+
+  Processing sub-0047...
+    3T scan:   sub-0047_acq-highres_T1w.nii.gz
+    64mT scan: sub-0047_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.293, VBR=0.329, TCR=0.324, MCI=0.586
+    Intensity pred (64mT): BTF=0.396, VBR=0.330, TCR=0.322, MCI=0.496
+    Model pred (64mT):     BTF=0.219, VBR=0.166, TCR=0.417, MCI=0.397
+
+  Processing sub-0048...
+    3T scan:   sub-0048_acq-highres_T1w.nii.gz
+    64mT scan: sub-0048_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.347, VBR=0.330, TCR=0.322, MCI=0.575
+    Intensity pred (64mT): BTF=0.391, VBR=0.330, TCR=0.322, MCI=0.458
+    Model pred (64mT):     BTF=0.220, VBR=0.171, TCR=0.420, MCI=0.383
+
+  Processing sub-0064...
+    64mT scan not found for sub-0064
+
+  Processing sub-0066...
+    3T scan:   sub-0066_acq-highres_T1w.nii.gz
+    64mT scan: sub-0066_ses-01_run-1_T1w.nii.gz
+    Ground truth (3T): BTF=0.333, VBR=0.329, TCR=0.323, MCI=0.586
+    Intensity pred (64mT): BTF=0.347, VBR=0.329, TCR=0.324, MCI=0.390
+    Model pred (64mT):     BTF=0.227, VBR=0.187, TCR=0.432, MCI=0.335
+
+[3/4] Computing validation metrics for 10 subjects...
+
+[4/4] Results Summary
+======================================================================
+
+Biomarker     GT Mean  Intensity Corr  Intensity MAE
+-------------------------------------------------------
+BTF            0.3391          0.5339         0.0659
+VBR            0.3293          0.0793         0.0005
+TCR            0.3223         -0.0378         0.0008
+MCI            0.5922         -0.3444         0.1376
+
+Biomarker    Model Corr    Model MAE    p-value
+------------------------------------------------
+BTF              0.3714       0.1172     0.2906
+VBR             -0.3002       0.1556     0.3994
+TCR              0.2837       0.0999      0.427
+MCI             -0.3106       0.2171     0.3824
+
+Results saved to: /home/gk-krishnan/Desktop/VIT Paper/experiments/zenodo_validation/zenodo_validation_results.json
+Report saved to: /home/gk-krishnan/Desktop/VIT Paper/experiments/zenodo_validation/zenodo_validation_report.txt

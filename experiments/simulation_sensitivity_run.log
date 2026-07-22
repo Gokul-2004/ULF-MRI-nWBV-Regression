@@ -1,0 +1,20 @@
+==============================================================
+Simulation Parameter Sensitivity (OASIS test, frozen model)
+==============================================================
+Records with seg: 375, missing seg: 0
+OASIS test subjects: 38
+
+  BASELINE MAE = 0.0583
+
+  SNR +20% (less noise)  MAE=0.0578  ΔMAE=-0.0005
+  SNR -20% (more noise)  MAE=0.0588  ΔMAE=+0.0005
+  B0 +20%                MAE=0.0581  ΔMAE=-0.0002
+  B0 -20%                MAE=0.0584  ΔMAE=+0.0001
+  Relaxation +20%        MAE=0.0557  ΔMAE=-0.0025
+  Relaxation -20%        MAE=0.0644  ΔMAE=+0.0062
+
+==============================================================
+  Baseline MAE = 0.0583
+  Max |ΔMAE| across all ±20% perturbations = 0.0062
+==============================================================
+Saved → /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/simulation_sensitivity/results.json

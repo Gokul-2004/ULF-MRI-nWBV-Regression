@@ -1,0 +1,59 @@
+==============================================================
+Pseudo-Label Ablation: SynthSeg+ vs FastSurfer GT
+==============================================================
+
+--- Label Agreement (all 23 subjects) ---
+  n=23  Pearson r=0.9183  MAE=0.0051  Bias=-0.0022
+  sub-HYPE00  SynthSeg+=0.7951  FastSurfer=0.7939  diff=+0.0012
+  sub-HYPE01  SynthSeg+=0.8004  FastSurfer=0.8060  diff=-0.0056
+  sub-HYPE02  SynthSeg+=0.7982  FastSurfer=0.7941  diff=+0.0041
+  sub-HYPE03  SynthSeg+=0.7846  FastSurfer=0.7882  diff=-0.0036
+  sub-HYPE04  SynthSeg+=0.7922  FastSurfer=0.7962  diff=-0.0040
+  sub-HYPE05  SynthSeg+=0.7921  FastSurfer=0.7916  diff=+0.0005
+  sub-HYPE06  SynthSeg+=0.7803  FastSurfer=0.7755  diff=+0.0048
+  sub-HYPE07  SynthSeg+=0.7788  FastSurfer=0.7866  diff=-0.0078
+  sub-HYPE08  SynthSeg+=0.7889  FastSurfer=0.7903  diff=-0.0014
+  sub-HYPE09  SynthSeg+=0.7961  FastSurfer=0.7990  diff=-0.0029
+  sub-HYPE10  SynthSeg+=0.7737  FastSurfer=0.7782  diff=-0.0045
+  sub-HYPE11  SynthSeg+=0.7638  FastSurfer=0.7672  diff=-0.0034
+  sub-HYPE12  SynthSeg+=0.7807  FastSurfer=0.7881  diff=-0.0074
+  sub-HYPE13  SynthSeg+=0.7710  FastSurfer=0.7911  diff=-0.0201
+  sub-HYPE14  SynthSeg+=0.7753  FastSurfer=0.7715  diff=+0.0038
+  sub-HYPE15  SynthSeg+=0.7696  FastSurfer=0.7596  diff=+0.0100
+  sub-HYPE16  SynthSeg+=0.7491  FastSurfer=0.7580  diff=-0.0089
+  sub-HYPE17  SynthSeg+=0.7781  FastSurfer=0.7840  diff=-0.0059
+  sub-HYPE18  SynthSeg+=0.7774  FastSurfer=0.7752  diff=+0.0022
+  sub-HYPE19  SynthSeg+=0.7988  FastSurfer=0.8010  diff=-0.0022
+  sub-HYPE20  SynthSeg+=0.7845  FastSurfer=0.7789  diff=+0.0056
+  sub-HYPE21  SynthSeg+=0.7457  FastSurfer=0.7523  diff=-0.0066
+  sub-HYPE22  SynthSeg+=0.8096  FastSurfer=0.8084  diff=+0.0012
+
+Train: 15 subjects  |  Test: 8 subjects
+
+--- Training adapter with FastSurfer_GT ---
+    [FastSurfer_GT] Epoch  20/80  loss=0.000231
+    [FastSurfer_GT] Epoch  40/80  loss=0.000287
+    [FastSurfer_GT] Epoch  60/80  loss=0.000237
+    [FastSurfer_GT] Epoch  80/80  loss=0.000283
+  Test MAE = 0.0121 [95% CI: 0.0048–0.0212]  Bias = +0.0060
+
+--- Training adapter with SynthSeg_pseudo ---
+    [SynthSeg_pseudo] Epoch  20/80  loss=0.000348
+    [SynthSeg_pseudo] Epoch  40/80  loss=0.000288
+    [SynthSeg_pseudo] Epoch  60/80  loss=0.000299
+    [SynthSeg_pseudo] Epoch  80/80  loss=0.000296
+  Test MAE = 0.0171 [95% CI: 0.0116–0.0227]  Bias = -0.0105
+
+==============================================================
+PSEUDO-LABEL ABLATION SUMMARY
+==============================================================
+Label agreement (SynthSeg+ vs FastSurfer GT):
+  Pearson r = 0.9183  MAE = 0.0051  Bias = -0.0022
+
+Adapter test MAE (n=8):
+  FastSurfer_GT         MAE=0.0121  CI=[0.0048–0.0212]
+  SynthSeg_pseudo       MAE=0.0171  CI=[0.0116–0.0227]
+
+Pseudo-label MAE penalty: +0.0050
+
+Saved → /home/gk-krishnan/Desktop/VIT Paper/experiments/pseudolabel_ablation/results.json

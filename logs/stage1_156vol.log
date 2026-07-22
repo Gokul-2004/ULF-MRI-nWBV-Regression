@@ -1,0 +1,578 @@
+================================================================================
+Stage 1: Biomarker Inference from Low-Field MRI
+================================================================================
+Device: cuda
+Image size: [64, 64, 64]
+Biomarkers: ['btf', 'tcr', 'vbr', 'mci']
+================================================================================
+
+[Step 1] Extracting biomarkers from high-field MRI data...
+  Extracting biomarkers from IXI_001... (FreeSurfer)
+    BTF=0.2029, TCR=0.4073, VBR=0.2536, MCI=0.4816
+  Extracting biomarkers from IXI_002... (FreeSurfer)
+    BTF=0.2303, TCR=0.3334, VBR=0.0839, MCI=0.4208
+  Extracting biomarkers from IXI_003... (FreeSurfer)
+    BTF=0.2286, TCR=0.3737, VBR=0.1091, MCI=0.3981
+  Extracting biomarkers from IXI_004... (FreeSurfer)
+    BTF=0.2246, TCR=0.3933, VBR=0.2600, MCI=0.4229
+  Extracting biomarkers from IXI_005... (FreeSurfer)
+    BTF=0.2135, TCR=0.3575, VBR=0.1050, MCI=0.4927
+  Extracting biomarkers from IXI_006... (FreeSurfer)
+    BTF=0.2121, TCR=0.3879, VBR=0.1995, MCI=0.4060
+  Extracting biomarkers from IXI_007... (FreeSurfer)
+    BTF=0.2127, TCR=0.3700, VBR=0.1316, MCI=0.5026
+  Extracting biomarkers from IXI_008... (FreeSurfer)
+    BTF=0.2177, TCR=0.3978, VBR=0.1142, MCI=0.4332
+  Extracting biomarkers from IXI_009... (FreeSurfer)
+    BTF=0.2387, TCR=0.3915, VBR=0.0751, MCI=0.4253
+  Extracting biomarkers from IXI_010... (FreeSurfer)
+    BTF=0.2125, TCR=0.4031, VBR=0.2476, MCI=0.4213
+  Extracting biomarkers from IXI_011... (FreeSurfer)
+    BTF=0.2226, TCR=0.4269, VBR=0.1086, MCI=0.3776
+  Extracting biomarkers from IXI_012... (FreeSurfer)
+    BTF=0.2440, TCR=0.3775, VBR=0.1409, MCI=0.3272
+  Extracting biomarkers from IXI_013... (FreeSurfer)
+    BTF=0.2269, TCR=0.3763, VBR=0.1087, MCI=0.3751
+  Extracting biomarkers from IXI_014... (FreeSurfer)
+    BTF=0.2164, TCR=0.2995, VBR=0.2159, MCI=0.5391
+  Extracting biomarkers from IXI_015... (FreeSurfer)
+    BTF=0.2166, TCR=0.3798, VBR=0.1066, MCI=0.4245
+  Extracting biomarkers from IXI_016... (FreeSurfer)
+    BTF=0.2440, TCR=0.4185, VBR=0.1715, MCI=0.3758
+  Extracting biomarkers from IXI_017... (FreeSurfer)
+    BTF=0.2011, TCR=0.4272, VBR=0.2208, MCI=0.4514
+  Extracting biomarkers from IXI_018... (FreeSurfer)
+    BTF=0.2276, TCR=0.3115, VBR=0.1075, MCI=0.4482
+  Extracting biomarkers from IXI_019... (FreeSurfer)
+    BTF=0.2260, TCR=0.4022, VBR=0.1174, MCI=0.4226
+  Extracting biomarkers from IXI_020... (FreeSurfer)
+    BTF=0.2239, TCR=0.3488, VBR=0.0607, MCI=0.5078
+  Extracting biomarkers from IXI_021... (FreeSurfer)
+    BTF=0.2349, TCR=0.3633, VBR=0.1275, MCI=0.3590
+  Extracting biomarkers from IXI_022... (FreeSurfer)
+    BTF=0.2299, TCR=0.4095, VBR=0.0964, MCI=0.4074
+  Extracting biomarkers from IXI_023... (FreeSurfer)
+    BTF=0.2219, TCR=0.3941, VBR=0.1094, MCI=0.5054
+  Extracting biomarkers from IXI_024... (FreeSurfer)
+    BTF=0.2552, TCR=0.4381, VBR=0.0852, MCI=0.3269
+  Extracting biomarkers from IXI_025... (FreeSurfer)
+    BTF=0.2346, TCR=0.3776, VBR=0.0392, MCI=0.4614
+  Extracting biomarkers from IXI_026... (FreeSurfer)
+    BTF=0.2189, TCR=0.4016, VBR=0.1289, MCI=0.4822
+  Extracting biomarkers from IXI_027... (FreeSurfer)
+    BTF=0.2049, TCR=0.4260, VBR=0.2024, MCI=0.4201
+  Extracting biomarkers from IXI_028... (FreeSurfer)
+    BTF=0.2563, TCR=0.3580, VBR=0.0452, MCI=0.3880
+  Extracting biomarkers from IXI_029... (FreeSurfer)
+    BTF=0.2279, TCR=0.3791, VBR=0.0898, MCI=0.4534
+  Extracting biomarkers from IXI_030... (FreeSurfer)
+    BTF=0.2135, TCR=0.3569, VBR=0.1045, MCI=0.4438
+  Extracting biomarkers from IXI_031... (FreeSurfer)
+    BTF=0.2255, TCR=0.3455, VBR=0.1043, MCI=0.4467
+  Extracting biomarkers from IXI_032... (FreeSurfer)
+    BTF=0.2184, TCR=0.3775, VBR=0.1205, MCI=0.4116
+  Extracting biomarkers from IXI_033... (FreeSurfer)
+    BTF=0.2235, TCR=0.3641, VBR=0.1010, MCI=0.4419
+  Extracting biomarkers from IXI_034... (FreeSurfer)
+    BTF=0.2165, TCR=0.3482, VBR=0.0701, MCI=0.4079
+  Extracting biomarkers from IXI_035... (FreeSurfer)
+    BTF=0.2185, TCR=0.3484, VBR=0.1491, MCI=0.4123
+  Extracting biomarkers from IXI_036... (FreeSurfer)
+    BTF=0.2283, TCR=0.3614, VBR=0.0913, MCI=0.4412
+  Extracting biomarkers from IXI_037... (FreeSurfer)
+    BTF=0.2332, TCR=0.3952, VBR=0.0437, MCI=0.5542
+  Extracting biomarkers from IXI_038... (FreeSurfer)
+    BTF=0.2253, TCR=0.3751, VBR=0.1008, MCI=0.4291
+  Extracting biomarkers from IXI_039... (FreeSurfer)
+    BTF=0.2315, TCR=0.3254, VBR=0.0540, MCI=0.4667
+  Extracting biomarkers from IXI_040... (FreeSurfer)
+    BTF=0.2063, TCR=0.4300, VBR=0.2009, MCI=0.5212
+  Extracting biomarkers from IXI_041... (FreeSurfer)
+    BTF=0.2365, TCR=0.4007, VBR=0.0651, MCI=0.3965
+  Extracting biomarkers from IXI_042... (FreeSurfer)
+    BTF=0.2305, TCR=0.3605, VBR=0.0724, MCI=0.4195
+  Extracting biomarkers from IXI_043... (FreeSurfer)
+    BTF=0.2021, TCR=0.3758, VBR=0.2364, MCI=0.4296
+  Extracting biomarkers from IXI_044... (FreeSurfer)
+    BTF=0.2233, TCR=0.4068, VBR=0.1703, MCI=0.4322
+  Extracting biomarkers from IXI_045... (FreeSurfer)
+    BTF=0.2133, TCR=0.3983, VBR=0.1170, MCI=0.4121
+  Extracting biomarkers from IXI_046... (FreeSurfer)
+    BTF=0.2265, TCR=0.4106, VBR=0.1486, MCI=0.4015
+  Extracting biomarkers from IXI_047... (FreeSurfer)
+    BTF=0.2261, TCR=0.3900, VBR=0.0933, MCI=0.4706
+  Extracting biomarkers from IXI_048... (FreeSurfer)
+    BTF=0.1984, TCR=0.4298, VBR=0.2361, MCI=0.5083
+  Extracting biomarkers from IXI_049... (FreeSurfer)
+    BTF=0.2025, TCR=0.4075, VBR=0.1049, MCI=0.4346
+  Extracting biomarkers from IXI_050... (FreeSurfer)
+    BTF=0.2181, TCR=0.4091, VBR=0.1006, MCI=0.4092
+  Extracting biomarkers from IXI_051... (FreeSurfer)
+    BTF=0.2271, TCR=0.3527, VBR=0.0559, MCI=0.4371
+  Extracting biomarkers from IXI_052... (FreeSurfer)
+    BTF=0.2586, TCR=0.3918, VBR=0.0576, MCI=0.3657
+  Extracting biomarkers from IXI_053... (FreeSurfer)
+    BTF=0.2084, TCR=0.3268, VBR=0.2333, MCI=0.4171
+  Extracting biomarkers from IXI_054... (FreeSurfer)
+    BTF=0.2249, TCR=0.3256, VBR=0.0750, MCI=0.4259
+  Extracting biomarkers from IXI_055... (FreeSurfer)
+    BTF=0.2548, TCR=0.3927, VBR=0.0908, MCI=0.5255
+  Extracting biomarkers from IXI_056... (FreeSurfer)
+    BTF=0.2153, TCR=0.3962, VBR=0.2062, MCI=0.4465
+  Extracting biomarkers from IXI_057... (FreeSurfer)
+    BTF=0.2201, TCR=0.3661, VBR=0.1477, MCI=0.3808
+  Extracting biomarkers from IXI_058... (FreeSurfer)
+    BTF=0.2338, TCR=0.3821, VBR=0.0870, MCI=0.4245
+  Extracting biomarkers from IXI_059... (FreeSurfer)
+    BTF=0.2365, TCR=0.3673, VBR=0.0490, MCI=0.4335
+  Extracting biomarkers from IXI_060... (FreeSurfer)
+    BTF=0.2243, TCR=0.3775, VBR=0.0731, MCI=0.4064
+  Extracting biomarkers from IXI_061... (FreeSurfer)
+    BTF=0.2327, TCR=0.3722, VBR=0.1510, MCI=0.4574
+  Extracting biomarkers from IXI_062... (FreeSurfer)
+    BTF=0.2238, TCR=0.3884, VBR=0.1397, MCI=0.4756
+  Extracting biomarkers from IXI_063... (FreeSurfer)
+    BTF=0.2181, TCR=0.4143, VBR=0.0962, MCI=0.4168
+  Extracting biomarkers from IXI_064... (FreeSurfer)
+    BTF=0.2142, TCR=0.3343, VBR=0.2024, MCI=0.4508
+  Extracting biomarkers from IXI_065... (FreeSurfer)
+    BTF=0.1889, TCR=0.4046, VBR=0.5247, MCI=0.4109
+  Extracting biomarkers from IXI_066... (FreeSurfer)
+    BTF=0.2267, TCR=0.3409, VBR=0.0426, MCI=0.4772
+  Extracting biomarkers from IXI_067... (FreeSurfer)
+    BTF=0.2162, TCR=0.4078, VBR=0.0960, MCI=0.4195
+  Extracting biomarkers from IXI_068... (FreeSurfer)
+    BTF=0.2295, TCR=0.3474, VBR=0.0420, MCI=0.4176
+  Extracting biomarkers from IXI_069... (FreeSurfer)
+    BTF=0.2231, TCR=0.3664, VBR=0.0990, MCI=0.5342
+  Extracting biomarkers from IXI_070... (FreeSurfer)
+    BTF=0.2123, TCR=0.4326, VBR=0.2271, MCI=0.4648
+  Extracting biomarkers from IXI_071... (FreeSurfer)
+    BTF=0.2059, TCR=0.4131, VBR=0.2096, MCI=0.4873
+  Extracting biomarkers from IXI_072... (FreeSurfer)
+    BTF=0.2412, TCR=0.3955, VBR=0.2478, MCI=0.3942
+  Extracting biomarkers from IXI_073... (FreeSurfer)
+    BTF=0.2107, TCR=0.3980, VBR=0.2144, MCI=0.5379
+  Extracting biomarkers from IXI_074... (FreeSurfer)
+    BTF=0.2275, TCR=0.4563, VBR=0.0584, MCI=0.5444
+  Extracting biomarkers from IXI_075... (FreeSurfer)
+    BTF=0.2135, TCR=0.3515, VBR=0.1052, MCI=0.5207
+  Extracting biomarkers from IXI_076... (FreeSurfer)
+    BTF=0.2444, TCR=0.3899, VBR=0.2275, MCI=0.3697
+  Extracting biomarkers from IXI_077... (FreeSurfer)
+    BTF=0.2216, TCR=0.3515, VBR=0.1248, MCI=0.4171
+  Extracting biomarkers from IXI_078... (FreeSurfer)
+    BTF=0.2481, TCR=0.3740, VBR=0.0899, MCI=0.3739
+  Extracting biomarkers from IXI_079... (FreeSurfer)
+    BTF=0.2093, TCR=0.3605, VBR=0.1435, MCI=0.5163
+  Extracting biomarkers from IXI_080... (FreeSurfer)
+    BTF=0.2162, TCR=0.3799, VBR=0.1343, MCI=0.4148
+  Extracting biomarkers from IXI_081... (FreeSurfer)
+    BTF=0.2220, TCR=0.3700, VBR=0.0620, MCI=0.5359
+  Extracting biomarkers from IXI_082... (FreeSurfer)
+    BTF=0.2257, TCR=0.3706, VBR=0.0869, MCI=0.4184
+  Extracting biomarkers from IXI_083... (FreeSurfer)
+    BTF=0.2355, TCR=0.4032, VBR=0.0476, MCI=0.4709
+  Extracting biomarkers from IXI_084... (FreeSurfer)
+    BTF=0.2025, TCR=0.3380, VBR=0.1413, MCI=0.4742
+  Extracting biomarkers from IXI_085... (FreeSurfer)
+    BTF=0.2109, TCR=0.3779, VBR=0.1377, MCI=0.4304
+  Extracting biomarkers from IXI_086... (FreeSurfer)
+    BTF=0.2372, TCR=0.4242, VBR=0.0476, MCI=0.3843
+  Extracting biomarkers from IXI_087... (FreeSurfer)
+    BTF=0.2386, TCR=0.3564, VBR=0.1141, MCI=0.3714
+  Extracting biomarkers from IXI_088... (FreeSurfer)
+    BTF=0.2434, TCR=0.3624, VBR=0.0898, MCI=0.3839
+  Extracting biomarkers from IXI_089... (FreeSurfer)
+    BTF=0.2208, TCR=0.3520, VBR=0.0975, MCI=0.5051
+  Extracting biomarkers from IXI_090... (FreeSurfer)
+    BTF=0.2320, TCR=0.4015, VBR=0.0732, MCI=0.5120
+  Extracting biomarkers from IXI_091... (FreeSurfer)
+    BTF=0.2146, TCR=0.4134, VBR=0.1774, MCI=0.4157
+  Extracting biomarkers from IXI_092... (FreeSurfer)
+    BTF=0.2245, TCR=0.3765, VBR=0.0711, MCI=0.5357
+  Extracting biomarkers from IXI_093... (FreeSurfer)
+    BTF=0.2366, TCR=0.3731, VBR=0.0597, MCI=0.4329
+  Extracting biomarkers from IXI_094... (FreeSurfer)
+    BTF=0.2197, TCR=0.3532, VBR=0.0685, MCI=0.4696
+  Extracting biomarkers from IXI_095... (FreeSurfer)
+    BTF=0.2219, TCR=0.3742, VBR=0.0932, MCI=0.5464
+  Extracting biomarkers from IXI_096... (FreeSurfer)
+    BTF=0.2241, TCR=0.3518, VBR=0.0416, MCI=0.4393
+  Extracting biomarkers from IXI_097... (FreeSurfer)
+    BTF=0.2430, TCR=0.4524, VBR=0.1162, MCI=0.3579
+  Extracting biomarkers from IXI_098... (FreeSurfer)
+    BTF=0.1810, TCR=0.4024, VBR=0.5670, MCI=0.5062
+  Extracting biomarkers from IXI_099... (FreeSurfer)
+    BTF=0.2317, TCR=0.3531, VBR=0.1086, MCI=0.3875
+  Extracting biomarkers from IXI_100... (FreeSurfer)
+    BTF=0.2470, TCR=0.4049, VBR=0.0690, MCI=0.3690
+  Extracting biomarkers from IXI_101... (FreeSurfer)
+    BTF=0.2075, TCR=0.3595, VBR=0.1360, MCI=0.4404
+  Extracting biomarkers from IXI_102... (FreeSurfer)
+    BTF=0.2243, TCR=0.3757, VBR=0.0819, MCI=0.5041
+  Extracting biomarkers from IXI_103... (FreeSurfer)
+    BTF=0.2249, TCR=0.3455, VBR=0.0630, MCI=0.4515
+  Extracting biomarkers from IXI_104... (FreeSurfer)
+    BTF=0.2111, TCR=0.3814, VBR=0.1238, MCI=0.4436
+  Extracting biomarkers from IXI_105... (FreeSurfer)
+    BTF=0.2315, TCR=0.3532, VBR=0.0825, MCI=0.4366
+  Extracting biomarkers from IXI_106... (FreeSurfer)
+    BTF=0.2089, TCR=0.3446, VBR=0.1276, MCI=0.4858
+  Extracting biomarkers from IXI_107... (FreeSurfer)
+    BTF=0.2316, TCR=0.3561, VBR=0.0665, MCI=0.4134
+  Extracting biomarkers from IXI_108... (FreeSurfer)
+    BTF=0.2129, TCR=0.3852, VBR=0.0826, MCI=0.4119
+  Extracting biomarkers from IXI_109... (FreeSurfer)
+    BTF=0.2563, TCR=0.4707, VBR=0.0954, MCI=0.3925
+  Extracting biomarkers from IXI_110... (FreeSurfer)
+    BTF=0.2102, TCR=0.4221, VBR=0.1462, MCI=0.4451
+  Extracting biomarkers from IXI_111... (FreeSurfer)
+    BTF=0.2628, TCR=0.4142, VBR=0.0761, MCI=0.3772
+  Extracting biomarkers from IXI_112... (FreeSurfer)
+    BTF=0.2362, TCR=0.3619, VBR=0.0529, MCI=0.4617
+  Extracting biomarkers from IXI_113... (FreeSurfer)
+    BTF=0.2430, TCR=0.3669, VBR=0.0630, MCI=0.3988
+  Extracting biomarkers from IXI_114... (FreeSurfer)
+    BTF=0.2266, TCR=0.3933, VBR=0.1402, MCI=0.4698
+  Extracting biomarkers from IXI_115... (FreeSurfer)
+    BTF=0.2058, TCR=0.3545, VBR=0.2521, MCI=0.4914
+  Extracting biomarkers from IXI_116... (FreeSurfer)
+    BTF=0.2247, TCR=0.3630, VBR=0.1695, MCI=0.3947
+  Extracting biomarkers from IXI_117... (FreeSurfer)
+    BTF=0.2384, TCR=0.3123, VBR=0.0410, MCI=0.4288
+  Extracting biomarkers from IXI_118... (FreeSurfer)
+    BTF=0.2255, TCR=0.3736, VBR=0.0819, MCI=0.5230
+  Extracting biomarkers from IXI_119... (FreeSurfer)
+    BTF=0.2255, TCR=0.4446, VBR=0.0835, MCI=0.4129
+  Extracting biomarkers from IXI_120... (FreeSurfer)
+    BTF=0.2133, TCR=0.3464, VBR=0.0718, MCI=0.4972
+  Extracting biomarkers from IXI_121... (FreeSurfer)
+    BTF=0.2306, TCR=0.3753, VBR=0.0674, MCI=0.4304
+  Extracting biomarkers from IXI_122... (FreeSurfer)
+    BTF=0.2316, TCR=0.3467, VBR=0.1147, MCI=0.4183
+  Extracting biomarkers from IXI_123... (FreeSurfer)
+    BTF=0.2506, TCR=0.4149, VBR=0.0326, MCI=0.3503
+  Extracting biomarkers from IXI_124... (FreeSurfer)
+    BTF=0.2506, TCR=0.3800, VBR=0.0613, MCI=0.5437
+  Extracting biomarkers from IXI_125... (FreeSurfer)
+    BTF=0.2236, TCR=0.4416, VBR=0.0744, MCI=0.4306
+  Extracting biomarkers from IXI_126... (FreeSurfer)
+    BTF=0.2220, TCR=0.3542, VBR=0.0955, MCI=0.4226
+  Extracting biomarkers from IXI_127... (FreeSurfer)
+    BTF=0.2134, TCR=0.3683, VBR=0.1262, MCI=0.5100
+  Extracting biomarkers from IXI_128... (FreeSurfer)
+    BTF=0.2197, TCR=0.3507, VBR=0.1230, MCI=0.3870
+  Extracting biomarkers from IXI_129... (FreeSurfer)
+    BTF=0.2463, TCR=0.3493, VBR=0.0597, MCI=0.4068
+  Extracting biomarkers from IXI_130... (FreeSurfer)
+    BTF=0.2513, TCR=0.3831, VBR=0.0787, MCI=0.3734
+  Extracting biomarkers from IXI_131... (FreeSurfer)
+    BTF=0.2196, TCR=0.3844, VBR=0.1578, MCI=0.4405
+  Extracting biomarkers from IXI_132... (FreeSurfer)
+    BTF=0.2320, TCR=0.4196, VBR=0.0563, MCI=0.4380
+  Extracting biomarkers from IXI_133... (FreeSurfer)
+    BTF=0.2258, TCR=0.3638, VBR=0.1428, MCI=0.4603
+  Extracting biomarkers from IXI_134... (FreeSurfer)
+    BTF=0.2309, TCR=0.4295, VBR=0.0842, MCI=0.4332
+  Extracting biomarkers from IXI_135... (FreeSurfer)
+    BTF=0.2261, TCR=0.4049, VBR=0.0458, MCI=0.4091
+  Extracting biomarkers from IXI_136... (FreeSurfer)
+    BTF=0.2077, TCR=0.3847, VBR=0.1711, MCI=0.4142
+  Extracting biomarkers from IXI_137... (FreeSurfer)
+    BTF=0.2271, TCR=0.4121, VBR=0.0798, MCI=0.5230
+  Extracting biomarkers from IXI_138... (FreeSurfer)
+    BTF=0.2396, TCR=0.3544, VBR=0.0570, MCI=0.4430
+  Extracting biomarkers from IXI_139... (FreeSurfer)
+    BTF=0.2057, TCR=0.3769, VBR=0.1834, MCI=0.4148
+  Extracting biomarkers from IXI_140... (FreeSurfer)
+    BTF=0.2305, TCR=0.4231, VBR=0.0491, MCI=0.4704
+  Extracting biomarkers from IXI_141... (FreeSurfer)
+    BTF=0.2371, TCR=0.4084, VBR=0.0873, MCI=0.4099
+  Extracting biomarkers from IXI_142... (FreeSurfer)
+    BTF=0.2169, TCR=0.3838, VBR=0.0969, MCI=0.4234
+  Extracting biomarkers from IXI_143... (FreeSurfer)
+    BTF=0.2141, TCR=0.3714, VBR=0.1400, MCI=0.4436
+  Extracting biomarkers from IXI_144... (FreeSurfer)
+    BTF=0.2444, TCR=0.4309, VBR=0.0461, MCI=0.3626
+  Extracting biomarkers from IXI_145... (FreeSurfer)
+    BTF=0.2229, TCR=0.3400, VBR=0.0825, MCI=0.4560
+  Extracting biomarkers from IXI_146... (FreeSurfer)
+    BTF=0.2170, TCR=0.3494, VBR=0.1985, MCI=0.5226
+  Extracting biomarkers from IXI_147... (FreeSurfer)
+    BTF=0.2034, TCR=0.3542, VBR=0.1725, MCI=0.5311
+  Extracting biomarkers from IXI_148... (FreeSurfer)
+    BTF=0.2247, TCR=0.3483, VBR=0.0544, MCI=0.4650
+  Extracting biomarkers from IXI_149... (FreeSurfer)
+    BTF=0.2132, TCR=0.3920, VBR=0.1057, MCI=0.3844
+  Extracting biomarkers from IXI_150... (FreeSurfer)
+    BTF=0.2173, TCR=0.4024, VBR=0.0959, MCI=0.4728
+  Extracting biomarkers from haxby_high_field... (intensity)
+    BTF=0.2866, TCR=0.2922, VBR=0.0147, MCI=0.1165
+  Extracting biomarkers from high_field_volume_001... (intensity)
+    BTF=0.2432, TCR=0.4491, VBR=0.0000, MCI=0.1459
+  Extracting biomarkers from high_field_volume_002... (intensity)
+    BTF=0.2428, TCR=0.4471, VBR=0.0000, MCI=0.1460
+  Extracting biomarkers from high_field_volume_003... (intensity)
+    BTF=0.2413, TCR=0.4412, VBR=0.0000, MCI=0.1491
+  Extracting biomarkers from oasis_high_field_001... (intensity)
+    BTF=0.1329, TCR=0.3871, VBR=0.0878, MCI=0.3286
+  Extracting biomarkers from oasis_high_field_002... (intensity)
+    BTF=0.1284, TCR=0.3902, VBR=0.0966, MCI=0.2560
+  Cached biomarker labels to data/high_field/biomarker_labels.json
+  Methods used: 150 FreeSurfer, 6 intensity-based
+  Extracted biomarkers for 156 volumes
+    IXI_001: BTF=0.2029, TCR=0.4073, VBR=0.2536, MCI=0.4816
+    IXI_002: BTF=0.2303, TCR=0.3334, VBR=0.0839, MCI=0.4208
+    IXI_003: BTF=0.2286, TCR=0.3737, VBR=0.1091, MCI=0.3981
+    IXI_004: BTF=0.2246, TCR=0.3933, VBR=0.2600, MCI=0.4229
+    IXI_005: BTF=0.2135, TCR=0.3575, VBR=0.1050, MCI=0.4927
+    IXI_006: BTF=0.2121, TCR=0.3879, VBR=0.1995, MCI=0.4060
+    IXI_007: BTF=0.2127, TCR=0.3700, VBR=0.1316, MCI=0.5026
+    IXI_008: BTF=0.2177, TCR=0.3978, VBR=0.1142, MCI=0.4332
+    IXI_009: BTF=0.2387, TCR=0.3915, VBR=0.0751, MCI=0.4253
+    IXI_010: BTF=0.2125, TCR=0.4031, VBR=0.2476, MCI=0.4213
+    IXI_011: BTF=0.2226, TCR=0.4269, VBR=0.1086, MCI=0.3776
+    IXI_012: BTF=0.2440, TCR=0.3775, VBR=0.1409, MCI=0.3272
+    IXI_013: BTF=0.2269, TCR=0.3763, VBR=0.1087, MCI=0.3751
+    IXI_014: BTF=0.2164, TCR=0.2995, VBR=0.2159, MCI=0.5391
+    IXI_015: BTF=0.2166, TCR=0.3798, VBR=0.1066, MCI=0.4245
+    IXI_016: BTF=0.2440, TCR=0.4185, VBR=0.1715, MCI=0.3758
+    IXI_017: BTF=0.2011, TCR=0.4272, VBR=0.2208, MCI=0.4514
+    IXI_018: BTF=0.2276, TCR=0.3115, VBR=0.1075, MCI=0.4482
+    IXI_019: BTF=0.2260, TCR=0.4022, VBR=0.1174, MCI=0.4226
+    IXI_020: BTF=0.2239, TCR=0.3488, VBR=0.0607, MCI=0.5078
+    IXI_021: BTF=0.2349, TCR=0.3633, VBR=0.1275, MCI=0.3590
+    IXI_022: BTF=0.2299, TCR=0.4095, VBR=0.0964, MCI=0.4074
+    IXI_023: BTF=0.2219, TCR=0.3941, VBR=0.1094, MCI=0.5054
+    IXI_024: BTF=0.2552, TCR=0.4381, VBR=0.0852, MCI=0.3269
+    IXI_025: BTF=0.2346, TCR=0.3776, VBR=0.0392, MCI=0.4614
+    IXI_026: BTF=0.2189, TCR=0.4016, VBR=0.1289, MCI=0.4822
+    IXI_027: BTF=0.2049, TCR=0.4260, VBR=0.2024, MCI=0.4201
+    IXI_028: BTF=0.2563, TCR=0.3580, VBR=0.0452, MCI=0.3880
+    IXI_029: BTF=0.2279, TCR=0.3791, VBR=0.0898, MCI=0.4534
+    IXI_030: BTF=0.2135, TCR=0.3569, VBR=0.1045, MCI=0.4438
+    IXI_031: BTF=0.2255, TCR=0.3455, VBR=0.1043, MCI=0.4467
+    IXI_032: BTF=0.2184, TCR=0.3775, VBR=0.1205, MCI=0.4116
+    IXI_033: BTF=0.2235, TCR=0.3641, VBR=0.1010, MCI=0.4419
+    IXI_034: BTF=0.2165, TCR=0.3482, VBR=0.0701, MCI=0.4079
+    IXI_035: BTF=0.2185, TCR=0.3484, VBR=0.1491, MCI=0.4123
+    IXI_036: BTF=0.2283, TCR=0.3614, VBR=0.0913, MCI=0.4412
+    IXI_037: BTF=0.2332, TCR=0.3952, VBR=0.0437, MCI=0.5542
+    IXI_038: BTF=0.2253, TCR=0.3751, VBR=0.1008, MCI=0.4291
+    IXI_039: BTF=0.2315, TCR=0.3254, VBR=0.0540, MCI=0.4667
+    IXI_040: BTF=0.2063, TCR=0.4300, VBR=0.2009, MCI=0.5212
+    IXI_041: BTF=0.2365, TCR=0.4007, VBR=0.0651, MCI=0.3965
+    IXI_042: BTF=0.2305, TCR=0.3605, VBR=0.0724, MCI=0.4195
+    IXI_043: BTF=0.2021, TCR=0.3758, VBR=0.2364, MCI=0.4296
+    IXI_044: BTF=0.2233, TCR=0.4068, VBR=0.1703, MCI=0.4322
+    IXI_045: BTF=0.2133, TCR=0.3983, VBR=0.1170, MCI=0.4121
+    IXI_046: BTF=0.2265, TCR=0.4106, VBR=0.1486, MCI=0.4015
+    IXI_047: BTF=0.2261, TCR=0.3900, VBR=0.0933, MCI=0.4706
+    IXI_048: BTF=0.1984, TCR=0.4298, VBR=0.2361, MCI=0.5083
+    IXI_049: BTF=0.2025, TCR=0.4075, VBR=0.1049, MCI=0.4346
+    IXI_050: BTF=0.2181, TCR=0.4091, VBR=0.1006, MCI=0.4092
+    IXI_051: BTF=0.2271, TCR=0.3527, VBR=0.0559, MCI=0.4371
+    IXI_052: BTF=0.2586, TCR=0.3918, VBR=0.0576, MCI=0.3657
+    IXI_053: BTF=0.2084, TCR=0.3268, VBR=0.2333, MCI=0.4171
+    IXI_054: BTF=0.2249, TCR=0.3256, VBR=0.0750, MCI=0.4259
+    IXI_055: BTF=0.2548, TCR=0.3927, VBR=0.0908, MCI=0.5255
+    IXI_056: BTF=0.2153, TCR=0.3962, VBR=0.2062, MCI=0.4465
+    IXI_057: BTF=0.2201, TCR=0.3661, VBR=0.1477, MCI=0.3808
+    IXI_058: BTF=0.2338, TCR=0.3821, VBR=0.0870, MCI=0.4245
+    IXI_059: BTF=0.2365, TCR=0.3673, VBR=0.0490, MCI=0.4335
+    IXI_060: BTF=0.2243, TCR=0.3775, VBR=0.0731, MCI=0.4064
+    IXI_061: BTF=0.2327, TCR=0.3722, VBR=0.1510, MCI=0.4574
+    IXI_062: BTF=0.2238, TCR=0.3884, VBR=0.1397, MCI=0.4756
+    IXI_063: BTF=0.2181, TCR=0.4143, VBR=0.0962, MCI=0.4168
+    IXI_064: BTF=0.2142, TCR=0.3343, VBR=0.2024, MCI=0.4508
+    IXI_065: BTF=0.1889, TCR=0.4046, VBR=0.5247, MCI=0.4109
+    IXI_066: BTF=0.2267, TCR=0.3409, VBR=0.0426, MCI=0.4772
+    IXI_067: BTF=0.2162, TCR=0.4078, VBR=0.0960, MCI=0.4195
+    IXI_068: BTF=0.2295, TCR=0.3474, VBR=0.0420, MCI=0.4176
+    IXI_069: BTF=0.2231, TCR=0.3664, VBR=0.0990, MCI=0.5342
+    IXI_070: BTF=0.2123, TCR=0.4326, VBR=0.2271, MCI=0.4648
+    IXI_071: BTF=0.2059, TCR=0.4131, VBR=0.2096, MCI=0.4873
+    IXI_072: BTF=0.2412, TCR=0.3955, VBR=0.2478, MCI=0.3942
+    IXI_073: BTF=0.2107, TCR=0.3980, VBR=0.2144, MCI=0.5379
+    IXI_074: BTF=0.2275, TCR=0.4563, VBR=0.0584, MCI=0.5444
+    IXI_075: BTF=0.2135, TCR=0.3515, VBR=0.1052, MCI=0.5207
+    IXI_076: BTF=0.2444, TCR=0.3899, VBR=0.2275, MCI=0.3697
+    IXI_077: BTF=0.2216, TCR=0.3515, VBR=0.1248, MCI=0.4171
+    IXI_078: BTF=0.2481, TCR=0.3740, VBR=0.0899, MCI=0.3739
+    IXI_079: BTF=0.2093, TCR=0.3605, VBR=0.1435, MCI=0.5163
+    IXI_080: BTF=0.2162, TCR=0.3799, VBR=0.1343, MCI=0.4148
+    IXI_081: BTF=0.2220, TCR=0.3700, VBR=0.0620, MCI=0.5359
+    IXI_082: BTF=0.2257, TCR=0.3706, VBR=0.0869, MCI=0.4184
+    IXI_083: BTF=0.2355, TCR=0.4032, VBR=0.0476, MCI=0.4709
+    IXI_084: BTF=0.2025, TCR=0.3380, VBR=0.1413, MCI=0.4742
+    IXI_085: BTF=0.2109, TCR=0.3779, VBR=0.1377, MCI=0.4304
+    IXI_086: BTF=0.2372, TCR=0.4242, VBR=0.0476, MCI=0.3843
+    IXI_087: BTF=0.2386, TCR=0.3564, VBR=0.1141, MCI=0.3714
+    IXI_088: BTF=0.2434, TCR=0.3624, VBR=0.0898, MCI=0.3839
+    IXI_089: BTF=0.2208, TCR=0.3520, VBR=0.0975, MCI=0.5051
+    IXI_090: BTF=0.2320, TCR=0.4015, VBR=0.0732, MCI=0.5120
+    IXI_091: BTF=0.2146, TCR=0.4134, VBR=0.1774, MCI=0.4157
+    IXI_092: BTF=0.2245, TCR=0.3765, VBR=0.0711, MCI=0.5357
+    IXI_093: BTF=0.2366, TCR=0.3731, VBR=0.0597, MCI=0.4329
+    IXI_094: BTF=0.2197, TCR=0.3532, VBR=0.0685, MCI=0.4696
+    IXI_095: BTF=0.2219, TCR=0.3742, VBR=0.0932, MCI=0.5464
+    IXI_096: BTF=0.2241, TCR=0.3518, VBR=0.0416, MCI=0.4393
+    IXI_097: BTF=0.2430, TCR=0.4524, VBR=0.1162, MCI=0.3579
+    IXI_098: BTF=0.1810, TCR=0.4024, VBR=0.5670, MCI=0.5062
+    IXI_099: BTF=0.2317, TCR=0.3531, VBR=0.1086, MCI=0.3875
+    IXI_100: BTF=0.2470, TCR=0.4049, VBR=0.0690, MCI=0.3690
+    IXI_101: BTF=0.2075, TCR=0.3595, VBR=0.1360, MCI=0.4404
+    IXI_102: BTF=0.2243, TCR=0.3757, VBR=0.0819, MCI=0.5041
+    IXI_103: BTF=0.2249, TCR=0.3455, VBR=0.0630, MCI=0.4515
+    IXI_104: BTF=0.2111, TCR=0.3814, VBR=0.1238, MCI=0.4436
+    IXI_105: BTF=0.2315, TCR=0.3532, VBR=0.0825, MCI=0.4366
+    IXI_106: BTF=0.2089, TCR=0.3446, VBR=0.1276, MCI=0.4858
+    IXI_107: BTF=0.2316, TCR=0.3561, VBR=0.0665, MCI=0.4134
+    IXI_108: BTF=0.2129, TCR=0.3852, VBR=0.0826, MCI=0.4119
+    IXI_109: BTF=0.2563, TCR=0.4707, VBR=0.0954, MCI=0.3925
+    IXI_110: BTF=0.2102, TCR=0.4221, VBR=0.1462, MCI=0.4451
+    IXI_111: BTF=0.2628, TCR=0.4142, VBR=0.0761, MCI=0.3772
+    IXI_112: BTF=0.2362, TCR=0.3619, VBR=0.0529, MCI=0.4617
+    IXI_113: BTF=0.2430, TCR=0.3669, VBR=0.0630, MCI=0.3988
+    IXI_114: BTF=0.2266, TCR=0.3933, VBR=0.1402, MCI=0.4698
+    IXI_115: BTF=0.2058, TCR=0.3545, VBR=0.2521, MCI=0.4914
+    IXI_116: BTF=0.2247, TCR=0.3630, VBR=0.1695, MCI=0.3947
+    IXI_117: BTF=0.2384, TCR=0.3123, VBR=0.0410, MCI=0.4288
+    IXI_118: BTF=0.2255, TCR=0.3736, VBR=0.0819, MCI=0.5230
+    IXI_119: BTF=0.2255, TCR=0.4446, VBR=0.0835, MCI=0.4129
+    IXI_120: BTF=0.2133, TCR=0.3464, VBR=0.0718, MCI=0.4972
+    IXI_121: BTF=0.2306, TCR=0.3753, VBR=0.0674, MCI=0.4304
+    IXI_122: BTF=0.2316, TCR=0.3467, VBR=0.1147, MCI=0.4183
+    IXI_123: BTF=0.2506, TCR=0.4149, VBR=0.0326, MCI=0.3503
+    IXI_124: BTF=0.2506, TCR=0.3800, VBR=0.0613, MCI=0.5437
+    IXI_125: BTF=0.2236, TCR=0.4416, VBR=0.0744, MCI=0.4306
+    IXI_126: BTF=0.2220, TCR=0.3542, VBR=0.0955, MCI=0.4226
+    IXI_127: BTF=0.2134, TCR=0.3683, VBR=0.1262, MCI=0.5100
+    IXI_128: BTF=0.2197, TCR=0.3507, VBR=0.1230, MCI=0.3870
+    IXI_129: BTF=0.2463, TCR=0.3493, VBR=0.0597, MCI=0.4068
+    IXI_130: BTF=0.2513, TCR=0.3831, VBR=0.0787, MCI=0.3734
+    IXI_131: BTF=0.2196, TCR=0.3844, VBR=0.1578, MCI=0.4405
+    IXI_132: BTF=0.2320, TCR=0.4196, VBR=0.0563, MCI=0.4380
+    IXI_133: BTF=0.2258, TCR=0.3638, VBR=0.1428, MCI=0.4603
+    IXI_134: BTF=0.2309, TCR=0.4295, VBR=0.0842, MCI=0.4332
+    IXI_135: BTF=0.2261, TCR=0.4049, VBR=0.0458, MCI=0.4091
+    IXI_136: BTF=0.2077, TCR=0.3847, VBR=0.1711, MCI=0.4142
+    IXI_137: BTF=0.2271, TCR=0.4121, VBR=0.0798, MCI=0.5230
+    IXI_138: BTF=0.2396, TCR=0.3544, VBR=0.0570, MCI=0.4430
+    IXI_139: BTF=0.2057, TCR=0.3769, VBR=0.1834, MCI=0.4148
+    IXI_140: BTF=0.2305, TCR=0.4231, VBR=0.0491, MCI=0.4704
+    IXI_141: BTF=0.2371, TCR=0.4084, VBR=0.0873, MCI=0.4099
+    IXI_142: BTF=0.2169, TCR=0.3838, VBR=0.0969, MCI=0.4234
+    IXI_143: BTF=0.2141, TCR=0.3714, VBR=0.1400, MCI=0.4436
+    IXI_144: BTF=0.2444, TCR=0.4309, VBR=0.0461, MCI=0.3626
+    IXI_145: BTF=0.2229, TCR=0.3400, VBR=0.0825, MCI=0.4560
+    IXI_146: BTF=0.2170, TCR=0.3494, VBR=0.1985, MCI=0.5226
+    IXI_147: BTF=0.2034, TCR=0.3542, VBR=0.1725, MCI=0.5311
+    IXI_148: BTF=0.2247, TCR=0.3483, VBR=0.0544, MCI=0.4650
+    IXI_149: BTF=0.2132, TCR=0.3920, VBR=0.1057, MCI=0.3844
+    IXI_150: BTF=0.2173, TCR=0.4024, VBR=0.0959, MCI=0.4728
+    haxby_high_field: BTF=0.2866, TCR=0.2922, VBR=0.0147, MCI=0.1165
+    high_field_volume_001: BTF=0.2432, TCR=0.4491, VBR=0.0000, MCI=0.1459
+    high_field_volume_002: BTF=0.2428, TCR=0.4471, VBR=0.0000, MCI=0.1460
+    high_field_volume_003: BTF=0.2413, TCR=0.4412, VBR=0.0000, MCI=0.1491
+    oasis_high_field_001: BTF=0.1329, TCR=0.3871, VBR=0.0878, MCI=0.3286
+    oasis_high_field_002: BTF=0.1284, TCR=0.3902, VBR=0.0966, MCI=0.2560
+
+[Step 2] Creating paired data loaders...
+  Train samples: 520
+  Val samples:   26
+  Test samples:  26
+  Volume shape:  [4, 1, 64, 64, 64]
+  Label shape:   [4, 4]
+
+[Step 3] Training baseline models...
+  Training CNN...
+    Epoch 5/30 - Train: 0.0090, Val: 0.0027
+    Epoch 10/30 - Train: 0.0059, Val: 0.0016
+    Early stopping at epoch 12
+  CNN trained successfully
+  Training ViT...
+    Epoch 5/30 - Train: 0.0054, Val: 0.0025
+    Epoch 10/30 - Train: 0.0038, Val: 0.0027
+    Epoch 15/30 - Train: 0.0032, Val: 0.0025
+    Epoch 20/30 - Train: 0.0030, Val: 0.0051
+    Epoch 25/30 - Train: 0.0031, Val: 0.0022
+    Early stopping at epoch 28
+  ViT trained successfully
+  Training UNet...
+    Epoch 5/30 - Train: 0.0020, Val: 0.0157
+    Epoch 10/30 - Train: 0.0016, Val: 0.0013
+    Epoch 15/30 - Train: 0.0014, Val: 0.0012
+    Epoch 20/30 - Train: 0.0012, Val: 0.0008
+    Epoch 25/30 - Train: 0.0010, Val: 0.0009
+    Epoch 30/30 - Train: 0.0009, Val: 0.0007
+  U-Net trained successfully
+
+[Step 4] Training Hybrid Transformer-GNN model...
+  Training Hybrid Transformer-GNN...
+    Model parameters: 5,153,351
+    Epoch 5/30 - Train: 0.0049, Val: 0.0018
+    Epoch 10/30 - Train: 0.0035, Val: 0.0017
+    Epoch 15/30 - Train: 0.0030, Val: 0.0016
+    Epoch 20/30 - Train: 0.0029, Val: 0.0017
+    Epoch 25/30 - Train: 0.0029, Val: 0.0018
+    Epoch 30/30 - Train: 0.0027, Val: 0.0017
+  Hybrid model trained successfully
+
+[Step 5] Evaluating 4 models...
+  CNN                  - MSE: 0.0050, MAE: 0.0475
+  ViT                  - MSE: 0.0055, MAE: 0.0524
+  UNet                 - MSE: 0.0050, MAE: 0.0395
+  Hybrid-TF-GNN        - MSE: 0.0047, MAE: 0.0454
+  Saved ViT checkpoint → checkpoints/best_model.pt
+
+================================================================================
+Model Comparison Report — Biomarker Inference from Low-Field MRI
+================================================================================
+
+Best MSE: Hybrid-TF-GNN (0.0047)
+Best MAE: UNet (0.0395)
+Best R2: Hybrid-TF-GNN (0.7759)
+Best CORRELATION: Hybrid-TF-GNN (0.8927)
+
+--------------------------------------------------------------------------------
+Per-Biomarker Results:
+--------------------------------------------------------------------------------
+
+  BTF:
+    CNN                       MSE=0.0010  MAE=0.0204  R2=-0.0428
+    ViT                       MSE=0.0011  MAE=0.0201  R2=-0.2005
+    UNet                      MSE=0.0007  MAE=0.0143  R2=0.3035
+    Hybrid-TF-GNN             MSE=0.0009  MAE=0.0192  R2=-0.0068
+
+  TCR:
+    CNN                       MSE=0.0024  MAE=0.0407  R2=-0.7892
+    ViT                       MSE=0.0022  MAE=0.0359  R2=-0.6203
+    UNet                      MSE=0.0015  MAE=0.0309  R2=-0.1277
+    Hybrid-TF-GNN             MSE=0.0014  MAE=0.0303  R2=-0.0580
+
+  VBR:
+    CNN                       MSE=0.0034  MAE=0.0499  R2=-0.0617
+    ViT                       MSE=0.0109  MAE=0.0889  R2=-2.4119
+    UNet                      MSE=0.0053  MAE=0.0473  R2=-0.6388
+    Hybrid-TF-GNN             MSE=0.0053  MAE=0.0628  R2=-0.6598
+
+  MCI:
+    CNN                       MSE=0.0132  MAE=0.0790  R2=0.0813
+    ViT                       MSE=0.0077  MAE=0.0645  R2=0.4625
+    UNet                      MSE=0.0125  MAE=0.0657  R2=0.1297
+    Hybrid-TF-GNN             MSE=0.0110  MAE=0.0693  R2=0.2360
+
+================================================================================
+Full Metrics Table:
+================================================================================
+        model      mse      mae     rmse       r2  correlation
+          CNN 0.004996 0.047486 0.070680 0.759954     0.873406
+          ViT 0.005491 0.052353 0.074103 0.736143     0.888328
+         UNet 0.004980 0.039541 0.070567 0.760723     0.879073
+Hybrid-TF-GNN 0.004665 0.045433 0.068297 0.775867     0.892722
+
+Results saved to experiments/stage1/results/
+
+Stage 1 completed successfully!

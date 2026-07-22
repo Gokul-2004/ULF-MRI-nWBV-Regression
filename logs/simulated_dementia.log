@@ -1,0 +1,57 @@
+==============================================================
+Simulated Dementia Evaluation  (OASIS test → sim 64mT → ViT3D)
+==============================================================
+Test subjects: 38
+  OAS1_0145_MR1  CDR=?     GT=0.8310  pred=0.8396  err=0.0086
+  OAS1_0142_MR1  CDR=0.5   GT=0.6950  pred=0.8390  err=0.1440
+  OAS1_0050_MR1  CDR=?     GT=0.8410  pred=0.8414  err=0.0004
+  OAS1_0060_MR1  CDR=0.5   GT=0.7340  pred=0.8357  err=0.1017
+  OAS1_0404_MR1  CDR=0.0   GT=0.7760  pred=0.8398  err=0.0638
+  OAS1_0070_MR1  CDR=0.0   GT=0.8010  pred=0.8354  err=0.0344
+  OAS1_0043_MR1  CDR=?     GT=0.8460  pred=0.8382  err=0.0078
+  OAS1_0147_MR1  CDR=?     GT=0.8450  pred=0.8398  err=0.0052
+  OAS1_0129_MR1  CDR=?     GT=0.8460  pred=0.8369  err=0.0091
+  OAS1_0282_MR1  CDR=?     GT=0.8190  pred=0.8399  err=0.0209
+  OAS1_0340_MR1  CDR=?     GT=0.8530  pred=0.8410  err=0.0120
+  OAS1_0336_MR1  CDR=?     GT=0.8520  pred=0.8389  err=0.0131
+  OAS1_0350_MR1  CDR=?     GT=0.8690  pred=0.8373  err=0.0317
+  OAS1_0292_MR1  CDR=0.0   GT=0.7660  pred=0.8387  err=0.0727
+  OAS1_0062_MR1  CDR=0.0   GT=0.7540  pred=0.8396  err=0.0856
+  OAS1_0249_MR2  CDR=?     GT=0.8650  pred=0.8365  err=0.0285
+  OAS1_0065_MR1  CDR=0.0   GT=0.6450  pred=0.8388  err=0.1938
+  OAS1_0430_MR1  CDR=1.0   GT=0.6870  pred=0.8320  err=0.1450
+  OAS1_0307_MR1  CDR=0.5   GT=0.7350  pred=0.8375  err=0.1025
+  OAS1_0270_MR1  CDR=0.0   GT=0.7030  pred=0.8393  err=0.1363
+  OAS1_0444_MR1  CDR=?     GT=0.8600  pred=0.8360  err=0.0240
+  OAS1_0152_MR1  CDR=?     GT=0.8300  pred=0.8375  err=0.0075
+  OAS1_0155_MR1  CDR=0.5   GT=0.7530  pred=0.8369  err=0.0839
+  OAS1_0190_MR1  CDR=?     GT=0.8130  pred=0.8352  err=0.0222
+  OAS1_0418_MR1  CDR=0.5   GT=0.7470  pred=0.8352  err=0.0882
+  OAS1_0098_MR1  CDR=0.5   GT=0.6930  pred=0.8393  err=0.1463
+  OAS1_0228_MR1  CDR=0.0   GT=0.7590  pred=0.8372  err=0.0782
+  OAS1_0285_MR1  CDR=?     GT=0.8430  pred=0.8408  err=0.0022
+  OAS1_0002_MR1  CDR=0.0   GT=0.8100  pred=0.8374  err=0.0274
+  OAS1_0088_MR1  CDR=?     GT=0.8650  pred=0.8381  err=0.0269
+  OAS1_0403_MR1  CDR=?     GT=0.8330  pred=0.8396  err=0.0066
+  OAS1_0374_MR1  CDR=0.5   GT=0.7600  pred=0.8369  err=0.0769
+  OAS1_0056_MR1  CDR=1.0   GT=0.6680  pred=0.8363  err=0.1683
+  OAS1_0213_MR1  CDR=?     GT=0.8010  pred=0.8375  err=0.0365
+  OAS1_0097_MR1  CDR=?     GT=0.8160  pred=0.8353  err=0.0193
+  OAS1_0239_MR1  CDR=?     GT=0.8230  pred=0.8370  err=0.0140
+  OAS1_0390_MR1  CDR=0.5   GT=0.7940  pred=0.8402  err=0.0462
+  OAS1_0111_MR1  CDR=?     GT=0.8550  pred=0.8404  err=0.0146
+
+==============================================================
+SIMULATED DEMENTIA RESULTS  (n=38)
+==============================================================
+Overall MAE = 0.0554  (Pearson r=0.2346, p=0.1563)
+
+CDR-stratified MAE:
+  CDR_0.0       n= 8  MAE=0.0865 ± 0.0512
+  CDR_0.5       n= 8  MAE=0.0987 ± 0.0314
+  CDR_1.0       n= 2  MAE=0.1567 ± 0.0117
+  CDR_None      n=20  MAE=0.0156 ± 0.0100
+
+Atrophy penalty: CDR=1.0 MAE is 1.8× CDR=0.0 MAE
+
+Saved → /home/gk-krishnan/Desktop/VIT Paper/experiments/simulated_dementia/results.json

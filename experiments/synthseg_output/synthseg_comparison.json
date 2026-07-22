@@ -1,0 +1,11 @@
+{
+  "method": "SynthSeg+ single axial T2w (64mT)",
+  "n": 23,
+  "vs_freesurfer_gt": {
+    "pearson_r": 0.9183,
+    "pearson_p": 0.0,
+    "spearman_r": 0.9209,
+    "spearman_p": 0.0,
+    "mae": 0.0051
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "experiment": "simulated_dementia_eval",
+  "description": "OASIS test set (n=38) \u2192 physics 64mT sim \u2192 ViT3D (OASIS fine-tuned, no domain adapt)",
+  "n_evaluated": 38,
+  "n_missing": 0,
+  "n_sim_fail": 0,
+  "mae_overall": 0.0554,
+  "pearson_r": 0.2346,
+  "pearson_p": 0.1563,
+  "cdr_stratified": {
+    "CDR_0.0": {
+      "n": 8,
+      "mae": 0.0865,
+      "mae_std": 0.0512,
+      "subjects": [
+        "OAS1_0404_MR1",
+        "OAS1_0070_MR1",
+        "OAS1_0292_MR1",
+        "OAS1_0062_MR1",
+        "OAS1_0065_MR1",
+        "OAS1_0270_MR1",
+        "OAS1_0228_MR1",
+        "OAS1_0002_MR1"
+      ]
+    },
+    "CDR_0.5": {
+      "n": 8,
+      "mae": 0.0987,
+      "mae_std": 0.0314,
+      "subjects": [
+        "OAS1_0142_MR1",
+        "OAS1_0060_MR1",
+        "OAS1_0307_MR1",
+        "OAS1_0155_MR1",
+        "OAS1_0418_MR1",
+        "OAS1_0098_MR1",
+        "OAS1_0374_MR1",
+        "OAS1_0390_MR1"
+      ]
+    },
+    "CDR_1.0": {
+      "n": 2,
+      "mae": 0.1567,
+      "mae_std": 0.0117,
+      "subjects": [
+        "OAS1_0430_MR1",
+        "OAS1_0056_MR1"
+      ]
+    },
+    "CDR_None": {
+      "n": 20,
+      "mae": 0.0156,
+      "mae_std": 0.01,
+      "subjects": [
+        "OAS1_0145_MR1",
+        "OAS1_0050_MR1",
+        "OAS1_0043_MR1",
+        "OAS1_0147_MR1",
+        "OAS1_0129_MR1",
+        "OAS1_0282_MR1",
+        "OAS1_0340_MR1",
+        "OAS1_0336_MR1",
+        "OAS1_0350_MR1",
+        "OAS1_0249_MR2",
+        "OAS1_0444_MR1",
+        "OAS1_0152_MR1",
+        "OAS1_0190_MR1",
+        "OAS1_0285_MR1",
+        "OAS1_0088_MR1",
+        "OAS1_0403_MR1",
+        "OAS1_0213_MR1",
+        "OAS1_0097_MR1",
+        "OAS1_0239_MR1",
+        "OAS1_0111_MR1"
+      ]
+    }
+  },
+  "per_subject": [
+    {
+      "subject": "OAS1_0145_MR1",
+      "cdr": null,
+      "true_nwbv": 0.831,
+      "pred_nwbv": 0.8396,
+      "abs_error": 0.0086
+    },
+    {
+      "subject": "OAS1_0142_MR1",
+      "cdr": 0.5,
+      "true_nwbv": 0.695,
+      "pred_nwbv": 0.839,
+      "abs_error": 0.144
+    },
+    {
+      "subject": "OAS1_0050_MR1",
+      "cdr": null,
+      "true_nwbv": 0.841,
+      "pred_nwbv": 0.8414,
+      "abs_error": 0.0004
+    },
+    {
+      "subject": "OAS1_0060_MR1",
+      "cdr": 0.5,
+      "true_nwbv": 0.734,
+      "pred_nwbv": 0.8357,
+      "abs_error": 0.1017
+    },
+    {
+      "subject": "OAS1_0404_MR1",
+      "cdr": 0.0,
+      "true_nwbv": 0.776,
+      "pred_nwbv": 0.8398,
+      "abs_error": 0.0638
+    },
+    {
+      "subject": "OAS1_0070_MR1",
+      "cdr": 0.0,
+      "true_nwbv": 0.801,
+      "pred_nwbv": 0.8354,
+      "abs_error": 0.0344
+    },
+    {
+      "subject": "OAS1_0043_MR1",
+      "cdr": null,
+      "true_nwbv": 0.846,
+      "pred_nwbv": 0.8382,
+      "abs_error": 0.0078
+    },
+    {
+      "subject": "OAS1_0147_MR1",
+      "cdr": null,
+      "true_nwbv": 0.845,
+      "pred_nwbv": 0.8398,
+      "abs_error": 0.0052
+    },
+    {
+      "subject": "OAS1_0129_MR1",
+      "cdr": null,
+      "true_nwbv": 0.846,
+      "pred_nwbv": 0.8369,
+      "abs_error": 0.0091
+    },
+    {
+      "subject": "OAS1_0282_MR1",
+      "cdr": null,
+      "true_nwbv": 0.819,
+      "pred_nwbv": 0.8399,
+      "abs_error": 0.0209
+    },
+    {
+      "subject": "OAS1_0340_MR1",
+      "cdr": null,
+      "true_nwbv": 0.853,
+      "pred_nwbv": 0.841,
+      "abs_error": 0.012
+    },
+    {
+      "subject": "OAS1_0336_MR1",
+      "cdr": null,
+      "true_nwbv": 0.852,
+      "pred_nwbv": 0.8389,
+      "abs_error": 0.0131
+    },
+    {
+      "subject": "OAS1_0350_MR1",
+      "cdr": null,
+      "true_nwbv": 0.869,
+      "pred_nwbv": 0.8373,
+      "abs_error": 0.0317
+    },
+    {
+      "subject": "OAS1_0292_MR1",
+      "cdr": 0.0,
+      "true_nwbv": 0.766,
+      "pred_nwbv": 0.8387,
+      "abs_error": 0.0727
+    },
+    {
+      "subject": "OAS1_0062_MR1",
+      "cdr": 0.0,
+      "true_nwbv": 0.754,
+      "pred_nwbv": 0.8396,
+      "abs_error": 0.0856
+    },
+    {
+      "subject": "OAS1_0249_MR2",
+      "cdr": null,
+      "true_nwbv": 0.865,
+      "pred_nwbv": 0.8365,
+      "abs_error": 0.0285
+    },
+    {
+      "subject": "OAS1_0065_MR1",
+      "cdr": 0.0,
+      "true_nwbv": 0.645,
+      "pred_nwbv": 0.8388,
+      "abs_error": 0.1938
+    },
+    {
+      "subject": "OAS1_0430_MR1",
+      "cdr": 1.0,
+      "true_nwbv": 0.687,
+      "pred_nwbv": 0.832,
+      "abs_error": 0.145
+    },
+    {
+      "subject": "OAS1_0307_MR1",
+      "cdr": 0.5,
+      "true_nwbv": 0.735,
+      "pred_nwbv": 0.8375,
+      "abs_error": 0.1025
+    },
+    {
+      "subject": "OAS1_0270_MR1",
+      "cdr": 0.0,
+      "true_nwbv": 0.703,
+      "pred_nwbv": 0.8393,
+      "abs_error": 0.1363
+    },
+    {
+      "subject": "OAS1_0444_MR1",
+      "cdr": null,
+      "true_nwbv": 0.86,
+      "pred_nwbv": 0.836,
+      "abs_error": 0.024
+    },
+    {
+      "subject": "OAS1_0152_MR1",
+      "cdr": null,
+      "true_nwbv": 0.83,
+      "pred_nwbv": 0.8375,
+      "abs_error": 0.0075
+    },
+    {
+      "subject": "OAS1_0155_MR1",
+      "cdr": 0.5,
+      "true_nwbv": 0.753,
+      "pred_nwbv": 0.8369,
+      "abs_error": 0.0839
+    },
+    {
+      "subject": "OAS1_0190_MR1",
+      "cdr": null,
+      "true_nwbv": 0.813,
+      "pred_nwbv": 0.8352,
+      "abs_error": 0.0222
+    },
+    {
+      "subject": "OAS1_0418_MR1",
+      "cdr": 0.5,
+      "true_nwbv": 0.747,
+      "pred_nwbv": 0.8352,
+      "abs_error": 0.0882
+    },
+    {
+      "subject": "OAS1_0098_MR1",
+      "cdr": 0.5,
+      "true_nwbv": 0.693,
+      "pred_nwbv": 0.8393,
+      "abs_error": 0.1463
+    },
+    {
+      "subject": "OAS1_0228_MR1",
+      "cdr": 0.0,
+      "true_nwbv": 0.759,
+      "pred_nwbv": 0.8372,
+      "abs_error": 0.0782
+    },
+    {
+      "subject": "OAS1_0285_MR1",
+      "cdr": null,
+      "true_nwbv": 0.843,
+      "pred_nwbv": 0.8408,
+      "abs_error": 0.0022
+    },
+    {
+      "subject": "OAS1_0002_MR1",
+      "cdr": 0.0,
+      "true_nwbv": 0.81,
+      "pred_nwbv": 0.8374,
+      "abs_error": 0.0274
+    },
+    {
+      "subject": "OAS1_0088_MR1",
+      "cdr": null,
+      "true_nwbv": 0.865,
+      "pred_nwbv": 0.8381,
+      "abs_error": 0.0269
+    },
+    {
+      "subject": "OAS1_0403_MR1",
+      "cdr": null,
+      "true_nwbv": 0.833,
+      "pred_nwbv": 0.8396,
+      "abs_error": 0.0066
+    },
+    {
+      "subject": "OAS1_0374_MR1",
+      "cdr": 0.5,
+      "true_nwbv": 0.76,
+      "pred_nwbv": 0.8369,
+      "abs_error": 0.0769
+    },
+    {
+      "subject": "OAS1_0056_MR1",
+      "cdr": 1.0,
+      "true_nwbv": 0.668,
+      "pred_nwbv": 0.8363,
+      "abs_error": 0.1683
+    },
+    {
+      "subject": "OAS1_0213_MR1",
+      "cdr": null,
+      "true_nwbv": 0.801,
+      "pred_nwbv": 0.8375,
+      "abs_error": 0.0365
+    },
+    {
+      "subject": "OAS1_0097_MR1",
+      "cdr": null,
+      "true_nwbv": 0.816,
+      "pred_nwbv": 0.8353,
+      "abs_error": 0.0193
+    },
+    {
+      "subject": "OAS1_0239_MR1",
+      "cdr": null,
+      "true_nwbv": 0.823,
+      "pred_nwbv": 0.837,
+      "abs_error": 0.014
+    },
+    {
+      "subject": "OAS1_0390_MR1",
+      "cdr": 0.5,
+      "true_nwbv": 0.794,
+      "pred_nwbv": 0.8402,
+      "abs_error": 0.0462
+    },
+    {
+      "subject": "OAS1_0111_MR1",
+      "cdr": null,
+      "true_nwbv": 0.855,
+      "pred_nwbv": 0.8404,
+      "abs_error": 0.0146
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+[11:31:40] CHAIN START
+[11:31:40] waiting for adapter ablation PID 300951
+[13:37:11] EXP1 adapter ablation DONE
+[13:37:11] EXP2 multiseed START
+[16:08:24] EXP2 multiseed DONE (exit 0)
+[16:08:24] EXP3 sensitivity START
+[16:09:43] EXP3 sensitivity DONE (exit 0)
+[16:09:43] CHAIN COMPLETE

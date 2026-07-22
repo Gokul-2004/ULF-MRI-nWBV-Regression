@@ -1,0 +1,108 @@
+/home/gk-krishnan/.local/lib/python3.12/site-packages/torch/cuda/__init__.py:174: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+2025-12-15 02:22:43,370 - training.trainer - INFO - Model created with 24983300 parameters
+2025-12-15 02:22:44,574 - training.trainer - INFO - Epoch 1/100
+================================================================================
+Stage 1: High-field to Low-field Conversion and Comparison
+================================================================================
+Data directory: data/high_field
+Using synthetic data: False
+Device: cuda
+================================================================================
+
+[Step 1] Creating data loaders...
+  Detecting image size from data...
+  Detected size: [128, 128, 128], using standard: [128, 128, 128]
+  Train samples: 4
+  Val samples: 1
+  Test samples: 1
+
+[Step 2] Setting up field conversion...
+Setting up high-field to low-field conversion...
+Field conversion will be applied during data processing
+
+[Step 3] Training hybrid Transformer-GNN model...
+Training hybrid Transformer-GNN model...
+Training:   0%|          | 0/2 [00:00<?, ?it/s]Training:   0%|          | 0/2 [00:42<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 323, in main
+    hybrid_model = train_hybrid_model(config, train_loader, val_loader)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 55, in train_hybrid_model
+    trainer.train(train_loader, val_loader)
+  File "/home/gk-krishnan/Desktop/VIT Paper/training/trainer.py", line 224, in train
+    train_loss = self.train_epoch(train_loader)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/training/trainer.py", line 123, in train_epoch
+    predictions = self.model(volumes)
+                  ^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/models/transformer_gnn/hybrid_model.py", line 327, in forward
+    gnn_out = layer(gnn_out, batch_edge_index)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/models/transformer_gnn/hybrid_model.py", line 114, in forward
+    source_nodes = node_features[edge_index[0]]
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+RuntimeError: [enforce fail at alloc_cpu.cpp:119] err == 0. DefaultCPUAllocator: can't allocate memory: you tried to allocate 68702699520 bytes. Error code 12 (Cannot allocate memory)
+/usr/lib/python3/dist-packages/numpy/lib/function_base.py:2889: RuntimeWarning: Degrees of freedom <= 0 for slice
+  c = cov(x, y, rowvar, dtype=dtype)
+/usr/lib/python3/dist-packages/numpy/lib/function_base.py:2748: RuntimeWarning: divide by zero encountered in divide
+  c *= np.true_divide(1, fact)
+/usr/lib/python3/dist-packages/numpy/lib/function_base.py:2748: RuntimeWarning: invalid value encountered in multiply
+  c *= np.true_divide(1, fact)
+  ✗ Failed to train hybrid model: [enforce fail at alloc_cpu.cpp:119] err == 0. DefaultCPUAllocator: can't allocate memory: you tried to allocate 68702699520 bytes. Error code 12 (Cannot allocate memory)
+
+[Step 4] Training baseline models...
+Training baseline models...
+Training CNN...
+  Epoch 5/20 - Train Loss: 0.0861, Val Loss: 0.0712
+  Epoch 10/20 - Train Loss: 0.0578, Val Loss: 0.0003
+  Epoch 15/20 - Train Loss: 0.1128, Val Loss: 0.0000
+  Epoch 20/20 - Train Loss: 0.0356, Val Loss: 0.0037
+Training ViT...
+  Epoch 5/20 - Train Loss: 0.2538, Val Loss: 1.7898
+  Epoch 10/20 - Train Loss: 0.4784, Val Loss: 0.5955
+  Epoch 15/20 - Train Loss: 0.1701, Val Loss: 0.2237
+  Early stopping at epoch 18
+Training UNet...
+Failed to train U-Net: Given groups=1, weight of size [128, 256, 3, 3, 3], expected input[2, 192, 64, 64, 64] to have 256 channels, but got 192 channels instead
+  ✓ Trained 2 baseline models
+
+[Step 5] Evaluating and comparing models...
+Evaluating and comparing models...
+Evaluating CNN...
+  CNN - MSE: 0.0106, MAE: 0.1029
+Evaluating ViT...
+  ViT - MSE: 0.0112, MAE: 0.1058
+
+================================================================================
+COMPARISON RESULTS
+================================================================================
+================================================================================
+Model Comparison Report
+================================================================================
+
+Best MSE: CNN (0.0106)
+Best MAE: CNN (0.1029)
+Best R2: CNN (0.0000)
+Best CORRELATION: CNN (0.0000)
+
+================================================================================
+Detailed Metrics:
+================================================================================
+        mse       mae      rmse   r2  correlation model
+0  0.010594  0.102928  0.102928  0.0          0.0   CNN
+1  0.011186  0.105762  0.105762  0.0          0.0   ViT
+
+✓ Stage 1 completed successfully!

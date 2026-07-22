@@ -1,0 +1,95 @@
+/home/gk-krishnan/.local/lib/python3.12/site-packages/torch/cuda/__init__.py:174: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+2025-12-15 02:14:02,434 - training.trainer - INFO - Model created with 24983300 parameters
+Traceback (most recent call last):
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 323, in main
+    hybrid_model = train_hybrid_model(config, train_loader, val_loader)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 54, in train_hybrid_model
+    trainer = Trainer(config, device=config['inference']['device'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/training/trainer.py", line 39, in __init__
+    self._setup_optimizer()
+  File "/home/gk-krishnan/Desktop/VIT Paper/training/trainer.py", line 67, in _setup_optimizer
+    self.optimizer = optim.AdamW(
+                     ^^^^^^^^^^^^
+  File "/home/gk-krishnan/.local/lib/python3.12/site-packages/torch/optim/adamw.py", line 37, in __init__
+    super().__init__(
+  File "/home/gk-krishnan/.local/lib/python3.12/site-packages/torch/optim/adam.py", line 57, in __init__
+    if not 0.0 <= lr:
+           ^^^^^^^^^
+TypeError: '<=' not supported between instances of 'float' and 'str'
+/usr/lib/python3/dist-packages/numpy/lib/function_base.py:2889: RuntimeWarning: Degrees of freedom <= 0 for slice
+  c = cov(x, y, rowvar, dtype=dtype)
+/usr/lib/python3/dist-packages/numpy/lib/function_base.py:2748: RuntimeWarning: divide by zero encountered in divide
+  c *= np.true_divide(1, fact)
+/usr/lib/python3/dist-packages/numpy/lib/function_base.py:2748: RuntimeWarning: invalid value encountered in multiply
+  c *= np.true_divide(1, fact)
+/home/gk-krishnan/Desktop/VIT Paper/evaluation/comparison.py:190: FutureWarning: The behavior of Series.idxmax with all-NA values, or any-NA and skipna=False, is deprecated. In a future version this will raise ValueError
+  best_idx = comparison_df[metric].idxmax()
+Traceback (most recent call last):
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 361, in main
+    comparison_df = evaluate_and_compare(config, models, test_loader)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/experiments/stage1/run_stage1.py", line 232, in evaluate_and_compare
+    report = evaluator.generate_report(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/Desktop/VIT Paper/evaluation/comparison.py", line 191, in generate_report
+    best_model = comparison_df.loc[best_idx, 'model']
+                 ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/.local/lib/python3.12/site-packages/pandas/core/indexing.py", line 1184, in __getitem__
+    return self.obj._get_value(*key, takeable=self._takeable)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 4232, in _get_value
+    row = self.index.get_loc(index)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gk-krishnan/.local/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: nan
+================================================================================
+Stage 1: High-field to Low-field Conversion and Comparison
+================================================================================
+Data directory: data/high_field
+Using synthetic data: False
+Device: cuda
+================================================================================
+
+[Step 1] Creating data loaders...
+  Detecting image size from data...
+  Detected size: [128, 128, 128], using standard: [128, 128, 128]
+  Train samples: 4
+  Val samples: 1
+  Test samples: 1
+
+[Step 2] Setting up field conversion...
+Setting up high-field to low-field conversion...
+Field conversion will be applied during data processing
+
+[Step 3] Training hybrid Transformer-GNN model...
+Training hybrid Transformer-GNN model...
+  ✗ Failed to train hybrid model: '<=' not supported between instances of 'float' and 'str'
+
+[Step 4] Training baseline models...
+Training baseline models...
+Training CNN...
+  Epoch 5/20 - Train Loss: 0.0469, Val Loss: 0.1250
+  Epoch 10/20 - Train Loss: 0.0711, Val Loss: 0.0666
+  Epoch 15/20 - Train Loss: 0.0095, Val Loss: 0.0644
+  Epoch 20/20 - Train Loss: 0.0036, Val Loss: 0.0148
+Training ViT...
+  Epoch 5/20 - Train Loss: 0.5235, Val Loss: 2.3147
+  Epoch 10/20 - Train Loss: 0.4967, Val Loss: 0.5291
+  Epoch 15/20 - Train Loss: 0.1500, Val Loss: 0.2366
+  Epoch 20/20 - Train Loss: 0.0626, Val Loss: 0.0602
+Training UNet...
+Failed to train U-Net: Given groups=1, weight of size [128, 256, 3, 3, 3], expected input[2, 192, 64, 64, 64] to have 256 channels, but got 192 channels instead
+  ✓ Trained 2 baseline models
+
+[Step 5] Evaluating and comparing models...
+Evaluating and comparing models...
+Evaluating CNN...
+  CNN - MSE: 0.0044, MAE: 0.0666
+Evaluating ViT...
+  ViT - MSE: 0.0859, MAE: 0.2931
+
+✗ Evaluation failed: nan

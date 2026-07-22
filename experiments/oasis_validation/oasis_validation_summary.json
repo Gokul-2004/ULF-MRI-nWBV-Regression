@@ -1,0 +1,33 @@
+{
+  "n_subjects": 436,
+  "btf_vs_nwbv": {
+    "n": 436,
+    "pearson_r": 0.611,
+    "pearson_p": 0.0,
+    "spearman_r": 0.667,
+    "spearman_p": 0.0,
+    "mae": 0.5786,
+    "rmse": 0.5817
+  },
+  "btf_vs_age": {
+    "n": 235,
+    "pearson_r": 0.108,
+    "pearson_p": 0.099,
+    "spearman_r": 0.104,
+    "spearman_p": 0.1107,
+    "mae": 72.1316,
+    "rmse": 73.1337
+  },
+  "cdr_mean_btf": {
+    "0.0": 0.213,
+    "0.5": 0.213,
+    "1.0": 0.213,
+    "2.0": 0.213
+  },
+  "overall_pred_btf": {
+    "mean": 0.2131,
+    "std": 0.0001,
+    "min": 0.2127,
+    "max": 0.2134
+  }
+}

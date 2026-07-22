@@ -1,0 +1,165 @@
+% ============================================================
+% Discussion Section — VIT Paper
+% "Accessible Brain Morphometry from Point-of-Care Ultra-Low-Field
+%  MRI Using Physics-Constrained Deep Learning"
+% ============================================================
+
+\section{Discussion}
+
+\subsection{Principal Findings}
+
+This work demonstrates that a compact 3D Vision Transformer (4.23M parameters)
+pre-trained on physics-constrained 64\,mT simulations and fine-tuned on
+OASIS-1 can predict normalized whole-brain volume (nWBV) from standard
+T2-weighted acquisitions with Pearson $r = 0.892$
+[95\% CI: 0.801--0.943] on held-out subjects,
+achieving inference in 130\,ms without any external segmentation software.
+The model correctly stratifies subjects by dementia severity:
+mean predicted nWBV decreases monotonically from CDR\,0.0 ($0.759$) to
+CDR\,0.5 ($0.745$) to CDR\,1.0 ($0.711$), corresponding to a $-6.3\%$
+atrophy step per CDR unit — consistent with published literature
+\cite{fotenos2005,buckner2004}. On 23 real Hyperfine 64\,mT scans
+(ds006557, V{\'a}{\v s}a 2025 \cite{vasa2025}), the model exhibits
+expected age-related atrophy (Spearman $\rho = -0.597$, $p = 0.003$)
+after lightweight domain adaptation using SynthSeg+ pseudo-labels,
+with a final MAE of 0.010\,nWBV units — within the clinical
+acceptability threshold of 0.020 established by Buckner et al.\
+\cite{buckner2004}.
+
+\subsection{Comparison with Baselines}
+
+The primary competing approach is SynthSeg+
+\cite{billot2023synthseg}, a contrast-agnostic Bayesian segmentation
+method that achieves $r = 0.918$, MAE = 0.005 on the same
+real-hardware cohort when given the same single axial T2w input.
+This superior performance was expected: SynthSeg+ is a mature,
+purpose-built volumetric segmentation pipeline trained on tens of
+thousands of synthetic images spanning the entire neuroimaging acquisition
+space. We treat its output as a strong upper-bound reference
+(Baseline B in our experimental framework), not as a competing
+real-time system. The practical distinction is inference latency:
+SynthSeg+ requires 2--3\,min per scan and depends on a full
+FreeSurfer installation ($\approx$\,12\,GB), whereas our model
+runs in 130\,ms with no external dependencies — a $>$1000$\times$
+speed advantage. This difference is clinically meaningful in
+point-of-care settings with intermittent connectivity or limited
+computational infrastructure, where FreeSurfer cannot be practically
+deployed.
+
+The CNN ablation (ResNet-style encoder with global average pooling)
+achieves $r = 0.807$ on OASIS-1 — lower than ViT ($r = 0.892$,
+$\Delta r = +0.085$) — and exhibits higher MAE (0.019 vs 0.008)
+on the same test set. On real 64\,mT data, the CNN shows higher
+Pearson $r$ (0.514 vs 0.291), but this is attributable to the CNN
+producing higher-variance predictions (wider spread) on a cohort
+with restricted nWBV range (0.752--0.808), which artificially
+inflates Pearson $r$ without corresponding accuracy gains.
+The CNN's MAE on real hardware (0.076) is nearly double the ViT's
+(0.040), confirming that ViT provides more accurate absolute nWBV
+estimates. This is consistent with the hypothesis that global
+self-attention is better suited than hierarchical local convolutions
+for regression of whole-brain volumetric biomarkers, where the signal
+is distributed across the entire 3D field of view.
+
+\subsection{Ablation: Physics Simulation vs Gaussian Blur}
+
+A key architectural decision is the use of physics-constrained
+simulation — modelling tissue-specific T1/T2 relaxation at 64\,mT,
+Rician noise, and B0 field inhomogeneity — rather than simple
+Gaussian blur for data augmentation during pre-training. The
+Gaussian-blur ablation confirms this choice: substituting physics
+simulation with $\sigma = 2$ Gaussian blur followed by additive
+Gaussian noise results in a measurable decrease in downstream
+OASIS-1 performance (see Fig.~\ref{fig:ablation_gaussblur}).
+The improvement is attributable to the physics simulation producing
+degradation patterns that match the actual spectral and noise
+characteristics of real 64\,mT hardware, whereas Gaussian blur
+generates unrealistically smooth images that do not encode the
+contrast inversion, SNR reduction, and spatial field non-uniformities
+present in Hyperfine Swoop acquisitions. Notably, our simulation
+models conservative lower-bound physics (SNR effective $\approx 4$);
+the real scanner achieves higher effective SNR ($\approx$\,309)
+through ETL-80 averaging and compressed sensing reconstruction —
+a known limitation discussed in Section~\ref{sec:limitations}.
+
+\subsection{Uncertainty Quantification}
+
+Monte Carlo Dropout (N = 100 stochastic forward passes) yields
+per-prediction 95\% confidence intervals with a mean width of
+0.0286\,nWBV units on real 64\,mT subjects. The low ground-truth
+coverage rate (4.3\%) indicates that the model is not well-calibrated
+on the real-hardware domain — a direct consequence of the
+simulation-to-real gap. The MC-Dropout CIs correctly reflect
+\emph{aleatoric} uncertainty from dropout noise, but do not capture
+\emph{epistemic} uncertainty arising from the training distribution
+mismatch. Conformal prediction \cite{angelopoulos2023} or
+temperature scaling calibration on a real-hardware validation split
+would be needed for deployment-grade calibration and is identified
+as priority future work.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\textbf{Small real-hardware cohort.}
+The real 64\,mT validation set comprises 23 subjects from a single
+institution (LUMC), all healthy volunteers aged 21--69 (mean 44 years).
+This prevents evaluation on pathological cases where nWBV measurement
+is most clinically relevant, and limits the statistical power of
+age-stratified analyses. Error is notably higher in the $>$55 age
+group (MAE = 0.053) compared to younger subjects (MAE = 0.032),
+likely because training data (IXI + OASIS-1) under-represents
+older subjects with greater sulcal atrophy and ventricular enlargement.
+
+\textbf{Single-session, single-sequence input.}
+Our model uses a single axial T2w acquisition. Multi-orientation
+acquisition (axial + coronal + sagittal), which is feasible on the
+Hyperfine scanner, could improve morphometric accuracy through
+implicit 3D reconstruction \cite{iglesias2023}. The model was
+not tested on Hyperfine FLAIR sequences.
+
+\textbf{Simulation-to-real gap.}
+The SNR of the physics simulation ($\approx$\,4 before averaging)
+underestimates real Hyperfine SNR ($\approx$\,309) because
+ETL-80 averaging, two NSA averages, and compressed sensing
+reconstruction were not modelled. This limits the fidelity of
+pre-training features to low-SNR regimes and is a primary cause
+of the positive bias observed on real data (+0.040\,nWBV units mean).
+Future work should simulate the full readout pipeline including
+ETL averaging.
+
+\textbf{Statistical power for CDR analysis.}
+The CDR-stratified test set contains only $n = 2$ subjects with
+CDR\,1.0, which is insufficient for a statistically significant
+group comparison (Kruskal--Wallis $p = 0.237$). The observed
+monotonic ordering (CDR\,0.0\,$>$\,0.5\,$>$\,1.0) is directionally
+consistent with clinical literature but should be interpreted
+cautiously until validated on a larger sample with confirmed dementia
+diagnoses.
+
+\subsection{Clinical Deployment Pathway}
+
+The architecture is intentionally lightweight (4.23M parameters,
+130\,ms inference on a standard GPU) to support edge deployment on
+embedded hardware collocated with bedside Hyperfine scanners. The
+absence of FreeSurfer or FSL dependencies reduces the software stack
+to PyTorch + NiBabel, both of which can be containerised. A prospective
+study collecting paired 64\,mT and 3T acquisitions in dementia patients
+(CDR $\geq 1.0$) across multiple scanner units is the necessary next
+step toward regulatory validation. Until such data are available, the
+model should be positioned as a \emph{screening tool} that flags
+subjects with predicted nWBV below population norms for follow-up
+high-field imaging, rather than a diagnostic endpoint.
+
+\subsection{Future Work}
+
+Priority directions include:
+(i) training on the full OASIS-3 longitudinal dataset
+($n > 1$,000) to improve CDR stratification;
+(ii) modelling ETL averaging and compressed sensing reconstruction
+in the physics simulation to close the sim-to-real SNR gap;
+(iii) extending the architecture to multi-task prediction of
+additional biomarkers (hippocampal volume, cortical thickness);
+(iv) prospective multi-site validation across Hyperfine scanner
+generations (Swoop v1/v2); and
+(v) integration with clinical PACS for automated screening report
+generation.

@@ -1,0 +1,807 @@
+[
+  {
+    "subject": "sub-HYPE00",
+    "real_snr": {
+      "snr": 338.0,
+      "cnr": 434.51,
+      "noise_std": 0.001,
+      "wm_mean": 0.5738,
+      "gm_mean": 0.1393,
+      "contrast_ratio": 4.1187
+    },
+    "physics": {
+      "ssim": 0.0674,
+      "psnr": 12.67,
+      "ncc": 0.4898,
+      "mse": 0.054084,
+      "snr": 32.64,
+      "cnr": 47.46,
+      "noise_std": 0.01063,
+      "snr_err": 0.9034,
+      "cnr_err": 0.8908,
+      "noise_err": 0.00963
+    },
+    "arnold": {
+      "ssim": 0.1812,
+      "psnr": 12.0,
+      "ncc": 0.479,
+      "mse": 0.063092,
+      "snr": 287.72,
+      "cnr": 696.26,
+      "noise_std": 0.001,
+      "snr_err": 0.1488,
+      "cnr_err": 0.6024,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE01",
+    "real_snr": {
+      "snr": 323.72,
+      "cnr": 453.1,
+      "noise_std": 0.001,
+      "wm_mean": 0.5647,
+      "gm_mean": 0.1115,
+      "contrast_ratio": 5.062
+    },
+    "physics": {
+      "ssim": 0.0786,
+      "psnr": 13.31,
+      "ncc": 0.5533,
+      "mse": 0.046654,
+      "snr": 32.67,
+      "cnr": 47.52,
+      "noise_std": 0.01036,
+      "snr_err": 0.8991,
+      "cnr_err": 0.8951,
+      "noise_err": 0.00936
+    },
+    "arnold": {
+      "ssim": 0.2222,
+      "psnr": 12.9,
+      "ncc": 0.5917,
+      "mse": 0.051243,
+      "snr": 291.04,
+      "cnr": 708.68,
+      "noise_std": 0.001,
+      "snr_err": 0.101,
+      "cnr_err": 0.5641,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE02",
+    "real_snr": {
+      "snr": 347.75,
+      "cnr": 401.74,
+      "noise_std": 0.001,
+      "wm_mean": 0.57,
+      "gm_mean": 0.1683,
+      "contrast_ratio": 3.3875
+    },
+    "physics": {
+      "ssim": 0.089,
+      "psnr": 12.76,
+      "ncc": 0.5213,
+      "mse": 0.052934,
+      "snr": 34.73,
+      "cnr": 48.02,
+      "noise_std": 0.01074,
+      "snr_err": 0.9001,
+      "cnr_err": 0.8805,
+      "noise_err": 0.00974
+    },
+    "arnold": {
+      "ssim": 0.1402,
+      "psnr": 11.86,
+      "ncc": 0.4807,
+      "mse": 0.065178,
+      "snr": 307.85,
+      "cnr": 705.88,
+      "noise_std": 0.001,
+      "snr_err": 0.1147,
+      "cnr_err": 0.7571,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE03",
+    "real_snr": {
+      "snr": 299.51,
+      "cnr": 457.93,
+      "noise_std": 0.001,
+      "wm_mean": 0.5483,
+      "gm_mean": 0.0904,
+      "contrast_ratio": 6.0677
+    },
+    "physics": {
+      "ssim": 0.0778,
+      "psnr": 12.84,
+      "ncc": 0.5088,
+      "mse": 0.051991,
+      "snr": 31.9,
+      "cnr": 46.66,
+      "noise_std": 0.01064,
+      "snr_err": 0.8935,
+      "cnr_err": 0.8981,
+      "noise_err": 0.00964
+    },
+    "arnold": {
+      "ssim": 0.2418,
+      "psnr": 12.97,
+      "ncc": 0.5339,
+      "mse": 0.050516,
+      "snr": 257.19,
+      "cnr": 645.37,
+      "noise_std": 0.001,
+      "snr_err": 0.1413,
+      "cnr_err": 0.4093,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE04",
+    "real_snr": {
+      "snr": 360.51,
+      "cnr": 483.98,
+      "noise_std": 0.001,
+      "wm_mean": 0.6157,
+      "gm_mean": 0.1317,
+      "contrast_ratio": 4.6746
+    },
+    "physics": {
+      "ssim": 0.0614,
+      "psnr": 12.93,
+      "ncc": 0.5201,
+      "mse": 0.050887,
+      "snr": 30.71,
+      "cnr": 45.47,
+      "noise_std": 0.01073,
+      "snr_err": 0.9148,
+      "cnr_err": 0.906,
+      "noise_err": 0.00973
+    },
+    "arnold": {
+      "ssim": 0.2014,
+      "psnr": 12.03,
+      "ncc": 0.5134,
+      "mse": 0.06264,
+      "snr": 274.46,
+      "cnr": 704.07,
+      "noise_std": 0.001,
+      "snr_err": 0.2387,
+      "cnr_err": 0.4548,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE05",
+    "real_snr": {
+      "snr": 317.39,
+      "cnr": 419.46,
+      "noise_std": 0.001,
+      "wm_mean": 0.5467,
+      "gm_mean": 0.1273,
+      "contrast_ratio": 4.2955
+    },
+    "physics": {
+      "ssim": 0.0415,
+      "psnr": 12.08,
+      "ncc": 0.3568,
+      "mse": 0.061927,
+      "snr": 29.99,
+      "cnr": 45.1,
+      "noise_std": 0.01061,
+      "snr_err": 0.9055,
+      "cnr_err": 0.8925,
+      "noise_err": 0.00961
+    },
+    "arnold": {
+      "ssim": 0.2503,
+      "psnr": 11.58,
+      "ncc": 0.3831,
+      "mse": 0.069575,
+      "snr": 262.35,
+      "cnr": 687.19,
+      "noise_std": 0.001,
+      "snr_err": 0.1734,
+      "cnr_err": 0.6383,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE06",
+    "real_snr": {
+      "snr": 337.72,
+      "cnr": 452.25,
+      "noise_std": 0.001,
+      "wm_mean": 0.5803,
+      "gm_mean": 0.128,
+      "contrast_ratio": 4.5332
+    },
+    "physics": {
+      "ssim": 0.0901,
+      "psnr": 12.23,
+      "ncc": 0.5103,
+      "mse": 0.059839,
+      "snr": 34.91,
+      "cnr": 48.1,
+      "noise_std": 0.01118,
+      "snr_err": 0.8966,
+      "cnr_err": 0.8936,
+      "noise_err": 0.01018
+    },
+    "arnold": {
+      "ssim": 0.2026,
+      "psnr": 12.52,
+      "ncc": 0.5187,
+      "mse": 0.055992,
+      "snr": 266.49,
+      "cnr": 638.22,
+      "noise_std": 0.001,
+      "snr_err": 0.2109,
+      "cnr_err": 0.4112,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE07",
+    "real_snr": {
+      "snr": 300.24,
+      "cnr": 474.69,
+      "noise_std": 0.001,
+      "wm_mean": 0.5591,
+      "gm_mean": 0.0844,
+      "contrast_ratio": 6.6241
+    },
+    "physics": {
+      "ssim": 0.089,
+      "psnr": 12.8,
+      "ncc": 0.5304,
+      "mse": 0.052499,
+      "snr": 32.37,
+      "cnr": 46.66,
+      "noise_std": 0.01088,
+      "snr_err": 0.8922,
+      "cnr_err": 0.9017,
+      "noise_err": 0.00988
+    },
+    "arnold": {
+      "ssim": 0.2262,
+      "psnr": 12.77,
+      "ncc": 0.5376,
+      "mse": 0.052814,
+      "snr": 271.81,
+      "cnr": 668.55,
+      "noise_std": 0.001,
+      "snr_err": 0.0947,
+      "cnr_err": 0.4084,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE08",
+    "real_snr": {
+      "snr": 319.06,
+      "cnr": 481.07,
+      "noise_std": 0.001,
+      "wm_mean": 0.5795,
+      "gm_mean": 0.0985,
+      "contrast_ratio": 5.8857
+    },
+    "physics": {
+      "ssim": 0.0673,
+      "psnr": 12.82,
+      "ncc": 0.5093,
+      "mse": 0.052197,
+      "snr": 31.33,
+      "cnr": 46.18,
+      "noise_std": 0.01071,
+      "snr_err": 0.9018,
+      "cnr_err": 0.904,
+      "noise_err": 0.00971
+    },
+    "arnold": {
+      "ssim": 0.2094,
+      "psnr": 12.32,
+      "ncc": 0.5083,
+      "mse": 0.058645,
+      "snr": 275.86,
+      "cnr": 693.32,
+      "noise_std": 0.001,
+      "snr_err": 0.1354,
+      "cnr_err": 0.4412,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE09",
+    "real_snr": {
+      "snr": 353.1,
+      "cnr": 470.67,
+      "noise_std": 0.001,
+      "wm_mean": 0.6032,
+      "gm_mean": 0.1325,
+      "contrast_ratio": 4.5511
+    },
+    "physics": {
+      "ssim": 0.0726,
+      "psnr": 12.91,
+      "ncc": 0.5297,
+      "mse": 0.051124,
+      "snr": 32.01,
+      "cnr": 46.67,
+      "noise_std": 0.01077,
+      "snr_err": 0.9093,
+      "cnr_err": 0.9008,
+      "noise_err": 0.00977
+    },
+    "arnold": {
+      "ssim": 0.174,
+      "psnr": 11.95,
+      "ncc": 0.493,
+      "mse": 0.063851,
+      "snr": 273.29,
+      "cnr": 685.97,
+      "noise_std": 0.001,
+      "snr_err": 0.226,
+      "cnr_err": 0.4574,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE10",
+    "real_snr": {
+      "snr": 308.19,
+      "cnr": 421.24,
+      "noise_std": 0.001,
+      "wm_mean": 0.5415,
+      "gm_mean": 0.1202,
+      "contrast_ratio": 4.5037
+    },
+    "physics": {
+      "ssim": 0.0671,
+      "psnr": 12.3,
+      "ncc": 0.4778,
+      "mse": 0.058931,
+      "snr": 33.96,
+      "cnr": 47.48,
+      "noise_std": 0.01089,
+      "snr_err": 0.8898,
+      "cnr_err": 0.8873,
+      "noise_err": 0.00989
+    },
+    "arnold": {
+      "ssim": 0.1563,
+      "psnr": 12.3,
+      "ncc": 0.4572,
+      "mse": 0.058899,
+      "snr": 277.64,
+      "cnr": 650.37,
+      "noise_std": 0.001,
+      "snr_err": 0.0991,
+      "cnr_err": 0.5439,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE11",
+    "real_snr": {
+      "snr": 293.9,
+      "cnr": 459.42,
+      "noise_std": 0.001,
+      "wm_mean": 0.5422,
+      "gm_mean": 0.0827,
+      "contrast_ratio": 6.5528
+    },
+    "physics": {
+      "ssim": 0.0548,
+      "psnr": 12.14,
+      "ncc": 0.5109,
+      "mse": 0.061035,
+      "snr": 34.82,
+      "cnr": 47.72,
+      "noise_std": 0.01109,
+      "snr_err": 0.8815,
+      "cnr_err": 0.8961,
+      "noise_err": 0.01009
+    },
+    "arnold": {
+      "ssim": 0.2579,
+      "psnr": 13.46,
+      "ncc": 0.5631,
+      "mse": 0.045131,
+      "snr": 265.04,
+      "cnr": 614.41,
+      "noise_std": 0.001,
+      "snr_err": 0.0982,
+      "cnr_err": 0.3374,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE12",
+    "real_snr": {
+      "snr": 288.13,
+      "cnr": 441.57,
+      "noise_std": 0.001,
+      "wm_mean": 0.5274,
+      "gm_mean": 0.0858,
+      "contrast_ratio": 6.1461
+    },
+    "physics": {
+      "ssim": 0.0722,
+      "psnr": 12.39,
+      "ncc": 0.5074,
+      "mse": 0.057653,
+      "snr": 34.4,
+      "cnr": 48.13,
+      "noise_std": 0.01074,
+      "snr_err": 0.8806,
+      "cnr_err": 0.891,
+      "noise_err": 0.00974
+    },
+    "arnold": {
+      "ssim": 0.2638,
+      "psnr": 13.0,
+      "ncc": 0.5411,
+      "mse": 0.050129,
+      "snr": 282.6,
+      "cnr": 656.29,
+      "noise_std": 0.001,
+      "snr_err": 0.0192,
+      "cnr_err": 0.4863,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE13",
+    "real_snr": {
+      "snr": 287.92,
+      "cnr": 471.42,
+      "noise_std": 0.001,
+      "wm_mean": 0.5437,
+      "gm_mean": 0.0723,
+      "contrast_ratio": 7.5229
+    },
+    "physics": {
+      "ssim": 0.0809,
+      "psnr": 12.89,
+      "ncc": 0.5218,
+      "mse": 0.05137,
+      "snr": 31.06,
+      "cnr": 46.0,
+      "noise_std": 0.01086,
+      "snr_err": 0.8921,
+      "cnr_err": 0.9024,
+      "noise_err": 0.00986
+    },
+    "arnold": {
+      "ssim": 0.2274,
+      "psnr": 12.91,
+      "ncc": 0.5131,
+      "mse": 0.051178,
+      "snr": 247.02,
+      "cnr": 631.74,
+      "noise_std": 0.001,
+      "snr_err": 0.1421,
+      "cnr_err": 0.3401,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE14",
+    "real_snr": {
+      "snr": 292.44,
+      "cnr": 427.93,
+      "noise_std": 0.001,
+      "wm_mean": 0.5352,
+      "gm_mean": 0.1073,
+      "contrast_ratio": 4.9895
+    },
+    "physics": {
+      "ssim": 0.0629,
+      "psnr": 12.64,
+      "ncc": 0.5006,
+      "mse": 0.054446,
+      "snr": 33.84,
+      "cnr": 48.01,
+      "noise_std": 0.01042,
+      "snr_err": 0.8843,
+      "cnr_err": 0.8878,
+      "noise_err": 0.00942
+    },
+    "arnold": {
+      "ssim": 0.2509,
+      "psnr": 13.15,
+      "ncc": 0.552,
+      "mse": 0.048454,
+      "snr": 292.87,
+      "cnr": 655.37,
+      "noise_std": 0.001,
+      "snr_err": 0.0015,
+      "cnr_err": 0.5315,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE15",
+    "real_snr": {
+      "snr": 280.19,
+      "cnr": 449.34,
+      "noise_std": 0.001,
+      "wm_mean": 0.5258,
+      "gm_mean": 0.0764,
+      "contrast_ratio": 6.8789
+    },
+    "physics": {
+      "ssim": 0.0833,
+      "psnr": 12.64,
+      "ncc": 0.5342,
+      "mse": 0.054463,
+      "snr": 32.88,
+      "cnr": 46.7,
+      "noise_std": 0.01102,
+      "snr_err": 0.8827,
+      "cnr_err": 0.8961,
+      "noise_err": 0.01002
+    },
+    "arnold": {
+      "ssim": 0.2664,
+      "psnr": 13.87,
+      "ncc": 0.6019,
+      "mse": 0.040988,
+      "snr": 263.16,
+      "cnr": 630.33,
+      "noise_std": 0.001,
+      "snr_err": 0.0608,
+      "cnr_err": 0.4028,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE16",
+    "real_snr": {
+      "snr": 260.56,
+      "cnr": 461.47,
+      "noise_std": 0.001,
+      "wm_mean": 0.5146,
+      "gm_mean": 0.0531,
+      "contrast_ratio": 9.6828
+    },
+    "physics": {
+      "ssim": 0.0657,
+      "psnr": 12.86,
+      "ncc": 0.5078,
+      "mse": 0.051799,
+      "snr": 30.28,
+      "cnr": 45.74,
+      "noise_std": 0.01074,
+      "snr_err": 0.8838,
+      "cnr_err": 0.9009,
+      "noise_err": 0.00974
+    },
+    "arnold": {
+      "ssim": 0.2973,
+      "psnr": 13.97,
+      "ncc": 0.5606,
+      "mse": 0.040125,
+      "snr": 213.58,
+      "cnr": 560.34,
+      "noise_std": 0.001,
+      "snr_err": 0.1803,
+      "cnr_err": 0.2143,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE17",
+    "real_snr": {
+      "snr": 283.68,
+      "cnr": 375.66,
+      "noise_std": 0.001,
+      "wm_mean": 0.501,
+      "gm_mean": 0.1254,
+      "contrast_ratio": 3.9964
+    },
+    "physics": {
+      "ssim": 0.0678,
+      "psnr": 11.99,
+      "ncc": 0.4522,
+      "mse": 0.063185,
+      "snr": 35.45,
+      "cnr": 48.19,
+      "noise_std": 0.01071,
+      "snr_err": 0.875,
+      "cnr_err": 0.8717,
+      "noise_err": 0.00971
+    },
+    "arnold": {
+      "ssim": 0.2128,
+      "psnr": 13.29,
+      "ncc": 0.5241,
+      "mse": 0.04692,
+      "snr": 283.11,
+      "cnr": 622.2,
+      "noise_std": 0.001,
+      "snr_err": 0.002,
+      "cnr_err": 0.6563,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE18",
+    "real_snr": {
+      "snr": 307.15,
+      "cnr": 406.82,
+      "noise_std": 0.001,
+      "wm_mean": 0.533,
+      "gm_mean": 0.1262,
+      "contrast_ratio": 4.2242
+    },
+    "physics": {
+      "ssim": 0.0581,
+      "psnr": 12.12,
+      "ncc": 0.4717,
+      "mse": 0.061446,
+      "snr": 34.9,
+      "cnr": 47.38,
+      "noise_std": 0.01101,
+      "snr_err": 0.8864,
+      "cnr_err": 0.8835,
+      "noise_err": 0.01001
+    },
+    "arnold": {
+      "ssim": 0.2069,
+      "psnr": 13.05,
+      "ncc": 0.5319,
+      "mse": 0.049545,
+      "snr": 278.97,
+      "cnr": 633.45,
+      "noise_std": 0.001,
+      "snr_err": 0.0917,
+      "cnr_err": 0.5571,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE19",
+    "real_snr": {
+      "snr": 334.31,
+      "cnr": 434.96,
+      "noise_std": 0.001,
+      "wm_mean": 0.5721,
+      "gm_mean": 0.1371,
+      "contrast_ratio": 4.1727
+    },
+    "physics": {
+      "ssim": 0.0447,
+      "psnr": 12.38,
+      "ncc": 0.4077,
+      "mse": 0.057812,
+      "snr": 30.03,
+      "cnr": 45.04,
+      "noise_std": 0.01053,
+      "snr_err": 0.9102,
+      "cnr_err": 0.8965,
+      "noise_err": 0.00953
+    },
+    "arnold": {
+      "ssim": 0.2381,
+      "psnr": 11.55,
+      "ncc": 0.3909,
+      "mse": 0.070044,
+      "snr": 265.01,
+      "cnr": 690.08,
+      "noise_std": 0.001,
+      "snr_err": 0.2073,
+      "cnr_err": 0.5865,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE20",
+    "real_snr": {
+      "snr": 294.05,
+      "cnr": 470.03,
+      "noise_std": 0.001,
+      "wm_mean": 0.5474,
+      "gm_mean": 0.0773,
+      "contrast_ratio": 7.0792
+    },
+    "physics": {
+      "ssim": 0.0693,
+      "psnr": 13.2,
+      "ncc": 0.5399,
+      "mse": 0.047908,
+      "snr": 29.69,
+      "cnr": 44.56,
+      "noise_std": 0.01092,
+      "snr_err": 0.899,
+      "cnr_err": 0.9052,
+      "noise_err": 0.00992
+    },
+    "arnold": {
+      "ssim": 0.2796,
+      "psnr": 13.27,
+      "ncc": 0.5641,
+      "mse": 0.047051,
+      "snr": 246.55,
+      "cnr": 647.1,
+      "noise_std": 0.001,
+      "snr_err": 0.1615,
+      "cnr_err": 0.3767,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE21",
+    "real_snr": {
+      "snr": 289.5,
+      "cnr": 404.27,
+      "noise_std": 0.001,
+      "wm_mean": 0.5156,
+      "gm_mean": 0.1113,
+      "contrast_ratio": 4.631
+    },
+    "physics": {
+      "ssim": 0.0549,
+      "psnr": 12.46,
+      "ncc": 0.432,
+      "mse": 0.056814,
+      "snr": 30.53,
+      "cnr": 45.47,
+      "noise_std": 0.01074,
+      "snr_err": 0.8945,
+      "cnr_err": 0.8875,
+      "noise_err": 0.00974
+    },
+    "arnold": {
+      "ssim": 0.2723,
+      "psnr": 13.07,
+      "ncc": 0.4556,
+      "mse": 0.049282,
+      "snr": 216.61,
+      "cnr": 563.01,
+      "noise_std": 0.001,
+      "snr_err": 0.2518,
+      "cnr_err": 0.3927,
+      "noise_err": 0.0
+    }
+  },
+  {
+    "subject": "sub-HYPE22",
+    "real_snr": {
+      "snr": 296.92,
+      "cnr": 432.89,
+      "noise_std": 0.001,
+      "wm_mean": 0.5286,
+      "gm_mean": 0.0957,
+      "contrast_ratio": 5.5254
+    },
+    "physics": {
+      "ssim": 0.0843,
+      "psnr": 13.04,
+      "ncc": 0.5304,
+      "mse": 0.049609,
+      "snr": 32.33,
+      "cnr": 46.78,
+      "noise_std": 0.01066,
+      "snr_err": 0.8911,
+      "cnr_err": 0.8919,
+      "noise_err": 0.00966
+    },
+    "arnold": {
+      "ssim": 0.2298,
+      "psnr": 12.67,
+      "ncc": 0.5634,
+      "mse": 0.054053,
+      "snr": 301.28,
+      "cnr": 732.27,
+      "noise_std": 0.001,
+      "snr_err": 0.0147,
+      "cnr_err": 0.6916,
+      "noise_err": 0.0
+    }
+  }
+]
