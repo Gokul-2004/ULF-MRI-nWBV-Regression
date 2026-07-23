@@ -1,0 +1,32 @@
+{
+  "experiment": "permutation_test_input_dependence",
+  "addresses": [
+    "R1.1",
+    "R3.4",
+    "R3.5"
+  ],
+  "n_subjects": 23,
+  "n_permutations": 20000,
+  "seed": 42,
+  "constant_mean_baseline": {
+    "model_loocv_mae": 0.0134,
+    "global_mean_mae": 0.0122,
+    "leave_one_out_mean_mae": 0.0128,
+    "note": "Model MAE is comparable to the constant-mean baseline; the evidence for input-dependence is the ICC permutation test below."
+  },
+  "test1_intersession_icc": {
+    "statistic": "ICC(3,1) between per-subject HFC and HFE predictions",
+    "observed_icc": 0.6146,
+    "null_mean_icc": -0.0,
+    "p_value": 0.0024,
+    "significant_0.05": true,
+    "interpretation": "Per-subject predictions agree across two independent sessions far beyond chance => input-dependent, not a constant/mean predictor."
+  },
+  "test2_anatomical_tracking": {
+    "statistic": "Pearson r between predicted and true nWBV",
+    "observed_r": -0.1191,
+    "p_value": 0.59007,
+    "significant_0.05": false,
+    "interpretation": "The reproducible signal does NOT track true nWBV; reported transparently, consistent with the feasibility-baseline framing."
+  }
+}
