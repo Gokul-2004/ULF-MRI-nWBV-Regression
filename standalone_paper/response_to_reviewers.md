@@ -33,8 +33,16 @@ behaviour is the inter-session ICC(3,1) and the new adapter-strategy ablation
 explicit.
 
 **(c)** Reinforced feasibility framing in the abstract, §I, and §VI; the
-constant-mean comparison is stated plainly wherever the primary MAE appears,
-and the claim of anatomy-dependent learning now rests on ICC + adapter ablation.
+constant-mean comparison is stated plainly wherever the primary MAE appears. We
+have additionally added a **permutation test** (20{,}000 permutations) that
+provides direct statistical evidence of input-dependent behaviour: the observed
+inter-session ICC(3,1) between the model's HFC and HFE per-subject predictions
+is $0.615$ versus a permutation-null mean of $\approx 0$, giving $p = 0.002$. A
+constant or mean predictor cannot produce per-subject predictions that agree
+across two independent sessions beyond chance, so this rules out the trivial-
+predictor explanation. We also report transparently that this reproducible
+signal does not track true nWBV ($r = -0.12$, n.s.), consistent with the
+feasibility-baseline framing.
 
 ### R1.2 — Only 23 real subjects; discuss small-sample impact
 
@@ -82,14 +90,16 @@ physics-vs-blur pre-training ablation was already present (Table III). We
 address the architecture and self-supervised-objective questions in response to
 Reviewer 2 (R2.2, R2.3).
 
-**(c)** New adapter-strategy ablation table added to §V. Under the identical
+**(c)** New four-way adapter-strategy ablation added to §V. Under the identical
 cross-session LOOCV protocol: head-only (257 params) MAE $= 0.0133$
 [0.0099, 0.0170]; LayerNorm+head (769 params) MAE $= 0.0137$ [0.0104, 0.0172];
-full fine-tuning (4.23 M params) MAE $= 0.0123$ [0.0091, 0.0158]. The three
-95\% confidence intervals overlap substantially, so the strategies are
-statistically indistinguishable at $n = 23$; LayerNorm+head is retained for
-its parameter efficiency in the compute-constrained deployment setting rather
-than as the single lowest-MAE option, which we now state explicitly.
+LoRA ($r=4$, 41{,}217 params) MAE $= 0.0128$ [0.0099, 0.0160]; full fine-tuning
+(4.23 M params) MAE $= 0.0123$ [0.0091, 0.0158]. All four 95\% confidence
+intervals overlap, so no strategy is demonstrably superior at $n = 23$;
+notably, parameter-efficient LoRA recovers most of the full-fine-tuning benefit
+at $\approx 100\times$ fewer trainable parameters. We report the full comparison
+transparently and retain LayerNorm+head for its extreme parameter efficiency
+rather than presenting it as the single lowest-MAE option.
 
 ### R1.6 — Dementia evaluation relies on simulation and few pathological subjects
 
@@ -107,8 +117,13 @@ are severely overconfident under domain shift, are reported for transparency
 only, and are explicitly excluded from any accuracy or clinical claim.
 
 **(c)** §V uncertainty subsection and Fig. (calibration) now state
-"overconfident — intervals too narrow"; conformal calibration on prospective
-data is identified as the remedy and future work.
+"overconfident --- intervals too narrow." We have additionally **implemented
+split-conformal calibration** on the subject-independent LOOCV residuals, which
+produces well-calibrated intervals: empirical coverage $91.3\%$ at the $90\%$
+target and $95.7\%$ at the $95\%$ target, versus $4.3\%$ for MC Dropout. This
+converts the miscalibration from an unresolved limitation into a demonstrated
+remedy; the conformal intervals are now reported alongside the MC Dropout
+result.
 
 ### R1.8 — Strengthen statistical comparisons with significance tests
 
@@ -209,18 +224,20 @@ removed; SSL comparison added to future work.
 
 ### R2 (adapter design based on intuition)
 
-**(b)** The LayerNorm+head choice is now supported by the new adapter-strategy
-ablation (R1.5), which compares it directly against head-only (257 params) and
-full fine-tuning (4.23 M params) under the same LOOCV protocol. We report the
-result transparently: all three strategies fall within overlapping 95\%
-confidence intervals (head-only 0.0133, LN+head 0.0137, full-FT 0.0123), so
-none is demonstrably superior at $n = 23$. We therefore no longer present
-LN+head as the empirically optimal adapter; it is selected for parameter
-efficiency, and the ablation itself is the evidence the reviewer requested.
+**(b)** The adapter design is now supported by a four-way ablation (R1.5)
+comparing head-only (257 params), LayerNorm+head (769 params), **LoRA**
+($r=4$, 41{,}217 params), and full fine-tuning (4.23 M params) under the same
+LOOCV protocol. The reviewer explicitly named LoRA and other parameter-efficient
+methods; we have run the LoRA arm. Results (all within overlapping 95\% CIs):
+head-only 0.0133, LN+head 0.0137, LoRA 0.0128, full-FT 0.0123. LoRA recovers
+most of the full-fine-tuning benefit at $\approx 100\times$ fewer parameters.
+We therefore no longer present LN+head as the empirically optimal adapter; it is
+selected for extreme parameter efficiency, and the systematic comparison is the
+evidence the reviewer requested.
 
-**(c)** Adapter-strategy ablation added; the LN+head justification is now
-evidence-based and stated as a parameter-efficiency choice, not an MAE-optimality
-claim.
+**(c)** Four-way adapter ablation (incl. LoRA) added; the adapter justification
+is now evidence-based, framed as a parameter-efficiency study rather than an
+MAE-optimality claim.
 
 ---
 
@@ -235,11 +252,14 @@ all avoid implying clinical readiness.
 
 ### R3.4 / R3.5 — Better evidence of anatomy-dependent (not mean-regressed) learning
 
-**(b)** Addressed by the new adapter-strategy ablation and multi-seed analysis,
-which show the adapted model's behaviour depends on the trained adapter rather
-than reducing to a constant, and by the retained ICC(3,1) inter-session result.
+**(b)** Addressed directly by the new **permutation test** (R1.1): the
+inter-session ICC of the model's predictions is significant at $p = 0.002$
+(20{,}000 permutations), which is precisely the input-dependence evidence the
+reviewer requested. This is complemented by the four-way adapter ablation
+(head-only / LN+head / LoRA / full-FT) and the multi-seed analysis.
 
-**(c)** New ablations added; ICC interpretation retained with honest CI bounds.
+**(c)** Permutation test, four-way adapter ablation, and multi-seed analysis
+added; ICC interpretation retained with honest CI bounds.
 
 ### R3.6 — State clinical generalisability more conservatively
 
@@ -283,10 +303,19 @@ statement added.
 
 ## Summary of new material added
 
-1. Adapter-strategy ablation (head-only vs. LN+head vs. full fine-tune), same LOOCV protocol.
-2. Multi-seed robustness (5 seeds) for MAE and ICC.
-3. Simulation-parameter sensitivity (±20% SNR, B0, relaxation).
-4. Simulation-fidelity validation (NCC + SNR/CNR vs. real 64 mT).
-5. Honest reframing of the ViT-vs-CNN result.
-6. Consolidated ICC discussion; reduced redundancy.
-7. All figures regenerated at 300 dpi; calibration relabelled "overconfident".
+1. **Permutation test** (20{,}000 permutations): inter-session ICC significant
+   at $p = 0.002$, providing statistical proof of input-dependent behaviour
+   (addresses R1.1, R3.4, R3.5).
+2. **Split-conformal calibration**: 91.3\%/95.7\% empirical coverage vs. 4.3\%
+   for MC Dropout (addresses R1.7).
+3. **Four-way adapter ablation** (head-only / LN+head / LoRA / full fine-tune),
+   same LOOCV protocol (addresses R1.5, R2.4).
+4. **Multi-seed robustness** (5 seeds): MAE $0.0130 \pm 0.0004$, ICC
+   $0.644 \pm 0.058$ (addresses R1.9).
+5. **Simulation-parameter sensitivity** (±20\% SNR, B0, relaxation): max
+   $|\Delta\mathrm{MAE}| = 0.0062$ (addresses R1.10).
+6. **Simulation-fidelity validation** (NCC + SNR/CNR vs. real 64 mT) (R1.4).
+7. Honest reframing of the ViT-vs-CNN result (R2.1).
+8. Consolidated ICC discussion; reduced redundancy (R1.11).
+9. All figures regenerated at 300 dpi; calibration relabelled "overconfident"
+   (R4.3, R1.7).
