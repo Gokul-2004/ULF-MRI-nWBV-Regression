@@ -1,0 +1,404 @@
+{
+  "experiment": "split_conformal_calibration",
+  "addresses": [
+    "R1.7"
+  ],
+  "method": "Leave-one-out split conformal on subject-independent LOOCV residuals",
+  "n_subjects": 23,
+  "conformal": {
+    "level_90": {
+      "target_coverage": 0.9,
+      "empirical_coverage": 0.913,
+      "n_covered": 21,
+      "n": 23,
+      "mean_interval_width": 0.0571,
+      "n_capped_to_max_residual": 0,
+      "per_subject": [
+        {
+          "pred": 0.7812,
+          "true": 0.7939,
+          "ci_lo": 0.7524,
+          "ci_hi": 0.81,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7772,
+          "true": 0.806,
+          "ci_lo": 0.7515,
+          "ci_hi": 0.8029,
+          "width": 0.0514,
+          "covered": false
+        },
+        {
+          "pred": 0.7747,
+          "true": 0.7941,
+          "ci_lo": 0.7459,
+          "ci_hi": 0.8035,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7801,
+          "true": 0.7882,
+          "ci_lo": 0.7513,
+          "ci_hi": 0.8089,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7797,
+          "true": 0.7962,
+          "ci_lo": 0.7509,
+          "ci_hi": 0.8085,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7896,
+          "true": 0.7916,
+          "ci_lo": 0.7608,
+          "ci_hi": 0.8184,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7812,
+          "true": 0.7755,
+          "ci_lo": 0.7524,
+          "ci_hi": 0.81,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7802,
+          "true": 0.7866,
+          "ci_lo": 0.7514,
+          "ci_hi": 0.809,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7795,
+          "true": 0.7903,
+          "ci_lo": 0.7507,
+          "ci_hi": 0.8083,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7809,
+          "true": 0.799,
+          "ci_lo": 0.7521,
+          "ci_hi": 0.8097,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7813,
+          "true": 0.7782,
+          "ci_lo": 0.7525,
+          "ci_hi": 0.8101,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7806,
+          "true": 0.7672,
+          "ci_lo": 0.7518,
+          "ci_hi": 0.8094,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7828,
+          "true": 0.7881,
+          "ci_lo": 0.754,
+          "ci_hi": 0.8116,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.778,
+          "true": 0.7911,
+          "ci_lo": 0.7492,
+          "ci_hi": 0.8068,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7893,
+          "true": 0.7715,
+          "ci_lo": 0.7605,
+          "ci_hi": 0.8181,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7786,
+          "true": 0.7596,
+          "ci_lo": 0.7498,
+          "ci_hi": 0.8074,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7837,
+          "true": 0.758,
+          "ci_lo": 0.7549,
+          "ci_hi": 0.8125,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7867,
+          "true": 0.784,
+          "ci_lo": 0.7579,
+          "ci_hi": 0.8155,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7825,
+          "true": 0.7752,
+          "ci_lo": 0.7537,
+          "ci_hi": 0.8113,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7803,
+          "true": 0.801,
+          "ci_lo": 0.7515,
+          "ci_hi": 0.8091,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7793,
+          "true": 0.7789,
+          "ci_lo": 0.7505,
+          "ci_hi": 0.8081,
+          "width": 0.0576,
+          "covered": true
+        },
+        {
+          "pred": 0.7857,
+          "true": 0.7523,
+          "ci_lo": 0.76,
+          "ci_hi": 0.8114,
+          "width": 0.0514,
+          "covered": false
+        },
+        {
+          "pred": 0.791,
+          "true": 0.8084,
+          "ci_lo": 0.7622,
+          "ci_hi": 0.8198,
+          "width": 0.0576,
+          "covered": true
+        }
+      ]
+    },
+    "level_95": {
+      "target_coverage": 0.95,
+      "empirical_coverage": 0.9565,
+      "n_covered": 22,
+      "n": 23,
+      "mean_interval_width": 0.0664,
+      "n_capped_to_max_residual": 0,
+      "per_subject": [
+        {
+          "pred": 0.7812,
+          "true": 0.7939,
+          "ci_lo": 0.7478,
+          "ci_hi": 0.8146,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7772,
+          "true": 0.806,
+          "ci_lo": 0.7438,
+          "ci_hi": 0.8106,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7747,
+          "true": 0.7941,
+          "ci_lo": 0.7413,
+          "ci_hi": 0.8081,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7801,
+          "true": 0.7882,
+          "ci_lo": 0.7467,
+          "ci_hi": 0.8135,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7797,
+          "true": 0.7962,
+          "ci_lo": 0.7463,
+          "ci_hi": 0.8131,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7896,
+          "true": 0.7916,
+          "ci_lo": 0.7562,
+          "ci_hi": 0.823,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7812,
+          "true": 0.7755,
+          "ci_lo": 0.7478,
+          "ci_hi": 0.8146,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7802,
+          "true": 0.7866,
+          "ci_lo": 0.7468,
+          "ci_hi": 0.8136,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7795,
+          "true": 0.7903,
+          "ci_lo": 0.7461,
+          "ci_hi": 0.8129,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7809,
+          "true": 0.799,
+          "ci_lo": 0.7475,
+          "ci_hi": 0.8143,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7813,
+          "true": 0.7782,
+          "ci_lo": 0.7479,
+          "ci_hi": 0.8147,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7806,
+          "true": 0.7672,
+          "ci_lo": 0.7472,
+          "ci_hi": 0.814,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7828,
+          "true": 0.7881,
+          "ci_lo": 0.7494,
+          "ci_hi": 0.8162,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.778,
+          "true": 0.7911,
+          "ci_lo": 0.7446,
+          "ci_hi": 0.8114,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7893,
+          "true": 0.7715,
+          "ci_lo": 0.7559,
+          "ci_hi": 0.8227,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7786,
+          "true": 0.7596,
+          "ci_lo": 0.7452,
+          "ci_hi": 0.812,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7837,
+          "true": 0.758,
+          "ci_lo": 0.7503,
+          "ci_hi": 0.8171,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7867,
+          "true": 0.784,
+          "ci_lo": 0.7533,
+          "ci_hi": 0.8201,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7825,
+          "true": 0.7752,
+          "ci_lo": 0.7491,
+          "ci_hi": 0.8159,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7803,
+          "true": 0.801,
+          "ci_lo": 0.7469,
+          "ci_hi": 0.8137,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7793,
+          "true": 0.7789,
+          "ci_lo": 0.7459,
+          "ci_hi": 0.8127,
+          "width": 0.0668,
+          "covered": true
+        },
+        {
+          "pred": 0.7857,
+          "true": 0.7523,
+          "ci_lo": 0.7569,
+          "ci_hi": 0.8145,
+          "width": 0.0576,
+          "covered": false
+        },
+        {
+          "pred": 0.791,
+          "true": 0.8084,
+          "ci_lo": 0.7576,
+          "ci_hi": 0.8244,
+          "width": 0.0668,
+          "covered": true
+        }
+      ]
+    }
+  },
+  "mc_dropout_baseline": {
+    "method": "MC Dropout (95%)",
+    "empirical_coverage": 0.043,
+    "mean_interval_width": 0.0286,
+    "note": "Reported in manuscript as severely overconfident under domain shift."
+  }
+}
