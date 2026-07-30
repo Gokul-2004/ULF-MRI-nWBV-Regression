@@ -1,0 +1,51 @@
+==============================================================
+Swin-UNETR Architecture Comparator (OASIS, R2.2)
+==============================================================
+Records with seg: 375, missing seg: 0
+Split: train=300 val=37 test=38
+Swin-UNETR regressor: 62,187,011 params
+Epoch   1 | train=0.01019 | val_r=0.146
+  ✓ best (r=0.146)
+Epoch   2 | train=0.00366 | val_r=0.645
+  ✓ best (r=0.645)
+Epoch   3 | train=0.00323 | val_r=0.719
+  ✓ best (r=0.719)
+Epoch   4 | train=0.00301 | val_r=0.830
+  ✓ best (r=0.830)
+Epoch   5 | train=0.00234 | val_r=0.890
+  ✓ best (r=0.890)
+Epoch   6 | train=0.00203 | val_r=0.900
+  ✓ best (r=0.900)
+Epoch   7 | train=0.00172 | val_r=0.896
+Epoch   8 | train=0.00132 | val_r=0.885
+Epoch   9 | train=0.00124 | val_r=0.902
+  ✓ best (r=0.902)
+Epoch  10 | train=0.00115 | val_r=0.921
+  ✓ best (r=0.921)
+Epoch  11 | train=0.00101 | val_r=0.870
+Epoch  12 | train=0.00088 | val_r=0.902
+Epoch  13 | train=0.00091 | val_r=0.922
+  ✓ best (r=0.922)
+Epoch  14 | train=0.00086 | val_r=0.921
+Epoch  15 | train=0.00077 | val_r=0.927
+  ✓ best (r=0.927)
+Epoch  16 | train=0.00100 | val_r=0.906
+Epoch  17 | train=0.00080 | val_r=0.921
+Epoch  18 | train=0.00067 | val_r=0.936
+  ✓ best (r=0.936)
+Epoch  19 | train=0.00060 | val_r=0.917
+Epoch  20 | train=0.00061 | val_r=0.922
+Epoch  21 | train=0.00051 | val_r=0.935
+Epoch  22 | train=0.00054 | val_r=0.930
+Epoch  23 | train=0.00052 | val_r=0.929
+Epoch  24 | train=0.00050 | val_r=0.934
+Epoch  25 | train=0.00045 | val_r=0.911
+Epoch  26 | train=0.00048 | val_r=0.919
+Epoch  27 | train=0.00043 | val_r=0.924
+Epoch  28 | train=0.00040 | val_r=0.932
+Early stop at epoch 28
+
+==============================================================
+Swin-UNETR OASIS TEST:  MAE=0.0193  Pearson r=0.939  (n_test=38, params=62,187,011)
+==============================================================
+Saved → /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/arch_comparator_swin/results.json
