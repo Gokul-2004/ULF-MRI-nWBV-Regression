@@ -1,0 +1,340 @@
+{
+  "experiment": "ssl_comparator_simmim",
+  "addresses": [
+    "R2.3"
+  ],
+  "objective": "SimMIM masked-patch reconstruction (mask 0.5) vs paper denoising Stage-1",
+  "same_as_paper": "ViT3D encoder, physics-sim IXI input, OASIS seed-42 finetune",
+  "pretrain_epochs": 25,
+  "n_test": 38,
+  "mae": 0.0538,
+  "pearson_r": 0.9069,
+  "best_val_r": 0.9239,
+  "finetune_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.015026,
+      "val_r": -0.0348
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.006494,
+      "val_r": 0.003
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.005405,
+      "val_r": 0.078
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.006859,
+      "val_r": 0.1916
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.005886,
+      "val_r": 0.2882
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.005308,
+      "val_r": 0.2851
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.00451,
+      "val_r": 0.2928
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.004299,
+      "val_r": 0.4219
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.005196,
+      "val_r": 0.5286
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.005732,
+      "val_r": 0.5999
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.005656,
+      "val_r": 0.69
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.004608,
+      "val_r": 0.7179
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.004504,
+      "val_r": 0.7816
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.00306,
+      "val_r": 0.8263
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.002909,
+      "val_r": 0.8894
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.002126,
+      "val_r": 0.8347
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.002017,
+      "val_r": 0.8966
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.001875,
+      "val_r": 0.9098
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.002157,
+      "val_r": 0.8837
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.001764,
+      "val_r": 0.9181
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.002059,
+      "val_r": 0.9076
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.001458,
+      "val_r": 0.8804
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.001276,
+      "val_r": 0.9039
+    },
+    {
+      "epoch": 24,
+      "train_loss": 0.001421,
+      "val_r": 0.9239
+    },
+    {
+      "epoch": 25,
+      "train_loss": 0.001309,
+      "val_r": 0.8944
+    },
+    {
+      "epoch": 26,
+      "train_loss": 0.000977,
+      "val_r": 0.8831
+    },
+    {
+      "epoch": 27,
+      "train_loss": 0.001149,
+      "val_r": 0.8974
+    },
+    {
+      "epoch": 28,
+      "train_loss": 0.001509,
+      "val_r": 0.8825
+    },
+    {
+      "epoch": 29,
+      "train_loss": 0.001085,
+      "val_r": 0.875
+    },
+    {
+      "epoch": 30,
+      "train_loss": 0.001336,
+      "val_r": 0.8976
+    },
+    {
+      "epoch": 31,
+      "train_loss": 0.001057,
+      "val_r": 0.8825
+    },
+    {
+      "epoch": 32,
+      "train_loss": 0.001014,
+      "val_r": 0.8846
+    },
+    {
+      "epoch": 33,
+      "train_loss": 0.001081,
+      "val_r": 0.9053
+    },
+    {
+      "epoch": 34,
+      "train_loss": 0.001067,
+      "val_r": 0.8875
+    }
+  ],
+  "per_test": [
+    {
+      "true": 0.831,
+      "pred": 0.8866
+    },
+    {
+      "true": 0.695,
+      "pred": 0.7912
+    },
+    {
+      "true": 0.841,
+      "pred": 0.8909
+    },
+    {
+      "true": 0.734,
+      "pred": 0.773
+    },
+    {
+      "true": 0.776,
+      "pred": 0.8288
+    },
+    {
+      "true": 0.801,
+      "pred": 0.8401
+    },
+    {
+      "true": 0.846,
+      "pred": 0.897
+    },
+    {
+      "true": 0.845,
+      "pred": 0.8761
+    },
+    {
+      "true": 0.846,
+      "pred": 0.8819
+    },
+    {
+      "true": 0.819,
+      "pred": 0.9074
+    },
+    {
+      "true": 0.853,
+      "pred": 0.8887
+    },
+    {
+      "true": 0.852,
+      "pred": 0.8738
+    },
+    {
+      "true": 0.869,
+      "pred": 0.891
+    },
+    {
+      "true": 0.766,
+      "pred": 0.8284
+    },
+    {
+      "true": 0.754,
+      "pred": 0.8385
+    },
+    {
+      "true": 0.865,
+      "pred": 0.902
+    },
+    {
+      "true": 0.645,
+      "pred": 0.7842
+    },
+    {
+      "true": 0.687,
+      "pred": 0.7502
+    },
+    {
+      "true": 0.735,
+      "pred": 0.7587
+    },
+    {
+      "true": 0.703,
+      "pred": 0.7459
+    },
+    {
+      "true": 0.86,
+      "pred": 0.9125
+    },
+    {
+      "true": 0.83,
+      "pred": 0.9033
+    },
+    {
+      "true": 0.753,
+      "pred": 0.8212
+    },
+    {
+      "true": 0.813,
+      "pred": 0.8799
+    },
+    {
+      "true": 0.747,
+      "pred": 0.787
+    },
+    {
+      "true": 0.693,
+      "pred": 0.7632
+    },
+    {
+      "true": 0.759,
+      "pred": 0.7615
+    },
+    {
+      "true": 0.843,
+      "pred": 0.8962
+    },
+    {
+      "true": 0.81,
+      "pred": 0.8728
+    },
+    {
+      "true": 0.865,
+      "pred": 0.8865
+    },
+    {
+      "true": 0.833,
+      "pred": 0.8784
+    },
+    {
+      "true": 0.76,
+      "pred": 0.8516
+    },
+    {
+      "true": 0.668,
+      "pred": 0.7633
+    },
+    {
+      "true": 0.801,
+      "pred": 0.8608
+    },
+    {
+      "true": 0.816,
+      "pred": 0.8804
+    },
+    {
+      "true": 0.823,
+      "pred": 0.8658
+    },
+    {
+      "true": 0.794,
+      "pred": 0.8339
+    },
+    {
+      "true": 0.855,
+      "pred": 0.876
+    }
+  ],
+  "note": "Compare MAE/r against the paper's denoising-pretrained ViT3D on the same OASIS test split."
+}

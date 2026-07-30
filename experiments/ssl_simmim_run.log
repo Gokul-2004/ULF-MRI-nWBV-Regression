@@ -1,0 +1,74 @@
+==============================================================
+SimMIM PRETRAIN on physics-sim IXI
+==============================================================
+IXI simulated volumes: (156, 64, 64, 64)
+  pretrain ep  1/25  loss=0.03821
+  pretrain ep  2/25  loss=0.02053
+  pretrain ep  3/25  loss=0.02019
+  pretrain ep  4/25  loss=0.01974
+  pretrain ep  5/25  loss=0.01963
+  pretrain ep  6/25  loss=0.01991
+  pretrain ep  7/25  loss=0.01986
+  pretrain ep  8/25  loss=0.01981
+  pretrain ep  9/25  loss=0.01986
+  pretrain ep 10/25  loss=0.01966
+  pretrain ep 11/25  loss=0.01966
+  pretrain ep 12/25  loss=0.01983
+  pretrain ep 13/25  loss=0.01979
+  pretrain ep 14/25  loss=0.01964
+  pretrain ep 15/25  loss=0.01987
+  pretrain ep 16/25  loss=0.01997
+  pretrain ep 17/25  loss=0.01968
+  pretrain ep 18/25  loss=0.01970
+  pretrain ep 19/25  loss=0.01962
+  pretrain ep 20/25  loss=0.01981
+  pretrain ep 21/25  loss=0.01981
+  pretrain ep 22/25  loss=0.01950
+  pretrain ep 23/25  loss=0.01981
+  pretrain ep 24/25  loss=0.01966
+  pretrain ep 25/25  loss=0.01969
+Saved SimMIM-pretrained encoder → /home/gk-krishnan/Desktop/VIT Paper/Paper 2/checkpoints/simmim_pretrained_encoder.pt
+==============================================================
+OASIS FINE-TUNE from SimMIM encoder
+==============================================================
+Records with seg: 375, missing seg: 0
+  ft ep  1/50  train=0.01503  val_r=-0.035
+  ft ep  2/50  train=0.00649  val_r=0.003
+  ft ep  3/50  train=0.00540  val_r=0.078
+  ft ep  4/50  train=0.00686  val_r=0.192
+  ft ep  5/50  train=0.00589  val_r=0.288
+  ft ep  6/50  train=0.00531  val_r=0.285
+  ft ep  7/50  train=0.00451  val_r=0.293
+  ft ep  8/50  train=0.00430  val_r=0.422
+  ft ep  9/50  train=0.00520  val_r=0.529
+  ft ep 10/50  train=0.00573  val_r=0.600
+  ft ep 11/50  train=0.00566  val_r=0.690
+  ft ep 12/50  train=0.00461  val_r=0.718
+  ft ep 13/50  train=0.00450  val_r=0.782
+  ft ep 14/50  train=0.00306  val_r=0.826
+  ft ep 15/50  train=0.00291  val_r=0.889
+  ft ep 16/50  train=0.00213  val_r=0.835
+  ft ep 17/50  train=0.00202  val_r=0.897
+  ft ep 18/50  train=0.00187  val_r=0.910
+  ft ep 19/50  train=0.00216  val_r=0.884
+  ft ep 20/50  train=0.00176  val_r=0.918
+  ft ep 21/50  train=0.00206  val_r=0.908
+  ft ep 22/50  train=0.00146  val_r=0.880
+  ft ep 23/50  train=0.00128  val_r=0.904
+  ft ep 24/50  train=0.00142  val_r=0.924
+  ft ep 25/50  train=0.00131  val_r=0.894
+  ft ep 26/50  train=0.00098  val_r=0.883
+  ft ep 27/50  train=0.00115  val_r=0.897
+  ft ep 28/50  train=0.00151  val_r=0.883
+  ft ep 29/50  train=0.00108  val_r=0.875
+  ft ep 30/50  train=0.00134  val_r=0.898
+  ft ep 31/50  train=0.00106  val_r=0.883
+  ft ep 32/50  train=0.00101  val_r=0.885
+  ft ep 33/50  train=0.00108  val_r=0.905
+  ft ep 34/50  train=0.00107  val_r=0.888
+early stop ep 34
+
+==============================================================
+SimMIM→OASIS TEST:  MAE=0.0538  Pearson r=0.907  (n_test=38)
+==============================================================
+Saved → /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/ssl_comparator_simmim/results.json
