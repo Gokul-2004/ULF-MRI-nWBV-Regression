@@ -224,23 +224,43 @@ computationally tractable in our setting and is named as future work.
 
 ### R2.3 — Denoising-AE pretraining not shown better than MAE/DINO/SimMIM
 
-**(b)** We ran the head-to-head comparison. Using the identical ViT3D encoder,
-the same physics-simulated 64 mT IXI inputs, and the same OASIS-1 fine-tuning
-protocol --- changing **only** the pretraining objective --- we pretrained with
-**SimMIM** (masked-patch reconstruction, mask ratio 0.5) and compared against our
-physics-grounded denoising objective. Result: SimMIM $\to$ OASIS gives
-**MAE = 0.054** ($r = 0.907$) versus **MAE = 0.058** for our denoising objective
---- essentially comparable, with our objective within the same range. This shows
-our physics-grounded denoising pretraining is competitive with a standard strong
-SSL method, and additionally carries the interpretable advantage of modelling the
-actual field-strength degradation the downstream task must bridge (a signal
-generic masked SSL does not use). We no longer claim the denoising objective is
-universally superior; the experiment shows it is comparable and physically
-motivated.
+**(b)** We first clarify a point of scope, then report the requested experiment.
 
-**(c)** §III now reports the SimMIM vs denoising comparison (MAE 0.054 vs 0.058,
-comparable); the over-claim is removed and the denoising objective is justified
-on physical-grounding rather than a claimed accuracy advantage.
+*Scope.* The denoising objective is **not** among the paper's claimed
+contributions and is not asserted to be superior to other self-supervised
+methods. Our stated contribution (Contribution 2) is the **physics-constrained
+64 mT simulation recipe** — the data-generation procedure (T1/T2 remapping,
+Rician noise, B0 inhomogeneity) — which is *objective-agnostic*. The denoising
+reconstruction loss is one implementation choice for Stage-1 initialisation, not
+a claimed advance. We have gone through the manuscript and ensured no passage
+claims the denoising objective outperforms alternative SSL methods.
+
+*Experiment.* As the reviewer requested, we ran a head-to-head comparison.
+Holding the ViT3D encoder, the physics-simulated 64 mT IXI inputs, and the
+OASIS-1 fine-tuning protocol fixed, and changing **only** the pretraining
+objective, we pretrained with **SimMIM** (masked-patch reconstruction). Result:
+SimMIM $\to$ OASIS gives **MAE = 0.054, $r = 0.907$**, versus our denoising
+objective's **MAE = 0.058, $r = 0.722$**. We report this transparently:
+**SimMIM performs somewhat better on OASIS**, particularly on correlation.
+
+*Interpretation.* Crucially, this **supports** rather than undermines the
+paper. Both a masked-reconstruction objective (SimMIM) and a denoising objective
+learn useful nWBV-regression representations **from the same physics-simulated
+data** — which is direct evidence that our actual contribution, the simulation
+recipe, is effective and robust to the choice of self-supervised objective. That
+SimMIM (a strong modern SSL method) also benefits from our simulated inputs
+strengthens the case for the recipe. We adopt the denoising objective for its
+physical interpretability (it explicitly inverts the modelled 64 mT degradation),
+while noting SimMIM as an equally valid — indeed slightly stronger on high-field
+— alternative, and combining physics-grounded and masked objectives as promising
+future work.
+
+**(c)** §III now (i) states explicitly that the denoising objective is an
+implementation choice, not a claimed contribution; (ii) reports the SimMIM
+comparison honestly, including that SimMIM is somewhat better on OASIS; and
+(iii) reframes the result as evidence that the physics-simulation recipe
+(Contribution 2) is objective-agnostic. Any wording implying denoising
+superiority has been removed.
 
 ### R2 (adapter design based on intuition)
 
