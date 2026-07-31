@@ -1,0 +1,65 @@
+==============================================================
+UNETR Architecture Comparator (OASIS, R2.2)
+==============================================================
+Records with seg: 375, missing seg: 0
+Split: train=300 val=37 test=38
+UNETR regressor: 92,685,649 params
+Epoch   1 | train=0.06262 | val_r=0.151
+  ✓ best (r=0.151)
+Epoch   2 | train=0.00453 | val_r=0.215
+  ✓ best (r=0.215)
+Epoch   3 | train=0.00386 | val_r=0.364
+  ✓ best (r=0.364)
+Epoch   4 | train=0.00367 | val_r=0.322
+Epoch   5 | train=0.00349 | val_r=0.325
+Epoch   6 | train=0.00332 | val_r=0.626
+  ✓ best (r=0.626)
+Epoch   7 | train=0.00338 | val_r=0.606
+Epoch   8 | train=0.00319 | val_r=0.675
+  ✓ best (r=0.675)
+Epoch   9 | train=0.00275 | val_r=0.836
+  ✓ best (r=0.836)
+Epoch  10 | train=0.00176 | val_r=0.874
+  ✓ best (r=0.874)
+Epoch  11 | train=0.00119 | val_r=0.862
+Epoch  12 | train=0.00121 | val_r=0.865
+Epoch  13 | train=0.00100 | val_r=0.881
+  ✓ best (r=0.881)
+Epoch  14 | train=0.00088 | val_r=0.873
+Epoch  15 | train=0.00079 | val_r=0.901
+  ✓ best (r=0.901)
+Epoch  16 | train=0.00073 | val_r=0.886
+Epoch  17 | train=0.00074 | val_r=0.891
+Epoch  18 | train=0.00069 | val_r=0.876
+Epoch  19 | train=0.00062 | val_r=0.892
+Epoch  20 | train=0.00062 | val_r=0.873
+Epoch  21 | train=0.00059 | val_r=0.896
+Epoch  22 | train=0.00065 | val_r=0.908
+  ✓ best (r=0.908)
+Epoch  23 | train=0.00058 | val_r=0.900
+Epoch  24 | train=0.00050 | val_r=0.906
+Epoch  25 | train=0.00051 | val_r=0.900
+Epoch  26 | train=0.00044 | val_r=0.905
+Epoch  27 | train=0.00047 | val_r=0.903
+Epoch  28 | train=0.00043 | val_r=0.909
+  ✓ best (r=0.909)
+Epoch  29 | train=0.00051 | val_r=0.909
+Epoch  30 | train=0.00045 | val_r=0.899
+Epoch  31 | train=0.00043 | val_r=0.923
+  ✓ best (r=0.923)
+Epoch  32 | train=0.00039 | val_r=0.900
+Epoch  33 | train=0.00037 | val_r=0.889
+Epoch  34 | train=0.00037 | val_r=0.888
+Epoch  35 | train=0.00032 | val_r=0.913
+Epoch  36 | train=0.00030 | val_r=0.912
+Epoch  37 | train=0.00031 | val_r=0.911
+Epoch  38 | train=0.00033 | val_r=0.912
+Epoch  39 | train=0.00031 | val_r=0.917
+Epoch  40 | train=0.00027 | val_r=0.915
+Epoch  41 | train=0.00027 | val_r=0.912
+Early stop at epoch 41
+
+==============================================================
+UNETR OASIS TEST:  MAE=0.0198  Pearson r=0.923  (n_test=38, params=92,685,649)
+==============================================================
+Saved → /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/arch_comparator_unetr/results.json
