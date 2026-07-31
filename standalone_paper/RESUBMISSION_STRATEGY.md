@@ -136,3 +136,100 @@ architecture-agnostic and need no change.
 
 **Bottom line: reframe, don't rebuild. The paper is closer to done than the
 analysis made it feel. ~45 min of edits, then resubmit.**
+
+---
+
+## 7. CRITICAL CORRECTION: IEEE Access requires ALL reviewers satisfied
+
+Earlier optimism ("R3 + R4 favorable, outvote R2") was **wrong for this venue**.
+The decision letter states IEEE Access is a **binary, consensus** process:
+
+> "If the updated manuscript is determined not to have addressed **all** of the
+> previous reviewers' concerns... the article will be rejected and no further
+> resubmissions will be allowed."
+
+**Implications:**
+- R2 (No/No) is **not a minority to outvote — it is a gate that must be cleared.**
+- You get **one** resubmission. No second chance.
+- R2's concerns are the ones our experiments largely **confirmed** (CNN/Swin/SimMIM
+  beat ViT). Satisfying R2 is genuinely hard because the data supports R2's skepticism.
+
+**Strategic consequence:** the plan must aim to make R2's core objection *moot*
+(reframe so architecture superiority is explicitly NOT claimed), not merely
+outweigh it. If R2 reads as "will reject anything ViT-based regardless," a venue
+with editor discretion over a split decision may be a more realistic target than
+spending the single IEEE resubmission.
+
+---
+
+## 8. IMPORTANT: the pipeline is NOT broken (correcting a catastrophizing misread)
+
+A worry arose that "the whole pipeline is wrong — physics denoising has negative
+impact, the adapter has negative impact." **The data does not support this.**
+
+**Physics denoising — POSITIVE, not negative:**
+| | MAE | r |
+|---|---|---|
+| Physics sim | **0.0146** | **0.949** |
+| Gaussian blur | 0.0148 | 0.931 |
+- Physics is **better** on both metrics. Δr = +0.018 (positive).
+- The only caveat: **not statistically significant** (p=0.847). "Not significant"
+  ≠ "negative impact." It is positive-but-not-proven at this sample size.
+
+**Adapter — STRONGLY positive (a genuine strength):**
+| | MAE |
+|---|---|
+| Unadapted ViT | 0.0403 |
+| Adapted (LN+head) | **0.0137** |
+- The adapter gives a **~3× improvement** (0.040 → 0.014). It clearly works.
+- The "negative" memory is a *different, narrow* finding: among the FOUR adapter
+  variants, LN+head is marginally the weakest — but **all four crush the unadapted
+  baseline.** "LN+head is weakest of four good options" ≠ "adapter has negative impact."
+
+**What is actually true:**
+| Claim | Reality |
+|---|---|
+| Physics denoising has negative impact | FALSE — better than blur, just not significant |
+| Adapter has negative impact | FALSE — 3× improvement |
+| LN+head is weakest of 4 adapter variants | TRUE — by 0.0014; all 4 work |
+| ViT isn't the best architecture | TRUE — the ONE real weakness |
+
+**Bottom line: one honest weakness (architecture), not a broken pipeline.**
+Physics recipe, adapter, LOOCV protocol, and permutation test all demonstrably work.
+
+---
+
+## 9. Adapter choice: LN+head vs full_ft vs LoRA (what if we'd picked differently)
+
+All four adapter strategies, cross-session LOOCV, same protocol:
+
+| Strategy | Params | MAE | 95% CI | Beats constant-mean (0.0126)? |
+|---|---|---|---|---|
+| head_only | 257 | 0.0133 | [0.0099, 0.0170] | no |
+| **LN+head (chosen)** | 769 | 0.0137 | [0.0104, 0.0172] | no — weakest |
+| **LoRA (r=4)** | 41,217 | **0.0128** | [0.0099, 0.0160] | ~tie |
+| **full_ft** | 4,225,537 | **0.0123** | [0.0091, 0.0158] | **yes (point estimate)** |
+
+**What each means:**
+- **LN+head**: freeze everything except final LayerNorm (512) + head (257) = 769 params.
+  The "lightweight adapter" story, but weakest MAE.
+- **full_ft**: retrain all 4.23M params per fold. Best MAE (0.0123, beats baseline
+  on point estimate) but loses the "lightweight" story and risks overfit at n=22/fold.
+- **LoRA**: freeze originals, add small low-rank matrices in each block's MLP
+  (41K params). Middle ground — better MAE than LN+head, far cheaper than full_ft.
+
+**Key insight — LoRA is likely the best headline choice:**
+1. **Better MAE** than LN+head (0.0128 vs 0.0137), essentially ties the baseline.
+2. **It is the exact method R2 named** in comment 4 ("...LoRA, adapters, prompt
+   tuning... left for future work"). Making LoRA the headline converts R2.4 from
+   "future work" (criticized) into "done, here is the result."
+3. **Still parameter-efficient** (41K « 4.23M) — keeps a version of the efficiency story.
+
+**Caveat:** all CIs overlap the 0.0126 baseline, so any "beats baseline" claim is a
+point-estimate win, not statistical certainty. The permutation test (p=0.002) remains
+the rigorous evidence of input-dependence regardless of the MAE-vs-baseline question.
+
+**Candidate move:** make **LoRA** the primary adapter; present head_only / LN+head /
+full_ft as the ablation around it. Reframes the adapter section as "we systematically
+evaluated PEFT methods and adopted LoRA" — the rigor R2 wanted. Moderate edit:
+LOOCV/ICC/figures currently built on LN+head numbers would need updating.
