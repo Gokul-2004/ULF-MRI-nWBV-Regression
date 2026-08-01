@@ -1,0 +1,22 @@
+{
+  "experiment": "transfer_probe_64mt",
+  "addresses": [
+    "R2.2"
+  ],
+  "method": "frozen OASIS encoder features -> LOO ridge on real 64mT (HFC)",
+  "backbones": {
+    "vit3d": {
+      "mae": 0.0112,
+      "r": 0.4199,
+      "alpha": 0.1,
+      "feat_dim": 256
+    },
+    "swin_unetr": {
+      "mae": 0.0117,
+      "r": 0.3605,
+      "alpha": 0.1,
+      "feat_dim": 8
+    }
+  },
+  "verdict": "Swin transfers COMPARABLY (capacity does not help on 64mT)"
+}

@@ -160,6 +160,10 @@ def main():
 
     # Test with best model
     model.load_state_dict(best_state)
+    # Save checkpoint for the 64mT frozen-feature transfer probe
+    ckpt_path = project_root / "checkpoints" / "swin_oasis.pt"
+    torch.save({"model_state_dict": best_state}, ckpt_path)
+    print(f"Saved Swin OASIS checkpoint -> {ckpt_path}", flush=True)
     model.eval()
     preds, trues = [], []
     with torch.no_grad():

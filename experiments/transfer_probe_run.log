@@ -1,0 +1,8 @@
+Subjects: 23
+Extracting ViT3D features...
+  ViT3D: MAE=0.0112 r=0.420 (alpha=0.1, feat_dim=256)
+Extracting Swin-UNETR features...
+  Swin:  MAE=0.0117 r=0.361 (alpha=0.1, feat_dim=8)
+
+VERDICT: Swin transfers COMPARABLY (capacity does not help on 64mT)
+Saved -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/transfer_probe_64mt/results.json

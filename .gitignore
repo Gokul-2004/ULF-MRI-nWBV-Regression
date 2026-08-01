@@ -64,3 +64,4 @@ runs/
 
 # NOTE: checkpoints/*.pt, Research_Papers/*.pdf, experiment
 #       result JSONs, and *.log files are intentionally TRACKED.
+checkpoints/swin_oasis.pt
