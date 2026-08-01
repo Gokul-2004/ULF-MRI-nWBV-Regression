@@ -215,22 +215,30 @@ are genuine on high-field data.
 
 We report this transparently, and it does not weaken the paper, because our
 contribution is explicitly *not* peak high-field accuracy. Two points frame the
-result. **(i) Deployment cost.** The entire hierarchical-transformer class is
-incompatible with the compute-light, point-of-care setting the paper targets:
-UNETR (92.7 M, 371 MB, 267 ms) and Swin-UNETR (62.2 M, 249 MB, 2034 ms) versus
-ViT3D (4.23 M, 17 MB, 6.9 ms). **(ii) High-field accuracy $\neq$ 64 mT
-accuracy.** The paper's central thesis is that the binding constraint is the
-ultra-low-field domain gap and the $n = 23$ real-hardware cohort, not model
-capacity on clean 3 T data. A higher OASIS correlation does not establish
-superiority on the actual 64 mT deployment target, where all methods are limited
-by the same domain shift and sample size.
+result. **(i) The high-field advantage does not transfer to 64 mT (direct
+evidence).** We tested this explicitly. Using each OASIS-trained encoder as a
+frozen feature extractor and fitting a leave-one-subject-out ridge regressor on
+the real 64 mT cohort ($n = 23$), Swin-UNETR's features yield MAE $= 0.0117$
+($r = 0.36$) versus ViT3D's MAE $= 0.0112$ ($r = 0.42$) --- **statistically
+indistinguishable, with ViT3D marginally ahead.** In other words, Swin-UNETR's
+threefold accuracy advantage on high-field OASIS (MAE 0.019 vs 0.058)
+**vanishes entirely on the actual 64 mT target.** This directly confirms the
+paper's central thesis: on ultra-low-field hardware, performance is bounded by
+the domain gap and the $n = 23$ cohort, not by model capacity. Higher OASIS
+accuracy does not establish any advantage where it matters. **(ii) Deployment
+cost.** The hierarchical-transformer class is also incompatible with the
+compute-light, point-of-care setting the paper targets: UNETR (92.7 M, 371 MB,
+267 ms) and Swin-UNETR (62.2 M, 249 MB, 2034 ms) versus ViT3D (4.23 M, 17 MB,
+6.9 ms) --- 15--22$\times$ larger and 39--300$\times$ slower for no advantage on
+the 64 mT target.
 
 **(c)** §III-B now reports both hierarchical-transformer comparisons
-(Swin-UNETR, UNETR) explicitly, concedes they are marginally stronger high-field
-regressors, and frames the ViT3D choice on deployment cost (15--22$\times$
-smaller, 39--300$\times$ faster) and the domain-gap-limited nature of the 64 mT
-task. Full adaptation of these 62--93 M-parameter models on the 64 mT LOOCV was not
-computationally tractable in our setting and is named as future work.
+(Swin-UNETR, UNETR) and the **64 mT frozen-feature transfer probe** showing their
+high-field advantage does not transfer (Swin 0.0117 vs ViT3D 0.0112). The ViT3D
+choice is framed on this transfer result plus deployment cost (15--22$\times$
+smaller, 39--300$\times$ faster). Full per-fold adaptation of the 62--93 M-parameter
+models on the 64 mT LOOCV was not computationally tractable; the frozen-feature
+transfer probe is the feasible representation-transfer test, reported as such.
 
 ### R2.3 — Denoising-AE pretraining not shown better than MAE/DINO/SimMIM
 
