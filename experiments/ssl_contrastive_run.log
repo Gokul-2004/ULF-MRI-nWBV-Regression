@@ -1,0 +1,57 @@
+==============================================================
+CONTRASTIVE PRETRAIN on physics-sim IXI
+==============================================================
+IXI simulated volumes: (156, 64, 64, 64)
+  contrastive pretrain ep  1/25  loss=1.94242
+  contrastive pretrain ep  2/25  loss=1.93325
+  contrastive pretrain ep  3/25  loss=1.94583
+  contrastive pretrain ep  4/25  loss=1.94579
+  contrastive pretrain ep  5/25  loss=1.94585
+  contrastive pretrain ep  6/25  loss=1.94567
+  contrastive pretrain ep  7/25  loss=1.94564
+  contrastive pretrain ep  8/25  loss=1.94164
+  contrastive pretrain ep  9/25  loss=1.94587
+  contrastive pretrain ep 10/25  loss=1.94588
+  contrastive pretrain ep 11/25  loss=1.94586
+  contrastive pretrain ep 12/25  loss=1.94587
+  contrastive pretrain ep 13/25  loss=1.94589
+  contrastive pretrain ep 14/25  loss=1.94585
+  contrastive pretrain ep 15/25  loss=1.94587
+  contrastive pretrain ep 16/25  loss=1.94586
+  contrastive pretrain ep 17/25  loss=1.94587
+  contrastive pretrain ep 18/25  loss=1.94587
+  contrastive pretrain ep 19/25  loss=1.94586
+  contrastive pretrain ep 20/25  loss=1.94585
+  contrastive pretrain ep 21/25  loss=1.94584
+  contrastive pretrain ep 22/25  loss=1.94590
+  contrastive pretrain ep 23/25  loss=1.94585
+  contrastive pretrain ep 24/25  loss=1.94587
+  contrastive pretrain ep 25/25  loss=1.94586
+Saved contrastive-pretrained encoder -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/checkpoints/contrastive_pretrained_encoder.pt
+==============================================================
+OASIS FINE-TUNE from contrastive encoder
+==============================================================
+Records with seg: 375, missing seg: 0
+  ft ep  1/50  train=0.03479  val_r=0.172
+  ft ep  2/50  train=0.00736  val_r=0.219
+  ft ep  3/50  train=0.00650  val_r=0.337
+  ft ep  4/50  train=0.00692  val_r=0.486
+  ft ep  5/50  train=0.00747  val_r=0.585
+  ft ep  6/50  train=0.00682  val_r=0.639
+  ft ep  7/50  train=0.00546  val_r=0.675
+  ft ep  8/50  train=0.00590  val_r=0.626
+  ft ep  9/50  train=0.00580  val_r=0.560
+  ft ep 10/50  train=0.00584  val_r=0.550
+  ft ep 11/50  train=0.00575  val_r=0.591
+  ft ep 12/50  train=0.00609  val_r=0.605
+  ft ep 13/50  train=0.00577  val_r=0.583
+  ft ep 14/50  train=0.00560  val_r=0.554
+  ft ep 15/50  train=0.00478  val_r=0.589
+  ft ep 16/50  train=0.00495  val_r=0.607
+  ft ep 17/50  train=0.00432  val_r=0.578
+early stop ep 17
+
+==============================================================
+CONTRASTIVE->OASIS TEST:  MAE=0.0589  Pearson r=0.744  (n_test=38)
+==============================================================
+Saved -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/ssl_comparator_contrastive/results.json
