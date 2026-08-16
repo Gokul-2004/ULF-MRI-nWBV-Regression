@@ -1,0 +1,89 @@
+==============================================================
+DINO PRETRAIN on physics-sim IXI
+==============================================================
+IXI simulated volumes: (156, 64, 64, 64)
+  dino pretrain ep  1/25  loss=3.15620
+  dino pretrain ep  2/25  loss=6.76376
+  dino pretrain ep  3/25  loss=6.87969
+  dino pretrain ep  4/25  loss=6.90535
+  dino pretrain ep  5/25  loss=6.91714
+  dino pretrain ep  6/25  loss=6.92343
+  dino pretrain ep  7/25  loss=6.92732
+  dino pretrain ep  8/25  loss=6.92910
+  dino pretrain ep  9/25  loss=6.93052
+  dino pretrain ep 10/25  loss=6.93107
+  dino pretrain ep 11/25  loss=6.93130
+  dino pretrain ep 12/25  loss=6.93155
+  dino pretrain ep 13/25  loss=6.93187
+  dino pretrain ep 14/25  loss=6.93189
+  dino pretrain ep 15/25  loss=6.93182
+  dino pretrain ep 16/25  loss=6.93188
+  dino pretrain ep 17/25  loss=6.93166
+  dino pretrain ep 18/25  loss=6.93175
+  dino pretrain ep 19/25  loss=6.93155
+  dino pretrain ep 20/25  loss=6.93180
+  dino pretrain ep 21/25  loss=6.93179
+  dino pretrain ep 22/25  loss=6.93182
+  dino pretrain ep 23/25  loss=6.93174
+  dino pretrain ep 24/25  loss=6.93173
+  dino pretrain ep 25/25  loss=6.93162
+Saved dino-pretrained encoder -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/checkpoints/dino_pretrained_encoder.pt
+==============================================================
+OASIS FINE-TUNE from dino encoder
+==============================================================
+Records with seg: 375, missing seg: 0
+  ft ep  1/50  train=0.02418  val_r=0.280
+  ft ep  2/50  train=0.00626  val_r=0.500
+  ft ep  3/50  train=0.01006  val_r=0.129
+  ft ep  4/50  train=0.00686  val_r=0.233
+  ft ep  5/50  train=0.00937  val_r=0.276
+  ft ep  6/50  train=0.00688  val_r=0.451
+  ft ep  7/50  train=0.00632  val_r=0.289
+  ft ep  8/50  train=0.00555  val_r=0.380
+  ft ep  9/50  train=0.00628  val_r=0.363
+  ft ep 10/50  train=0.00682  val_r=0.479
+  ft ep 11/50  train=0.00627  val_r=0.494
+  ft ep 12/50  train=0.00555  val_r=0.650
+  ft ep 13/50  train=0.00649  val_r=0.602
+  ft ep 14/50  train=0.00524  val_r=0.584
+  ft ep 15/50  train=0.00511  val_r=0.620
+  ft ep 16/50  train=0.00543  val_r=0.680
+  ft ep 17/50  train=0.00408  val_r=0.745
+  ft ep 18/50  train=0.00349  val_r=0.753
+  ft ep 19/50  train=0.00343  val_r=0.799
+  ft ep 20/50  train=0.00307  val_r=0.839
+  ft ep 21/50  train=0.00238  val_r=0.857
+  ft ep 22/50  train=0.00226  val_r=0.844
+  ft ep 23/50  train=0.00205  val_r=0.849
+  ft ep 24/50  train=0.00190  val_r=0.866
+  ft ep 25/50  train=0.00207  val_r=0.848
+  ft ep 26/50  train=0.00187  val_r=0.831
+  ft ep 27/50  train=0.00208  val_r=0.823
+  ft ep 28/50  train=0.00215  val_r=0.856
+  ft ep 29/50  train=0.00172  val_r=0.853
+  ft ep 30/50  train=0.00145  val_r=0.841
+  ft ep 31/50  train=0.00166  val_r=0.841
+  ft ep 32/50  train=0.00154  val_r=0.873
+  ft ep 33/50  train=0.00150  val_r=0.840
+  ft ep 34/50  train=0.00135  val_r=0.871
+  ft ep 35/50  train=0.00160  val_r=0.860
+  ft ep 36/50  train=0.00134  val_r=0.884
+  ft ep 37/50  train=0.00135  val_r=0.830
+  ft ep 38/50  train=0.00131  val_r=0.870
+  ft ep 39/50  train=0.00123  val_r=0.889
+  ft ep 40/50  train=0.00119  val_r=0.844
+  ft ep 41/50  train=0.00116  val_r=0.848
+  ft ep 42/50  train=0.00133  val_r=0.885
+  ft ep 43/50  train=0.00112  val_r=0.856
+  ft ep 44/50  train=0.00112  val_r=0.858
+  ft ep 45/50  train=0.00126  val_r=0.880
+  ft ep 46/50  train=0.00119  val_r=0.866
+  ft ep 47/50  train=0.00113  val_r=0.886
+  ft ep 48/50  train=0.00106  val_r=0.866
+  ft ep 49/50  train=0.00115  val_r=0.876
+early stop ep 49
+
+==============================================================
+DINO->OASIS TEST:  MAE=0.0270  Pearson r=0.903  (n_test=38)
+==============================================================
+Saved -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/ssl_comparator_dino/results.json

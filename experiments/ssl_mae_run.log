@@ -1,0 +1,88 @@
+==============================================================
+MAE PRETRAIN on physics-sim IXI
+==============================================================
+IXI simulated volumes: (156, 64, 64, 64)
+  mae pretrain ep  1/25  loss=0.03816
+  mae pretrain ep  2/25  loss=0.02042
+  mae pretrain ep  3/25  loss=0.02015
+  mae pretrain ep  4/25  loss=0.01991
+  mae pretrain ep  5/25  loss=0.01976
+  mae pretrain ep  6/25  loss=0.01988
+  mae pretrain ep  7/25  loss=0.01981
+  mae pretrain ep  8/25  loss=0.01975
+  mae pretrain ep  9/25  loss=0.01977
+  mae pretrain ep 10/25  loss=0.01969
+  mae pretrain ep 11/25  loss=0.01984
+  mae pretrain ep 12/25  loss=0.01978
+  mae pretrain ep 13/25  loss=0.01972
+  mae pretrain ep 14/25  loss=0.01978
+  mae pretrain ep 15/25  loss=0.01973
+  mae pretrain ep 16/25  loss=0.01992
+  mae pretrain ep 17/25  loss=0.01973
+  mae pretrain ep 18/25  loss=0.01971
+  mae pretrain ep 19/25  loss=0.01967
+  mae pretrain ep 20/25  loss=0.01976
+  mae pretrain ep 21/25  loss=0.01971
+  mae pretrain ep 22/25  loss=0.01962
+  mae pretrain ep 23/25  loss=0.01975
+  mae pretrain ep 24/25  loss=0.01970
+  mae pretrain ep 25/25  loss=0.01971
+Saved mae-pretrained encoder -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/checkpoints/mae_pretrained_encoder.pt
+==============================================================
+OASIS FINE-TUNE from mae encoder
+==============================================================
+Records with seg: 375, missing seg: 0
+  ft ep  1/50  train=0.12532  val_r=-0.112
+  ft ep  2/50  train=0.00516  val_r=-0.133
+  ft ep  3/50  train=0.00539  val_r=-0.142
+  ft ep  4/50  train=0.00594  val_r=-0.174
+  ft ep  5/50  train=0.00721  val_r=-0.141
+  ft ep  6/50  train=0.00647  val_r=-0.094
+  ft ep  7/50  train=0.00556  val_r=0.011
+  ft ep  8/50  train=0.00564  val_r=-0.023
+  ft ep  9/50  train=0.00679  val_r=-0.000
+  ft ep 10/50  train=0.00672  val_r=0.166
+  ft ep 11/50  train=0.00586  val_r=0.090
+  ft ep 12/50  train=0.00625  val_r=0.274
+  ft ep 13/50  train=0.00589  val_r=0.150
+  ft ep 14/50  train=0.00465  val_r=0.189
+  ft ep 15/50  train=0.00523  val_r=0.252
+  ft ep 16/50  train=0.00485  val_r=0.207
+  ft ep 17/50  train=0.00524  val_r=0.306
+  ft ep 18/50  train=0.00473  val_r=0.283
+  ft ep 19/50  train=0.00537  val_r=0.357
+  ft ep 20/50  train=0.00546  val_r=0.461
+  ft ep 21/50  train=0.00536  val_r=0.487
+  ft ep 22/50  train=0.00421  val_r=0.518
+  ft ep 23/50  train=0.00398  val_r=0.574
+  ft ep 24/50  train=0.00417  val_r=0.721
+  ft ep 25/50  train=0.00418  val_r=0.662
+  ft ep 26/50  train=0.00405  val_r=0.598
+  ft ep 27/50  train=0.00334  val_r=0.710
+  ft ep 28/50  train=0.00377  val_r=0.621
+  ft ep 29/50  train=0.00351  val_r=0.744
+  ft ep 30/50  train=0.00290  val_r=0.687
+  ft ep 31/50  train=0.00330  val_r=0.688
+  ft ep 32/50  train=0.00317  val_r=0.647
+  ft ep 33/50  train=0.00280  val_r=0.727
+  ft ep 34/50  train=0.00272  val_r=0.660
+  ft ep 35/50  train=0.00359  val_r=0.802
+  ft ep 36/50  train=0.00288  val_r=0.739
+  ft ep 37/50  train=0.00275  val_r=0.688
+  ft ep 38/50  train=0.00222  val_r=0.825
+  ft ep 39/50  train=0.00228  val_r=0.811
+  ft ep 40/50  train=0.00232  val_r=0.728
+  ft ep 41/50  train=0.00266  val_r=0.792
+  ft ep 42/50  train=0.00235  val_r=0.818
+  ft ep 43/50  train=0.00211  val_r=0.742
+  ft ep 44/50  train=0.00272  val_r=0.816
+  ft ep 45/50  train=0.00233  val_r=0.698
+  ft ep 46/50  train=0.00191  val_r=0.727
+  ft ep 47/50  train=0.00228  val_r=0.809
+  ft ep 48/50  train=0.00213  val_r=0.779
+early stop ep 48
+
+==============================================================
+MAE->OASIS TEST:  MAE=0.0319  Pearson r=0.756  (n_test=38)
+==============================================================
+Saved -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/ssl_comparator_mae/results.json
