@@ -1,0 +1,183 @@
+==============================================================
+Stage A: DINO -> OASIS finetune (saving checkpoint)
+==============================================================
+Records with seg: 375, missing seg: 0
+  ft ep  1/50  train=0.02418  val_r=0.280
+  ft ep  2/50  train=0.00626  val_r=0.500
+  ft ep  3/50  train=0.01006  val_r=0.129
+  ft ep  4/50  train=0.00686  val_r=0.233
+  ft ep  5/50  train=0.00937  val_r=0.276
+  ft ep  6/50  train=0.00688  val_r=0.451
+  ft ep  7/50  train=0.00632  val_r=0.289
+  ft ep  8/50  train=0.00555  val_r=0.380
+  ft ep  9/50  train=0.00628  val_r=0.363
+  ft ep 10/50  train=0.00682  val_r=0.479
+  ft ep 11/50  train=0.00627  val_r=0.494
+  ft ep 12/50  train=0.00555  val_r=0.650
+  ft ep 13/50  train=0.00649  val_r=0.602
+  ft ep 14/50  train=0.00524  val_r=0.584
+  ft ep 15/50  train=0.00511  val_r=0.620
+  ft ep 16/50  train=0.00543  val_r=0.680
+  ft ep 17/50  train=0.00408  val_r=0.745
+  ft ep 18/50  train=0.00349  val_r=0.753
+  ft ep 19/50  train=0.00343  val_r=0.799
+  ft ep 20/50  train=0.00307  val_r=0.839
+  ft ep 21/50  train=0.00238  val_r=0.857
+  ft ep 22/50  train=0.00226  val_r=0.844
+  ft ep 23/50  train=0.00205  val_r=0.849
+  ft ep 24/50  train=0.00190  val_r=0.866
+  ft ep 25/50  train=0.00207  val_r=0.848
+  ft ep 26/50  train=0.00187  val_r=0.831
+  ft ep 27/50  train=0.00208  val_r=0.823
+  ft ep 28/50  train=0.00215  val_r=0.856
+  ft ep 29/50  train=0.00172  val_r=0.853
+  ft ep 30/50  train=0.00145  val_r=0.841
+  ft ep 31/50  train=0.00166  val_r=0.841
+  ft ep 32/50  train=0.00154  val_r=0.873
+  ft ep 33/50  train=0.00150  val_r=0.840
+  ft ep 34/50  train=0.00135  val_r=0.871
+  ft ep 35/50  train=0.00160  val_r=0.860
+  ft ep 36/50  train=0.00134  val_r=0.884
+  ft ep 37/50  train=0.00135  val_r=0.830
+  ft ep 38/50  train=0.00131  val_r=0.870
+  ft ep 39/50  train=0.00123  val_r=0.889
+  ft ep 40/50  train=0.00119  val_r=0.844
+  ft ep 41/50  train=0.00116  val_r=0.848
+  ft ep 42/50  train=0.00133  val_r=0.885
+  ft ep 43/50  train=0.00112  val_r=0.856
+  ft ep 44/50  train=0.00112  val_r=0.858
+  ft ep 45/50  train=0.00126  val_r=0.880
+  ft ep 46/50  train=0.00119  val_r=0.866
+  ft ep 47/50  train=0.00113  val_r=0.886
+  ft ep 48/50  train=0.00106  val_r=0.866
+  ft ep 49/50  train=0.00115  val_r=0.876
+early stop ep 49
+  DINO->OASIS test MAE=0.0270 (SSL run reported 0.027)
+Saved -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/checkpoints/dino_oasis_finetuned.pt
+
+==============================================================
+Stage B: 64mT cross-session LOOCV on DINO encoder
+==============================================================
+      Epoch  20/80  loss=0.002303
+      Epoch  40/80  loss=0.001546
+      Epoch  60/80  loss=0.001150
+      Epoch  80/80  loss=0.001076
+  [ 1/23] sub-HYPE00  err=0.0018
+      Epoch  20/80  loss=0.002438
+      Epoch  40/80  loss=0.001214
+      Epoch  60/80  loss=0.001161
+      Epoch  80/80  loss=0.001094
+  [ 2/23] sub-HYPE01  err=0.0446
+      Epoch  20/80  loss=0.002114
+      Epoch  40/80  loss=0.001521
+      Epoch  60/80  loss=0.001136
+      Epoch  80/80  loss=0.001367
+  [ 3/23] sub-HYPE02  err=0.0342
+      Epoch  20/80  loss=0.002505
+      Epoch  40/80  loss=0.001494
+      Epoch  60/80  loss=0.001220
+      Epoch  80/80  loss=0.001219
+  [ 4/23] sub-HYPE03  err=0.0176
+      Epoch  20/80  loss=0.002082
+      Epoch  40/80  loss=0.001256
+      Epoch  60/80  loss=0.001325
+      Epoch  80/80  loss=0.001305
+  [ 5/23] sub-HYPE04  err=0.0267
+      Epoch  20/80  loss=0.002561
+      Epoch  40/80  loss=0.001685
+      Epoch  60/80  loss=0.001187
+      Epoch  80/80  loss=0.001271
+  [ 6/23] sub-HYPE05  err=0.0383
+      Epoch  20/80  loss=0.002135
+      Epoch  40/80  loss=0.001491
+      Epoch  60/80  loss=0.001311
+      Epoch  80/80  loss=0.001240
+  [ 7/23] sub-HYPE06  err=0.0211
+      Epoch  20/80  loss=0.002745
+      Epoch  40/80  loss=0.001490
+      Epoch  60/80  loss=0.001307
+      Epoch  80/80  loss=0.001274
+  [ 8/23] sub-HYPE07  err=0.0012
+      Epoch  20/80  loss=0.002422
+      Epoch  40/80  loss=0.001590
+      Epoch  60/80  loss=0.001299
+      Epoch  80/80  loss=0.001083
+  [ 9/23] sub-HYPE08  err=0.0063
+      Epoch  20/80  loss=0.002078
+      Epoch  40/80  loss=0.001548
+      Epoch  60/80  loss=0.001227
+      Epoch  80/80  loss=0.001150
+  [10/23] sub-HYPE09  err=0.0043
+      Epoch  20/80  loss=0.002601
+      Epoch  40/80  loss=0.001520
+      Epoch  60/80  loss=0.001111
+      Epoch  80/80  loss=0.001155
+  [11/23] sub-HYPE10  err=0.0649
+      Epoch  20/80  loss=0.001917
+      Epoch  40/80  loss=0.001643
+      Epoch  60/80  loss=0.001341
+      Epoch  80/80  loss=0.001344
+  [12/23] sub-HYPE11  err=0.0035
+      Epoch  20/80  loss=0.002146
+      Epoch  40/80  loss=0.001784
+      Epoch  60/80  loss=0.001360
+      Epoch  80/80  loss=0.001389
+  [13/23] sub-HYPE12  err=0.0438
+      Epoch  20/80  loss=0.002295
+      Epoch  40/80  loss=0.001479
+      Epoch  60/80  loss=0.001260
+      Epoch  80/80  loss=0.001223
+  [14/23] sub-HYPE13  err=0.0242
+      Epoch  20/80  loss=0.002483
+      Epoch  40/80  loss=0.001502
+      Epoch  60/80  loss=0.001309
+      Epoch  80/80  loss=0.001198
+  [15/23] sub-HYPE14  err=0.0015
+      Epoch  20/80  loss=0.002251
+      Epoch  40/80  loss=0.001465
+      Epoch  60/80  loss=0.001295
+      Epoch  80/80  loss=0.001067
+  [16/23] sub-HYPE15  err=0.0010
+      Epoch  20/80  loss=0.001878
+      Epoch  40/80  loss=0.001824
+      Epoch  60/80  loss=0.001395
+      Epoch  80/80  loss=0.001020
+  [17/23] sub-HYPE16  err=0.0390
+      Epoch  20/80  loss=0.002428
+      Epoch  40/80  loss=0.001377
+      Epoch  60/80  loss=0.001209
+      Epoch  80/80  loss=0.001260
+  [18/23] sub-HYPE17  err=0.0002
+      Epoch  20/80  loss=0.002541
+      Epoch  40/80  loss=0.001449
+      Epoch  60/80  loss=0.001465
+      Epoch  80/80  loss=0.001235
+  [19/23] sub-HYPE18  err=0.0048
+      Epoch  20/80  loss=0.002197
+      Epoch  40/80  loss=0.001479
+      Epoch  60/80  loss=0.001370
+      Epoch  80/80  loss=0.001302
+  [20/23] sub-HYPE19  err=0.0235
+      Epoch  20/80  loss=0.002338
+      Epoch  40/80  loss=0.001207
+      Epoch  60/80  loss=0.001079
+      Epoch  80/80  loss=0.001331
+  [21/23] sub-HYPE20  err=0.0242
+      Epoch  20/80  loss=0.002359
+      Epoch  40/80  loss=0.001253
+      Epoch  60/80  loss=0.001164
+      Epoch  80/80  loss=0.001272
+  [22/23] sub-HYPE21  err=0.0454
+      Epoch  20/80  loss=0.002029
+      Epoch  40/80  loss=0.001287
+      Epoch  60/80  loss=0.001235
+      Epoch  80/80  loss=0.001206
+  [23/23] sub-HYPE22  err=0.0336
+
+==============================================================
+DINO 64mT LOOCV:  MAE=0.0220  bias=+0.0085  10/23 below 0.020  ICC=0.523061104737003
+  vs DENOISING headline: MAE=0.0134, ICC=0.615
+==============================================================
+
+VERDICT: DINO worse on 64mT than denoising
+Saved -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/dino_headline_loocv/results.json
