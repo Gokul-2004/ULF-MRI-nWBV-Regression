@@ -1,0 +1,9 @@
+{
+  "experiment": "fig8a_real_mc_dropout_oasis",
+  "n_subjects": 38,
+  "n_mc_passes": 100,
+  "empirical_coverage_pct": 23.68,
+  "mean_ci_width": 0.0284,
+  "n_covered": 9,
+  "note": "Real MC Dropout: dropout enabled at inference, N=100 passes, 95% CI from empirical percentiles. Replaces the prior figure whose CIs were np.random.normal and whose 4.3% was from the n=23 set."
+}

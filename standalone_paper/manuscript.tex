@@ -887,8 +887,10 @@ We additionally evaluated the most commonly applied lightweight
 uncertainty estimator, MC Dropout~\cite{gal2016dropout}, with $N = 100$
 stochastic forward passes per scan. The mean 95\,\% interval width is
 $0.029$\,nWBV on both the OASIS-1 test set (Fig.~\ref{fig:ci}) and the
-real 64\,mT cohort (Fig.~\ref{fig:ci_real}). Empirical coverage at the
-nominal 95\,\% level is 4.3\,\% (Fig.~\ref{fig:calibration}), and
+real 64\,mT cohort (Fig.~\ref{fig:ci_real}). Empirical coverage is far
+below the nominal 95\,\% level on both cohorts --- $23.7\%$ on OASIS-1
+($n=38$) and $4.3\%$ on the real 64\,mT cohort ($n=23$;
+Fig.~\ref{fig:calibration}) --- and
 interval width is not significantly correlated with absolute prediction error
 ($r = +0.34$, $p = 0.108$, $n = 23$). The primary evidence of miscalibration
 is the 4.3\,\% empirical coverage against a nominal 95\,\% target; the positive
@@ -919,9 +921,10 @@ basis of this paper.
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\textwidth]{fig8a_ci_oasis.png}
-\caption{Per-subject nWBV predictions with MC Dropout 95\,\% CI ---
-OASIS-1 test set ($n=38$). Empirical coverage $= 4.3\%$ (nominal $= 95\%$);
-CIs are severely underestimated and not suitable for clinical use.}
+\caption{Per-subject nWBV predictions with real MC Dropout 95\,\% CI
+($N=100$ stochastic forward passes) --- OASIS-1 test set ($n=38$).
+Empirical coverage $= 23.7\%$ (nominal $= 95\%$); CIs are severely
+under-calibrated and not suitable for clinical use.}
 \label{fig:ci}
 \end{figure}
 
