@@ -65,3 +65,5 @@ runs/
 # NOTE: checkpoints/*.pt, Research_Papers/*.pdf, experiment
 #       result JSONs, and *.log files are intentionally TRACKED.
 checkpoints/swin_oasis.pt
+# FastSurfer Zenodo raw segmentation output (regenerable; GT csv is kept)
+experiments/fastsurfer_zenodo/sub-*/

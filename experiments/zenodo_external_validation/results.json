@@ -1,0 +1,77 @@
+{
+  "experiment": "zenodo_external_validation",
+  "addresses": [
+    "R1.3"
+  ],
+  "dataset": "van den Broek et al. (2025) Zenodo, paired 64mT/3T",
+  "ground_truth": "FastSurfer nWBV = BrainSeg/Mask (same as OASIS/ds006557)",
+  "n_subjects": 10,
+  "subjects": [
+    "sub-0011",
+    "sub-0015",
+    "sub-0023",
+    "sub-0025",
+    "sub-0027",
+    "sub-0035",
+    "sub-0046",
+    "sub-0047",
+    "sub-0048",
+    "sub-0066"
+  ],
+  "gt_nwbv": [
+    0.8633,
+    0.8539,
+    0.8583,
+    0.8444,
+    0.8604,
+    0.8694,
+    0.8601,
+    0.8659,
+    0.836,
+    0.843
+  ],
+  "models": {
+    "real64mt_adapted": {
+      "checkpoint": "real64mt_finetuned.pt",
+      "mae": 0.0731,
+      "bias": -0.0731,
+      "pearson_r": 0.2552,
+      "pearson_p": 0.4767,
+      "spearman_rho": 0.3333,
+      "spearman_p": 0.3466,
+      "preds": [
+        0.7801,
+        0.7844,
+        0.7817,
+        0.787,
+        0.7808,
+        0.786,
+        0.7799,
+        0.7844,
+        0.7787,
+        0.7806
+      ]
+    },
+    "oasis_unadapted": {
+      "checkpoint": "oasis_finetuned.pt",
+      "mae": 0.0327,
+      "bias": -0.0327,
+      "pearson_r": 0.2643,
+      "pearson_p": 0.4605,
+      "spearman_rho": 0.3576,
+      "spearman_p": 0.3104,
+      "preds": [
+        0.8205,
+        0.8246,
+        0.8223,
+        0.8282,
+        0.8203,
+        0.8269,
+        0.8202,
+        0.8251,
+        0.8186,
+        0.8204
+      ]
+    }
+  }
+}
