@@ -1,0 +1,28 @@
+{
+  "cohort": "ds006557",
+  "n": 23,
+  "mean_age": 45.1,
+  "range": [
+    20,
+    68
+  ],
+  "median": 42.0,
+  "sd": 14.9,
+  "comparison": {
+    "ds006557": {
+      "mean": 45.1,
+      "range": [
+        20,
+        68
+      ]
+    },
+    "zenodo": {
+      "mean": 30,
+      "range": [
+        19,
+        65
+      ]
+    }
+  },
+  "note": "ds006557 ~15yr older than Zenodo (45 vs 30). Consistent with the nWBV gap being age-driven (older cohort -> lower nWBV), not a ground-truth artifact."
+}
