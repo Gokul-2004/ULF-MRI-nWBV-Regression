@@ -1,0 +1,12 @@
+{
+  "source": "van den Broek et al. (2025) Zenodo data descriptor PDF (Documentation/Data descriptor.pdf)",
+  "age_available": "cohort-level only, NOT per-subject",
+  "age_range_years": [
+    19,
+    65
+  ],
+  "age_mean_years": 30,
+  "age_mode_years": 23,
+  "exclusion": "under 18, over 65, or MRI safety concerns",
+  "note": "No participants.tsv / per-subject age mapping in the Zenodo dataset. Per-subject age correlation on the Zenodo cohort is therefore not possible; only the cohort age distribution is reported."
+}
