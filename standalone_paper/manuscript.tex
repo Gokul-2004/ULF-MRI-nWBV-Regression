@@ -471,9 +471,11 @@ Serves as the accuracy upper bound; requires 12\,GB installation and
 2--3\,min per scan.
 
 \textbf{CNN3D}: A 3D CNN with 4 convolutional blocks, global average
-pooling, and $\approx 4.1$M parameters, trained on the same OASIS-1 split
-and hyperparameters as ViT3D. Evaluated on both OASIS-1 and real 64\,mT
-data.
+pooling, and $8.22$M parameters ($\approx 1.9\times$ the ViT3D's $4.23$M),
+trained on the same OASIS-1 split and hyperparameters as ViT3D. Evaluated
+on both OASIS-1 and real 64\,mT data. Note that CNN3D is not a
+matched-parameter comparator: it is larger than ViT3D, so its stronger
+high-field accuracy is achieved at nearly twice the parameter count.
 
 \textbf{Gaussian-blur pre-training}: ViT3D pre-trained with $\sigma = 2$
 Gaussian blur plus noise instead of physics simulation. Evaluated under
