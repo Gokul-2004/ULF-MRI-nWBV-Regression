@@ -134,3 +134,20 @@ panel D from `fig22D_ci_width_vs_error_CORRECTED.*`.
 
 **Count:** 24 figures. If fig24 should sit beside the LOOCV results rather than last,
 renumber before Word placement, not after.
+
+**fig22 — REBUILT 2026-08-23** (`scripts/rebuild_fig22_failure_analysis.py`, 600 dpi +
+SVG, no `np.random`). Panel D now carries the real value: **r = −0.164, p = 0.454**,
+trend line sloping down, labelled n.s. Panel C built from real ages in
+`participants.tsv`. Gate G4 CLEARED.
+
+⚠ **Caption trap — three different "age" statistics exist. Do not interchange them:**
+
+| Quantity | Model | Value | Where |
+|---|---|---|---|
+| predictions vs age | LOOCV-adapted | ρ = +0.232, p = 0.287 | abstract, §V-E, discussion, fig11 |
+| **error** vs age | LOOCV-**adapted** | ρ = −0.088, p = 0.690 (n.s.) | **fig22 panel C only** |
+| **error** vs age | **unadapted** | r = +0.678, p = 0.0004 (sig.) | `paper_statistics/failure_analysis.json` — **not cited in the manuscript, and must not be added without the "unadapted" label** |
+
+The second and third point in opposite directions and are both correct; they describe
+different models. The fig22 caption must keep the word "LOOCV". Verified 2026-08-23:
+`0.6776` appears nowhere in the manuscript, so there is currently no conflict.
