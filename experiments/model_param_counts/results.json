@@ -1,0 +1,29 @@
+{
+  "experiment": "model_param_counts",
+  "addresses": ["R2.1", "R2.2"],
+  "purpose": "Authoritative parameter counts. The value cnn3d_params=4100000 recorded in experiments/arch_comparator_swin/results.json is WRONG and must not be used; it is the source of the manuscript's false 'matched-parameter comparator' claim.",
+  "method": "Analytic count from the committed layer definitions in models/baselines.py (torch unavailable on the audit machine). Verify with sum(p.numel() for p in model.parameters()) on a torch-enabled machine before final use.",
+  "input_shape": [64, 64, 64],
+  "counts": {
+    "BaselineViT3D": {
+      "params": 4225537,
+      "config": "patch=16, embed_dim=256, layers=4, heads=8, num_classes=1",
+      "manuscript_value": "4.23M",
+      "status": "CONFIRMED"
+    },
+    "BaselineCNN3D": {
+      "params": 8222337,
+      "config": "ResNet-style, 3 stages (32->64->128->256), num_classes=1",
+      "manuscript_value": "4.1M",
+      "status": "WRONG IN MANUSCRIPT — actual is 8.22M, ~1.95x the ViT. Not a matched-parameter comparator."
+    },
+    "ln_head_adapter": {
+      "params": 769,
+      "config": "final LayerNorm (2*256) + head (256*1+1)",
+      "manuscript_value": "769",
+      "status": "CONFIRMED"
+    },
+    "SwinUNETR": {"params": 62187011, "source": "experiments/arch_comparator_swin/results.json"},
+    "UNETR": {"params": 92685649, "source": "experiments/arch_comparator_unetr/results.json"}
+  }
+}
