@@ -1,0 +1,16 @@
+Age comparison for M30 (computed 2026-08-23)
+
+  ds006557 (adaptation): n=23, mean 45.1 yr, range 21-69, median 42.0, SD 14.9
+  Zenodo (external):     mean 30 yr, range 19-65 (cohort-level only)
+
+  nWBV gap  = 0.8555 - 0.7841 = 0.0714
+  age gap   = 15.1 yr
+  rate required to explain the gap fully = 0.00473 nWBV/yr
+
+  slope from ds006557 (rho=-0.778, SD 14.9/0.0152) = 0.00079/yr -> 0.0120 (17%)
+  slope from OASIS-1 span (0.224 / 78 yr)          = 0.00287/yr -> 0.0434 (61%)
+
+  CONCLUSION: age explains 17-61% of the offset. A residual of ~0.03-0.06 nWBV is
+  NOT explained by age and may reflect cohort or FastSurfer-pipeline differences.
+  Do not write "the external cohort is younger, so the model does not extrapolate"
+  as a complete explanation.
