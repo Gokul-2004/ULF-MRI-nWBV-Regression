@@ -7,8 +7,8 @@
   "params": 62187011,
   "protocol": "OASIS-1 seed-42 80/10/10, LR=5e-5, Adam, 50ep, early-stop val-r",
   "comparison": {
-    "vit3d_params": 4230000,
-    "cnn3d_params": 4100000
+    "vit3d_params": 4225537,
+    "cnn3d_params": 8222337
   },
   "n_test": 38,
   "mae": 0.0148,
