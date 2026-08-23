@@ -961,8 +961,11 @@ value; add `47 ms` and `standard GPU` to the zero-count grep gate in `08` Risk 5
 
 **BEFORE:** no such section exists.
 
-**AFTER (fill the age sentence only if the cohort's demographics are distributed;
-otherwise delete it and state that subject-level demographics are not released):**
+**AFTER** (age paragraph resolved 2026-08-23 — ds006557 mean 45.1 yr [21–69, SD 14.9]
+from `participants.tsv`; Zenodo mean 30 yr [19–65] from the data descriptor PDF,
+cohort-level only. **Age explains 17–61 % of the offset, not all of it** — do not
+write the simple biological explanation; the arithmetic is two numbers and a reviewer
+will do it):
 
 > **J. External validation on an independent 64 mT cohort**
 >
@@ -990,7 +993,17 @@ otherwise delete it and state that subject-level demographics are not released):
 > mean and does not extrapolate beyond the label range it was adapted on, which is
 > the same range-compressed behaviour identified internally in Section V-E
 > (r = −0.119, p = 0.590), now confirmed on data from an independent site and scanner.
-> `<AGE SENTENCE>`
+> The external cohort is younger (mean 30 years, range 19–65; cohort-level
+> demographics only, no per-subject ages are distributed) than the adaptation cohort
+> (mean 45.1, range 21–69), and part of the nWBV offset is attributable to age.
+> Applying the age–nWBV slope observed within ds006557 accounts for approximately
+> 0.012 of the 0.071 difference; the steeper slope implied by the OASIS-1 age span
+> accounts for approximately 0.043. A residual offset therefore remains that age alone
+> does not explain, and which may reflect cohort or segmentation-pipeline differences
+> between the two datasets; we cannot resolve it with the data available. This does not
+> affect the finding: the adapted model's predictions vary by 0.008 against a true
+> spread of 0.033 and centre on the adaptation cohort's mean, so it does not track
+> anatomy in this cohort irrespective of the cause of the distribution shift.
 >
 > We report this as the primary external finding rather than a caveat. It bounds the
 > claim of this paper precisely: the protocol and the adaptation procedure are
