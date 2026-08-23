@@ -33,5 +33,41 @@
     "max_ms": 6.2
   },
   "headline_ms": 4.53,
-  "note": "Headline is the COLD median: a freshly-allocated 64^3 input each repetition, model.eval()+no_grad, batch=1, on CPU. The warmed (reused-tensor) figure is lower and optimistic. Manuscript cites 47 ms on a standard GPU; this file measures CPU."
+  "note": "Headline is the COLD median: a freshly-allocated 64^3 input each repetition, model.eval()+no_grad, batch=1, on CPU. The warmed (reused-tensor) figure is lower and optimistic. Manuscript cites 47 ms on a standard GPU; this file measures CPU.",
+  "cnn3d": {
+    "model": "BaselineCNN3D (scalar regression head)",
+    "n_params": 8222337,
+    "input_shape": [
+      64,
+      64,
+      64
+    ],
+    "batch_size": 1,
+    "device": "cpu",
+    "cpu_model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+    "torch_version": "2.11.0+cu130",
+    "torch_threads": 6,
+    "n_repetitions": 100,
+    "n_warmup": 10,
+    "cold_full_volume_forward": {
+      "median_ms": 11.87,
+      "mean_ms": 12.0,
+      "iqr_ms": 1.02,
+      "p25_ms": 11.47,
+      "p75_ms": 12.49,
+      "min_ms": 10.4,
+      "max_ms": 15.42
+    },
+    "warmed_reused_tensor": {
+      "median_ms": 12.13,
+      "mean_ms": 12.21,
+      "iqr_ms": 0.96,
+      "p25_ms": 11.69,
+      "p75_ms": 12.65,
+      "min_ms": 10.88,
+      "max_ms": 14.72
+    },
+    "headline_ms": 11.87,
+    "note": "Replaces the unmeasured '~95 s' in fig10, which was implausible: a forward pass of an 8.2M-parameter CNN over a 64^3 volume cannot take 20,000x the time of a 4.2M-parameter ViT on the same input."
+  }
 }
