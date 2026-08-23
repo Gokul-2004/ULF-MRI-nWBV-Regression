@@ -141,11 +141,24 @@ predictions span 0.008 against a true spread of 0.033 and centre on 0.7824 — w
 ground-truth value. The model returns its training mean and does not extrapolate.
 This is the same range-compressed behaviour we report internally in Section V-E
 (r = −0.119, p = 0.590), now confirmed at an independent site on an independent
-scanner. The reviewer's requirement has therefore produced a bound on the paper's
-claim rather than a confirmation of it: the protocol and adaptation procedure are
-reproducible and input-dependent, but the resulting estimator is not transportable to
-cohorts whose nWBV distribution differs from the adaptation set, and the revision
-says so in the abstract, in Section V-J, and in the Limitations.
+scanner.
+
+We are careful not to over-explain the distribution shift. The external cohort is
+younger (mean 30 years versus 45.1), and age accounts for part of the offset — but
+only part: the age–nWBV slope observed within ds006557 accounts for about 0.012 of
+the 0.071 difference, and the steeper slope implied by the OASIS-1 age span for about
+0.043. A residual remains that age does not explain and that may reflect cohort or
+segmentation-pipeline differences we cannot resolve with the available data. We state
+this in Section V-J rather than presenting age as a complete account. The finding
+itself does not depend on the cause: the adapted model's predictions vary by 0.008
+against a true spread of 0.033, so it does not track anatomy in this cohort however
+the distribution shift arose.
+
+The reviewer's requirement has therefore produced a bound on the paper's claim rather
+than a confirmation of it: the protocol and adaptation procedure are reproducible and
+input-dependent, but the resulting estimator is not transportable to cohorts whose
+nWBV distribution differs from the adaptation set, and the revision says so in the
+abstract, in Section V-J, and in the Limitations.
 
 **Author action:** New Section V-J "External validation" with the full result and its
 diagnosis (M30), and new Fig. 24 showing the predicted-versus-true scatter alongside
