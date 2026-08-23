@@ -103,7 +103,7 @@ Blocked: **fig10** (needs the M29 number) and **fig22** (panel C needs
 
 ## Phase 9 — the gate (all counts must be ZERO)
 
-`0.0126` · `0.847` · `+0.34` · `1.368` · `only public` · `4.1M` / `4.1 M` · `0.0112` ·
+`0.0126` · `p = 0.847` / `p=0.847` (bare `0.847` is LEGITIMATE — Fisher CI bound of ViT3D's r = 0.722 [0.524–0.847]; must NOT be scrubbed) · `+0.34` · `1.368` · `only public` · `4.1M` / `4.1 M` · `0.0112` ·
 `0.0117` · `47 ms` · `standard GPU` · `FIGURE PLACEHOLDER` · `Notcom` ·
 `recovers most of the full-fine-tuning benefit`
 

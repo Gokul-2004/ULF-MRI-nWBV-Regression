@@ -49,7 +49,10 @@ flag it to me immediately:
     47 ms / 47ms  (unmeasured GPU latency claim; withdrawn)
     standard GPU  (no GPU was ever used in this work)
     4.1M / 4.1 M  (wrong CNN3D parameter count; correct is 8.22M)
-    0.847         (invalid paired Wilcoxon; the valid test gives p = 0.81)
+    p = 0.847 / p=0.847   (invalid paired Wilcoxon; the valid test gives p = 0.81)
+       ^ ONLY as a p-value. Bare "0.847" also appears as the upper bound of a
+         Fisher confidence interval, r = 0.722 [0.524-0.847]. That one is REAL
+         DATA and must never be changed.
     +0.34         (FABRICATED from placeholder random data; correct is -0.164)
     1.368         (mislabelled effect size; correct pooled-SD Cohen's d is 1.463)
     only public   (false claim of sole dataset existence)

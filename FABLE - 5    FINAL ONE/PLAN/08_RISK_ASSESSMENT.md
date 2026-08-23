@@ -105,7 +105,7 @@ modes: a stale claim survives (0.0126, p = 0.847, +0.34, "only public dataset",
 PDF doesn't show (the exact failure IEEE binary review punishes).
 
 **Mitigation — a final grep-style gate on the exported clean PDF text; all counts
-must be zero:** `0.0126` · `0.847` · `+0.34` · `1.368` · `only public` · `4.1M` /
+must be zero:** `0.0126` · `p = 0.847` / `p=0.847` (bare `0.847` is LEGITIMATE — Fisher CI bound of ViT3D's r = 0.722 [0.524–0.847]; must NOT be scrubbed) · `+0.34` · `1.368` · `only public` · `4.1M` /
 `4.1 M` (CNN context) · `0.0112` · `0.0117` · `FIGURE PLACEHOLDER` · `Notcom` ·
 `recovers most of the full-fine-tuning benefit` · **`47 ms`** · **`standard GPU`** · **`4.1M`/`4.1 M`** · **`only public`**. And four counts must be non-zero:
 `0.0128` (≥4) · `23.7` (≥1) · `−0.164` or `-0.164` (≥2) · `van den Broek` (≥2) · **`0.0731`** (≥2) · **`8.22`** (≥1, CNN3D parameter count).

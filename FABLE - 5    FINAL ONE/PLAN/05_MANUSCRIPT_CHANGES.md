@@ -148,12 +148,12 @@ substance):**
 > 1. To our knowledge, the first direct nWBV regression from 64 mT MRI without
 >    intermediate segmentation or super-resolution, evaluated under fully
 >    subject-independent cross-session LOOCV (n = 23), yielding MAE = 0.0134
->    [0.010–0.017] and compute-light inference (<T> ms per volume on CPU, measured;
->    no GPU required; edge devices not yet benchmarked) [M29]. Within-cohort accuracy does not exceed a constant-mean
+>    [0.010–0.017] and compute-light inference (4.53 ms per volume on CPU,
+>    measured; no GPU required; edge devices not yet benchmarked). Within-cohort
+>    accuracy does not exceed a constant-mean
 >    baseline (leave-one-out MAE = 0.0128); the discriminative evidence is a
 >    permutation test establishing input-dependence (p = 0.0024), reported together
 >    with the negative finding that the reproducible signal does not track true nWBV
->    (r = −0.119, p = 0.590).
 >    (r = −0.119, p = 0.590), and with the external finding that the adapted
 >    estimator does not transfer to a cohort whose nWBV range differs from the
 >    adaptation set (Section V-J). The contribution is the protocol and the
@@ -1040,3 +1040,41 @@ segmentation.
 
 **WHY:** the count appears inside a disclosed correction; a wrong number there costs
 more than anywhere else in the paper.
+
+
+### M5b | Tier 0 | §V-I, sentence immediately after M5 | MUST
+
+Consequence of M5. The surviving sentence opens "Both observations", whose original
+antecedents were (a) the 4.3 % coverage and (b) *the positive r value*. M5 deletes the
+second. One word restores the reference.
+
+**BEFORE:** > "Both observations are consistent with the known failure mode of dropout
+based uncertainty under covariate shift [40]:"
+
+**AFTER:** > These observations are consistent with the known failure mode of dropout
+based uncertainty under covariate shift [40]:
+
+Change nothing else in that sentence — the covariate-shift explanation that follows is
+correct and stands.
+
+**WHY:** I3 follow-on. Flagged by the Word pass on 2026-08-24.
+
+### M32 | Tier 0 | Whole document — figure renumbering | MUST (Phase 8, after all text edits)
+
+The submitted manuscript has **17** figures; the revision has **24**. Several edits
+(M5, M6, M11, M16, and others) cite the **revised** numbering, so until this edit runs
+the body and the captions disagree. That is expected and must not be "fixed" early by
+renumbering piecemeal.
+
+Run once, after every text edit, in this order:
+
+1. Insert all new figures at their anchor points, using the placeholder convention.
+2. Renumber captions 1–24 to match `07_FIGURE_PLAN.md` order.
+3. Sweep every in-text callout ("Fig. N", "Figure N", "Figs. N and M") against the new
+   numbering. Known remappings from the submitted set: **14 → 20**, **15 → 21**,
+   **17 → 23**.
+4. Verify: every figure is cited at least once in the body, and every callout resolves
+   to an existing figure. Zero orphans in either direction.
+
+**WHY:** R4.3 and basic correctness. A reviewer checking figure callouts is doing the
+cheapest possible verification, and a mismatch there undermines the rest.
