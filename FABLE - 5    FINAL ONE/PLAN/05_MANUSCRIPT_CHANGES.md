@@ -1078,3 +1078,51 @@ Run once, after every text edit, in this order:
 
 **WHY:** R4.3 and basic correctness. A reviewer checking figure callouts is doing the
 cheapest possible verification, and a mismatch there undermines the rest.
+
+### M33 | Tier 1 | §V-E Cross-Session LOOCV Results (p. ~6, para 210) | MUST
+
+**COVERAGE GAP — added 2026-08-24.** Found by the Word pass's forbidden-value audit,
+not by the original plan. This is the third `0.0126` and the only one no edit reached;
+M1 (abstract), M3 (contributions) and M22 (conclusion) cover the others. Without this
+edit the wrong baseline ships in the Results section — the single place a reviewer
+checking R1.1 would look first.
+
+The passage also carries a claim that must be corrected on its own merits: it asserts
+that inter-session ICC "cannot be produced by a constant baseline". That is the right
+intuition but it was asserted, not demonstrated. We now demonstrate it with the
+permutation test, and the passage should point there.
+
+**BEFORE:**
+
+> "constant-mean LOOCV baseline (predict leave-one out cohort mean for each heldout
+> subject) yields MAE = 0.0126. The ViT3D LOOCV MAE (0.0134) is therefore not
+> meaningfully smaller than the constant-mean MAE in absolute terms, which is an
+> expected consequence of the 0.056 nWBV range: in such a regime, the MAE metric is
+> dominated by the cohort spread rather than by the model. The result that
+> distinguishes the model from a constant predictor is the inter-session ICC reported
+> below, which requires inputconditional behaviour and cannot be produced by a
+> constant baseline."
+
+**AFTER:**
+
+> constant-mean LOOCV baseline (predict the leave-one-out cohort mean for each
+> held-out subject) yields MAE = 0.0128; predicting the global cohort mean yields
+> 0.0122. The ViT3D LOOCV MAE of 0.0134 is therefore not smaller than either — it is
+> numerically above both. This is an expected consequence of the 0.056 nWBV range: in
+> such a regime MAE is dominated by the cohort spread rather than by the model, and we
+> do not claim an accuracy advantage over a constant predictor. What distinguishes the
+> model from a constant predictor is not accuracy but input-dependence, established by
+> the permutation test in Section V-F: a constant predictor cannot produce agreement
+> between two independent acquisitions of the same subject, and the observed
+> inter-session ICC(3,1) = 0.615 exceeds its permutation null (mean ≈ 0) at
+> p = 0.0024.
+
+**WHY:** Integrity I1 (0.0126 → 0.0128, plus the global-mean figure), R1.1, R3.4. The
+substantive change is that the previous text asserted a constant baseline "cannot"
+produce the ICC; the revision demonstrates it instead of asserting it, and concedes
+the accuracy comparison outright rather than describing it as "not meaningfully
+smaller" — which read as a hedge and is what Reviewer 1 objected to.
+
+**Depends on M10** (which creates the §V-F permutation subsection). Apply M33 after
+M10 so the cross-reference resolves, or apply now and confirm the section letter when
+M10 lands.
