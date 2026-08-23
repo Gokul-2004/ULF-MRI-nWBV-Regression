@@ -151,3 +151,27 @@ trend line sloping down, labelled n.s. Panel C built from real ages in
 The second and third point in opposite directions and are both correct; they describe
 different models. The fig22 caption must keep the word "LOOCV". Verified 2026-08-23:
 `0.6776` appears nowhere in the manuscript, so there is currently no conflict.
+
+
+**fig10 — BLOCKED, and the file currently in the folder must NOT be inserted.**
+`fig10_fourway_comparison_with_latency.*` in `figures_to_insert/` is still the original
+version carrying the withdrawn "47 ms" labels.
+
+Investigating it found a second defect beyond the 47 ms. The panel's latency array was
+`[150, 95, 0.047, 0.047]` seconds — none of it measured. The CNN3D value is not merely
+unmeasured but implausible: an 8.22M-parameter CNN cannot take ~20,000x the time of a
+4.23M-parameter ViT on the same 64^3 input. ViT3D measures 4.53 ms cold.
+
+Resolution adopted:
+
+- **ViT3D — measured.** 4.53 ms cold median (`experiments/inference_latency/`).
+- **CNN3D — measure it.** `scripts/benchmark_cnn3d.py` runs the identical protocol and
+  merges into the same JSON. One command on the dataset machine.
+- **SynthSeg+ — cite, do not invent.** SynthSeg was run for this project but no timing
+  was recorded, and re-running it purely for a stopwatch reading is disproportionate.
+  The figure marks it as a published runtime with a hatched bar and a "(published)"
+  label, and the caption says so explicitly. A citation is required at that point.
+
+`scripts/generate_review3_figures.py` builds fig10 only once the CNN3D measurement
+exists; it refuses to fall back to the hardcoded value. Panel B is log-scale, each bar
+labelled "(measured)" or "(published)", with the protocol stated beneath.
