@@ -1,0 +1,19 @@
+{
+  "cohort": "ds006557",
+  "source": "data/ds006557_data/participants.tsv",
+  "n": 23,
+  "mean": 45.1,
+  "median": 42.0,
+  "sd": 14.9,
+  "range_rounded": [
+    21,
+    69
+  ],
+  "range_raw_float": [
+    20.92,
+    68.98
+  ],
+  "note": "Ages in participants.tsv are floats (min 20.92, max 68.98). Manuscript range [21,69] is the rounded convention. mean 45.1, median 42.0, SD 14.9.",
+  "derivation": "import csv,numpy as np; a=np.array([float(r['age']) for r in csv.DictReader(open('data/ds006557_data/participants.tsv'),delimiter='\\t')]); a.mean(), (round(a.min()),round(a.max())), np.median(a), a.std()",
+  "used_in": "M30 age attribution; age-cohort comparison vs Zenodo (mean 30, range 19-65)"
+}
