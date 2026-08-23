@@ -41,6 +41,7 @@ plt.rcParams.update({
     "svg.fonttype": "none",
 })
 C_MODEL, C_NULL, C_GOOD, C_BAD, C_REF = "#1f4e79", "#b8cce4", "#2e7d32", "#c62828", "#616161"
+GREY_LIT = "#cfcfcf"   # literature value, not measured here
 
 CHECKS = []
 def load(p):
@@ -223,10 +224,69 @@ def fig24_external_validation():
     save(fig, "fig24_external_validation_zenodo")
 
 
+def fig10_fourway_with_latency():
+    """Accuracy vs cost. Latency is MEASURED for both learned models; the
+    segmentation comparator is a published figure, marked as such."""
+    lat  = load(EXP / "inference_latency" / "results.json")
+    loo  = load(EXP / "loocv_cross_session" / "results.json")
+
+    vit_ms = chk("ViT3D latency (measured)", lat["headline_ms"], "inference_latency")
+    cnn_ms = lat.get("cnn3d", {}).get("headline_ms")
+    if cnn_ms is None:
+        print("  !! CNN3D latency missing — run scripts/benchmark_cnn3d.py first")
+        return
+    chk("CNN3D latency (measured)", cnn_ms, "inference_latency/cnn3d")
+
+    # SynthSeg+: published runtime, NOT measured here. Marked on the figure.
+    SYNTHSEG_S, SYNTHSEG_SRC = 150.0, "published"
+
+    rows = [
+        ("SynthSeg+\n(upper bound)", 0.005,  SYNTHSEG_S * 1000, GREY_LIT, True),
+        ("CNN3D\n(no adapt.)",       0.076,  cnn_ms,            C_NULL,   False),
+        ("ViT3D\n(no adapt.)",       0.040,  vit_ms,            "#8e24aa", False),
+        ("ViT3D\n(LOOCV adapt.)",    0.0134, vit_ms,            C_MODEL,  False),
+    ]
+
+    fig, (axA, axB) = plt.subplots(1, 2, figsize=(10.0, 4.0))
+
+    x = range(len(rows))
+    axA.bar(x, [r[1] for r in rows], color=[r[3] for r in rows],
+            edgecolor="black", linewidth=0.7, width=0.6, zorder=3)
+    for i, r in enumerate(rows):
+        axA.text(i, r[1] + 0.0025, f"{r[1]:.4f}", ha="center", va="bottom", fontsize=7.6)
+    axA.set_xticks(list(x)); axA.set_xticklabels([r[0] for r in rows], fontsize=7.6)
+    axA.set_ylabel("real 64 mT MAE (nWBV)")
+    axA.set_ylim(0, max(r[1] for r in rows) * 1.22)
+    axA.grid(axis="y", linewidth=0.4, alpha=0.5, zorder=0); axA.set_axisbelow(True)
+    axA.set_title("(A)  Accuracy on real 64 mT hardware", fontsize=9, loc="left")
+
+    bars = axB.bar(x, [r[2] for r in rows], color=[r[3] for r in rows],
+                   edgecolor="black", linewidth=0.7, width=0.6, zorder=3)
+    bars[0].set_hatch("///")
+    axB.set_yscale("log")
+    axB.set_xticks(list(x)); axB.set_xticklabels([r[0] for r in rows], fontsize=7.6)
+    axB.set_ylabel("inference time per volume (ms, log scale)")
+    axB.grid(axis="y", linewidth=0.4, alpha=0.5, zorder=0, which="both"); axB.set_axisbelow(True)
+    for i, r in enumerate(rows):
+        txt = f"~{r[2]/1000:.0f} s\n(published)" if r[4] else f"{r[2]:.1f} ms\n(measured)"
+        axB.text(i, r[2] * 1.35, txt, ha="center", va="bottom", fontsize=7.0)
+    axB.set_ylim(1, SYNTHSEG_S * 1000 * 12)
+    axB.set_title("(B)  Inference cost", fontsize=9, loc="left")
+    axB.text(0.5, -0.30,
+             "Hatched bar is a published runtime, not measured here. Both learned models were timed on CPU\n"
+             f"under an identical protocol (cold full-volume forward pass, batch 1, {lat['torch_threads']} threads, "
+             f"{lat['cpu_model']}).",
+             transform=axB.transAxes, ha="center", va="top", fontsize=6.9, color=C_REF)
+
+    fig.tight_layout()
+    save(fig, "fig10_fourway_comparison_with_latency")
+
+
 if __name__ == "__main__":
     print("Review-3 figures\n" + "=" * 60)
     fig05_comparators()
     fig24_external_validation()
+    fig10_fourway_with_latency()
     print("\nValues plotted (check against the manuscript):")
     for lab, val, src in CHECKS:
         print(f"  {lab:32s} = {str(val):24s} <- {src}")
