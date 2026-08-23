@@ -943,16 +943,27 @@ A GPU benchmark cannot have been produced on that hardware.
 > §V-G / §VI-A: "A single forward pass over one 64×64×64 volume completes in `<T>` ms
 > (IQR `<IQR>`, `<N>` repetitions, `<CPU>`, `<threads>` threads), measured with the
 > benchmark released as `experiments/inference_latency/`. No GPU is required, and no
-> FreeSurfer or SynthSeg segmentation is invoked; the segmentation-based comparators
-> in Fig. 10 require approximately 150 s (SynthSeg+) and 95 s (CNN3D pipeline) per
-> volume on the same machine. Edge-device latency on ULF scanner hardware has not been
-> benchmarked."
+> FreeSurfer or SynthSeg segmentation is invoked. The matched-protocol CNN3D
+> regressor runs in 11.9 ms on the same machine, so the speed advantage reported here
+> follows from avoiding segmentation rather than from the transformer architecture:
+> the segmentation-based upper bound (SynthSeg+) requires on the order of 150 s per
+> volume [cite], roughly four orders of magnitude more than either direct regressor.
+> Edge-device latency on ULF scanner hardware has not been benchmarked."
 
 **WHY:** I10; R3.7 (deployment claims bounded, which R3 asked for explicitly);
 R4.6. **Do NOT substitute an estimate** — if the benchmark cannot be produced, delete
 the latency claim entirely rather than soften it to "<50 ms", which would remain
 unmeasured. CPU-only operation is the stronger point-of-care claim in any case:
 bedside ULF scanners are unlikely to carry a GPU.
+
+**Note — the corrected measurement changes the claim.** The fabricated array made
+CNN3D look slow (95 s) and the ViT uniquely fast. Measured, CNN3D is 11.9 ms against
+ViT3D's 4.53 ms — a 2.6x ratio that simply tracks the 1.94x parameter ratio. The
+four-orders-of-magnitude gap is against **segmentation**, not against the CNN. Any
+sentence implying the ViT architecture is what makes the method fast must be rewritten
+to credit the segmentation-free formulation. This is the more accurate claim and it is
+also the one consistent with the rest of the revision, which removes every
+architecture-superiority claim (M3, M18, M27).
 
 **Also:** remove "on a standard GPU" everywhere; rebuild fig10 with the measured
 value; add `47 ms` and `standard GPU` to the zero-count grep gate in `08` Risk 5.
