@@ -1126,3 +1126,51 @@ smaller" — which read as a hedge and is what Reviewer 1 objected to.
 **Depends on M10** (which creates the §V-F permutation subsection). Apply M33 after
 M10 so the cross-reference resolves, or apply now and confirm the section letter when
 M10 lands.
+
+### M34 | Tier 0 | §VI — the conformal "future work" sentence | MUST
+
+**COVERAGE GAP — added 2026-08-24**, found by the Word pass's audit of the phrase
+"identified as future work". Same class as M33: an integrity-I9 item that no edit
+reached. M20 clears the Future Works *list*; this is an inline sentence elsewhere.
+
+The submitted text says split-conformal calibration "is the appropriate remedy and is
+identified as future work". M11 now reports it as a completed result (91.3 % coverage
+at nominal 90 %, 95.7 % at nominal 95 %). Left unedited, the paper defers as future
+work something it reports two sections earlier — exactly the self-contradiction
+Reviewer 1 would seize on.
+
+**BEFORE:** > "Split conformal calibration on prospective acquisitions is the
+appropriate remedy and is identified as future work."
+
+**AFTER:** > Split conformal calibration is the appropriate remedy and is applied in
+this revision (Section V, Uncertainty Quantification): it restores near-nominal
+coverage on the present cohort, at interval widths that exceed the cohort's nWBV
+range. Extension to prospective multi-site acquisitions remains future work.
+
+**WHY:** Integrity I9, R1.7. Sources: `conformal_calibration/results.json`.
+
+**Audit note — the other three "identified as future work" instances:**
+- §III-C adapter comparison — already fixed by M26.
+- Latency / edge devices — inside M29's scope; leave for M29.
+- CNN3D adapter bias ("whether the same adapter would correct CNN3D's −0.076 bias")
+  — **still true, leave it.** CNN3D was never carried through adaptation.
+
+### M35 | Tier 0 | §III-A — Arabic section cross-reference | MUST
+
+The document references "Section 6.5" in Arabic form where every other cross-reference
+uses roman numerals. M11 removed the instance in the Uncertainty Quantification
+subsection; one survives in Section III-A.
+
+**BEFORE:** > "This SNR mismatch is the primary source of the preadaptation bias
+(discussed in Section 6.5)."
+
+**AFTER:** > This SNR mismatch is the primary source of the pre-adaptation bias
+(discussed in Section VI-<X>).
+
+Substitute `<X>` with the letter of the Section VI subsection that actually discusses
+the pre-adaptation bias — confirm it in the document rather than assuming, since
+Section VI's lettering was not audited during the Section V insertions. Also fixes
+"preadaptation" → "pre-adaptation".
+
+**WHY:** Consistency; a dangling Arabic reference in an otherwise roman-numbered paper
+reads as an unfinished draft.
