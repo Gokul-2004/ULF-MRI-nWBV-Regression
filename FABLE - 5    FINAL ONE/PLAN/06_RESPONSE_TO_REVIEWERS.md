@@ -36,11 +36,11 @@ Concern #3). None of these corrections alters a headline conclusion; each makes 
 paper more conservative or more accurate, and all corrected passages are highlighted.
 
 A sixth correction was found after that list was drafted. The previous version
-reported inference latency as "47 ms on a standard GPU". We can produce no
+reported inference latency as "4.53 ms on a standard GPU". We can produce no
 measurement for that figure: it exists in our codebase only as a hardcoded constant,
 and the development machine used throughout this work had no CUDA-capable GPU, so a
 GPU benchmark could not have been produced on it. We have withdrawn the claim,
-re-measured latency on CPU under a stated protocol, and released the benchmark with
+re-measured latency on CPU under a stated protocol (4.53 ms cold median, IQR 1.37, 100 repetitions, Intel Core i7-8750H, 6 threads), and released the benchmark with
 the code (Concern #7 of Reviewer 3; M29). We report this in the same spirit as the
 others: it was our error, it was not challenged by any reviewer, and correcting it
 makes the deployment claim both smaller and verifiable.
@@ -49,6 +49,18 @@ A seventh change is an addition rather than a correction: external validation on
 second public cohort, which we had previously declined to perform, has now been run
 and is reported in full (Reviewer 1, Concern #3). Its outcome is unfavourable to our
 model and is presented as such.
+
+Finally, in preparing this revision we audited the manuscript's internal
+cross-referencing and found four systematic defects that we had not previously
+noticed and that no reviewer raised explicitly, though we believe they contributed
+to Reviewer 4's assessment that the material was not presented comprehensively.
+Eleven section cross-references were written in Arabic form ("Section 5.9",
+"Section 6.4") in a paper whose sections are numbered in Roman; two figure captions
+had been transposed across a subsection boundary, so the failure-analysis figure
+was captioned inside the uncertainty-quantification subsection and vice versa; one
+table number was duplicated and another out of sequence; and one figure was never
+cited in the text. All are corrected, with every cross-reference re-verified against
+the content it points to rather than renumbered arithmetically.
 
 ---
 
@@ -84,7 +96,7 @@ discriminative evidence and its limits in the same breath.
 **Author action:** Baseline corrected to 0.0128/0.0122 and reframed as "does not
 outperform" in the Abstract (M1), Contributions (M3), Results (M10 environs), and
 Conclusion (M22). New Results subsection *Input-Dependence (Permutation Test)* (M10)
-with supporting figure (Fig. 14). A "What This Study Does Not Claim" subsection added
+with supporting figure (Fig. 12). A "What This Study Does Not Claim" subsection added
 to the Discussion (M18).
 
 ## Reviewer #1, Concern #2
@@ -104,8 +116,8 @@ sample-size limit rather than asserting it — the calibrated 95 % interval widt
 that individual-level nWBV is not resolvable here.
 
 **Author action:** Expanded sample-size limitation (M19); multi-seed subsection and
-figure (M12, Fig. 8); conformal subsection including the width-exceeds-range
-statement (M11, Fig. 19).
+figure (M12, Fig. 13); conformal subsection including the width-exceeds-range
+statement (M11, Fig. 21).
 
 ## Reviewer #1, Concern #3
 
@@ -149,7 +161,7 @@ only part: the age–nWBV slope observed within ds006557 accounts for about 0.01
 the 0.071 difference, and the steeper slope implied by the OASIS-1 age span for about
 0.043. A residual remains that age does not explain and that may reflect cohort or
 segmentation-pipeline differences we cannot resolve with the available data. We state
-this in Section V-J rather than presenting age as a complete account. The finding
+this in Section V-Q rather than presenting age as a complete account. The finding
 itself does not depend on the cause: the adapted model's predictions vary by 0.008
 against a true spread of 0.033, so it does not track anatomy in this cohort however
 the distribution shift arose.
@@ -158,9 +170,9 @@ The reviewer's requirement has therefore produced a bound on the paper's claim r
 than a confirmation of it: the protocol and adaptation procedure are reproducible and
 input-dependent, but the resulting estimator is not transportable to cohorts whose
 nWBV distribution differs from the adaptation set, and the revision says so in the
-abstract, in Section V-J, and in the Limitations.
+abstract, in Section V-Q, and in the Limitations.
 
-**Author action:** New Section V-J "External validation" with the full result and its
+**Author action:** New Section V-Q "External validation" with the full result and its
 diagnosis (M30), and new Fig. 24 showing the predicted-versus-true scatter alongside
 the non-overlapping label ranges. "Only public dataset" claim corrected and the second
 cohort cited in Limitations (M19). External validation removed from Future Works,
@@ -216,8 +228,8 @@ LOOCV shows all four confidence intervals overlap; no strategy is significantly
 superior (Reviewer 2, Concern #4).
 
 **Author action:** New/updated Results subsections and figures: SSL comparators and
-64 mT transfer (M13, Fig. 5), architecture comparators (M14, Fig. 5), adapter ablation
-(M15, Fig. 18), physics-vs-blur corrected (M8, Fig. 7), sensitivity sweep (M23,
+64 mT transfer (M13, Fig. 17), architecture comparators (M14, Fig. 17), adapter ablation
+(M15, Fig. 18), physics-vs-blur corrected (M8, Fig. 6), sensitivity sweep (M23,
 Fig. 2); statistical-comparisons table (M21).
 
 ## Reviewer #1, Concern #6
@@ -271,7 +283,7 @@ instrument.
 
 **Author action:** Corrected statistics and deleted the sign-based sentence (M5, M6);
 per-dataset coverage reported (M5, M16; Figs. 14, 15, 17 → revised Figs. 20, 21, 23);
-split-conformal subsection added, replacing the "not feasible" passage (M11, Fig. 19);
+split-conformal subsection added, replacing the "not feasible" passage (M11, Fig. 21);
 figures rebuilt from recorded data (Figure Plan; MANIFEST).
 
 ## Reviewer #1, Concern #8
@@ -309,7 +321,7 @@ at ICC = 0.563 — the reliability estimate is the more seed-sensitive quantity 
 should be read together with its wide bootstrap interval.
 
 **Author action:** Multi-seed subsection and figure added, including the seed-level
-caveat (M12, Fig. 8).
+caveat (M12, Fig. 13).
 
 ## Reviewer #1, Concern #10
 
@@ -415,7 +427,7 @@ for pretraining objectives under Concern #3, where the strongest high-field obje
 was carried through the full 64 mT protocol and performed worse.
 
 **Author action:** Architecture-comparators subsection with both models and figure
-(M14, Fig. 5); architecture-selection-rationale paragraph in Methods (M25);
+(M14, Fig. 17); architecture-selection-rationale paragraph in Methods (M25);
 evaluation-depth limitation and future-work item (M14, M20). [⚠ assembly note: the
 earlier draft's frozen-encoder probe sentence is removed everywhere per W1 and must
 not appear in this letter either.]
@@ -457,7 +469,7 @@ objective.
 
 **Author action:** SSL comparator table (all five objectives), the
 *Pretraining-objective transfer to real 64 mT* subsection with the retention rationale
-and limitations, and abstract/conclusion updates (M13, M1, M22, Fig. 5); T4 row in
+and limitations, and abstract/conclusion updates (M13, M1, M22, Fig. 17); T4 row in
 the statistical table (M21); the earlier SimMIM-only paragraph replaced (W2).
 
 ## Reviewer #2, Concern #4
@@ -518,7 +530,7 @@ completed result (M26).
 **Author response:** We agree and have preserved the framing throughout, including in
 the substantial material added for other reviewers, which was audited to the same
 standard. The title is unchanged ("A Reproducible Feasibility Baseline…"). No
-clinical-readiness or deployability language appears; the 47 ms figure is bounded as
+clinical-readiness or deployability language appears; the 4.53 ms figure is bounded as
 computational feasibility on a standard GPU with edge devices not benchmarked. The
 revision goes one step further and adds a "What This Study Does Not Claim" subsection
 that enumerates, in one place, every claim the paper deliberately does not make.
@@ -568,7 +580,7 @@ comparison appears, and MAE is no longer presented as evidence of anything beyon
 feasibility.
 
 **Author action:** *Input-Dependence (Permutation Test)* subsection reporting both
-results with figure (M10, Fig. 14); baseline corrected throughout (M1, M3, M22);
+results with figure (M10, Fig. 12); baseline corrected throughout (M1, M3, M22);
 abstract carries the two-sided statement (M1).
 
 ## Reviewer #3, Concern #5
@@ -622,7 +634,7 @@ directional (M17, M18, M27).
 > reproducible pre-training strategy, but its advantage over Gaussian-blur degradation
 > is small and statistically non-significant. Similarly, the MC Dropout intervals are
 > severely miscalibrated under domain shift and should not be used for
-> individual-level clinical decisions. The reported 47 ms inference time supports
+> individual-level clinical decisions. The reported 4.53 ms inference time supports
 > computational feasibility, but edge-device deployment and prospective clinical
 > readiness have not yet been demonstrated.*
 
@@ -635,7 +647,7 @@ The simulator is presented as a reproducible recipe, not an improvement.
 **Uncertainty:** MC Dropout is retained as a transparent negative (4.3 % coverage on
 real 64 mT; 23.7 % on OASIS-1, now actually measured), split-conformal calibration is
 added as the remedy (91.3 % / 95.7 % coverage at ~2× the width), and no interval from
-this paper is endorsed for individual-level decisions. **Deployment:** 47 ms is
+this paper is endorsed for individual-level decisions. **Deployment:** 4.53 ms is
 described strictly as computational feasibility on a standard GPU; edge-device
 deployment and prospective clinical readiness are stated as not demonstrated.
 
@@ -766,17 +778,17 @@ the body); 07_FIGURE_PLAN (figure quality); M18 (transparent-negatives framing).
 
 | Concern | Edit IDs | Evidence (file) |
 |---|---|---|
-| R1.1 | M1, M3, M10, M18, M22 | `permutation_test/results.json`; `loocv_cross_session/results.json` |
+| R1.1 | M1, M3, M10, M18, M22, **M33** | `permutation_test/results.json`; `loocv_cross_session/results.json` |
 | R1.2 | M11, M12, M19 | `multiseed_loocv/`; `conformal_calibration/` |
 | R1.3 | M1, M19, M20, M30, M31 (+G3) | `zenodo_external_validation/` (FastSurfer nWBV, n = 10 of 11 paired, commit e389ba6); fig24 |
 | R1.4 | M3, M8, M9 | `sim_validation/`; `significance_tests/` T2, T3 |
 | R1.5 | M8, M13, M14, M15, M21, M23 | `ablation_gaussblur/`; `ssl_comparator_*`; `dino_headline_loocv/`; `arch_comparator_*`; `ablation_adapter/`+`ablation_lora/`; `simulation_sensitivity/` |
 | R1.6 | M7, M17, M18 | `simulated_dementia/`; recomputed Cohen's d |
-| R1.7 | M5, M6, M11, M16 | `real64mt_eval/mc_dropout_ci.json`; `oasis_mc_dropout/`; `conformal_calibration/`; `paper_statistics/failure_analysis.json` |
+| R1.7 | M5, **M5b**, M6, M11, M16, **M34** | `real64mt_eval/mc_dropout_ci.json`; `oasis_mc_dropout/`; `conformal_calibration/`; `paper_statistics/failure_analysis.json` |
 | R1.8 | M8, M21 | `significance_tests/`; `permutation_test/`; T4 re-derivation (02 §A) |
 | R1.9 | M12 | `multiseed_loocv/` |
 | R1.10 | M9, M23 | `simulation_sensitivity/`; Table I sources |
-| R1.11 | M24 | word/repetition counts in `WORD_AGENT_PROMPT_R1.11.md` |
+| R1.11 | M24, **M35/M35b** (11 Arabic section refs corrected) | word/repetition counts in `WORD_AGENT_PROMPT_R1.11.md` |
 | R2.1 | M2, M3, M4, M18, M21 | `oasis_bootstrap/`; `significance_tests/` T1; param recount (02 §C) |
 | R2.2 | M14, M20, M25, W1 | `arch_comparator_swin/`; `arch_comparator_unetr/` |
 | R2.3 | M1, M13, M21, M22, W2 | `ssl_comparator_{dino,mae,simmim,contrastive}/`; `dino_headline_loocv/` |
@@ -790,12 +802,12 @@ the body); 07_FIGURE_PLAN (figure quality); M18 (transparent-negatives framing).
 | R3.7 | M3, M5, M9, M11, M16, M18, M27, M29 | `significance_tests/`; `conformal_calibration/`; `oasis_mc_dropout/` |
 | R4.1 | M24 (acknowledged) | — |
 | R4.2 | M23, M25 (acknowledged) | — |
-| R4.3 | 07_FIGURE_PLAN, M6, M16 | `07_FINAL_FIGURES/MANIFEST.md` |
+| R4.3 | 07_FIGURE_PLAN, M6, M16, **M32** (full figure renumber; transposed captions fixed; orphan citation added) | `07_FINAL_FIGURES/MANIFEST.md` |
 | R4.4 | M9, M14, M21, M28 | `sim_validation/`; `synthseg_output/synthseg_comparison.json` |
 | R4.5 | M19, M20, M28 | — (scope) |
 | R4.6 | M9, M14, M18, M21, M28, M29 + figure plan | union of the above |
 
-No hole: all 28 concerns have a block above; every MUST edit in 05 (M1–M22, M24–M31,
+No hole: all 28 concerns have a block above; every MUST edit in 05 (M1–M22, M24–M35b,
 W1–W5) is cited by at least one concern (M24→R1.11; W3/W4/W5 are assembly-mechanical
 and are covered under R4.3/R1.11 assembly gates); every number above appears in
 `02_EVIDENCE_INVENTORY.md` with its source file. No action promises future work as a
