@@ -3,8 +3,18 @@
 Files in this folder are named by their **figure number in the manuscript**. Insert
 `Figure_NN_*` at Figure NN. No mapping needed.
 
-Only Figure 1 is a PNG (MRI slice imagery — its SVG is just wrapped bitmaps).
-Everything else is SVG.
+**Both formats are present for every figure, all 24 verified at 600 dpi.** Use
+either — pick one and stay consistent:
+
+- **PNG throughout (simplest).** All 24 are 600 dpi, well above IEEE's 300 dpi
+  minimum for halftones. Immune to font-substitution problems. Larger .docx.
+- **SVG for 2–24, PNG for Figure 1.** True vector, so Word's compression cannot
+  touch it, and the file stays smaller. Figure 1 must stay PNG regardless — it is
+  MRI slice imagery, and its SVG is just wrapped bitmaps.
+
+If you use PNG throughout, **image compression must be disabled** — Word will
+otherwise downsample to 220 ppi on export, which is exactly what caused R4.3.
+Vector SVG is not affected by that setting; PNG is.
 
 **All 24 must be replaced**, not only the nine placeholders. The fifteen figures that
 still hold their original embedded image are at 220 ppi after Word's compression —
