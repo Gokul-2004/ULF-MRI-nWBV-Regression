@@ -346,18 +346,50 @@ sourcing and conservative-SNR rationale stated alongside (M9).
 > *The manuscript contains repeated discussions of MAE, ICC, and limitations. Please
 > reduce redundancy and improve readability.*
 
-**Author response:** We accept this. Because this revision also adds substantial
-material at the reviewers' request (Concerns #1, #4, #5, #7–#10), we performed the
-consolidation after the new content was final: each repeated quantity now has one
-canonical statement with full statistics in the Results subsection where it is
-derived, a headline form in the Abstract, and (for headline findings) one appearance
-in the Conclusion; Introduction and Discussion restatements are replaced by
-cross-references or digit-free interpretation. Limitations are reorganised to
-separate methodological limitations from clinical scope conditions. We prioritised
-removing repetition over minimising page count, reading the concern as readability.
+**Author response:** We accept the concern and have acted on it, but we should be
+straightforward about the outcome: this revision is longer than the version the
+reviewer read, not shorter. Concerns #1, #3, #4, #5 and #7–#10 from this reviewer,
+together with Concerns #2 and #3 from Reviewer 2, required six new experiments and
+seven new results subsections. The manuscript has grown from approximately 8,500 to
+12,100 words.
 
-**Author action:** Document-wide consolidation pass to the three-places rule (M24),
-run after all insertions; Limitations reorganised (M19 environs).
+We therefore reduced redundancy in kind rather than in volume, and we treated the
+concern as being about readability rather than page count.
+
+The abstract was the worst case. It had stated the headline MAE three times and the
+constant-mean comparison three times within a single paragraph; it is now cut by
+44 %, from 456 words to 257, which also brings it back within the IEEE Access
+guideline it had exceeded. Each quantity is stated once there.
+
+The scope subsection added at Reviewer 2's request originally restated five results
+given elsewhere in the paper; it now cites the sections that contain the evidence
+instead. A redundant inter-session ICC sentence was removed from the Conclusion,
+where the permutation result immediately preceding it makes the same point more
+precisely. Discussion passages now interpret the reliability estimate rather than
+repeating its numeric value, which is given in full in the Results subsection where
+it is derived.
+
+Where a quantity still appears repeatedly, most occurrences are not restatements. Of
+the sentences mentioning the inter-session ICC, the majority report a different value
+for a different purpose — the multi-seed spread (0.644 ± 0.058), the DINO comparator
+(0.523), the permutation null, the methods definition. The same holds for the
+headline MAE: most of its occurrences are table cells or contrasts against another
+condition rather than assertions of the result.
+
+Finally, the character of the repetition has changed. In the previous version the
+headline MAE was repeatedly asserted on its own; every occurrence in this revision
+carries the constant-mean comparison that qualifies it. We think the bare restatement
+was part of what made the repetition read as insistent, and that has been removed
+even where the mention itself remains.
+
+We recognise this does not satisfy the request as literally written. We judged that
+deleting material the reviewers had asked for would be the wrong trade.
+
+**Author action:** Abstract rewritten and cut 44 % (M24 Part 1); scope subsection
+converted from restatement to cross-references (M24 Part 2); redundant ICC sentence
+deleted from the Conclusion (M24 Part 3); numeric restatement removed from the
+Discussion's reliability passage; every assertion of the headline MAE verified to
+carry its constant-mean qualifier (M24, Fix A).
 
 ---
 
