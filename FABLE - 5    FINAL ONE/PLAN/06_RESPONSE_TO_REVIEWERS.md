@@ -36,12 +36,12 @@ Concern #3). None of these corrections alters a headline conclusion; each makes 
 paper more conservative or more accurate, and all corrected passages are highlighted.
 
 A sixth correction was found after that list was drafted. The previous version
-reported inference latency as "4.53 ms on a standard GPU". We can produce no
+reported inference latency as "47 ms on a standard GPU". We can produce no
 measurement for that figure: it exists in our codebase only as a hardcoded constant,
 and the development machine used throughout this work had no CUDA-capable GPU, so a
 GPU benchmark could not have been produced on it. We have withdrawn the claim,
-re-measured latency on CPU under a stated protocol (4.53 ms cold median, IQR 1.37, 100 repetitions, Intel Core i7-8750H, 6 threads), and released the benchmark with
-the code (Concern #7 of Reviewer 3; M29). We report this in the same spirit as the
+re-measured latency on CPU under a stated protocol (4.53 ms cold median, IQR 1.37, 100 repetitions, Intel Core
+i7-8750H, 6 threads), and released the benchmark with the code (Concern #7 of Reviewer 3; M29). We report this in the same spirit as the
 others: it was our error, it was not challenged by any reviewer, and correcting it
 makes the deployment claim both smaller and verifiable.
 
@@ -562,8 +562,9 @@ completed result (M26).
 **Author response:** We agree and have preserved the framing throughout, including in
 the substantial material added for other reviewers, which was audited to the same
 standard. The title is unchanged ("A Reproducible Feasibility Baseline…"). No
-clinical-readiness or deployability language appears; the 4.53 ms figure is bounded as
-computational feasibility on a standard GPU with edge devices not benchmarked. The
+clinical-readiness or deployability language appears; the measured 4.53 ms CPU latency
+is bounded as computational feasibility, with no GPU claimed and edge devices not
+benchmarked. The
 revision goes one step further and adds a "What This Study Does Not Claim" subsection
 that enumerates, in one place, every claim the paper deliberately does not make.
 
@@ -666,7 +667,7 @@ directional (M17, M18, M27).
 > reproducible pre-training strategy, but its advantage over Gaussian-blur degradation
 > is small and statistically non-significant. Similarly, the MC Dropout intervals are
 > severely miscalibrated under domain shift and should not be used for
-> individual-level clinical decisions. The reported 4.53 ms inference time supports
+> individual-level clinical decisions. The reported 47 ms inference time supports
 > computational feasibility, but edge-device deployment and prospective clinical
 > readiness have not yet been demonstrated.*
 
@@ -679,8 +680,12 @@ The simulator is presented as a reproducible recipe, not an improvement.
 **Uncertainty:** MC Dropout is retained as a transparent negative (4.3 % coverage on
 real 64 mT; 23.7 % on OASIS-1, now actually measured), split-conformal calibration is
 added as the remedy (91.3 % / 95.7 % coverage at ~2× the width), and no interval from
-this paper is endorsed for individual-level decisions. **Deployment:** 4.53 ms is
-described strictly as computational feasibility on a standard GPU; edge-device
+this paper is endorsed for individual-level decisions. **Deployment:** the latency claim is
+withdrawn and re-measured. The reviewer quotes 47 ms, which we can no longer
+substantiate: it appears in our codebase only as a hardcoded constant, and the
+machine used throughout this work had no CUDA-capable GPU. Measured on CPU under a
+stated protocol, a single forward pass takes 4.53 ms; this is described strictly as
+computational feasibility, no GPU is claimed, and edge-device
 deployment and prospective clinical readiness are stated as not demonstrated.
 
 **Author action:** Fidelity correction (M9); contribution 2 and conclusion updated
