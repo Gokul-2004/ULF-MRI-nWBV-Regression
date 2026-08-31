@@ -43,7 +43,7 @@ measurement for that figure: it exists in our codebase only as a hardcoded const
 and the development machine used throughout this work had no CUDA-capable GPU, so a
 GPU benchmark could not have been produced on it. We have withdrawn the claim,
 re-measured latency on CPU under a stated protocol (4.53 ms cold median, IQR 1.37, 100 repetitions, Intel Core
-i7-8750H, 6 threads), and released the benchmark with the code (Concern #7 of Reviewer 3; ). We report this in the same spirit as the
+i7-8750H, 6 threads), and released the benchmark with the code (Concern #7 of Reviewer 3). We report this in the same spirit as the
 others: it was our error, it was not challenged by any reviewer, and correcting it
 makes the deployment claim both smaller and verifiable.
 
@@ -284,7 +284,7 @@ entire nWBV range (0.056) — a group-level tool, not an individual-level clinic
 instrument.
 
 Author action: Corrected statistics and deleted the sign-based sentence;
-per-dataset coverage reported (; Figs. 14, 15, 17 → revised Figs. 20, 21, 23);
+per-dataset coverage reported for OASIS-1 and real 64 mT separately (Figs. 19, 20 and 22);
 split-conformal subsection added, replacing the "not feasible" passage (Fig. 21);
 figures rebuilt from the recorded data.
 
@@ -391,9 +391,9 @@ even where the mention itself remains.
 We recognise this does not satisfy the request as literally written. We judged that
 deleting material the reviewers had asked for would be the wrong trade.
 
-Author action: Abstract rewritten and cut 44 % ( Part 1); scope subsection
-converted from restatement to cross-references ( Part 2); redundant ICC sentence
-deleted from the Conclusion ( Part 3); numeric restatement removed from the
+Author action: In the consolidation pass: the abstract rewritten and cut 44 %; the
+scope subsection converted from restatement to cross-references; the redundant ICC
+sentence deleted from the Conclusion; numeric restatement removed from the
 Discussion's reliability passage; every assertion of the headline MAE verified to
 carry its constant-mean qualifier (Fix A).
 
@@ -641,8 +641,10 @@ existing data: both public paired 64 mT cohorts (ds006557 and van den Broek et a
 prospective acquisition spanning a wider nWBV range as the necessary next step,
 rather than working around it.
 
-Author action:  (permutation),  (adapter),  (multi-seed); wider-range
-limitation stated in Limitations and Future Works.
+Author action: Input-Dependence (Permutation Test) subsection added (permutation);
+Adapter Strategy Ablation subsection added (adapter); Multi-Seed Robustness
+subsection added (multi-seed); wider-range limitation stated in Limitations and
+Future Works.
 
 ──────────────────────────────────────────────────────────────────────────
 Reviewer#3, Concern # 6:
@@ -696,8 +698,10 @@ stated protocol, a single forward pass takes 4.53 ms; this is described strictly
 computational feasibility, no GPU is claimed, and edge-device
 deployment and prospective clinical readiness are stated as not demonstrated.
 
-Author action: Fidelity correction; contribution 2 and conclusion updated; conformal subsection; per-dataset MC Dropout coverage;
-deployment language bounded.
+Author action: Fidelity correction added to Methods; contribution 2 and the
+Conclusion updated; split-conformal subsection added to Uncertainty Quantification;
+MC Dropout coverage reported per dataset; all deployment language bounded to
+computational feasibility.
 
 ──────────────────────────────────────────────────────────────────────────
 Reviewer#4, Concern # 1:
@@ -714,11 +718,11 @@ Author action: Covered by the consolidation pass described under Reviewer 1, Con
 ──────────────────────────────────────────────────────────────────────────
 Reviewer#4, Concern # 2:
 
-The proposed methodology is described with an adequate level of clarity.
+*The proposed methodology is described with an adequate level of clarity.*
 
 Author response: We thank the reviewer. The methodology description is retained,
 with additions where other reviewers requested detail (architecture selection
-rationale,; simulation parameter justification, ).
+rationale, Section III-B; simulation parameter justification, Section III-A).
 
 Author action: None beyond the noted additions.
 
@@ -811,5 +815,8 @@ the physics simulator on fidelity, three of four SSL objectives over our denoisi
 objective — and we report them because the contribution is the reproducible protocol
 and its transparent failure characterisation, not the optimality of any component.
 
-Author action: , ,  (added comparisons and tests);  (scope argument in
-the body); the regenerated figure set (figure quality); and the transparent reporting of negative results.
+Author action: Architecture and pretraining comparator subsections, the
+statistical-comparisons table, and the simulation-fidelity analysis (added
+comparisons and tests); the scope-of-comparative-evaluation subsection (scope
+argument in the body); the regenerated 600 dpi figure set (figure quality); and the
+transparent reporting of results that do not favour our configuration.
