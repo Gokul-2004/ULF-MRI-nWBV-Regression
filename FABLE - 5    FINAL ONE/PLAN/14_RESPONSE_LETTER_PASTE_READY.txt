@@ -235,9 +235,10 @@ ablation (head-only / LayerNorm+head / LoRA / full fine-tuning) under the identi
 LOOCV shows all four confidence intervals overlap; no strategy is significantly
 superior (Reviewer 2, Concern #4).
 
-@@ACT@@Author action: New/updated Results subsections and figures: SSL comparators and
-64 mT transfer (Fig. 17), architecture comparators (Fig. 17), adapter ablation
-(Fig. 18), physics-vs-blur corrected (Fig. 6), sensitivity sweep (Fig. 2); statistical-comparisons table.
+@@ACT@@Author action: New/updated Results subsections and figures: SSL comparators,
+64 mT transfer and architecture comparators (Fig. 17); adapter ablation (Fig. 18);
+physics-vs-blur corrected (Fig. 6); sensitivity sweep (Fig. 2); and the
+statistical-comparisons table.
 
 @@CONCERN@@Reviewer#1, Concern # 6:
 
