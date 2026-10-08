@@ -4,6 +4,7 @@ title: "Direct nWBV Regression from 64 mT Ultra-Low-Field MRI: code, result file
 version: "3.0-access-r3"
 date-released: "2026-10-08"
 type: software
+license: MIT
 repository-code: "https://github.com/Gokul-2004/ULF-MRI-nWBV-Regression"
 authors:
   - family-names: "Krishnan"

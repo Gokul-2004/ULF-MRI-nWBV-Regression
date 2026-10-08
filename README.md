@@ -51,6 +51,6 @@ All datasets are public and are not redistributed here: IXI, OASIS-1, OpenNeuro
 ds006557, and van den Broek et al. (Zenodo 10.5281/zenodo.15471394). Derived
 reference labels (FastSurfer, SynthSeg+) are committed under `experiments/`.
 
-## Citation
+## License and citation
 
-See `CITATION.cff`. The archived release has a Zenodo DOI (listed on the release page).
+Code: MIT (`LICENSE`). The datasets keep their own licences. See `CITATION.cff`. The archived release has a Zenodo DOI (listed on the release page).
