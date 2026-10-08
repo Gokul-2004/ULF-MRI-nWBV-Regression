@@ -1,0 +1,94 @@
+{
+  "experiment": "r3_e6_time_budget",
+  "answers": [
+    "R2.12"
+  ],
+  "cpu": {
+    "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+    "torch_threads": 6
+  },
+  "provenance": {
+    "script": "scripts/round3/e6_time_budget.py",
+    "git_commit": "ff4762b7852201fa1dc0d9d77d154a3c5cd8fef5",
+    "code_tree_dirty": true,
+    "torch_version": "2.11.0+cu130",
+    "numpy_version": "1.26.4",
+    "generated_utc": "2026-10-07T04:37:03+00:00"
+  },
+  "acquisition_axial_T2w": {
+    "source": "BIDS sidecar AcquisitionDuration (MEASURED by scanner)",
+    "n": 46,
+    "median_s": 384.6,
+    "min_s": 384.6,
+    "max_s": 384.6,
+    "median_min": 6.4
+  },
+  "load_preprocess_per_scan": {
+    "source": "MEASURED here (nibabel load, percentile norm, scipy zoom to 64^3)",
+    "median_ms": 44.7,
+    "iqr_ms": 4.8,
+    "n": 46
+  },
+  "end_to_end_scan_to_prediction": {
+    "source": "MEASURED here (load + preprocess + forward, warm process)",
+    "median_ms": 51.2,
+    "n": 46
+  },
+  "forward_pass_cold": {
+    "source": "experiments/inference_latency/results.json (MEASURED, random 64^3 input, cold)",
+    "median_ms": 4.53
+  },
+  "adapter_training_one_fold": {
+    "source": "MEASURED here (headline recipe: 22 HFC scans x 6, 80 epochs, includes NIfTI loading)",
+    "seconds": 103.7
+  },
+  "fastsurfer_reference_labels": {
+    "source": "LOG-DERIVED experiments/fastsurfer_zenodo_batch.log (sequential, --seg_only --no_cereb --no_hypothal, CPU, 3 threads, deepmi/fastsurfer:cpu-v2.3.3)",
+    "n": 10,
+    "median_s": 2483.5,
+    "min_s": 2450.0,
+    "max_s": 2579.0,
+    "median_min": 41.4,
+    "note": "ds006557 FastSurfer runs also executed HypVINN (no --no_hypothal) under 4-way contention and are not used for timing."
+  },
+  "synthseg_plus_pseudolabels": {
+    "source": "LOG-DERIVED logs/synthseg_batch.log (freesurfer 7.4.1 mri_synthseg --robust, 64 mT T2w input, 4 parallel jobs x 3 threads \u2014 wall time under contention)",
+    "n": 22,
+    "median_s": 331.5,
+    "min_s": 178.0,
+    "max_s": 394.0,
+    "median_min": 5.5
+  },
+  "summary_table": [
+    {
+      "step": "64 mT axial T2w acquisition",
+      "time": "385 s",
+      "needed_for": "every scan"
+    },
+    {
+      "step": "NIfTI load + normalise + resize",
+      "time": "44.7 ms",
+      "needed_for": "every scan"
+    },
+    {
+      "step": "ViT3D forward pass (CPU, cold)",
+      "time": "4.53 ms",
+      "needed_for": "every scan"
+    },
+    {
+      "step": "Adapter training (once per site, 22 labelled scans)",
+      "time": "104 s",
+      "needed_for": "once per site"
+    },
+    {
+      "step": "FastSurfer reference labels (3T MPRAGE)",
+      "time": "41.4 min/subject",
+      "needed_for": "adaptation labels only (once per site)"
+    },
+    {
+      "step": "SynthSeg+ pseudo-labels (64 mT T2w)",
+      "time": "5.5 min/subject (contended)",
+      "needed_for": "alternative adaptation labels only"
+    }
+  ]
+}

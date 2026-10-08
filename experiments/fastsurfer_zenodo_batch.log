@@ -1,0 +1,48 @@
+=== FastSurfer Zenodo run: Thu Aug 20 01:47:58 AM IST 2026 ===
+Data   : /home/gk-krishnan/Desktop/VIT Paper/Paper 2/Website_dat/extracted/Paired 64mT and 3T Brain MRI Scans of Healthy Subjects for Neuroimaging Research v2/Data/3T data
+Output : /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/fastsurfer_zenodo
+Parallel: 1 jobs
+
+Found 11 subjects: sub-0011 sub-0015 sub-0023 sub-0025 sub-0027 sub-0035 sub-0046 sub-0047 sub-0048 sub-0064 sub-0066 
+
+=== Starting segmentation ===
+  [RUN ] sub-0011 - started 01:47:58
+  [OK  ] sub-0011 - complete 02:30:57
+  [DONE] sub-0015 - already complete, skipping
+  [RUN ] sub-0023 - started 02:30:57
+  [OK  ] sub-0023 - complete 03:11:54
+  [RUN ] sub-0025 - started 03:11:54
+  [OK  ] sub-0025 - complete 03:53:29
+  [RUN ] sub-0027 - started 03:53:29
+  [OK  ] sub-0027 - complete 04:34:29
+  [RUN ] sub-0035 - started 04:34:29
+  [OK  ] sub-0035 - complete 05:15:41
+  [RUN ] sub-0046 - started 05:15:41
+  [OK  ] sub-0046 - complete 05:56:52
+  [RUN ] sub-0047 - started 05:56:52
+  [OK  ] sub-0047 - complete 06:39:00
+  [RUN ] sub-0048 - started 06:39:00
+  [OK  ] sub-0048 - complete 07:19:50
+  [RUN ] sub-0064 - started 07:19:50
+  [OK  ] sub-0064 - complete 08:01:57
+  [RUN ] sub-0066 - started 08:01:57
+  [OK  ] sub-0066 - complete 08:43:33
+
+=== All segmentations complete: Thu Aug 20 08:43:33 AM IST 2026 ===
+=== Extracting nWBV values ===
+  sub-0011: nWBV = 0.8633
+  sub-0015: nWBV = 0.8539
+  sub-0023: nWBV = 0.8583
+  sub-0025: nWBV = 0.8444
+  sub-0027: nWBV = 0.8604
+  sub-0035: nWBV = 0.8694
+  sub-0046: nWBV = 0.8601
+  sub-0047: nWBV = 0.8659
+  sub-0048: nWBV = 0.8360
+  sub-0064: nWBV = 0.8498
+  sub-0066: nWBV = 0.8430
+
+Saved 11 subjects -> /home/gk-krishnan/Desktop/VIT Paper/Paper 2/experiments/fastsurfer_zenodo/nwbv_ground_truth_zenodo.csv
+nWBV range: 0.8360 -- 0.8694
+nWBV mean:  0.8550 +- 0.0105
+=== DONE: Thu Aug 20 08:43:33 AM IST 2026 ===

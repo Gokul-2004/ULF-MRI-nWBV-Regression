@@ -1,0 +1,1355 @@
+[2026-10-07 10:06:01] E3 present; starting chain
+[2026-10-07 10:06:01] E7 start
+construction check: {'level_90': {'k': 21, 'covered_counts_observed_over_5000_random_residual_vectors': [21]}, 'level_95': {'k': 22, 'covered_counts_observed_over_5000_random_residual_vectors': [22]}}
+Records with seg: 375, missing seg: 0
+Saved -> experiments/r3_e7_conformal/results.json
+ds006557_headline_adapter                                  cov95 22/23  width 0.0664  w/SD 4.38  frac-cohort-inside 0.989  contain-mean 23
+ds006557_swin_ridge_readout                                cov95 22/23  width 0.0343  w/SD 2.26  frac-cohort-inside 0.571  contain-mean 18
+external_native_as_submitted_headline_adapter_seedmean     cov95 0/10  width 0.0668  w/SD 6.11  frac-cohort-inside 0.0  contain-mean 0
+external_native_as_submitted_swin_ridge_readout            cov95 0/10  width 0.0343  w/SD 3.14  frac-cohort-inside 0.0  contain-mean 0
+external_reoriented_RAS_headline_adapter_seedmean          cov95 0/10  width 0.0668  w/SD 6.11  frac-cohort-inside 0.0  contain-mean 0
+external_reoriented_RAS_swin_ridge_readout                 cov95 0/10  width 0.0343  w/SD 3.14  frac-cohort-inside 0.01  contain-mean 0
+oasis1_split_conformal_stage2                              cov95 37/38  width 0.3523  w/SD 5.65  frac-cohort-inside 0.957  contain-mean 38
+[2026-10-07 10:07:01] E7 exit 0
+[2026-10-07 10:07:01] E6 start
+      Epoch  20/80  loss=0.000326
+      Epoch  40/80  loss=0.000273
+      Epoch  60/80  loss=0.000284
+      Epoch  80/80  loss=0.000274
+Saved -> experiments/r3_e6_time_budget/results.json
+{'step': '64 mT axial T2w acquisition', 'time': '385 s', 'needed_for': 'every scan'}
+{'step': 'NIfTI load + normalise + resize', 'time': '44.7 ms', 'needed_for': 'every scan'}
+{'step': 'ViT3D forward pass (CPU, cold)', 'time': '4.53 ms', 'needed_for': 'every scan'}
+{'step': 'Adapter training (once per site, 22 labelled scans)', 'time': '104 s', 'needed_for': 'once per site'}
+{'step': 'FastSurfer reference labels (3T MPRAGE)', 'time': '41.4 min/subject', 'needed_for': 'adaptation labels only (once per site)'}
+{'step': 'SynthSeg+ pseudo-labels (64 mT T2w)', 'time': '5.5 min/subject (contended)', 'needed_for': 'alternative adaptation labels only'}
+[2026-10-07 10:08:50] E6 exit 0
+[2026-10-07 10:08:50] E4 physics seed 42 start
+  Training ViT[physics,42]...
+    Epoch 5/30 - Train: 0.0055, Val: 0.0020
+    Epoch 10/30 - Train: 0.0035, Val: 0.0019
+    Epoch 15/30 - Train: 0.0031, Val: 0.0035
+    Epoch 20/30 - Train: 0.0032, Val: 0.0020
+    Epoch 25/30 - Train: 0.0031, Val: 0.0019
+    Early stopping at epoch 29
+[stage1 physics 42] {'n_train_samples': 520, 'n_val': 26, 'n_test': 26, 'stage1_test_mse_4targets': 0.004263401703120997, 'seconds': 1298.3}
+Records with seg: 375, missing seg: 0
+  [stage2 physics 42] ep 1 loss 0.08041 val_r 0.218  (17s)
+  [stage2 physics 42] ep 2 loss 0.00367 val_r 0.270  (32s)
+  [stage2 physics 42] ep 3 loss 0.00373 val_r 0.311  (48s)
+  [stage2 physics 42] ep 4 loss 0.00434 val_r 0.345  (64s)
+  [stage2 physics 42] ep 5 loss 0.00406 val_r 0.375  (79s)
+  [stage2 physics 42] ep 6 loss 0.00377 val_r 0.396  (97s)
+  [stage2 physics 42] ep 7 loss 0.00415 val_r 0.420  (117s)
+  [stage2 physics 42] ep 8 loss 0.00384 val_r 0.437  (133s)
+  [stage2 physics 42] ep 9 loss 0.00377 val_r 0.457  (149s)
+  [stage2 physics 42] ep 10 loss 0.00419 val_r 0.471  (166s)
+  [stage2 physics 42] ep 11 loss 0.00396 val_r 0.490  (182s)
+  [stage2 physics 42] ep 12 loss 0.00389 val_r 0.512  (198s)
+  [stage2 physics 42] ep 13 loss 0.00398 val_r 0.523  (217s)
+  [stage2 physics 42] ep 14 loss 0.00371 val_r 0.542  (237s)
+  [stage2 physics 42] ep 15 loss 0.00354 val_r 0.542  (254s)
+  [stage2 physics 42] ep 16 loss 0.00362 val_r 0.554  (270s)
+  [stage2 physics 42] ep 17 loss 0.00438 val_r 0.568  (290s)
+  [stage2 physics 42] ep 18 loss 0.00326 val_r 0.585  (309s)
+  [stage2 physics 42] ep 19 loss 0.00296 val_r 0.608  (325s)
+  [stage2 physics 42] ep 20 loss 0.00296 val_r 0.623  (342s)
+  [stage2 physics 42] ep 21 loss 0.00266 val_r 0.651  (362s)
+  [stage2 physics 42] ep 22 loss 0.00261 val_r 0.682  (382s)
+  [stage2 physics 42] ep 23 loss 0.00249 val_r 0.699  (398s)
+  [stage2 physics 42] ep 24 loss 0.00200 val_r 0.732  (417s)
+  [stage2 physics 42] ep 25 loss 0.00210 val_r 0.769  (436s)
+  [stage2 physics 42] ep 26 loss 0.00191 val_r 0.806  (453s)
+  [stage2 physics 42] ep 27 loss 0.00193 val_r 0.839  (469s)
+  [stage2 physics 42] ep 28 loss 0.00155 val_r 0.836  (486s)
+  [stage2 physics 42] ep 29 loss 0.00128 val_r 0.847  (506s)
+  [stage2 physics 42] ep 30 loss 0.00121 val_r 0.851  (525s)
+  [stage2 physics 42] ep 31 loss 0.00131 val_r 0.852  (542s)
+  [stage2 physics 42] ep 32 loss 0.00114 val_r 0.854  (557s)
+  [stage2 physics 42] ep 33 loss 0.00125 val_r 0.862  (574s)
+  [stage2 physics 42] ep 34 loss 0.00108 val_r 0.863  (595s)
+  [stage2 physics 42] ep 35 loss 0.00122 val_r 0.863  (614s)
+  [stage2 physics 42] ep 36 loss 0.00110 val_r 0.862  (634s)
+  [stage2 physics 42] ep 37 loss 0.00108 val_r 0.864  (651s)
+  [stage2 physics 42] ep 38 loss 0.00102 val_r 0.865  (671s)
+  [stage2 physics 42] ep 39 loss 0.00099 val_r 0.866  (689s)
+  [stage2 physics 42] ep 40 loss 0.00104 val_r 0.866  (706s)
+  [stage2 physics 42] ep 41 loss 0.00102 val_r 0.867  (726s)
+  [stage2 physics 42] ep 42 loss 0.00099 val_r 0.867  (743s)
+  [stage2 physics 42] ep 43 loss 0.00093 val_r 0.867  (760s)
+  [stage2 physics 42] ep 44 loss 0.00096 val_r 0.867  (780s)
+  [stage2 physics 42] ep 45 loss 0.00099 val_r 0.867  (800s)
+  [stage2 physics 42] ep 46 loss 0.00085 val_r 0.867  (818s)
+  [stage2 physics 42] ep 47 loss 0.00087 val_r 0.867  (835s)
+  [stage2 physics 42] ep 48 loss 0.00102 val_r 0.867  (851s)
+  [stage2 physics 42] ep 49 loss 0.00075 val_r 0.867  (867s)
+  [stage2 physics 42] ep 50 loss 0.00086 val_r 0.867  (886s)
+Records with seg: 375, missing seg: 0
+      Epoch  20/80  loss=0.002423
+      Epoch  40/80  loss=0.000866
+      Epoch  60/80  loss=0.000501
+      Epoch  80/80  loss=0.000450
+  [loocv physics 42] 1/23 sub-HYPE00 err -0.0119 (78s)
+      Epoch  20/80  loss=0.002473
+      Epoch  40/80  loss=0.000763
+      Epoch  60/80  loss=0.000546
+      Epoch  80/80  loss=0.000411
+  [loocv physics 42] 2/23 sub-HYPE01 err -0.0405 (188s)
+      Epoch  20/80  loss=0.002360
+      Epoch  40/80  loss=0.000972
+      Epoch  60/80  loss=0.000620
+      Epoch  80/80  loss=0.000564
+  [loocv physics 42] 3/23 sub-HYPE02 err -0.0130 (283s)
+      Epoch  20/80  loss=0.002488
+      Epoch  40/80  loss=0.000953
+      Epoch  60/80  loss=0.000616
+      Epoch  80/80  loss=0.000554
+  [loocv physics 42] 4/23 sub-HYPE03 err -0.0122 (379s)
+      Epoch  20/80  loss=0.002745
+      Epoch  40/80  loss=0.000834
+      Epoch  60/80  loss=0.000588
+      Epoch  80/80  loss=0.000516
+  [loocv physics 42] 5/23 sub-HYPE04 err -0.0182 (474s)
+      Epoch  20/80  loss=0.002659
+      Epoch  40/80  loss=0.001038
+      Epoch  60/80  loss=0.000672
+      Epoch  80/80  loss=0.000585
+  [loocv physics 42] 6/23 sub-HYPE05 err +0.0350 (565s)
+      Epoch  20/80  loss=0.002807
+      Epoch  40/80  loss=0.000952
+      Epoch  60/80  loss=0.000579
+      Epoch  80/80  loss=0.000476
+  [loocv physics 42] 7/23 sub-HYPE06 err +0.0080 (664s)
+      Epoch  20/80  loss=0.002513
+      Epoch  40/80  loss=0.000799
+      Epoch  60/80  loss=0.000486
+      Epoch  80/80  loss=0.000504
+  [loocv physics 42] 8/23 sub-HYPE07 err -0.0085 (762s)
+      Epoch  20/80  loss=0.002905
+      Epoch  40/80  loss=0.001000
+      Epoch  60/80  loss=0.000629
+      Epoch  80/80  loss=0.000587
+  [loocv physics 42] 9/23 sub-HYPE08 err -0.0274 (852s)
+      Epoch  20/80  loss=0.002580
+      Epoch  40/80  loss=0.000858
+      Epoch  60/80  loss=0.000501
+      Epoch  80/80  loss=0.000487
+  [loocv physics 42] 10/23 sub-HYPE09 err -0.0238 (948s)
+      Epoch  20/80  loss=0.002584
+      Epoch  40/80  loss=0.000920
+      Epoch  60/80  loss=0.000537
+      Epoch  80/80  loss=0.000508
+  [loocv physics 42] 11/23 sub-HYPE10 err +0.0125 (1042s)
+      Epoch  20/80  loss=0.002659
+      Epoch  40/80  loss=0.000871
+      Epoch  60/80  loss=0.000563
+      Epoch  80/80  loss=0.000494
+  [loocv physics 42] 12/23 sub-HYPE11 err -0.0137 (1142s)
+      Epoch  20/80  loss=0.003292
+      Epoch  40/80  loss=0.000990
+      Epoch  60/80  loss=0.000600
+      Epoch  80/80  loss=0.000558
+  [loocv physics 42] 13/23 sub-HYPE12 err -0.0180 (1236s)
+      Epoch  20/80  loss=0.002564
+      Epoch  40/80  loss=0.001063
+      Epoch  60/80  loss=0.000637
+      Epoch  80/80  loss=0.000557
+  [loocv physics 42] 14/23 sub-HYPE13 err -0.0328 (1328s)
+      Epoch  20/80  loss=0.002740
+      Epoch  40/80  loss=0.001032
+      Epoch  60/80  loss=0.000588
+      Epoch  80/80  loss=0.000531
+  [loocv physics 42] 15/23 sub-HYPE14 err +0.0191 (1421s)
+      Epoch  20/80  loss=0.002803
+      Epoch  40/80  loss=0.000981
+      Epoch  60/80  loss=0.000756
+      Epoch  80/80  loss=0.000630
+  [loocv physics 42] 16/23 sub-HYPE15 err -0.0036 (1517s)
+      Epoch  20/80  loss=0.003369
+      Epoch  40/80  loss=0.001006
+      Epoch  60/80  loss=0.000650
+      Epoch  80/80  loss=0.000542
+  [loocv physics 42] 17/23 sub-HYPE16 err +0.0120 (1613s)
+      Epoch  20/80  loss=0.002863
+      Epoch  40/80  loss=0.000865
+      Epoch  60/80  loss=0.000597
+      Epoch  80/80  loss=0.000524
+  [loocv physics 42] 18/23 sub-HYPE17 err -0.0034 (1713s)
+      Epoch  20/80  loss=0.002570
+      Epoch  40/80  loss=0.000928
+      Epoch  60/80  loss=0.000566
+      Epoch  80/80  loss=0.000499
+  [loocv physics 42] 19/23 sub-HYPE18 err -0.0161 (1811s)
+      Epoch  20/80  loss=0.002576
+      Epoch  40/80  loss=0.000913
+      Epoch  60/80  loss=0.000576
+      Epoch  80/80  loss=0.000592
+  [loocv physics 42] 20/23 sub-HYPE19 err -0.0006 (1902s)
+      Epoch  20/80  loss=0.002982
+      Epoch  40/80  loss=0.000879
+      Epoch  60/80  loss=0.000499
+      Epoch  80/80  loss=0.000513
+  [loocv physics 42] 21/23 sub-HYPE20 err -0.0297 (1994s)
+      Epoch  20/80  loss=0.002262
+      Epoch  40/80  loss=0.000778
+      Epoch  60/80  loss=0.000508
+      Epoch  80/80  loss=0.000445
+  [loocv physics 42] 22/23 sub-HYPE21 err +0.0208 (2093s)
+      Epoch  20/80  loss=0.002523
+      Epoch  40/80  loss=0.000930
+      Epoch  60/80  loss=0.000595
+      Epoch  80/80  loss=0.000487
+  [loocv physics 42] 23/23 sub-HYPE22 err +0.0098 (2188s)
+Saved -> experiments/r3_e4_physics_vs_blur/physics_seed42.json
+[2026-10-07 11:23:10] E4 physics seed 42 exit 0
+Saved -> experiments/r3_e4_physics_vs_blur/summary.json
+{}
+[2026-10-07 11:23:12] E4 blur seed 42 start
+blur LF set: 156 volumes
+  Training ViT[blur,42]...
+    Epoch 5/30 - Train: 0.0056, Val: 0.0023
+    Epoch 10/30 - Train: 0.0037, Val: 0.0022
+    Early stopping at epoch 11
+[stage1 blur 42] {'n_train_samples': 520, 'n_val': 26, 'n_test': 26, 'stage1_test_mse_4targets': 0.006377676860071146, 'seconds': 458.4}
+Records with seg: 375, missing seg: 0
+  [stage2 blur 42] ep 1 loss 0.06517 val_r -0.308  (10s)
+  [stage2 blur 42] ep 2 loss 0.00408 val_r -0.250  (19s)
+  [stage2 blur 42] ep 3 loss 0.00402 val_r -0.122  (29s)
+  [stage2 blur 42] ep 4 loss 0.00472 val_r 0.127  (38s)
+  [stage2 blur 42] ep 5 loss 0.00449 val_r 0.421  (50s)
+  [stage2 blur 42] ep 6 loss 0.00383 val_r 0.527  (63s)
+  [stage2 blur 42] ep 7 loss 0.00456 val_r 0.620  (75s)
+  [stage2 blur 42] ep 8 loss 0.00339 val_r 0.700  (86s)
+  [stage2 blur 42] ep 9 loss 0.00283 val_r 0.754  (99s)
+  [stage2 blur 42] ep 10 loss 0.00275 val_r 0.787  (111s)
+  [stage2 blur 42] ep 11 loss 0.00176 val_r 0.794  (123s)
+  [stage2 blur 42] ep 12 loss 0.00159 val_r 0.798  (135s)
+  [stage2 blur 42] ep 13 loss 0.00170 val_r 0.811  (147s)
+  [stage2 blur 42] ep 14 loss 0.00188 val_r 0.813  (160s)
+  [stage2 blur 42] ep 15 loss 0.00142 val_r 0.818  (172s)
+  [stage2 blur 42] ep 16 loss 0.00180 val_r 0.823  (183s)
+  [stage2 blur 42] ep 17 loss 0.00143 val_r 0.823  (192s)
+  [stage2 blur 42] ep 18 loss 0.00140 val_r 0.829  (202s)
+  [stage2 blur 42] ep 19 loss 0.00130 val_r 0.827  (212s)
+  [stage2 blur 42] ep 20 loss 0.00148 val_r 0.836  (224s)
+  [stage2 blur 42] ep 21 loss 0.00119 val_r 0.836  (236s)
+  [stage2 blur 42] ep 22 loss 0.00141 val_r 0.841  (248s)
+  [stage2 blur 42] ep 23 loss 0.00128 val_r 0.841  (260s)
+  [stage2 blur 42] ep 24 loss 0.00100 val_r 0.845  (273s)
+  [stage2 blur 42] ep 25 loss 0.00114 val_r 0.847  (285s)
+  [stage2 blur 42] ep 26 loss 0.00123 val_r 0.849  (297s)
+  [stage2 blur 42] ep 27 loss 0.00102 val_r 0.850  (309s)
+  [stage2 blur 42] ep 28 loss 0.00088 val_r 0.850  (321s)
+  [stage2 blur 42] ep 29 loss 0.00104 val_r 0.852  (333s)
+  [stage2 blur 42] ep 30 loss 0.00115 val_r 0.854  (346s)
+  [stage2 blur 42] ep 31 loss 0.00091 val_r 0.856  (358s)
+  [stage2 blur 42] ep 32 loss 0.00093 val_r 0.856  (370s)
+  [stage2 blur 42] ep 33 loss 0.00084 val_r 0.857  (382s)
+  [stage2 blur 42] ep 34 loss 0.00083 val_r 0.857  (395s)
+  [stage2 blur 42] ep 35 loss 0.00098 val_r 0.859  (407s)
+  [stage2 blur 42] ep 36 loss 0.00084 val_r 0.860  (419s)
+  [stage2 blur 42] ep 37 loss 0.00082 val_r 0.861  (431s)
+  [stage2 blur 42] ep 38 loss 0.00090 val_r 0.862  (443s)
+  [stage2 blur 42] ep 39 loss 0.00085 val_r 0.863  (455s)
+  [stage2 blur 42] ep 40 loss 0.00081 val_r 0.863  (467s)
+  [stage2 blur 42] ep 41 loss 0.00073 val_r 0.863  (479s)
+  [stage2 blur 42] ep 42 loss 0.00075 val_r 0.864  (491s)
+  [stage2 blur 42] ep 43 loss 0.00072 val_r 0.864  (503s)
+  [stage2 blur 42] ep 44 loss 0.00074 val_r 0.864  (515s)
+  [stage2 blur 42] ep 45 loss 0.00075 val_r 0.864  (527s)
+  [stage2 blur 42] ep 46 loss 0.00067 val_r 0.864  (539s)
+  [stage2 blur 42] ep 47 loss 0.00071 val_r 0.865  (551s)
+  [stage2 blur 42] ep 48 loss 0.00071 val_r 0.865  (563s)
+  [stage2 blur 42] ep 49 loss 0.00068 val_r 0.865  (575s)
+  [stage2 blur 42] ep 50 loss 0.00068 val_r 0.865  (587s)
+Records with seg: 375, missing seg: 0
+      Epoch  20/80  loss=0.001097
+      Epoch  40/80  loss=0.000929
+      Epoch  60/80  loss=0.000807
+      Epoch  80/80  loss=0.000767
+  [loocv blur 42] 1/23 sub-HYPE00 err +0.0274 (81s)
+      Epoch  20/80  loss=0.001103
+      Epoch  40/80  loss=0.000969
+      Epoch  60/80  loss=0.000871
+      Epoch  80/80  loss=0.000709
+  [loocv blur 42] 2/23 sub-HYPE01 err -0.0555 (173s)
+      Epoch  20/80  loss=0.001149
+      Epoch  40/80  loss=0.000908
+      Epoch  60/80  loss=0.000941
+      Epoch  80/80  loss=0.000735
+  [loocv blur 42] 3/23 sub-HYPE02 err +0.0004 (271s)
+      Epoch  20/80  loss=0.000922
+      Epoch  40/80  loss=0.000858
+      Epoch  60/80  loss=0.000841
+      Epoch  80/80  loss=0.000745
+  [loocv blur 42] 4/23 sub-HYPE03 err -0.0019 (362s)
+      Epoch  20/80  loss=0.001191
+      Epoch  40/80  loss=0.000805
+      Epoch  60/80  loss=0.000847
+      Epoch  80/80  loss=0.000780
+  [loocv blur 42] 5/23 sub-HYPE04 err +0.0258 (446s)
+      Epoch  20/80  loss=0.001201
+      Epoch  40/80  loss=0.001113
+      Epoch  60/80  loss=0.000952
+      Epoch  80/80  loss=0.000751
+  [loocv blur 42] 6/23 sub-HYPE05 err -0.0000 (541s)
+      Epoch  20/80  loss=0.001239
+      Epoch  40/80  loss=0.000983
+      Epoch  60/80  loss=0.000659
+      Epoch  80/80  loss=0.000800
+  [loocv blur 42] 7/23 sub-HYPE06 err +0.0005 (637s)
+      Epoch  20/80  loss=0.001019
+      Epoch  40/80  loss=0.000773
+      Epoch  60/80  loss=0.000635
+      Epoch  80/80  loss=0.000702
+  [loocv blur 42] 8/23 sub-HYPE07 err -0.0217 (729s)
+      Epoch  20/80  loss=0.001091
+      Epoch  40/80  loss=0.000843
+      Epoch  60/80  loss=0.000744
+      Epoch  80/80  loss=0.000710
+  [loocv blur 42] 9/23 sub-HYPE08 err -0.0227 (818s)
+      Epoch  20/80  loss=0.001273
+      Epoch  40/80  loss=0.000990
+      Epoch  60/80  loss=0.000668
+      Epoch  80/80  loss=0.000735
+  [loocv blur 42] 10/23 sub-HYPE09 err -0.0466 (903s)
+      Epoch  20/80  loss=0.001076
+      Epoch  40/80  loss=0.000935
+      Epoch  60/80  loss=0.000803
+      Epoch  80/80  loss=0.000787
+  [loocv blur 42] 11/23 sub-HYPE10 err +0.0192 (999s)
+      Epoch  20/80  loss=0.001147
+      Epoch  40/80  loss=0.000892
+      Epoch  60/80  loss=0.000761
+      Epoch  80/80  loss=0.000906
+  [loocv blur 42] 12/23 sub-HYPE11 err +0.0476 (1101s)
+      Epoch  20/80  loss=0.001041
+      Epoch  40/80  loss=0.000870
+      Epoch  60/80  loss=0.000715
+      Epoch  80/80  loss=0.000700
+  [loocv blur 42] 13/23 sub-HYPE12 err +0.0388 (1192s)
+      Epoch  20/80  loss=0.001110
+      Epoch  40/80  loss=0.000905
+      Epoch  60/80  loss=0.000909
+      Epoch  80/80  loss=0.000810
+  [loocv blur 42] 14/23 sub-HYPE13 err -0.0139 (1294s)
+      Epoch  20/80  loss=0.001137
+      Epoch  40/80  loss=0.000842
+      Epoch  60/80  loss=0.000797
+      Epoch  80/80  loss=0.000704
+  [loocv blur 42] 15/23 sub-HYPE14 err +0.0526 (1390s)
+      Epoch  20/80  loss=0.001149
+      Epoch  40/80  loss=0.000845
+      Epoch  60/80  loss=0.000865
+      Epoch  80/80  loss=0.000765
+  [loocv blur 42] 16/23 sub-HYPE15 err +0.0528 (1489s)
+      Epoch  20/80  loss=0.001157
+      Epoch  40/80  loss=0.000895
+      Epoch  60/80  loss=0.000708
+      Epoch  80/80  loss=0.000726
+  [loocv blur 42] 17/23 sub-HYPE16 err +0.0571 (1586s)
+      Epoch  20/80  loss=0.001092
+      Epoch  40/80  loss=0.000875
+      Epoch  60/80  loss=0.000832
+      Epoch  80/80  loss=0.000707
+  [loocv blur 42] 18/23 sub-HYPE17 err +0.0127 (1686s)
+      Epoch  20/80  loss=0.001056
+      Epoch  40/80  loss=0.000896
+      Epoch  60/80  loss=0.000744
+      Epoch  80/80  loss=0.000743
+  [loocv blur 42] 19/23 sub-HYPE18 err -0.0147 (1779s)
+      Epoch  20/80  loss=0.001304
+      Epoch  40/80  loss=0.000891
+      Epoch  60/80  loss=0.000766
+      Epoch  80/80  loss=0.000763
+  [loocv blur 42] 20/23 sub-HYPE19 err -0.0115 (1872s)
+      Epoch  20/80  loss=0.001400
+      Epoch  40/80  loss=0.000855
+      Epoch  60/80  loss=0.000798
+      Epoch  80/80  loss=0.000845
+  [loocv blur 42] 21/23 sub-HYPE20 err +0.0215 (1974s)
+      Epoch  20/80  loss=0.001006
+      Epoch  40/80  loss=0.000854
+      Epoch  60/80  loss=0.000675
+      Epoch  80/80  loss=0.000693
+  [loocv blur 42] 22/23 sub-HYPE21 err +0.0603 (2067s)
+      Epoch  20/80  loss=0.001221
+      Epoch  40/80  loss=0.000995
+      Epoch  60/80  loss=0.000733
+      Epoch  80/80  loss=0.000723
+  [loocv blur 42] 23/23 sub-HYPE22 err -0.0101 (2164s)
+Saved -> experiments/r3_e4_physics_vs_blur/blur_seed42.json
+[2026-10-07 12:19:05] E4 blur seed 42 exit 0
+Saved -> experiments/r3_e4_physics_vs_blur/summary.json
+{
+ "loocv_real_64mt": {
+  "mean_abs_err_physics": 0.01697,
+  "mean_abs_err_blur": 0.02676,
+  "delta_mae_physics_minus_blur": -0.00979,
+  "delta_ci95": [
+   -0.01854,
+   -0.00132
+  ],
+  "wilcoxon_p": 0.0449,
+  "n": 23,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_physics_inputs": {
+  "mean_abs_err_physics": 0.02631,
+  "mean_abs_err_blur": 0.05817,
+  "delta_mae_physics_minus_blur": -0.03186,
+  "delta_ci95": [
+   -0.04265,
+   -0.02158
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_blur_inputs": {
+  "mean_abs_err_physics": 0.08408,
+  "mean_abs_err_blur": 0.02071,
+  "delta_mae_physics_minus_blur": 0.06337,
+  "delta_ci95": [
+   0.04963,
+   0.07675
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ }
+}
+[2026-10-07 12:19:08] E4 physics seed 1 start
+  Training ViT[physics,1]...
+    Epoch 5/30 - Train: 0.0044, Val: 0.0016
+    Epoch 10/30 - Train: 0.0039, Val: 0.0016
+    Epoch 15/30 - Train: 0.0039, Val: 0.0028
+    Epoch 20/30 - Train: 0.0032, Val: 0.0014
+    Epoch 25/30 - Train: 0.0031, Val: 0.0020
+    Epoch 30/30 - Train: 0.0029, Val: 0.0031
+[stage1 physics 1] {'n_train_samples': 520, 'n_val': 26, 'n_test': 26, 'stage1_test_mse_4targets': 0.006059729225503711, 'seconds': 1297.1}
+Records with seg: 375, missing seg: 0
+  [stage2 physics 1] ep 1 loss 0.02923 val_r 0.316  (16s)
+  [stage2 physics 1] ep 2 loss 0.00379 val_r 0.350  (32s)
+  [stage2 physics 1] ep 3 loss 0.00391 val_r 0.394  (48s)
+  [stage2 physics 1] ep 4 loss 0.00394 val_r 0.443  (63s)
+  [stage2 physics 1] ep 5 loss 0.00393 val_r 0.466  (79s)
+  [stage2 physics 1] ep 6 loss 0.00410 val_r 0.466  (98s)
+  [stage2 physics 1] ep 7 loss 0.00422 val_r 0.481  (118s)
+  [stage2 physics 1] ep 8 loss 0.00391 val_r 0.487  (135s)
+  [stage2 physics 1] ep 9 loss 0.00422 val_r 0.498  (151s)
+  [stage2 physics 1] ep 10 loss 0.00375 val_r 0.522  (167s)
+  [stage2 physics 1] ep 11 loss 0.00385 val_r 0.553  (184s)
+  [stage2 physics 1] ep 12 loss 0.00392 val_r 0.591  (203s)
+  [stage2 physics 1] ep 13 loss 0.00379 val_r 0.604  (224s)
+  [stage2 physics 1] ep 14 loss 0.00414 val_r 0.587  (243s)
+  [stage2 physics 1] ep 15 loss 0.00383 val_r 0.586  (259s)
+  [stage2 physics 1] ep 16 loss 0.00310 val_r 0.591  (275s)
+  [stage2 physics 1] ep 17 loss 0.00303 val_r 0.628  (291s)
+  [stage2 physics 1] ep 18 loss 0.00259 val_r 0.667  (307s)
+  [stage2 physics 1] ep 19 loss 0.00218 val_r 0.712  (324s)
+  [stage2 physics 1] ep 20 loss 0.00212 val_r 0.782  (344s)
+  [stage2 physics 1] ep 21 loss 0.00191 val_r 0.821  (364s)
+  [stage2 physics 1] ep 22 loss 0.00175 val_r 0.848  (384s)
+  [stage2 physics 1] ep 23 loss 0.00158 val_r 0.870  (404s)
+  [stage2 physics 1] ep 24 loss 0.00136 val_r 0.873  (424s)
+  [stage2 physics 1] ep 25 loss 0.00141 val_r 0.882  (443s)
+  [stage2 physics 1] ep 26 loss 0.00106 val_r 0.886  (459s)
+  [stage2 physics 1] ep 27 loss 0.00114 val_r 0.885  (477s)
+  [stage2 physics 1] ep 28 loss 0.00118 val_r 0.890  (497s)
+  [stage2 physics 1] ep 29 loss 0.00095 val_r 0.887  (517s)
+  [stage2 physics 1] ep 30 loss 0.00089 val_r 0.891  (537s)
+  [stage2 physics 1] ep 31 loss 0.00087 val_r 0.895  (555s)
+  [stage2 physics 1] ep 32 loss 0.00086 val_r 0.897  (571s)
+  [stage2 physics 1] ep 33 loss 0.00080 val_r 0.895  (590s)
+  [stage2 physics 1] ep 34 loss 0.00093 val_r 0.895  (610s)
+  [stage2 physics 1] ep 35 loss 0.00084 val_r 0.896  (628s)
+  [stage2 physics 1] ep 36 loss 0.00081 val_r 0.896  (645s)
+  [stage2 physics 1] ep 37 loss 0.00065 val_r 0.898  (661s)
+  [stage2 physics 1] ep 38 loss 0.00068 val_r 0.898  (677s)
+  [stage2 physics 1] ep 39 loss 0.00067 val_r 0.899  (694s)
+  [stage2 physics 1] ep 40 loss 0.00072 val_r 0.898  (714s)
+  [stage2 physics 1] ep 41 loss 0.00069 val_r 0.899  (734s)
+  [stage2 physics 1] ep 42 loss 0.00066 val_r 0.899  (754s)
+  [stage2 physics 1] ep 43 loss 0.00058 val_r 0.898  (774s)
+  [stage2 physics 1] ep 44 loss 0.00065 val_r 0.899  (794s)
+  [stage2 physics 1] ep 45 loss 0.00067 val_r 0.899  (813s)
+  [stage2 physics 1] ep 46 loss 0.00063 val_r 0.900  (830s)
+  [stage2 physics 1] ep 47 loss 0.00059 val_r 0.900  (849s)
+  [stage2 physics 1] ep 48 loss 0.00059 val_r 0.900  (869s)
+  [stage2 physics 1] ep 49 loss 0.00059 val_r 0.900  (887s)
+  [stage2 physics 1] ep 50 loss 0.00064 val_r 0.900  (903s)
+Records with seg: 375, missing seg: 0
+      Epoch  20/80  loss=0.002004
+      Epoch  40/80  loss=0.000867
+      Epoch  60/80  loss=0.000588
+      Epoch  80/80  loss=0.000539
+  [loocv physics 1] 1/23 sub-HYPE00 err -0.0260 (88s)
+      Epoch  20/80  loss=0.001845
+      Epoch  40/80  loss=0.000887
+      Epoch  60/80  loss=0.000533
+      Epoch  80/80  loss=0.000486
+  [loocv physics 1] 2/23 sub-HYPE01 err -0.0476 (180s)
+      Epoch  20/80  loss=0.002084
+      Epoch  40/80  loss=0.000774
+      Epoch  60/80  loss=0.000505
+      Epoch  80/80  loss=0.000488
+  [loocv physics 1] 3/23 sub-HYPE02 err -0.0037 (270s)
+      Epoch  20/80  loss=0.001950
+      Epoch  40/80  loss=0.000971
+      Epoch  60/80  loss=0.000634
+      Epoch  80/80  loss=0.000524
+  [loocv physics 1] 4/23 sub-HYPE03 err -0.0361 (359s)
+      Epoch  20/80  loss=0.001810
+      Epoch  40/80  loss=0.000848
+      Epoch  60/80  loss=0.000509
+      Epoch  80/80  loss=0.000572
+  [loocv physics 1] 5/23 sub-HYPE04 err -0.0354 (445s)
+      Epoch  20/80  loss=0.002081
+      Epoch  40/80  loss=0.000866
+      Epoch  60/80  loss=0.000623
+      Epoch  80/80  loss=0.000570
+  [loocv physics 1] 6/23 sub-HYPE05 err +0.0093 (535s)
+      Epoch  20/80  loss=0.002376
+      Epoch  40/80  loss=0.000790
+      Epoch  60/80  loss=0.000495
+      Epoch  80/80  loss=0.000475
+  [loocv physics 1] 7/23 sub-HYPE06 err +0.0183 (629s)
+      Epoch  20/80  loss=0.002188
+      Epoch  40/80  loss=0.000852
+      Epoch  60/80  loss=0.000512
+      Epoch  80/80  loss=0.000457
+  [loocv physics 1] 8/23 sub-HYPE07 err -0.0166 (725s)
+      Epoch  20/80  loss=0.002174
+      Epoch  40/80  loss=0.000897
+      Epoch  60/80  loss=0.000581
+      Epoch  80/80  loss=0.000543
+  [loocv physics 1] 9/23 sub-HYPE08 err -0.0288 (830s)
+      Epoch  20/80  loss=0.001874
+      Epoch  40/80  loss=0.000855
+      Epoch  60/80  loss=0.000603
+      Epoch  80/80  loss=0.000488
+  [loocv physics 1] 10/23 sub-HYPE09 err -0.0152 (943s)
+      Epoch  20/80  loss=0.002001
+      Epoch  40/80  loss=0.000823
+      Epoch  60/80  loss=0.000552
+      Epoch  80/80  loss=0.000445
+  [loocv physics 1] 11/23 sub-HYPE10 err +0.0212 (1058s)
+      Epoch  20/80  loss=0.002014
+      Epoch  40/80  loss=0.000745
+      Epoch  60/80  loss=0.000522
+      Epoch  80/80  loss=0.000489
+  [loocv physics 1] 12/23 sub-HYPE11 err -0.0094 (1167s)
+      Epoch  20/80  loss=0.001832
+      Epoch  40/80  loss=0.000785
+      Epoch  60/80  loss=0.000567
+      Epoch  80/80  loss=0.000574
+  [loocv physics 1] 13/23 sub-HYPE12 err -0.0199 (1281s)
+      Epoch  20/80  loss=0.001935
+      Epoch  40/80  loss=0.000768
+      Epoch  60/80  loss=0.000580
+      Epoch  80/80  loss=0.000501
+  [loocv physics 1] 14/23 sub-HYPE13 err -0.0103 (1391s)
+      Epoch  20/80  loss=0.001841
+      Epoch  40/80  loss=0.000881
+      Epoch  60/80  loss=0.000609
+      Epoch  80/80  loss=0.000560
+  [loocv physics 1] 15/23 sub-HYPE14 err +0.0063 (1496s)
+      Epoch  20/80  loss=0.001911
+      Epoch  40/80  loss=0.000799
+      Epoch  60/80  loss=0.000465
+      Epoch  80/80  loss=0.000451
+  [loocv physics 1] 16/23 sub-HYPE15 err +0.0020 (1604s)
+      Epoch  20/80  loss=0.001822
+      Epoch  40/80  loss=0.000803
+      Epoch  60/80  loss=0.000487
+      Epoch  80/80  loss=0.000499
+  [loocv physics 1] 17/23 sub-HYPE16 err +0.0111 (1711s)
+      Epoch  20/80  loss=0.001896
+      Epoch  40/80  loss=0.000798
+      Epoch  60/80  loss=0.000530
+      Epoch  80/80  loss=0.000465
+  [loocv physics 1] 18/23 sub-HYPE17 err -0.0342 (1820s)
+      Epoch  20/80  loss=0.001849
+      Epoch  40/80  loss=0.000770
+      Epoch  60/80  loss=0.000483
+      Epoch  80/80  loss=0.000462
+  [loocv physics 1] 19/23 sub-HYPE18 err -0.0049 (1929s)
+      Epoch  20/80  loss=0.001900
+      Epoch  40/80  loss=0.000803
+      Epoch  60/80  loss=0.000523
+      Epoch  80/80  loss=0.000450
+  [loocv physics 1] 20/23 sub-HYPE19 err +0.0014 (2039s)
+      Epoch  20/80  loss=0.001695
+      Epoch  40/80  loss=0.000743
+      Epoch  60/80  loss=0.000572
+      Epoch  80/80  loss=0.000559
+  [loocv physics 1] 21/23 sub-HYPE20 err -0.0386 (2185s)
+      Epoch  20/80  loss=0.001746
+      Epoch  40/80  loss=0.000800
+      Epoch  60/80  loss=0.000564
+      Epoch  80/80  loss=0.000467
+  [loocv physics 1] 22/23 sub-HYPE21 err +0.0201 (21268s)
+      Epoch  20/80  loss=0.002134
+      Epoch  40/80  loss=0.000802
+      Epoch  60/80  loss=0.000556
+      Epoch  80/80  loss=0.000497
+  [loocv physics 1] 23/23 sub-HYPE22 err -0.0240 (21445s)
+Saved -> experiments/r3_e4_physics_vs_blur/physics_seed1.json
+[2026-10-07 18:54:41] E4 physics seed 1 exit 0
+Saved -> experiments/r3_e4_physics_vs_blur/summary.json
+{
+ "loocv_real_64mt": {
+  "mean_abs_err_physics": 0.01697,
+  "mean_abs_err_blur": 0.02676,
+  "delta_mae_physics_minus_blur": -0.00979,
+  "delta_ci95": [
+   -0.01854,
+   -0.00132
+  ],
+  "wilcoxon_p": 0.0449,
+  "n": 23,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_physics_inputs": {
+  "mean_abs_err_physics": 0.02631,
+  "mean_abs_err_blur": 0.05817,
+  "delta_mae_physics_minus_blur": -0.03186,
+  "delta_ci95": [
+   -0.04265,
+   -0.02158
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_blur_inputs": {
+  "mean_abs_err_physics": 0.08408,
+  "mean_abs_err_blur": 0.02071,
+  "delta_mae_physics_minus_blur": 0.06337,
+  "delta_ci95": [
+   0.04963,
+   0.07675
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ }
+}
+[2026-10-07 18:54:45] E4 blur seed 1 start
+blur LF set: 156 volumes
+  Training ViT[blur,1]...
+    Epoch 5/30 - Train: 0.0046, Val: 0.0019
+    Epoch 10/30 - Train: 0.0043, Val: 0.0022
+    Epoch 15/30 - Train: 0.0040, Val: 0.0021
+    Epoch 20/30 - Train: 0.0032, Val: 0.0015
+    Epoch 25/30 - Train: 0.0030, Val: 0.0019
+    Epoch 30/30 - Train: 0.0029, Val: 0.0027
+[stage1 blur 1] {'n_train_samples': 520, 'n_val': 26, 'n_test': 26, 'stage1_test_mse_4targets': 0.006146055950711553, 'seconds': 1522.8}
+Records with seg: 375, missing seg: 0
+  [stage2 blur 1] ep 1 loss 0.03740 val_r -0.015  (12s)
+  [stage2 blur 1] ep 2 loss 0.00379 val_r 0.114  (24s)
+  [stage2 blur 1] ep 3 loss 0.00391 val_r 0.270  (37s)
+  [stage2 blur 1] ep 4 loss 0.00396 val_r 0.376  (49s)
+  [stage2 blur 1] ep 5 loss 0.00378 val_r 0.401  (61s)
+  [stage2 blur 1] ep 6 loss 0.00380 val_r 0.429  (73s)
+  [stage2 blur 1] ep 7 loss 0.00379 val_r 0.470  (85s)
+  [stage2 blur 1] ep 8 loss 0.00334 val_r 0.572  (97s)
+  [stage2 blur 1] ep 9 loss 0.00297 val_r 0.707  (109s)
+  [stage2 blur 1] ep 10 loss 0.00221 val_r 0.789  (121s)
+  [stage2 blur 1] ep 11 loss 0.00182 val_r 0.834  (132s)
+  [stage2 blur 1] ep 12 loss 0.00156 val_r 0.837  (144s)
+  [stage2 blur 1] ep 13 loss 0.00142 val_r 0.868  (156s)
+  [stage2 blur 1] ep 14 loss 0.00134 val_r 0.866  (168s)
+  [stage2 blur 1] ep 15 loss 0.00116 val_r 0.884  (179s)
+  [stage2 blur 1] ep 16 loss 0.00115 val_r 0.894  (191s)
+  [stage2 blur 1] ep 17 loss 0.00114 val_r 0.897  (202s)
+  [stage2 blur 1] ep 18 loss 0.00115 val_r 0.910  (214s)
+  [stage2 blur 1] ep 19 loss 0.00087 val_r 0.911  (226s)
+  [stage2 blur 1] ep 20 loss 0.00101 val_r 0.913  (237s)
+  [stage2 blur 1] ep 21 loss 0.00094 val_r 0.919  (249s)
+  [stage2 blur 1] ep 22 loss 0.00087 val_r 0.920  (261s)
+  [stage2 blur 1] ep 23 loss 0.00085 val_r 0.913  (272s)
+  [stage2 blur 1] ep 24 loss 0.00081 val_r 0.921  (284s)
+  [stage2 blur 1] ep 25 loss 0.00097 val_r 0.920  (295s)
+  [stage2 blur 1] ep 26 loss 0.00079 val_r 0.913  (307s)
+  [stage2 blur 1] ep 27 loss 0.00079 val_r 0.925  (319s)
+  [stage2 blur 1] ep 28 loss 0.00075 val_r 0.926  (330s)
+  [stage2 blur 1] ep 29 loss 0.00067 val_r 0.922  (342s)
+  [stage2 blur 1] ep 30 loss 0.00073 val_r 0.927  (353s)
+  [stage2 blur 1] ep 31 loss 0.00063 val_r 0.926  (365s)
+  [stage2 blur 1] ep 32 loss 0.00067 val_r 0.923  (376s)
+  [stage2 blur 1] ep 33 loss 0.00065 val_r 0.923  (388s)
+  [stage2 blur 1] ep 34 loss 0.00068 val_r 0.926  (400s)
+  [stage2 blur 1] ep 35 loss 0.00065 val_r 0.929  (411s)
+  [stage2 blur 1] ep 36 loss 0.00064 val_r 0.927  (423s)
+  [stage2 blur 1] ep 37 loss 0.00062 val_r 0.930  (435s)
+  [stage2 blur 1] ep 38 loss 0.00065 val_r 0.930  (447s)
+  [stage2 blur 1] ep 39 loss 0.00057 val_r 0.930  (458s)
+  [stage2 blur 1] ep 40 loss 0.00059 val_r 0.931  (470s)
+  [stage2 blur 1] ep 41 loss 0.00056 val_r 0.930  (481s)
+  [stage2 blur 1] ep 42 loss 0.00054 val_r 0.930  (493s)
+  [stage2 blur 1] ep 43 loss 0.00055 val_r 0.931  (504s)
+  [stage2 blur 1] ep 44 loss 0.00060 val_r 0.931  (516s)
+  [stage2 blur 1] ep 45 loss 0.00054 val_r 0.931  (527s)
+  [stage2 blur 1] ep 46 loss 0.00056 val_r 0.931  (538s)
+  [stage2 blur 1] ep 47 loss 0.00056 val_r 0.931  (550s)
+  [stage2 blur 1] ep 48 loss 0.00054 val_r 0.931  (561s)
+  [stage2 blur 1] ep 49 loss 0.00056 val_r 0.931  (573s)
+  [stage2 blur 1] ep 50 loss 0.00054 val_r 0.931  (585s)
+Records with seg: 375, missing seg: 0
+      Epoch  20/80  loss=0.000986
+      Epoch  40/80  loss=0.000846
+      Epoch  60/80  loss=0.000717
+      Epoch  80/80  loss=0.000648
+  [loocv blur 1] 1/23 sub-HYPE00 err +0.0332 (98s)
+      Epoch  20/80  loss=0.000790
+      Epoch  40/80  loss=0.000707
+      Epoch  60/80  loss=0.000608
+      Epoch  80/80  loss=0.000561
+  [loocv blur 1] 2/23 sub-HYPE01 err -0.0280 (197s)
+      Epoch  20/80  loss=0.001168
+      Epoch  40/80  loss=0.000878
+      Epoch  60/80  loss=0.000829
+      Epoch  80/80  loss=0.000795
+  [loocv blur 1] 3/23 sub-HYPE02 err +0.0123 (296s)
+      Epoch  20/80  loss=0.000958
+      Epoch  40/80  loss=0.000727
+      Epoch  60/80  loss=0.000674
+      Epoch  80/80  loss=0.000654
+  [loocv blur 1] 4/23 sub-HYPE03 err -0.0189 (395s)
+      Epoch  20/80  loss=0.000931
+      Epoch  40/80  loss=0.000646
+      Epoch  60/80  loss=0.000649
+      Epoch  80/80  loss=0.000650
+  [loocv blur 1] 5/23 sub-HYPE04 err +0.0281 (494s)
+      Epoch  20/80  loss=0.000696
+      Epoch  40/80  loss=0.000591
+      Epoch  60/80  loss=0.000518
+      Epoch  80/80  loss=0.000499
+  [loocv blur 1] 6/23 sub-HYPE05 err -0.0054 (617s)
+      Epoch  20/80  loss=0.000867
+      Epoch  40/80  loss=0.000556
+      Epoch  60/80  loss=0.000545
+      Epoch  80/80  loss=0.000529
+  [loocv blur 1] 7/23 sub-HYPE06 err +0.0122 (717s)
+      Epoch  20/80  loss=0.000840
+      Epoch  40/80  loss=0.000709
+      Epoch  60/80  loss=0.000638
+      Epoch  80/80  loss=0.000622
+  [loocv blur 1] 8/23 sub-HYPE07 err +0.0042 (815s)
+      Epoch  20/80  loss=0.000980
+      Epoch  40/80  loss=0.000825
+      Epoch  60/80  loss=0.000793
+      Epoch  80/80  loss=0.000730
+  [loocv blur 1] 9/23 sub-HYPE08 err +0.0106 (917s)
+      Epoch  20/80  loss=0.001050
+      Epoch  40/80  loss=0.000772
+      Epoch  60/80  loss=0.000754
+      Epoch  80/80  loss=0.000685
+  [loocv blur 1] 10/23 sub-HYPE09 err -0.0058 (1016s)
+      Epoch  20/80  loss=0.000689
+      Epoch  40/80  loss=0.000636
+      Epoch  60/80  loss=0.000552
+      Epoch  80/80  loss=0.000543
+  [loocv blur 1] 11/23 sub-HYPE10 err +0.0199 (1114s)
+      Epoch  20/80  loss=0.000790
+      Epoch  40/80  loss=0.000698
+                                  [2026-10-07 22:12:30] RESUME after shutdown
+[2026-10-07 22:12:30] E4 blur seed 1 start
+blur LF set: 156 volumes
+Records with seg: 375, missing seg: 0
+      Epoch  20/80  loss=0.000986
+      Epoch  40/80  loss=0.000846
+      Epoch  60/80  loss=0.000717
+      Epoch  80/80  loss=0.000648
+  [loocv blur 1] 1/23 sub-HYPE00 err +0.0332 (153s)
+      Epoch  20/80  loss=0.000790
+      Epoch  40/80  loss=0.000707
+      Epoch  60/80  loss=0.000608
+      Epoch  80/80  loss=0.000561
+  [loocv blur 1] 2/23 sub-HYPE01 err -0.0280 (293s)
+      Epoch  20/80  loss=0.001168
+      Epoch  40/80  loss=0.000878
+      Epoch  60/80  loss=0.000829
+      Epoch  80/80  loss=0.000795
+  [loocv blur 1] 3/23 sub-HYPE02 err +0.0123 (421s)
+      Epoch  20/80  loss=0.000958
+      Epoch  40/80  loss=0.000727
+      Epoch  60/80  loss=0.000674
+      Epoch  80/80  loss=0.000654
+  [loocv blur 1] 4/23 sub-HYPE03 err -0.0189 (532s)
+      Epoch  20/80  loss=0.000931
+      Epoch  40/80  loss=0.000646
+      Epoch  60/80  loss=0.000649
+      Epoch  80/80  loss=0.000650
+  [loocv blur 1] 5/23 sub-HYPE04 err +0.0281 (646s)
+      Epoch  20/80  loss=0.000696
+      Epoch  40/80  loss=0.000591
+      Epoch  60/80  loss=0.000518
+      Epoch  80/80  loss=0.000499
+  [loocv blur 1] 6/23 sub-HYPE05 err -0.0054 (757s)
+      Epoch  20/80  loss=0.000867
+      Epoch  40/80  loss=0.000556
+      Epoch  60/80  loss=0.000545
+      Epoch  80/80  loss=0.000529
+  [loocv blur 1] 7/23 sub-HYPE06 err +0.0122 (860s)
+      Epoch  20/80  loss=0.000840
+      Epoch  40/80  loss=0.000709
+      Epoch  60/80  loss=0.000638
+      Epoch  80/80  loss=0.000622
+  [loocv blur 1] 8/23 sub-HYPE07 err +0.0042 (960s)
+      Epoch  20/80  loss=0.000980
+      Epoch  40/80  loss=0.000825
+      Epoch  60/80  loss=0.000793
+      Epoch  80/80  loss=0.000730
+  [loocv blur 1] 9/23 sub-HYPE08 err +0.0106 (1060s)
+      Epoch  20/80  loss=0.001050
+      Epoch  40/80  loss=0.000772
+      Epoch  60/80  loss=0.000754
+      Epoch  80/80  loss=0.000685
+  [loocv blur 1] 10/23 sub-HYPE09 err -0.0058 (1148s)
+      Epoch  20/80  loss=0.000689
+      Epoch  40/80  loss=0.000636
+      Epoch  60/80  loss=0.000552
+      Epoch  80/80  loss=0.000543
+  [loocv blur 1] 11/23 sub-HYPE10 err +0.0199 (1236s)
+      Epoch  20/80  loss=0.000790
+      Epoch  40/80  loss=0.000698
+      Epoch  60/80  loss=0.000608
+      Epoch  80/80  loss=0.000554
+  [loocv blur 1] 12/23 sub-HYPE11 err +0.0376 (1313s)
+      Epoch  20/80  loss=0.000813
+      Epoch  40/80  loss=0.000722
+      Epoch  60/80  loss=0.000698
+      Epoch  80/80  loss=0.000649
+  [loocv blur 1] 13/23 sub-HYPE12 err +0.0123 (1396s)
+      Epoch  20/80  loss=0.000929
+      Epoch  40/80  loss=0.000702
+      Epoch  60/80  loss=0.000685
+      Epoch  80/80  loss=0.000626
+  [loocv blur 1] 14/23 sub-HYPE13 err +0.0056 (1481s)
+      Epoch  20/80  loss=0.000923
+      Epoch  40/80  loss=0.000731
+      Epoch  60/80  loss=0.000661
+      Epoch  80/80  loss=0.000614
+  [loocv blur 1] 15/23 sub-HYPE14 err +0.0560 (1573s)
+      Epoch  20/80  loss=0.000786
+      Epoch  40/80  loss=0.000784
+      Epoch  60/80  loss=0.000617
+      Epoch  80/80  loss=0.000558
+  [loocv blur 1] 16/23 sub-HYPE15 err +0.0499 (1714s)
+      Epoch  20/80  loss=0.000890
+      Epoch  40/80  loss=0.000776
+      Epoch  60/80  loss=0.000666
+      Epoch  80/80  loss=0.000663
+  [loocv blur 1] 17/23 sub-HYPE16 err +0.0652 (1839s)
+      Epoch  20/80  loss=0.001016
+      Epoch  40/80  loss=0.000739
+      Epoch  60/80  loss=0.000719
+      Epoch  80/80  loss=0.000667
+  [loocv blur 1] 18/23 sub-HYPE17 err -0.0045 (1948s)
+      Epoch  20/80  loss=0.000999
+      Epoch  40/80  loss=0.000832
+      Epoch  60/80  loss=0.000758
+      Epoch  80/80  loss=0.000693
+  [loocv blur 1] 19/23 sub-HYPE18 err +0.0207 (2060s)
+      Epoch  20/80  loss=0.000856
+      Epoch  40/80  loss=0.000757
+      Epoch  60/80  loss=0.000704
+      Epoch  80/80  loss=0.000714
+  [loocv blur 1] 20/23 sub-HYPE19 err -0.0288 (2174s)
+      Epoch  20/80  loss=0.000759
+      Epoch  40/80  loss=0.000629
+      Epoch  60/80  loss=0.000648
+      Epoch  80/80  loss=0.000608
+  [loocv blur 1] 21/23 sub-HYPE20 err +0.0090 (2285s)
+      Epoch  20/80  loss=0.000898
+      Epoch  40/80  loss=0.000693
+      Epoch  60/80  loss=0.000702
+      Epoch  80/80  loss=0.000641
+  [loocv blur 1] 22/23 sub-HYPE21 err +0.0708 (2397s)
+      Epoch  20/80  loss=0.000826
+      Epoch  40/80  loss=0.000730
+      Epoch  60/80  loss=0.000559
+      Epoch  80/80  loss=0.000588
+  [loocv blur 1] 23/23 sub-HYPE22 err -0.0097 (2512s)
+Saved -> experiments/r3_e4_physics_vs_blur/blur_seed1.json
+[2026-10-07 22:55:40] E4 blur seed 1 exit 0
+Saved -> experiments/r3_e4_physics_vs_blur/summary.json
+{
+ "loocv_real_64mt": {
+  "mean_abs_err_physics": 0.01806,
+  "mean_abs_err_blur": 0.0253,
+  "delta_mae_physics_minus_blur": -0.00725,
+  "delta_ci95": [
+   -0.01626,
+   0.00095
+  ],
+  "wilcoxon_p": 0.4274,
+  "n": 23,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_physics_inputs": {
+  "mean_abs_err_physics": 0.02492,
+  "mean_abs_err_blur": 0.05973,
+  "delta_mae_physics_minus_blur": -0.0348,
+  "delta_ci95": [
+   -0.0452,
+   -0.02486
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_blur_inputs": {
+  "mean_abs_err_physics": 0.07962,
+  "mean_abs_err_blur": 0.02219,
+  "delta_mae_physics_minus_blur": 0.05743,
+  "delta_ci95": [
+   0.04548,
+   0.06952
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ }
+}
+[2026-10-07 22:55:44] E4 physics seed 7 start
+  Training ViT[physics,7]...
+    Epoch 5/30 - Train: 0.0056, Val: 0.0031
+    Epoch 10/30 - Train: 0.0041, Val: 0.0017
+    Epoch 15/30 - Train: 0.0032, Val: 0.0022
+    Early stopping at epoch 19
+[stage1 physics 7] {'n_train_samples': 520, 'n_val': 26, 'n_test': 26, 'stage1_test_mse_4targets': 0.004701506865855593, 'seconds': 3035.9}
+Records with seg: 375, missing seg: 0
+  [stage2 physics 7] ep 1 loss 0.00846 val_r 0.244  (17s)
+  [stage2 physics 7] ep 2 loss 0.00460 val_r 0.308  (33s)
+  [stage2 physics 7] ep 3 loss 0.00432 val_r 0.363  (49s)
+  [stage2 physics 7] ep 4 loss 0.00397 val_r 0.402  (67s)
+  [stage2 physics 7] ep 5 loss 0.00415 val_r 0.444  (88s)
+  [stage2 physics 7] ep 6 loss 0.00394 val_r 0.485  (108s)
+  [stage2 physics 7] ep 7 loss 0.00412 val_r 0.515  (129s)
+  [stage2 physics 7] ep 8 loss 0.00421 val_r 0.582  (150s)
+  [stage2 physics 7] ep 9 loss 0.00378 val_r 0.610  (171s)
+  [stage2 physics 7] ep 10 loss 0.00383 val_r 0.653  (191s)
+  [stage2 physics 7] ep 11 loss 0.00355 val_r 0.716  (212s)
+  [stage2 physics 7] ep 12 loss 0.00307 val_r 0.776  (232s)
+  [stage2 physics 7] ep 13 loss 0.00266 val_r 0.809  (253s)
+  [stage2 physics 7] ep 14 loss 0.00187 val_r 0.830  (274s)
+  [stage2 physics 7] ep 15 loss 0.00161 val_r 0.845  (294s)
+  [stage2 physics 7] ep 16 loss 0.00207 val_r 0.856  (315s)
+  [stage2 physics 7] ep 17 loss 0.00138 val_r 0.860  (336s)
+  [stage2 physics 7] ep 18 loss 0.00117 val_r 0.865  (356s)
+  [stage2 physics 7] ep 19 loss 0.00131 val_r 0.868  (377s)
+  [stage2 physics 7] ep 20 loss 0.00127 val_r 0.875  (398s)
+  [stage2 physics 7] ep 21 loss 0.00126 val_r 0.874  (419s)
+  [stage2 physics 7] ep 22 loss 0.00109 val_r 0.879  (439s)
+  [stage2 physics 7] ep 23 loss 0.00106 val_r 0.879  (460s)
+  [stage2 physics 7] ep 24 loss 0.00134 val_r 0.878  (481s)
+  [stage2 physics 7] ep 25 loss 0.00102 val_r 0.880  (502s)
+  [stage2 physics 7] ep 26 loss 0.00121 val_r 0.879  (523s)
+  [stage2 physics 7] ep 27 loss 0.00117 val_r 0.879  (543s)
+  [stage2 physics 7] ep 28 loss 0.00096 val_r 0.882  (564s)
+  [stage2 physics 7] ep 29 loss 0.00089 val_r 0.879  (584s)
+  [stage2 physics 7] ep 30 loss 0.00090 val_r 0.881  (605s)
+  [stage2 physics 7] ep 31 loss 0.00090 val_r 0.882  (626s)
+  [stage2 physics 7] ep 32 loss 0.00084 val_r 0.883  (647s)
+  [stage2 physics 7] ep 33 loss 0.00088 val_r 0.884  (667s)
+  [stage2 physics 7] ep 34 loss 0.00080 val_r 0.885  (688s)
+  [stage2 physics 7] ep 35 loss 0.00087 val_r 0.886  (709s)
+  [stage2 physics 7] ep 36 loss 0.00079 val_r 0.886  (730s)
+  [stage2 physics 7] ep 37 loss 0.00081 val_r 0.886  (751s)
+  [stage2 physics 7] ep 38 loss 0.00073 val_r 0.886  (771s)
+  [stage2 physics 7] ep 39 loss 0.00077 val_r 0.886  (792s)
+  [stage2 physics 7] ep 40 loss 0.00072 val_r 0.887  (813s)
+  [stage2 physics 7] ep 41 loss 0.00073 val_r 0.887  (833s)
+  [stage2 physics 7] ep 42 loss 0.00076 val_r 0.887  (854s)
+  [stage2 physics 7] ep 43 loss 0.00076 val_r 0.887  (874s)
+  [stage2 physics 7] ep 44 loss 0.00073 val_r 0.887  (895s)
+  [stage2 physics 7] ep 45 loss 0.00067 val_r 0.887  (916s)
+  [stage2 physics 7] ep 46 loss 0.00064 val_r 0.887  (936s)
+  [stage2 physics 7] ep 47 loss 0.00072 val_r 0.887  (957s)
+  [stage2 physics 7] ep 48 loss 0.00069 val_r 0.887  (977s)
+  [stage2 physics 7] ep 49 loss 0.00063 val_r 0.887  (998s)
+  [stage2 physics 7] ep 50 loss 0.00069 val_r 0.887  (1018s)
+Records with seg: 375, missing seg: 0
+      Epoch  20/80  loss=0.001456
+      Epoch  40/80  loss=0.000607
+      Epoch  60/80  loss=0.000442
+      Epoch  80/80  loss=0.000431
+  [loocv physics 7] 1/23 sub-HYPE00 err -0.0290 (111s)
+      Epoch  20/80  loss=0.001543
+      Epoch  40/80  loss=0.000639
+      Epoch  60/80  loss=0.000501
+      Epoch  80/80  loss=0.000492
+  [loocv physics 7] 2/23 sub-HYPE01 err -0.0337 (222s)
+      Epoch  20/80  loss=0.001527
+      Epoch  40/80  loss=0.000808
+      Epoch  60/80  loss=0.000468
+      Epoch  80/80  loss=0.000452
+  [loocv physics 7] 3/23 sub-HYPE02 err +0.0496 (333s)
+      Epoch  20/80  loss=0.001467
+      Epoch  40/80  loss=0.000710
+      Epoch  60/80  loss=0.000517
+      Epoch  80/80  loss=0.000506
+  [loocv physics 7] 4/23 sub-HYPE03 err -0.0125 (443s)
+      Epoch  20/80  loss=0.001329
+      Epoch  40/80  loss=0.000599
+      Epoch  60/80  loss=0.000460
+      Epoch  80/80  loss=0.000362
+  [loocv physics 7] 5/23 sub-HYPE04 err -0.0246 (555s)
+      Epoch  20/80  loss=0.001730
+      Epoch  40/80  loss=0.000725
+      Epoch  60/80  loss=0.000539
+      Epoch  80/80  loss=0.000494
+  [loocv physics 7] 6/23 sub-HYPE05 err +0.0206 (665s)
+      Epoch  20/80  loss=0.001436
+      Epoch  40/80  loss=0.000606
+      Epoch  60/80  loss=0.000462
+      Epoch  80/80  loss=0.000406
+  [loocv physics 7] 7/23 sub-HYPE06 err +0.0401 (776s)
+      Epoch  20/80  loss=0.001556
+      Epoch  40/80  loss=0.000697
+      Epoch  60/80  loss=0.000533
+      Epoch  80/80  loss=0.000435
+  [loocv physics 7] 8/23 sub-HYPE07 err +0.0280 (887s)
+      Epoch  20/80  loss=0.001738
+      Epoch  40/80  loss=0.000703
+      Epoch  60/80  loss=0.000493
+      Epoch  80/80  loss=0.000456
+  [loocv physics 7] 9/23 sub-HYPE08 err +0.0062 (997s)
+      Epoch  20/80  loss=0.001376
+      Epoch  40/80  loss=0.000794
+      Epoch  60/80  loss=0.000488
+      Epoch  80/80  loss=0.000488
+  [loocv physics 7] 10/23 sub-HYPE09 err +0.0595 (1108s)
+      Epoch  20/80  loss=0.001542
+      Epoch  40/80  loss=0.000791
+      Epoch  60/80  loss=0.000532
+      Epoch  80/80  loss=0.000497
+  [loocv physics 7] 11/23 sub-HYPE10 err +0.0403 (1218s)
+      Epoch  20/80  loss=0.001379
+      Epoch  40/80  loss=0.000723
+      Epoch  60/80  loss=0.000569
+      Epoch  80/80  loss=0.000525
+  [loocv physics 7] 12/23 sub-HYPE11 err -0.0219 (1329s)
+      Epoch  20/80  loss=0.001387
+      Epoch  40/80  loss=0.000670
+      Epoch  60/80  loss=0.000523
+      Epoch  80/80  loss=0.000472
+  [loocv physics 7] 13/23 sub-HYPE12 err +0.0514 (1439s)
+      Epoch  20/80  loss=0.001457
+      Epoch  40/80  loss=0.000751
+      Epoch  60/80  loss=0.000501
+      Epoch  80/80  loss=0.000488
+  [loocv physics 7] 14/23 sub-HYPE13 err -0.0407 (1550s)
+      Epoch  20/80  loss=0.001398
+      Epoch  40/80  loss=0.000703
+      Epoch  60/80  loss=0.000489
+      Epoch  80/80  loss=0.000477
+  [loocv physics 7] 15/23 sub-HYPE14 err +0.0176 (1661s)
+      Epoch  20/80  loss=0.001500
+      Epoch  40/80  loss=0.000829
+      Epoch  60/80  loss=0.000550
+      Epoch  80/80  loss=0.000527
+  [loocv physics 7] 16/23 sub-HYPE15 err -0.0178 (1772s)
+      Epoch  20/80  loss=0.001548
+      Epoch  40/80  loss=0.000684
+      Epoch  60/80  loss=0.000491
+      Epoch  80/80  loss=0.000441
+  [loocv physics 7] 17/23 sub-HYPE16 err +0.0018 (1882s)
+      Epoch  20/80  loss=0.001611
+      Epoch  40/80  loss=0.000715
+      Epoch  60/80  loss=0.000520
+      Epoch  80/80  loss=0.000488
+  [loocv physics 7] 18/23 sub-HYPE17 err -0.0094 (1994s)
+      Epoch  20/80  loss=0.001706
+      Epoch  40/80  loss=0.000651
+      Epoch  60/80  loss=0.000441
+      Epoch  80/80  loss=0.000403
+  [loocv physics 7] 19/23 sub-HYPE18 err +0.0030 (2105s)
+      Epoch  20/80  loss=0.001712
+      Epoch  40/80  loss=0.000754
+      Epoch  60/80  loss=0.000451
+      Epoch  80/80  loss=0.000430
+  [loocv physics 7] 20/23 sub-HYPE19 err +0.0053 (2216s)
+      Epoch  20/80  loss=0.001498
+      Epoch  40/80  loss=0.000880
+      Epoch  60/80  loss=0.000515
+      Epoch  80/80  loss=0.000506
+  [loocv physics 7] 21/23 sub-HYPE20 err -0.0331 (2327s)
+      Epoch  20/80  loss=0.001329
+      Epoch  40/80  loss=0.000679
+      Epoch  60/80  loss=0.000456
+      Epoch  80/80  loss=0.000415
+  [loocv physics 7] 22/23 sub-HYPE21 err +0.0063 (2437s)
+      Epoch  20/80  loss=0.001606
+      Epoch  40/80  loss=0.000683
+      Epoch  60/80  loss=0.000519
+      Epoch  80/80  loss=0.000473
+  [loocv physics 7] 23/23 sub-HYPE22 err +0.0203 (2548s)
+Saved -> experiments/r3_e4_physics_vs_blur/physics_seed7.json
+[2026-10-08 00:47:14] E4 physics seed 7 exit 0
+Saved -> experiments/r3_e4_physics_vs_blur/summary.json
+{
+ "loocv_real_64mt": {
+  "mean_abs_err_physics": 0.01806,
+  "mean_abs_err_blur": 0.0253,
+  "delta_mae_physics_minus_blur": -0.00725,
+  "delta_ci95": [
+   -0.01626,
+   0.00095
+  ],
+  "wilcoxon_p": 0.4274,
+  "n": 23,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_physics_inputs": {
+  "mean_abs_err_physics": 0.02492,
+  "mean_abs_err_blur": 0.05973,
+  "delta_mae_physics_minus_blur": -0.0348,
+  "delta_ci95": [
+   -0.0452,
+   -0.02486
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_blur_inputs": {
+  "mean_abs_err_physics": 0.07962,
+  "mean_abs_err_blur": 0.02219,
+  "delta_mae_physics_minus_blur": 0.05743,
+  "delta_ci95": [
+   0.04548,
+   0.06952
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ }
+}
+[2026-10-08 00:47:18] E4 blur seed 7 start
+blur LF set: 156 volumes
+  Training ViT[blur,7]...
+    Epoch 5/30 - Train: 0.0059, Val: 0.0030
+    Epoch 10/30 - Train: 0.0042, Val: 0.0020
+    Epoch 15/30 - Train: 0.0033, Val: 0.0019
+    Early stopping at epoch 19
+[stage1 blur 7] {'n_train_samples': 520, 'n_val': 26, 'n_test': 26, 'stage1_test_mse_4targets': 0.0053195813133452945, 'seconds': 961.6}
+Records with seg: 375, missing seg: 0
+  [stage2 blur 7] ep 1 loss 0.00755 val_r 0.253  (13s)
+  [stage2 blur 7] ep 2 loss 0.00461 val_r 0.506  (25s)
+  [stage2 blur 7] ep 3 loss 0.00412 val_r 0.660  (35s)
+  [stage2 blur 7] ep 4 loss 0.00329 val_r 0.799  (45s)
+  [stage2 blur 7] ep 5 loss 0.00252 val_r 0.850  (55s)
+  [stage2 blur 7] ep 6 loss 0.00184 val_r 0.897  (65s)
+  [stage2 blur 7] ep 7 loss 0.00121 val_r 0.907  (76s)
+  [stage2 blur 7] ep 8 loss 0.00111 val_r 0.927  (87s)
+  [stage2 blur 7] ep 9 loss 0.00135 val_r 0.935  (97s)
+  [stage2 blur 7] ep 10 loss 0.00126 val_r 0.935  (109s)
+  [stage2 blur 7] ep 11 loss 0.00099 val_r 0.933  (122s)
+  [stage2 blur 7] ep 12 loss 0.00086 val_r 0.937  (134s)
+  [stage2 blur 7] ep 13 loss 0.00120 val_r 0.939  (147s)
+  [stage2 blur 7] ep 14 loss 0.00103 val_r 0.942  (159s)
+  [stage2 blur 7] ep 15 loss 0.00082 val_r 0.932  (172s)
+  [stage2 blur 7] ep 16 loss 0.00077 val_r 0.943  (184s)
+  [stage2 blur 7] ep 17 loss 0.00080 val_r 0.935  (197s)
+  [stage2 blur 7] ep 18 loss 0.00076 val_r 0.943  (209s)
+  [stage2 blur 7] ep 19 loss 0.00076 val_r 0.940  (221s)
+  [stage2 blur 7] ep 20 loss 0.00077 val_r 0.941  (234s)
+  [stage2 blur 7] ep 21 loss 0.00083 val_r 0.943  (247s)
+  [stage2 blur 7] ep 22 loss 0.00074 val_r 0.943  (259s)
+  [stage2 blur 7] ep 23 loss 0.00066 val_r 0.941  (272s)
+  [stage2 blur 7] ep 24 loss 0.00053 val_r 0.944  (284s)
+  [stage2 blur 7] ep 25 loss 0.00064 val_r 0.945  (296s)
+  [stage2 blur 7] ep 26 loss 0.00059 val_r 0.945  (309s)
+  [stage2 blur 7] ep 27 loss 0.00058 val_r 0.946  (321s)
+  [stage2 blur 7] ep 28 loss 0.00063 val_r 0.944  (334s)
+  [stage2 blur 7] ep 29 loss 0.00060 val_r 0.945  (346s)
+  [stage2 blur 7] ep 30 loss 0.00054 val_r 0.945  (359s)
+  [stage2 blur 7] ep 31 loss 0.00053 val_r 0.947  (371s)
+  [stage2 blur 7] ep 32 loss 0.00051 val_r 0.943  (384s)
+  [stage2 blur 7] ep 33 loss 0.00056 val_r 0.945  (396s)
+  [stage2 blur 7] ep 34 loss 0.00046 val_r 0.947  (408s)
+  [stage2 blur 7] ep 35 loss 0.00047 val_r 0.947  (421s)
+  [stage2 blur 7] ep 36 loss 0.00050 val_r 0.946  (434s)
+  [stage2 blur 7] ep 37 loss 0.00047 val_r 0.945  (446s)
+  [stage2 blur 7] ep 38 loss 0.00050 val_r 0.946  (458s)
+  [stage2 blur 7] ep 39 loss 0.00046 val_r 0.944  (471s)
+  [stage2 blur 7] ep 40 loss 0.00043 val_r 0.946  (484s)
+  [stage2 blur 7] ep 41 loss 0.00044 val_r 0.945  (496s)
+Records with seg: 375, missing seg: 0
+      Epoch  20/80  loss=0.000634
+      Epoch  40/80  loss=0.000532
+      Epoch  60/80  loss=0.000467
+      Epoch  80/80  loss=0.000434
+  [loocv blur 7] 1/23 sub-HYPE00 err +0.0156 (111s)
+      Epoch  20/80  loss=0.000827
+      Epoch  40/80  loss=0.000566
+      Epoch  60/80  loss=0.000517
+      Epoch  80/80  loss=0.000490
+  [loocv blur 7] 2/23 sub-HYPE01 err -0.0139 (222s)
+      Epoch  20/80  loss=0.000877
+      Epoch  40/80  loss=0.000718
+      Epoch  60/80  loss=0.000670
+      Epoch  80/80  loss=0.000635
+  [loocv blur 7] 3/23 sub-HYPE02 err +0.0081 (334s)
+      Epoch  20/80  loss=0.000862
+      Epoch  40/80  loss=0.000614
+      Epoch  60/80  loss=0.000589
+      Epoch  80/80  loss=0.000587
+  [loocv blur 7] 4/23 sub-HYPE03 err +0.0182 (446s)
+      Epoch  20/80  loss=0.000868
+      Epoch  40/80  loss=0.000709
+      Epoch  60/80  loss=0.000592
+      Epoch  80/80  loss=0.000572
+  [loocv blur 7] 5/23 sub-HYPE04 err +0.0146 (557s)
+      Epoch  20/80  loss=0.000732
+      Epoch  40/80  loss=0.000580
+      Epoch  60/80  loss=0.000555
+      Epoch  80/80  loss=0.000534
+  [loocv blur 7] 6/23 sub-HYPE05 err +0.0019 (667s)
+      Epoch  20/80  loss=0.000904
+      Epoch  40/80  loss=0.000677
+      Epoch  60/80  loss=0.000627
+      Epoch  80/80  loss=0.000553
+  [loocv blur 7] 7/23 sub-HYPE06 err +0.0170 (777s)
+      Epoch  20/80  loss=0.000657
+      Epoch  40/80  loss=0.000615
+      Epoch  60/80  loss=0.000551
+      Epoch  80/80  loss=0.000490
+  [loocv blur 7] 8/23 sub-HYPE07 err +0.0175 (888s)
+      Epoch  20/80  loss=0.000718
+      Epoch  40/80  loss=0.000561
+      Epoch  60/80  loss=0.000479
+      Epoch  80/80  loss=0.000486
+  [loocv blur 7] 9/23 sub-HYPE08 err +0.0115 (1000s)
+      Epoch  20/80  loss=0.000555
+      Epoch  40/80  loss=0.000434
+      Epoch  60/80  loss=0.000371
+      Epoch  80/80  loss=0.000355
+  [loocv blur 7] 10/23 sub-HYPE09 err +0.0094 (1111s)
+      Epoch  20/80  loss=0.000699
+      Epoch  40/80  loss=0.000625
+      Epoch  60/80  loss=0.000625
+      Epoch  80/80  loss=0.000553
+  [loocv blur 7] 11/23 sub-HYPE10 err +0.0168 (1221s)
+      Epoch  20/80  loss=0.000693
+      Epoch  40/80  loss=0.000603
+      Epoch  60/80  loss=0.000502
+      Epoch  80/80  loss=0.000495
+  [loocv blur 7] 12/23 sub-HYPE11 err +0.0406 (1333s)
+      Epoch  20/80  loss=0.000536
+      Epoch  40/80  loss=0.000504
+      Epoch  60/80  loss=0.000461
+      Epoch  80/80  loss=0.000441
+  [loocv blur 7] 13/23 sub-HYPE12 err +0.0162 (1443s)
+      Epoch  20/80  loss=0.000969
+      Epoch  40/80  loss=0.000763
+      Epoch  60/80  loss=0.000673
+      Epoch  80/80  loss=0.000556
+  [loocv blur 7] 14/23 sub-HYPE13 err +0.0152 (1553s)
+      Epoch  20/80  loss=0.000724
+      Epoch  40/80  loss=0.000680
+      Epoch  60/80  loss=0.000519
+      Epoch  80/80  loss=0.000517
+  [loocv blur 7] 15/23 sub-HYPE14 err +0.0329 (1664s)
+      Epoch  20/80  loss=0.000855
+      Epoch  40/80  loss=0.000581
+      Epoch  60/80  loss=0.000563
+      Epoch  80/80  loss=0.000521
+  [loocv blur 7] 16/23 sub-HYPE15 err +0.0346 (1775s)
+      Epoch  20/80  loss=0.000981
+      Epoch  40/80  loss=0.000735
+      Epoch  60/80  loss=0.000633
+      Epoch  80/80  loss=0.000601
+  [loocv blur 7] 17/23 sub-HYPE16 err +0.0416 (1885s)
+      Epoch  20/80  loss=0.000718
+      Epoch  40/80  loss=0.000529
+      Epoch  60/80  loss=0.000506
+      Epoch  80/80  loss=0.000500
+  [loocv blur 7] 18/23 sub-HYPE17 err +0.0126 (1996s)
+      Epoch  20/80  loss=0.000684
+      Epoch  40/80  loss=0.000529
+      Epoch  60/80  loss=0.000503
+      Epoch  80/80  loss=0.000474
+  [loocv blur 7] 19/23 sub-HYPE18 err +0.0206 (2107s)
+      Epoch  20/80  loss=0.000829
+      Epoch  40/80  loss=0.000628
+      Epoch  60/80  loss=0.000578
+      Epoch  80/80  loss=0.000562
+  [loocv blur 7] 20/23 sub-HYPE19 err -0.0111 (2217s)
+      Epoch  20/80  loss=0.000789
+      Epoch  40/80  loss=0.000732
+      Epoch  60/80  loss=0.000554
+      Epoch  80/80  loss=0.000573
+  [loocv blur 7] 21/23 sub-HYPE20 err +0.0266 (2328s)
+      Epoch  20/80  loss=0.000718
+      Epoch  40/80  loss=0.000611
+      Epoch  60/80  loss=0.000485
+      Epoch  80/80  loss=0.000457
+  [loocv blur 7] 22/23 sub-HYPE21 err +0.0591 (2438s)
+      Epoch  20/80  loss=0.000646
+      Epoch  40/80  loss=0.000553
+      Epoch  60/80  loss=0.000484
+      Epoch  80/80  loss=0.000442
+  [loocv blur 7] 23/23 sub-HYPE22 err -0.0056 (2549s)
+Saved -> experiments/r3_e4_physics_vs_blur/blur_seed7.json
+[2026-10-08 01:55:33] E4 blur seed 7 exit 0
+Saved -> experiments/r3_e4_physics_vs_blur/summary.json
+{
+ "loocv_real_64mt": {
+  "mean_abs_err_physics": 0.02034,
+  "mean_abs_err_blur": 0.02356,
+  "delta_mae_physics_minus_blur": -0.00322,
+  "delta_ci95": [
+   -0.01208,
+   0.00458
+  ],
+  "wilcoxon_p": 0.8462,
+  "n": 23,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_physics_inputs": {
+  "mean_abs_err_physics": 0.02395,
+  "mean_abs_err_blur": 0.05879,
+  "delta_mae_physics_minus_blur": -0.03484,
+  "delta_ci95": [
+   -0.04585,
+   -0.02441
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ },
+ "oasis_test_on_blur_inputs": {
+  "mean_abs_err_physics": 0.07944,
+  "mean_abs_err_blur": 0.02206,
+  "delta_mae_physics_minus_blur": 0.05737,
+  "delta_ci95": [
+   0.04434,
+   0.07038
+  ],
+  "wilcoxon_p": 0.0,
+  "n": 38,
+  "note": "per-subject |error| averaged over seeds, then paired across subjects"
+ }
+}
+[2026-10-08 01:55:37] E4 chain finished
+[2026-10-08 01:55:37] E2c start
+  Found 375 subjects with T1w scans
+  Usable records: 375
+  Split: train=300, val=37, test=38
+  CNN3D parameters: 8,222,337
+  Epoch 10/50  train_loss=0.01964  val_r=0.8986  val_mae=0.0288  best_r=0.8986
+  Epoch 20/50  train_loss=0.01601  val_r=0.8848  val_mae=0.0730  best_r=0.8986
+  Early stop at epoch 20 (no val_r improvement for 10 epochs)
+  Best val Pearson r = 0.8986
+cnn_frozen_offset            MAE 0.0194 r +0.625 skill -1.373
+cnn_frozen_affine            MAE 0.0100 r +0.581 skill +0.335
+ridge_cnn_globalpool256      MAE 0.0090 r +0.649 skill +0.456
+ridge_cnn_penultimate128     MAE 0.0176 r +0.307 skill -1.437
+Saved -> experiments/r3_e2c_cnn3d_target/results.json
+[2026-10-08 02:09:51] E2c exit 0 ; ALL DONE

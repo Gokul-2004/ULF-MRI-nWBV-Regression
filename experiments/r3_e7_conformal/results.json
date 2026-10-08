@@ -1,0 +1,198 @@
+{
+  "experiment": "r3_e7_conformal_per_cohort",
+  "answers": [
+    "R3.1",
+    "R4.4",
+    "R2.9"
+  ],
+  "algorithm": "residuals e_j = |pred_HFE_j - y_j| from the cross-session LOOCV (j = 1..23);\n  for subject i, calibration set C_i = {e_j : j != i} (m = 22);\n  q_i = the k-th smallest element of C_i, k = ceil((m+1)(1-alpha));\n  interval_i = pred_HFE_i +/- q_i.\nThis is a jackknife-style leave-one-out conformal procedure on cross-validated\nresiduals (not split conformal). Subject i's own residual never calibrates its\nown interval, but every residual comes from a fold model that shares 21 of its\n22 training subjects with subject i's fold model, so only jackknife+/CV+-type\nguarantees (>= 1 - 2*alpha) apply, not the exact 1 - alpha guarantee.\n\nWith m = 22 and continuous residuals, the number of covered subjects is\nDETERMINISTIC: subject i is covered iff e_i <= q_i, and q_i is the k-th order\nstatistic of the other 22. Exactly k of the 23 subjects satisfy this (no ties),\nso coverage is k/23 for ANY residual vector: 21/23 at 90%, 22/23 at 95%.\nSection 1 verifies this numerically.",
+  "label": "internal, retrospective leave-one-out (jackknife-style) conformal calibration on cross-validated residuals",
+  "provenance": {
+    "script": "scripts/round3/e7_conformal_per_cohort.py",
+    "git_commit": "ff4762b7852201fa1dc0d9d77d154a3c5cd8fef5",
+    "code_tree_dirty": true,
+    "torch_version": "2.11.0+cu130",
+    "numpy_version": "1.26.4",
+    "generated_utc": "2026-10-07T04:36:02+00:00"
+  },
+  "coverage_is_fixed_by_construction": {
+    "level_90": {
+      "k": 21,
+      "covered_counts_observed_over_5000_random_residual_vectors": [
+        21
+      ]
+    },
+    "level_95": {
+      "k": 22,
+      "covered_counts_observed_over_5000_random_residual_vectors": [
+        22
+      ]
+    }
+  },
+  "cohorts": {
+    "ds006557_headline_adapter": {
+      "level_90": {
+        "n": 23,
+        "n_covered": 21,
+        "coverage": 0.913,
+        "mean_width": 0.0571,
+        "width_over_truth_sd": 3.76,
+        "width_over_truth_range": 1.02,
+        "mean_fraction_of_cohort_inside_each_interval": 0.949,
+        "n_intervals_containing_cohort_mean": 23
+      },
+      "level_95": {
+        "n": 23,
+        "n_covered": 22,
+        "coverage": 0.957,
+        "mean_width": 0.0664,
+        "width_over_truth_sd": 4.38,
+        "width_over_truth_range": 1.18,
+        "mean_fraction_of_cohort_inside_each_interval": 0.989,
+        "n_intervals_containing_cohort_mean": 23
+      }
+    },
+    "ds006557_swin_ridge_readout": {
+      "level_90": {
+        "n": 23,
+        "n_covered": 21,
+        "coverage": 0.913,
+        "mean_width": 0.0326,
+        "width_over_truth_sd": 2.15,
+        "width_over_truth_range": 0.58,
+        "mean_fraction_of_cohort_inside_each_interval": 0.554,
+        "n_intervals_containing_cohort_mean": 17
+      },
+      "level_95": {
+        "n": 23,
+        "n_covered": 22,
+        "coverage": 0.957,
+        "mean_width": 0.0343,
+        "width_over_truth_sd": 2.26,
+        "width_over_truth_range": 0.61,
+        "mean_fraction_of_cohort_inside_each_interval": 0.571,
+        "n_intervals_containing_cohort_mean": 18
+      }
+    },
+    "external_native_as_submitted_headline_adapter_seedmean": {
+      "level_90": {
+        "n": 10,
+        "n_covered": 0,
+        "coverage": 0.0,
+        "mean_width": 0.0576,
+        "width_over_truth_sd": 5.26,
+        "width_over_truth_range": 1.72,
+        "mean_fraction_of_cohort_inside_each_interval": 0.0,
+        "n_intervals_containing_cohort_mean": 0
+      },
+      "level_95": {
+        "n": 10,
+        "n_covered": 0,
+        "coverage": 0.0,
+        "mean_width": 0.0668,
+        "width_over_truth_sd": 6.11,
+        "width_over_truth_range": 2.0,
+        "mean_fraction_of_cohort_inside_each_interval": 0.0,
+        "n_intervals_containing_cohort_mean": 0
+      }
+    },
+    "external_native_as_submitted_swin_ridge_readout": {
+      "level_90": {
+        "n": 10,
+        "n_covered": 0,
+        "coverage": 0.0,
+        "mean_width": 0.033,
+        "width_over_truth_sd": 3.01,
+        "width_over_truth_range": 0.99,
+        "mean_fraction_of_cohort_inside_each_interval": 0.0,
+        "n_intervals_containing_cohort_mean": 0
+      },
+      "level_95": {
+        "n": 10,
+        "n_covered": 0,
+        "coverage": 0.0,
+        "mean_width": 0.0343,
+        "width_over_truth_sd": 3.14,
+        "width_over_truth_range": 1.03,
+        "mean_fraction_of_cohort_inside_each_interval": 0.0,
+        "n_intervals_containing_cohort_mean": 0
+      }
+    },
+    "external_reoriented_RAS_headline_adapter_seedmean": {
+      "level_90": {
+        "n": 10,
+        "n_covered": 0,
+        "coverage": 0.0,
+        "mean_width": 0.0576,
+        "width_over_truth_sd": 5.26,
+        "width_over_truth_range": 1.72,
+        "mean_fraction_of_cohort_inside_each_interval": 0.0,
+        "n_intervals_containing_cohort_mean": 0
+      },
+      "level_95": {
+        "n": 10,
+        "n_covered": 0,
+        "coverage": 0.0,
+        "mean_width": 0.0668,
+        "width_over_truth_sd": 6.11,
+        "width_over_truth_range": 2.0,
+        "mean_fraction_of_cohort_inside_each_interval": 0.0,
+        "n_intervals_containing_cohort_mean": 0
+      }
+    },
+    "external_reoriented_RAS_swin_ridge_readout": {
+      "level_90": {
+        "n": 10,
+        "n_covered": 0,
+        "coverage": 0.0,
+        "mean_width": 0.033,
+        "width_over_truth_sd": 3.01,
+        "width_over_truth_range": 0.99,
+        "mean_fraction_of_cohort_inside_each_interval": 0.01,
+        "n_intervals_containing_cohort_mean": 0
+      },
+      "level_95": {
+        "n": 10,
+        "n_covered": 0,
+        "coverage": 0.0,
+        "mean_width": 0.0343,
+        "width_over_truth_sd": 3.14,
+        "width_over_truth_range": 1.03,
+        "mean_fraction_of_cohort_inside_each_interval": 0.01,
+        "n_intervals_containing_cohort_mean": 0
+      }
+    },
+    "oasis1_split_conformal_stage2": {
+      "level_90": {
+        "n": 38,
+        "n_covered": 35,
+        "coverage": 0.921,
+        "mean_width": 0.3055,
+        "width_over_truth_sd": 4.9,
+        "width_over_truth_range": 1.36,
+        "mean_fraction_of_cohort_inside_each_interval": 0.911,
+        "n_intervals_containing_cohort_mean": 38,
+        "k": 35,
+        "m_cal": 37,
+        "capped_at_max": false
+      },
+      "level_95": {
+        "n": 38,
+        "n_covered": 37,
+        "coverage": 0.974,
+        "mean_width": 0.3523,
+        "width_over_truth_sd": 5.65,
+        "width_over_truth_range": 1.57,
+        "mean_fraction_of_cohort_inside_each_interval": 0.957,
+        "n_intervals_containing_cohort_mean": 38,
+        "k": 37,
+        "m_cal": 37,
+        "capped_at_max": false
+      },
+      "note": "Split conformal: calibration = 37 validation subjects, evaluation = 38 test subjects, inputs physics-simulated with fixed noise. The validation set also selected the Stage-2 checkpoint (early stopping on val r), so calibration is mildly optimistic.",
+      "test_mae": 0.0582,
+      "test_bias": 0.0532,
+      "val_mae": 0.0683
+    }
+  }
+}

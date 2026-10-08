@@ -1,0 +1,156 @@
+{
+  "experiment": "r3_e4_matched_physics_vs_blur",
+  "answers": [
+    "R2.7"
+  ],
+  "per_seed": {
+    "42": {
+      "loocv_real_64mt": {
+        "mean_abs_err_physics": 0.01697,
+        "mean_abs_err_blur": 0.02676,
+        "delta_mae_physics_minus_blur": -0.00979,
+        "delta_ci95": [
+          -0.01854,
+          -0.00132
+        ],
+        "wilcoxon_p": 0.0449,
+        "n": 23
+      },
+      "oasis_test_on_physics_inputs": {
+        "mean_abs_err_physics": 0.02631,
+        "mean_abs_err_blur": 0.05817,
+        "delta_mae_physics_minus_blur": -0.03186,
+        "delta_ci95": [
+          -0.04265,
+          -0.02158
+        ],
+        "wilcoxon_p": 0.0,
+        "n": 38
+      },
+      "oasis_test_on_blur_inputs": {
+        "mean_abs_err_physics": 0.08408,
+        "mean_abs_err_blur": 0.02071,
+        "delta_mae_physics_minus_blur": 0.06337,
+        "delta_ci95": [
+          0.04963,
+          0.07675
+        ],
+        "wilcoxon_p": 0.0,
+        "n": 38
+      }
+    },
+    "1": {
+      "loocv_real_64mt": {
+        "mean_abs_err_physics": 0.01915,
+        "mean_abs_err_blur": 0.02385,
+        "delta_mae_physics_minus_blur": -0.00471,
+        "delta_ci95": [
+          -0.01545,
+          0.0054
+        ],
+        "wilcoxon_p": 0.8697,
+        "n": 23
+      },
+      "oasis_test_on_physics_inputs": {
+        "mean_abs_err_physics": 0.02354,
+        "mean_abs_err_blur": 0.06129,
+        "delta_mae_physics_minus_blur": -0.03775,
+        "delta_ci95": [
+          -0.04903,
+          -0.02688
+        ],
+        "wilcoxon_p": 0.0,
+        "n": 38
+      },
+      "oasis_test_on_blur_inputs": {
+        "mean_abs_err_physics": 0.07516,
+        "mean_abs_err_blur": 0.02368,
+        "delta_mae_physics_minus_blur": 0.05149,
+        "delta_ci95": [
+          0.03751,
+          0.06546
+        ],
+        "wilcoxon_p": 0.0,
+        "n": 38
+      }
+    },
+    "7": {
+      "loocv_real_64mt": {
+        "mean_abs_err_physics": 0.0249,
+        "mean_abs_err_blur": 0.02006,
+        "delta_mae_physics_minus_blur": 0.00483,
+        "delta_ci95": [
+          -0.00536,
+          0.01458
+        ],
+        "wilcoxon_p": 0.2595,
+        "n": 23
+      },
+      "oasis_test_on_physics_inputs": {
+        "mean_abs_err_physics": 0.022,
+        "mean_abs_err_blur": 0.05692,
+        "delta_mae_physics_minus_blur": -0.03492,
+        "delta_ci95": [
+          -0.05047,
+          -0.01986
+        ],
+        "wilcoxon_p": 0.0002,
+        "n": 38
+      },
+      "oasis_test_on_blur_inputs": {
+        "mean_abs_err_physics": 0.07906,
+        "mean_abs_err_blur": 0.02181,
+        "delta_mae_physics_minus_blur": 0.05726,
+        "delta_ci95": [
+          0.04093,
+          0.07352
+        ],
+        "wilcoxon_p": 0.0,
+        "n": 38
+      }
+    }
+  },
+  "pooled_over_seeds": {
+    "loocv_real_64mt": {
+      "mean_abs_err_physics": 0.02034,
+      "mean_abs_err_blur": 0.02356,
+      "delta_mae_physics_minus_blur": -0.00322,
+      "delta_ci95": [
+        -0.01208,
+        0.00458
+      ],
+      "wilcoxon_p": 0.8462,
+      "n": 23,
+      "note": "per-subject |error| averaged over seeds, then paired across subjects"
+    },
+    "oasis_test_on_physics_inputs": {
+      "mean_abs_err_physics": 0.02395,
+      "mean_abs_err_blur": 0.05879,
+      "delta_mae_physics_minus_blur": -0.03484,
+      "delta_ci95": [
+        -0.04585,
+        -0.02441
+      ],
+      "wilcoxon_p": 0.0,
+      "n": 38,
+      "note": "per-subject |error| averaged over seeds, then paired across subjects"
+    },
+    "oasis_test_on_blur_inputs": {
+      "mean_abs_err_physics": 0.07944,
+      "mean_abs_err_blur": 0.02206,
+      "delta_mae_physics_minus_blur": 0.05737,
+      "delta_ci95": [
+        0.04434,
+        0.07038
+      ],
+      "wilcoxon_p": 0.0,
+      "n": 38,
+      "note": "per-subject |error| averaged over seeds, then paired across subjects"
+    }
+  },
+  "seeds_complete": [
+    42,
+    1,
+    7
+  ]
+}

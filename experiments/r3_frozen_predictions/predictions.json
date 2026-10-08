@@ -1,0 +1,152 @@
+{
+  "model": "checkpoints/oasis_finetuned.pt (Stage 2, no 64 mT adaptation)",
+  "input": "acq-axi_T2w, headline preprocessing (loocv_cross_session.load_scan)",
+  "per_subject": [
+    {
+      "subject": "sub-HYPE00",
+      "true_nwbv": 0.7939,
+      "pred_hfc": 0.82784,
+      "pred_hfe": 0.82295
+    },
+    {
+      "subject": "sub-HYPE01",
+      "true_nwbv": 0.806,
+      "pred_hfc": 0.82383,
+      "pred_hfe": 0.82112
+    },
+    {
+      "subject": "sub-HYPE02",
+      "true_nwbv": 0.7941,
+      "pred_hfc": 0.83022,
+      "pred_hfe": 0.82638
+    },
+    {
+      "subject": "sub-HYPE03",
+      "true_nwbv": 0.7882,
+      "pred_hfc": 0.82205,
+      "pred_hfe": 0.82196
+    },
+    {
+      "subject": "sub-HYPE04",
+      "true_nwbv": 0.7962,
+      "pred_hfc": 0.82308,
+      "pred_hfe": 0.82015
+    },
+    {
+      "subject": "sub-HYPE05",
+      "true_nwbv": 0.7916,
+      "pred_hfc": 0.82497,
+      "pred_hfe": 0.82367
+    },
+    {
+      "subject": "sub-HYPE06",
+      "true_nwbv": 0.7755,
+      "pred_hfc": 0.82133,
+      "pred_hfe": 0.82228
+    },
+    {
+      "subject": "sub-HYPE07",
+      "true_nwbv": 0.7866,
+      "pred_hfc": 0.82223,
+      "pred_hfe": 0.82116
+    },
+    {
+      "subject": "sub-HYPE08",
+      "true_nwbv": 0.7903,
+      "pred_hfc": 0.82394,
+      "pred_hfe": 0.82091
+    },
+    {
+      "subject": "sub-HYPE09",
+      "true_nwbv": 0.799,
+      "pred_hfc": 0.82429,
+      "pred_hfe": 0.82214
+    },
+    {
+      "subject": "sub-HYPE10",
+      "true_nwbv": 0.7782,
+      "pred_hfc": 0.82924,
+      "pred_hfe": 0.82567
+    },
+    {
+      "subject": "sub-HYPE11",
+      "true_nwbv": 0.7672,
+      "pred_hfc": 0.82148,
+      "pred_hfe": 0.82109
+    },
+    {
+      "subject": "sub-HYPE12",
+      "true_nwbv": 0.7881,
+      "pred_hfc": 0.82545,
+      "pred_hfe": 0.82499
+    },
+    {
+      "subject": "sub-HYPE13",
+      "true_nwbv": 0.7911,
+      "pred_hfc": 0.82141,
+      "pred_hfe": 0.82031
+    },
+    {
+      "subject": "sub-HYPE14",
+      "true_nwbv": 0.7715,
+      "pred_hfc": 0.82651,
+      "pred_hfe": 0.83057
+    },
+    {
+      "subject": "sub-HYPE15",
+      "true_nwbv": 0.7596,
+      "pred_hfc": 0.81994,
+      "pred_hfe": 0.81718
+    },
+    {
+      "subject": "sub-HYPE16",
+      "true_nwbv": 0.758,
+      "pred_hfc": 0.82004,
+      "pred_hfe": 0.82086
+    },
+    {
+      "subject": "sub-HYPE17",
+      "true_nwbv": 0.784,
+      "pred_hfc": 0.83501,
+      "pred_hfe": 0.82563
+    },
+    {
+      "subject": "sub-HYPE18",
+      "true_nwbv": 0.7752,
+      "pred_hfc": 0.82135,
+      "pred_hfe": 0.82385
+    },
+    {
+      "subject": "sub-HYPE19",
+      "true_nwbv": 0.801,
+      "pred_hfc": 0.82874,
+      "pred_hfe": 0.82888
+    },
+    {
+      "subject": "sub-HYPE20",
+      "true_nwbv": 0.7789,
+      "pred_hfc": 0.82151,
+      "pred_hfe": 0.81981
+    },
+    {
+      "subject": "sub-HYPE21",
+      "true_nwbv": 0.7523,
+      "pred_hfc": 0.82451,
+      "pred_hfe": 0.82714
+    },
+    {
+      "subject": "sub-HYPE22",
+      "true_nwbv": 0.8084,
+      "pred_hfc": 0.82333,
+      "pred_hfe": 0.83407
+    }
+  ],
+  "provenance": {
+    "script": "scripts/round3/e1_fold_independent_reproducibility.py",
+    "git_commit": "ff4762b7852201fa1dc0d9d77d154a3c5cd8fef5",
+    "code_tree_dirty": true,
+    "torch_version": "2.11.0+cu130",
+    "numpy_version": "1.26.4",
+    "generated_utc": "2026-10-07T04:02:47+00:00"
+  }
+}

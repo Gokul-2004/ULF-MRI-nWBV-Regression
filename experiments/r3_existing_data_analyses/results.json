@@ -1,0 +1,442 @@
+{
+  "experiment": "r3_existing_data_analyses",
+  "provenance": {
+    "script": "scripts/round3/a_existing_data_analyses.py",
+    "git_commit": "ff4762b7852201fa1dc0d9d77d154a3c5cd8fef5",
+    "code_tree_dirty": true,
+    "torch_version": "2.11.0+cu130",
+    "numpy_version": "1.26.4",
+    "generated_utc": "2026-10-07T04:20:38+00:00"
+  },
+  "r2_2": {
+    "headline": {
+      "n": 23,
+      "truth_sd": 0.01516,
+      "truth_range": 0.0561,
+      "mae": 0.01338,
+      "rmse": 0.01596,
+      "mae_over_sd": 0.883,
+      "mae_over_sd_ci95": [
+        0.7743,
+        1.1168
+      ],
+      "rmse_over_sd": 1.053,
+      "loo_mean_mae": 0.01281,
+      "mse_skill_vs_loo_mean": -0.0609,
+      "mse_skill_ci95": [
+        -0.599,
+        0.144
+      ],
+      "mae_skill_vs_loo_mean": -0.0451,
+      "mae_skill_ci95": [
+        -0.434,
+        0.0847
+      ],
+      "calibration_slope_true_on_pred": -0.441,
+      "calibration_slope_se": 0.802,
+      "calibration_slope_ci95": [
+        -2.9709,
+        1.1932
+      ],
+      "calibration_intercept": 1.129,
+      "pearson_r": -0.1191,
+      "pearson_p": 0.5882,
+      "pred_sd_over_truth_sd": 0.27,
+      "n_below_0.020": 19
+    },
+    "multiseed": {
+      "42": {
+        "n": 23,
+        "truth_sd": 0.01516,
+        "truth_range": 0.0561,
+        "mae": 0.01329,
+        "rmse": 0.01541,
+        "mae_over_sd": 0.877,
+        "mae_over_sd_ci95": [
+          0.7822,
+          1.0978
+        ],
+        "rmse_over_sd": 1.017,
+        "loo_mean_mae": 0.01281,
+        "mse_skill_vs_loo_mean": 0.0109,
+        "mse_skill_ci95": [
+          -0.4544,
+          0.2493
+        ],
+        "mae_skill_vs_loo_mean": -0.0379,
+        "mae_skill_ci95": [
+          -0.4185,
+          0.0901
+        ],
+        "calibration_slope_true_on_pred": 0.114,
+        "calibration_slope_se": 0.776,
+        "calibration_slope_ci95": [
+          -1.9162,
+          2.0869
+        ],
+        "calibration_intercept": 0.695,
+        "pearson_r": 0.0319,
+        "pearson_p": 0.885,
+        "pred_sd_over_truth_sd": 0.281,
+        "n_below_0.020": 21
+      },
+      "1": {
+        "n": 23,
+        "truth_sd": 0.01516,
+        "truth_range": 0.0561,
+        "mae": 0.01339,
+        "rmse": 0.01594,
+        "mae_over_sd": 0.883,
+        "mae_over_sd_ci95": [
+          0.7871,
+          1.0886
+        ],
+        "rmse_over_sd": 1.051,
+        "loo_mean_mae": 0.01281,
+        "mse_skill_vs_loo_mean": -0.0576,
+        "mse_skill_ci95": [
+          -0.4906,
+          0.1574
+        ],
+        "mae_skill_vs_loo_mean": -0.0454,
+        "mae_skill_ci95": [
+          -0.4116,
+          0.0819
+        ],
+        "calibration_slope_true_on_pred": -0.466,
+        "calibration_slope_se": 0.814,
+        "calibration_slope_ci95": [
+          -2.2737,
+          1.7146
+        ],
+        "calibration_intercept": 1.149,
+        "pearson_r": -0.124,
+        "pearson_p": 0.573,
+        "pred_sd_over_truth_sd": 0.266,
+        "n_below_0.020": 18
+      },
+      "7": {
+        "n": 23,
+        "truth_sd": 0.01516,
+        "truth_range": 0.0561,
+        "mae": 0.01294,
+        "rmse": 0.01571,
+        "mae_over_sd": 0.854,
+        "mae_over_sd_ci95": [
+          0.7511,
+          1.0728
+        ],
+        "rmse_over_sd": 1.036,
+        "loo_mean_mae": 0.01281,
+        "mse_skill_vs_loo_mean": -0.0268,
+        "mse_skill_ci95": [
+          -0.5362,
+          0.2036
+        ],
+        "mae_skill_vs_loo_mean": -0.0108,
+        "mae_skill_ci95": [
+          -0.3812,
+          0.1161
+        ],
+        "calibration_slope_true_on_pred": -0.261,
+        "calibration_slope_se": 0.847,
+        "calibration_slope_ci95": [
+          -2.6042,
+          1.9124
+        ],
+        "calibration_intercept": 0.989,
+        "pearson_r": -0.0672,
+        "pearson_p": 0.7605,
+        "pred_sd_over_truth_sd": 0.257,
+        "n_below_0.020": 19
+      },
+      "123": {
+        "n": 23,
+        "truth_sd": 0.01516,
+        "truth_range": 0.0561,
+        "mae": 0.01306,
+        "rmse": 0.01531,
+        "mae_over_sd": 0.862,
+        "mae_over_sd_ci95": [
+          0.7553,
+          1.1006
+        ],
+        "rmse_over_sd": 1.01,
+        "loo_mean_mae": 0.01281,
+        "mse_skill_vs_loo_mean": 0.024,
+        "mse_skill_ci95": [
+          -0.5112,
+          0.2454
+        ],
+        "mae_skill_vs_loo_mean": -0.0199,
+        "mae_skill_ci95": [
+          -0.3859,
+          0.1177
+        ],
+        "calibration_slope_true_on_pred": 0.213,
+        "calibration_slope_se": 0.688,
+        "calibration_slope_ci95": [
+          -1.0715,
+          1.9106
+        ],
+        "calibration_intercept": 0.618,
+        "pearson_r": 0.0674,
+        "pearson_p": 0.7601,
+        "pred_sd_over_truth_sd": 0.317,
+        "n_below_0.020": 19
+      },
+      "2024": {
+        "n": 23,
+        "truth_sd": 0.01516,
+        "truth_range": 0.0561,
+        "mae": 0.01232,
+        "rmse": 0.01477,
+        "mae_over_sd": 0.813,
+        "mae_over_sd_ci95": [
+          0.6968,
+          1.0258
+        ],
+        "rmse_over_sd": 0.974,
+        "loo_mean_mae": 0.01281,
+        "mse_skill_vs_loo_mean": 0.0918,
+        "mse_skill_ci95": [
+          -0.353,
+          0.3131
+        ],
+        "mae_skill_vs_loo_mean": 0.0378,
+        "mae_skill_ci95": [
+          -0.31,
+          0.1778
+        ],
+        "calibration_slope_true_on_pred": 0.626,
+        "calibration_slope_se": 0.695,
+        "calibration_slope_ci95": [
+          -1.374,
+          1.9353
+        ],
+        "calibration_intercept": 0.294,
+        "pearson_r": 0.1931,
+        "pearson_p": 0.3774,
+        "pred_sd_over_truth_sd": 0.308,
+        "n_below_0.020": 20
+      }
+    },
+    "constant_band": {
+      "constants_with_mae_below_0.020": [
+        0.7668,
+        0.8035
+      ],
+      "band_width": 0.0367,
+      "band_width_over_cohort_range": 0.654,
+      "best_constant_mae": 0.01186,
+      "interpretation": "Any constant output inside this band clears the 0.020 criterion; the criterion therefore cannot discriminate a working model from a non-working one in this cohort."
+    }
+  },
+  "r2_11": {
+    "runs": {
+      "headline_loocv_cross_session": {
+        "mae": 0.01338,
+        "mae_ci95": [
+          0.01,
+          0.017
+        ],
+        "bias": -0.00221,
+        "n_below_0.020": 19,
+        "pearson_r": -0.1191
+      },
+      "ablation_adapter_ln_head": {
+        "mae": 0.01365,
+        "mae_ci95": [
+          0.0104,
+          0.0172
+        ],
+        "bias": -0.00225,
+        "n_below_0.020": 19,
+        "pearson_r": -0.0466
+      },
+      "multiseed_seed42": {
+        "mae": 0.01329,
+        "mae_ci95": [
+          0.0103,
+          0.0167
+        ],
+        "bias": -0.0021,
+        "n_below_0.020": 21,
+        "pearson_r": 0.0319
+      }
+    },
+    "pairwise_agreement": {
+      "headline_loocv_cross_session__vs__ablation_adapter_ln_head": {
+        "per_subject_r": 0.531,
+        "mean_abs_diff": 0.0032,
+        "max_abs_diff": 0.0101
+      },
+      "headline_loocv_cross_session__vs__multiseed_seed42": {
+        "per_subject_r": 0.457,
+        "mean_abs_diff": 0.0029,
+        "max_abs_diff": 0.0113
+      },
+      "ablation_adapter_ln_head__vs__multiseed_seed42": {
+        "per_subject_r": 0.717,
+        "mean_abs_diff": 0.0025,
+        "max_abs_diff": 0.0101
+      }
+    },
+    "multiseed_mae_sd_across_5_seeds": 0.0004,
+    "provenance_of_difference": "Identical recipe (oasis_finetuned.pt, 80 epochs, lr 1e-4, wd 1e-4, batch 4, 5 augmentations, best-training-loss state). Only the RNG state differs: headline seeds 42 at import then consumes torch RNG building the base model; the ablation seeds once and runs 23 head-only folds before ln_head; multiseed re-seeds 42 after model construction, so its numpy augmentation stream matches the headline but its torch randperm stream does not.",
+    "pooled": false
+  },
+  "r4_3": {
+    "design": "same-session (HFC train -> HFC test), fixed split np.random.default_rng(42) permutation, 15 train / 8 test",
+    "test_subjects": [
+      "sub-HYPE14",
+      "sub-HYPE21",
+      "sub-HYPE02",
+      "sub-HYPE04",
+      "sub-HYPE20",
+      "sub-HYPE01",
+      "sub-HYPE13",
+      "sub-HYPE08"
+    ],
+    "train_subjects": [
+      "sub-HYPE00",
+      "sub-HYPE03",
+      "sub-HYPE05",
+      "sub-HYPE06",
+      "sub-HYPE07",
+      "sub-HYPE09",
+      "sub-HYPE10",
+      "sub-HYPE11",
+      "sub-HYPE12",
+      "sub-HYPE15",
+      "sub-HYPE16",
+      "sub-HYPE17",
+      "sub-HYPE18",
+      "sub-HYPE19",
+      "sub-HYPE22"
+    ],
+    "rows": {
+      "adapter_fastsurfer_labels": {
+        "mae": 0.0121,
+        "mae_ci95": [
+          0.0048,
+          0.0212
+        ],
+        "bias": 0.006
+      },
+      "adapter_synthseg_pseudolabels": {
+        "mae": 0.0171,
+        "mae_ci95": [
+          0.0116,
+          0.0227
+        ],
+        "bias": -0.0105
+      },
+      "constant_train_mean_fastsurfer": {
+        "mae": 0.0135,
+        "mae_ci95": [
+          0.0084,
+          0.0198
+        ],
+        "bias": -0.0014
+      },
+      "constant_train_mean_synthseg": {
+        "mae": 0.0139,
+        "mae_ci95": [
+          0.0087,
+          0.0199
+        ],
+        "bias": -0.0032
+      },
+      "synthseg_direct_on_64mT": {
+        "mae": 0.0064,
+        "mae_ci95": [
+          0.0036,
+          0.0106
+        ],
+        "bias": -0.003
+      }
+    },
+    "no_test_information": "Adapter trained only on train-subject labels; per-volume 1-99 percentile normalisation (no cohort statistics); checkpoint = lowest training-loss epoch; fixed hyper-parameters (scripts/pseudolabel_ablation.py lines 50-56, 66-75, 151-161, 193-195, 261-277).",
+    "label_definition_note": "SynthSeg nWBV = (GM+WM)/TIV from run_synthseg_ds006557.sh column matching; FastSurfer nWBV = BrainSegVol/MaskVol. Definitions differ."
+  },
+  "e5_label_uncertainty": {
+    "sigma_sources": {
+      "0.0025": "illustrative small test-retest error",
+      "0.005": "illustrative moderate error",
+      "0.0063": "SD of SynthSeg(64 mT T2w) minus FastSurfer(3T MPRAGE) nWBV, n=23 \u2014 an UPPER bound on FastSurfer label noise because it includes the modality gap and the definition difference"
+    },
+    "noise_floor_note": "With label noise sigma, even a perfect predictor has expected MAE sigma*sqrt(2/pi) against the noisy labels.",
+    "by_sigma": {
+      "0.0025": {
+        "perfect_predictor_noise_floor_mae": 0.002,
+        "model_mae_mean": 0.0135,
+        "model_mae_95pct_interval": [
+          0.0125,
+          0.0145
+        ],
+        "n_below_0.020_median": 18,
+        "n_below_0.020_95pct_interval": [
+          16,
+          20
+        ],
+        "pearson_r_95pct_interval": [
+          -0.1864,
+          -0.0513
+        ],
+        "loo_mean_mae_mean": 0.0129,
+        "mse_skill_95pct_interval": [
+          -0.1013,
+          -0.0201
+        ],
+        "fraction_runs_model_beats_loo_mean": 0.0
+      },
+      "0.0050": {
+        "perfect_predictor_noise_floor_mae": 0.004,
+        "model_mae_mean": 0.0139,
+        "model_mae_95pct_interval": [
+          0.0121,
+          0.0157
+        ],
+        "n_below_0.020_median": 17,
+        "n_below_0.020_95pct_interval": [
+          14,
+          20
+        ],
+        "pearson_r_95pct_interval": [
+          -0.244,
+          0.0155
+        ],
+        "loo_mean_mae_mean": 0.0133,
+        "mse_skill_95pct_interval": [
+          -0.1363,
+          0.0178
+        ],
+        "fraction_runs_model_beats_loo_mean": 0.045
+      },
+      "0.0063": {
+        "perfect_predictor_noise_floor_mae": 0.005,
+        "model_mae_mean": 0.0142,
+        "model_mae_95pct_interval": [
+          0.012,
+          0.0166
+        ],
+        "n_below_0.020_median": 17,
+        "n_below_0.020_95pct_interval": [
+          14,
+          20
+        ],
+        "pearson_r_95pct_interval": [
+          -0.2682,
+          0.0448
+        ],
+        "loo_mean_mae_mean": 0.0136,
+        "mse_skill_95pct_interval": [
+          -0.1524,
+          0.0348
+        ],
+        "fraction_runs_model_beats_loo_mean": 0.099
+      }
+    }
+  }
+}
