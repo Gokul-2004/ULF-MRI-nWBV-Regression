@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite the software release."
+title: "Direct nWBV Regression from 64 mT Ultra-Low-Field MRI: code, result files and paper build"
+version: "3.0-access-r3"
+date-released: "2026-10-08"
+type: software
+repository-code: "https://github.com/Gokul-2004/ULF-MRI-nWBV-Regression"
+authors:
+  - family-names: "Krishnan"
+    given-names: "Gokul"
+    affiliation: "Vellore Institute of Technology"
+  - family-names: "Khekare"
+    given-names: "Ganesh"
+    affiliation: "Vellore Institute of Technology"
+keywords:
+  - ultra-low-field MRI
+  - 64 mT
+  - normalized whole-brain volume
+  - brain morphometry
+  - reproducibility

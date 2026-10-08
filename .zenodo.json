@@ -1,0 +1,13 @@
+{
+  "title": "Direct nWBV Regression from 64 mT Ultra-Low-Field MRI: code, result files and paper build (v3.0-access-r3)",
+  "upload_type": "software",
+  "description": "Code, committed result files and the paper_build package that regenerates every table, figure and number of the IEEE Access resubmission of Access-2026-45125. See REPRODUCE.md.",
+  "creators": [
+    {"name": "Krishnan, Gokul", "affiliation": "Vellore Institute of Technology"},
+    {"name": "Khekare, Ganesh", "affiliation": "Vellore Institute of Technology"}
+  ],
+  "keywords": ["ultra-low-field MRI", "64 mT", "normalized whole-brain volume", "reproducibility"],
+  "related_identifiers": [
+    {"identifier": "10.5281/zenodo.15471394", "relation": "references", "scheme": "doi"}
+  ]
+}

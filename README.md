@@ -1,197 +1,56 @@
-# Scalable ML Infrastructure for Hybrid Transformer-GNN Biomarker Estimation
+# Direct nWBV Regression from 64 mT Ultra-Low-Field MRI
 
-A scalable and uncertainty-aware ML infrastructure for deploying hybrid Transformer-GNN models to perform biomarker estimation on low-field MRI data. This project focuses on building and evaluating an end-to-end system that enables efficient training, cost-aware inference, and reliable uncertainty-aware predictions.
+Code, result files and paper build for *Direct nWBV Regression from 64 mT
+Ultra-Low-Field MRI: A Reproducible Feasibility and Failure-Analysis Baseline*
+(Gokul Krishnan, Ganesh Khekare; Vellore Institute of Technology), submitted to
+IEEE Access.
 
-## Project Overview
+The study asks whether normalized whole-brain volume (nWBV) can be read directly
+from a 64 mT Hyperfine Swoop T2-weighted scan, without segmenting it, and reports
+plainly where this works and where it fails:
 
-This project addresses the challenge of deploying deep learning models for biomarker estimation in resource-constrained environments with low-field MRI data. The system combines:
+- a 3D Vision Transformer pretrained on simulated low-field data and adapted to
+  real 64 mT scans does **not** beat a constant-mean predictor on the 23-subject
+  ds006557 cohort;
+- simple linear readouts of frozen CNN and Swin-UNETR features recover part of
+  the nWBV signal on held-out sessions of the same cohort;
+- the physics-based low-field simulator gives no measurable benefit over a
+  Gaussian-blur degradation in a matched, paired comparison;
+- every model fails on an independent 64 mT cohort whose reference nWBV lies
+  outside the adaptation range.
 
-- **Hybrid Architecture**: Vision Transformer for spatial feature extraction + Graph Neural Networks for structural relationships
-- **Uncertainty Quantification**: Multiple methods (ensemble, dropout, evidential) for reliable predictions
-- **Cost-Aware Inference**: Early exit, adaptive sampling, and model cascading strategies
-- **High-to-Low Field Conversion**: Simulation pipeline for converting high-field MRI to low-field characteristics
+All numbers are in the manuscript and in `paper_build/out/` (see below).
 
-## Project Structure
+## Reproduce
 
-```
-.
-├── configs/                 # Configuration files
-│   ├── config.yaml         # Main configuration
-│   └── stage1_config.yaml  # Stage 1 specific config
-├── data/                   # Data directories
-│   ├── raw/                # Raw data
-│   ├── processed/          # Processed data
-│   ├── high_field/         # High-field MRI images
-│   └── low_field/          # Low-field MRI images (simulated)
-├── models/                 # Model architectures
-│   ├── transformer_gnn/   # Hybrid model
-│   └── uncertainty/        # Uncertainty estimation methods
-├── training/               # Training pipeline
-├── inference/              # Inference pipeline
-├── evaluation/             # Evaluation and comparison
-├── utils/                  # Utility functions
-│   ├── data_utils.py       # Data loading utilities
-│   └── field_conversion.py # High-to-low field conversion
-├── experiments/            # Experiment scripts
-│   └── stage1/            # Stage 1 experiments
-├── checkpoints/            # Model checkpoints
-├── logs/                   # Training logs
-└── requirements.txt        # Python dependencies
-```
+| What | Command |
+|---|---|
+| Every table, figure and quoted number, from the committed results (minutes, no data) | `python -m paper_build` |
+| Re-run the evaluations (needs the public datasets) | `scripts/reproduce_all.sh experiments` |
+| Retrain the matched physics-vs-blur experiment and CNN3D | `scripts/reproduce_all.sh retrain` |
 
-## Stage 1: High-Field to Low-Field Conversion
+Full instructions, inputs, run times and known limits: **[REPRODUCE.md](REPRODUCE.md)**.
 
-The first stage focuses on:
-1. Converting high-field MRI images to simulate low-field characteristics
-2. Training the hybrid Transformer-GNN model on converted data
-3. Comparing performance with baseline methods
-4. Establishing baseline metrics for further development
+## Layout
 
-## Installation
+| Path | Contents |
+|---|---|
+| `paper_build/` | Builds every table, figure and number of the paper from `experiments/*.json` |
+| `experiments/` | One folder per experiment, each with a `results.json` (the record of every result) |
+| `scripts/` | Data download, simulation, training and evaluation scripts |
+| `scripts/round3/` | Experiments added for the resubmission (E1–E8) |
+| `models/`, `utils/` | `BaselineViT3D`, `BaselineCNN3D`; the 64 mT simulator (`utils/field_conversion.py`) |
+| `checkpoints/` | Trained weights (larger files are attached to the GitHub release) |
+| `scripts/legacy_figures/` | Superseded figure scripts from earlier versions; not used |
 
-1. Clone the repository:
-```bash
-cd "/home/gk-krishnan/Desktop/VIT Paper"
-```
+`CLAUDE.md` describes the three-stage pipeline and the reference labels in more detail.
 
-2. Create a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Linux/Mac
-# or
-venv\Scripts\activate  # On Windows
-```
+## Data
 
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-## Quick Start
-
-See [QUICKSTART.md](QUICKSTART.md) for detailed instructions.
-
-### Stage 1: High-Field to Low-Field Conversion and Comparison
-
-**With synthetic data (for testing):**
-```bash
-python main.py --stage stage1 --use-synthetic
-```
-
-**With real data:**
-```bash
-python main.py --stage stage1 --data-dir /path/to/your/data
-```
-
-**Direct script:**
-```bash
-python experiments/stage1/run_stage1.py --use-synthetic
-```
-
-### Training
-
-```python
-from training.trainer import Trainer
-from utils.data_utils import create_data_loaders
-import yaml
-
-# Load config
-with open('configs/config.yaml', 'r') as f:
-    config = yaml.safe_load(f)
-
-# Create data loaders
-train_loader, val_loader, test_loader = create_data_loaders(config, 'data/processed')
-
-# Train model
-trainer = Trainer(config)
-trainer.train(train_loader, val_loader)
-```
-
-### Inference
-
-```python
-from inference.inferencer import CostAwareInferencer, load_model_for_inference
-import yaml
-
-# Load config and model
-with open('configs/config.yaml', 'r') as f:
-    config = yaml.safe_load(f)
-
-model = load_model_for_inference('checkpoints/best_model.pt', config)
-inferencer = CostAwareInferencer(config, model)
-
-# Make predictions with uncertainty
-predictions, uncertainty = inferencer.predict_with_uncertainty(input_volume)
-```
-
-## Configuration
-
-The system is highly configurable through YAML files:
-
-- **Model Architecture**: Transformer and GNN dimensions, layers, fusion methods
-- **Uncertainty Methods**: Ensemble, dropout, evidential, Bayesian
-- **Training**: Optimizer, scheduler, early stopping
-- **Inference**: Cost-aware strategies, uncertainty thresholds
-- **Field Conversion**: Noise levels, resolution factors, contrast reduction
-
-See `configs/config.yaml` for detailed configuration options.
-
-## Key Features
-
-### 1. Hybrid Transformer-GNN Architecture
-- Vision Transformer for patch-based spatial feature extraction
-- Graph Neural Network for modeling structural relationships
-- Attention-based fusion of both modalities
-
-### 2. Uncertainty Quantification
-- **Ensemble**: Multiple model predictions
-- **Monte Carlo Dropout**: Stochastic forward passes
-- **Evidential Deep Learning**: Explicit uncertainty modeling
-- **Bayesian**: (Planned) Full Bayesian inference
-
-### 3. Cost-Aware Inference
-- **Early Exit**: Stop computation when confidence is high
-- **Adaptive Sampling**: Use more samples for uncertain predictions
-- **Model Cascade**: (Planned) Progressive model complexity
-
-### 4. High-to-Low Field Conversion
-- Noise degradation simulation
-- Resolution downsampling
-- Contrast reduction
-- Combined degradation strategies
-
-## Evaluation Metrics
-
-- **Regression Metrics**: MSE, MAE, RMSE, R², Correlation
-- **Uncertainty Metrics**: Calibration, uncertainty correlation with error
-- **Efficiency Metrics**: Inference time, compute cost
-- **Comparison**: Baseline models (CNN, ViT, GCN, U-Net)
-
-## Development Roadmap
-
-- [x] Project structure and core architecture
-- [x] High-field to low-field conversion pipeline
-- [x] Hybrid Transformer-GNN model
-- [x] Uncertainty quantification methods
-- [x] Training and inference pipelines
-- [ ] Data loading implementation
-- [ ] Baseline model implementations
-- [ ] Full evaluation pipeline
-- [ ] Stage 2: Real low-field data integration
-- [ ] Production deployment utilities
-
-## Notes
-
-- This is an **ML infrastructure project**, not a medical research project
-- Focus is on scalable, production-ready ML systems
-- Data handling is abstracted for flexibility
-- System designed for resource-constrained environments
-
-## License
-
-[Add your license here]
+All datasets are public and are not redistributed here: IXI, OASIS-1, OpenNeuro
+ds006557, and van den Broek et al. (Zenodo 10.5281/zenodo.15471394). Derived
+reference labels (FastSurfer, SynthSeg+) are committed under `experiments/`.
 
 ## Citation
 
-[Add citation if applicable]
-
+See `CITATION.cff`. The archived release has a Zenodo DOI (listed on the release page).
