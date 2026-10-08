@@ -49,9 +49,14 @@ def readouts(numbers, tables):
     rows, data = [], {}
     for key, label, group in READOUTS:
         r = readout_row(preds[key], y, ref_err=ref)
+        if key == "constant_loo_mean":
+            # A leave-one-out mean is perfectly anti-correlated with the left-out value by construction;
+            # r, slope and a skill CI are not meaningful for it (skill is 0 by definition).
+            r = dict(r, pearson_r=float("nan"), pearson_p=float("nan"), calibration_slope=float("nan"),
+                     calibration_slope_ci95=[float("nan")] * 2, mse_skill=0.0, mse_skill_ci95=[float("nan")] * 2)
         data[key] = r | {"label": label, "group": group, "pred": preds[key]}
         rows.append([label, f"{r['mae']:.4f} [{r['mae_ci95'][0]:.4f}, {r['mae_ci95'][1]:.4f}]",
-                     f"{r['mae_over_sd']:.2f}", f"{r['mse_skill']:+.2f} [{r['mse_skill_ci95'][0]:+.2f}, {r['mse_skill_ci95'][1]:+.2f}]",
+                     f"{r['mae_over_sd']:.2f}", ("0 (by definition)" if key == "constant_loo_mean" else f"{r['mse_skill']:+.2f} [{r['mse_skill_ci95'][0]:+.2f}, {r['mse_skill_ci95'][1]:+.2f}]"),
                      "—" if np.isnan(r["pearson_r"]) else f"{r['pearson_r']:+.2f} ({r['pearson_p']:.3g})",
                      "—" if np.isnan(r["calibration_slope"]) else f"{r['calibration_slope']:.2f}",
                      f"{r['n_below_threshold']}/{r['n']}",
