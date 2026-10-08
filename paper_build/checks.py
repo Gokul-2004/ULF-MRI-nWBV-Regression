@@ -102,7 +102,7 @@ def git_state():
     try:
         commit = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
         dirty = subprocess.check_output(["git", "-C", str(root), "status", "--porcelain", "--", "paper_build", "experiments",
-                                         "scripts"], text=True).strip()
+                                         "scripts", ":(exclude)paper_build/out"], text=True).strip()
         tag = subprocess.run(["git", "-C", str(root), "describe", "--tags", "--exact-match"], capture_output=True, text=True).stdout.strip()
     except Exception:
         commit, dirty, tag = "unknown", "unknown", ""
