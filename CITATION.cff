@@ -3,6 +3,7 @@ message: "If you use this code or these results, please cite the software releas
 title: "Direct nWBV Regression from 64 mT Ultra-Low-Field MRI: code, result files and paper build"
 version: "3.0-access-r3"
 date-released: "2026-10-08"
+doi: "10.5281/zenodo.23238408"
 type: software
 license: MIT
 repository-code: "https://github.com/Gokul-2004/ULF-MRI-nWBV-Regression"

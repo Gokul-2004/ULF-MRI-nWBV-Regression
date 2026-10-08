@@ -1,5 +1,7 @@
 # Direct nWBV Regression from 64 mT Ultra-Low-Field MRI
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23238408.svg)](https://doi.org/10.5281/zenodo.23238408)
+
 Code, result files and paper build for *Direct nWBV Regression from 64 mT
 Ultra-Low-Field MRI: A Reproducible Feasibility and Failure-Analysis Baseline*
 (Gokul Krishnan, Ganesh Khekare; Vellore Institute of Technology), submitted to
@@ -53,4 +55,4 @@ reference labels (FastSurfer, SynthSeg+) are committed under `experiments/`.
 
 ## License and citation
 
-Code: MIT (`LICENSE`). The datasets keep their own licences. See `CITATION.cff`. The archived release has a Zenodo DOI (listed on the release page).
+Code: MIT (`LICENSE`). The datasets keep their own licences. See `CITATION.cff`. Archived release v3.0-access-r3: [doi:10.5281/zenodo.23238408](https://doi.org/10.5281/zenodo.23238408) (all versions: 10.5281/zenodo.23238407).
