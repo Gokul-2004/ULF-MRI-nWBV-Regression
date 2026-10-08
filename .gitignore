@@ -67,3 +67,5 @@ runs/
 checkpoints/swin_oasis.pt
 # FastSurfer Zenodo raw segmentation output (regenerable; GT csv is kept)
 experiments/fastsurfer_zenodo/sub-*/
+license.txt
+checkpoints/r3_e4/
