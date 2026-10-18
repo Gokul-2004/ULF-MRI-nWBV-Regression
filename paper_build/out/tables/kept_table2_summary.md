@@ -1,0 +1,22 @@
+**Table II. Summary of results by evaluation context**
+
+| Context | Method | Pearson r [95% CI] | MAE [95% CI] | RMSE |
+|---|---|---|---|---|
+| (A) OASIS-1 test set (n = 38) | ViT3D (ours) | 0.722 [0.523–0.847] | 0.058 [0.041–0.076] | 0.081 |
+|  | CNN3D | 0.877 [0.775–0.935] | 0.024 [0.018–0.031] | 0.033 |
+| (B) Real 64 mT, unadapted (n = 23) | SynthSeg+ | 0.918 | 0.005 | — |
+|  | CNN3D (no adapt.) | 0.514 | 0.076 | — |
+|  | ViT3D (no adapt.) | 0.291 | 0.040 | — |
+| (C) Real 64 mT, LOOCV-adapted (n = 23, cross-session) | ViT3D (adapt.) | -0.12 | 0.0134 [0.010–0.017] | 0.016 |
+|  | Constant (leave-one-out mean) | — | 0.0128 [0.0094–0.0166] | — |
+|  | Age only (ridge) | 0.74 | 0.0081 [0.0057–0.0107] | — |
+|  | CNN3D frozen features + ridge | 0.65 | 0.0090 [0.0062–0.0120] | — |
+|  | Swin-UNETR frozen features + ridge | 0.83 | 0.0075 [0.0056–0.0094] | — |
+| (D) Inter-session reliability | ICC(C,1) HFC vs HFE, same fold model | 0.615 [0.236–0.866] | — | — |
+|  | ICC(C,1) HFC vs HFE, single frozen model | 0.508 [0.236–0.790] | — | — |
+| (E) Pathology stress test, simulated 64 mT (n = 38, no adapt.) | CDR = 0.0 | — | 0.087 | — |
+|  | CDR = 0.5 | — | 0.099 | — |
+|  | CDR = 1.0 | — | 0.157 | — |
+|  | No CDR label | — | 0.016 | — |
+
+_OASIS-1 rows: one simulated noise draw, as reported (fixed-draw means are in tables/oasis.md). 0.020 nWBV is a descriptive reference only._

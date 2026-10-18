@@ -1,0 +1,10 @@
+**External cohort (n = 10): every readout fails**
+
+| Readout | MAE | Bias | Prediction SD | r (p) | MAE after reorienting to RAS |
+|---|---|---|---|---|---|
+| ViT3D LN+head adapter (5-seed mean) | 0.0760 | -0.0760 | 0.0028 | +0.27 (0.45) | 0.0759 |
+| ViT3D unadapted | 0.0328 | -0.0328 | 0.0033 | +0.27 (0.45) | 0.0328 |
+| Swin-UNETR + ridge | 0.0736 | -0.0736 | 0.0137 | +0.44 (0.2) | 0.0730 |
+| Old 15-subject adapter (as submitted) | 0.0731 | -0.0731 | 0.0029 | +0.26 (0.48) | 0.0731 |
+
+_Leave-one-out mean of the external labels: MAE 0.0099. True-label SD 0.0109._

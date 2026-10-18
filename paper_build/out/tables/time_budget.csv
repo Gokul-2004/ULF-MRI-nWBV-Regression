@@ -1,0 +1,7 @@
+Step,Time,Needed for
+64 mT axial T2w acquisition,385 s,every scan
+NIfTI load + normalise + resize,44.7 ms,every scan
+"ViT3D forward pass (CPU, cold)",4.53 ms,every scan
+"Adapter training (once per site, 22 labelled scans)",104 s,once per site
+FastSurfer reference labels (3T MPRAGE),41.4 min/subject,adaptation labels only (once per site)
+SynthSeg+ pseudo-labels (64 mT T2w),5.5 min/subject (contended),alternative adaptation labels only

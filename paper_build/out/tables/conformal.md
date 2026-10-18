@@ -1,0 +1,16 @@
+**Conformal prediction intervals by cohort**
+
+| Readout | Cohort | Nominal | Coverage | Mean width | Width / cohort range | Share of cohort inside each interval |
+|---|---|---|---|---|---|---|
+| ViT3D LN+head adapter | ds006557 (internal) | 90% | 91.3% (21/23) | 0.0571 | 1.02 | 95% |
+| ViT3D LN+head adapter | external (independent) | 90% | 0.0% (0/10) | 0.0576 | 1.72 | 0% |
+| ViT3D LN+head adapter | ds006557 (internal) | 95% | 95.7% (22/23) | 0.0664 | 1.18 | 99% |
+| ViT3D LN+head adapter | external (independent) | 95% | 0.0% (0/10) | 0.0668 | 2.00 | 0% |
+| Swin-UNETR + ridge | ds006557 (internal) | 90% | 91.3% (21/23) | 0.0326 | 0.58 | 55% |
+| Swin-UNETR + ridge | external (independent) | 90% | 0.0% (0/10) | 0.0330 | 0.99 | 0% |
+| Swin-UNETR + ridge | ds006557 (internal) | 95% | 95.7% (22/23) | 0.0343 | 0.61 | 57% |
+| Swin-UNETR + ridge | external (independent) | 95% | 0.0% (0/10) | 0.0343 | 1.03 | 0% |
+| ViT3D (Stage 2) | OASIS-1 split conformal (37 cal / 38 test) | 90% | 92.1% (35/38) | 0.3055 | 1.36 | 91% |
+| ViT3D (Stage 2) | OASIS-1 split conformal (37 cal / 38 test) | 95% | 97.4% (37/38) | 0.3523 | 1.57 | 96% |
+
+_Internal rows: leave-one-out (jackknife-style) conformal on cross-validated residuals; subject i is calibrated on the other 22, q_i = k-th smallest residual, k = ⌈(m+1)(1−α)⌉, m = 22. With this construction the number of covered subjects is fixed by rank (21/23 at 90%, 22/23 at 95%) for any residuals, so internal coverage carries no information about calibration quality; width and the share of the cohort inside each interval do. External rows are calibrated on all 23 internal residuals._

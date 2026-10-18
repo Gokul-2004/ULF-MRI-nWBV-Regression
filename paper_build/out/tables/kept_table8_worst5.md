@@ -1,0 +1,11 @@
+**Table VIII. Five largest LOOCV errors (real 64 mT, n = 23)**
+
+| Subject | True nWBV | Predicted nWBV | |Error| | Above 0.020? |
+|---|---|---|---|---|
+| sub-HYPE21 | 0.752 | 0.786 | 0.033 | Yes (1.67×) |
+| sub-HYPE01 | 0.806 | 0.777 | 0.029 | Yes (1.44×) |
+| sub-HYPE16 | 0.758 | 0.784 | 0.026 | Yes (1.28×) |
+| sub-HYPE19 | 0.801 | 0.780 | 0.021 | Yes (1.04×) |
+| sub-HYPE02 | 0.794 | 0.775 | 0.019 | No (0.97×) |
+
+_0.020 nWBV is a descriptive reference only. N× = ratio of the error to 0.020._

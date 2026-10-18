@@ -1,0 +1,11 @@
+**SynthSeg+ pseudo-label test: internal same-session feasibility test (HFC → HFC, fixed 15/8 split)**
+
+| Row | MAE on the 8 test subjects [95% CI] | Bias |
+|---|---|---|
+| adapter fastsurfer labels | 0.0121 [0.0048, 0.0212] | +0.0060 |
+| adapter synthseg pseudolabels | 0.0171 [0.0116, 0.0227] | -0.0105 |
+| constant train mean fastsurfer | 0.0135 [0.0084, 0.0198] | -0.0014 |
+| constant train mean synthseg | 0.0139 [0.0087, 0.0199] | -0.0032 |
+| synthseg direct on 64mT | 0.0064 [0.0036, 0.0106] | -0.0030 |
+
+_SynthSeg nWBV = (GM+WM)/TIV from run_synthseg_ds006557.sh column matching; FastSurfer nWBV = BrainSegVol/MaskVol. Definitions differ._

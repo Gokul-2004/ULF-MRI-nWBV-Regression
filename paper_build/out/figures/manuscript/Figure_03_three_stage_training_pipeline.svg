@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="417.24pt" height="115.698281pt" viewBox="0 0 417.24 115.698281" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-18T22:56:50.408794</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 115.698281 
+L 417.24 115.698281 
+L 417.24 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 6.2892 82.900387 
+L 68.2272 82.900387 
+L 68.2272 38.64565 
+L 6.2892 38.64565 
+z
+" clip-path="url(#p75b0094940)" style="fill: #3a86c3"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 89.69904 82.900387 
+L 151.63704 82.900387 
+L 151.63704 38.64565 
+L 89.69904 38.64565 
+z
+" clip-path="url(#p75b0094940)" style="fill: #f7943b"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 173.10888 82.900387 
+L 235.04688 82.900387 
+L 235.04688 38.64565 
+L 173.10888 38.64565 
+z
+" clip-path="url(#p75b0094940)" style="fill: #4cae4c"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 256.51872 82.900387 
+L 318.45672 82.900387 
+L 318.45672 38.64565 
+L 256.51872 38.64565 
+z
+" clip-path="url(#p75b0094940)" style="fill: #9b6fc3"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 339.92856 82.900387 
+L 401.86656 82.900387 
+L 401.86656 38.64565 
+L 339.92856 38.64565 
+z
+" clip-path="url(#p75b0094940)" style="fill: #d9443f"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #3a86c3" x="37.2582" y="25.028808" transform="rotate(-0 37.2582 25.028808)">STAGE 1</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(31.8042 54.094006)">IXI</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(12.812513 62.703518)">Pre-training</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(6.41295 71.369281)">(proxy targets)</text>
+   </g>
+   <g id="text_3">
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(2.792966 97.030739)">Generic degradation;</text>
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(2.665505 104.803216)">104 training volumes</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 72.700769 60.773018 
+Q 78.959652 60.773018 83.653288 60.773018 
+" style="fill: none; stroke: #333333; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 80.053288 58.973018 
+L 83.653288 60.773018 
+L 80.053288 62.573018 
+z
+" style="fill: #333333; stroke: #333333; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #f7943b" x="120.66804" y="25.028808" transform="rotate(-0 120.66804 25.028808)">STAGE 2</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(104.392665 54.122131)">OASIS-1</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(97.256228 62.731643)">Fine-tuning</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(104.28354 71.397406)">(n=375)</text>
+   </g>
+   <g id="text_6">
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(80.936282 97.030739)">Physics-simulated input;</text>
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(85.121673 104.803216)">OASIS-supplied nWBV</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 156.110609 60.773018 
+Q 162.369492 60.773018 167.063128 60.773018 
+" style="fill: none; stroke: #333333; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 163.463128 58.973018 
+L 167.063128 60.773018 
+L 163.463128 62.573018 
+z
+" style="fill: #333333; stroke: #333333; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #4cae4c" x="204.07788" y="25.028808" transform="rotate(-0 204.07788 25.028808)">STAGE 3</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(190.365255 54.150256)">LOOCV</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(181.567755 62.759768)">Adaptation</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(190.198193 71.369281)">(n=23)</text>
+   </g>
+   <g id="text_9">
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(180.800263 97.030739)">Cross-session;</text>
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(168.069911 104.803216)">FastSurfer labels (3 T)</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 239.520449 60.773018 
+Q 245.779332 60.773018 250.472968 60.773018 
+" style="fill: none; stroke: #333333; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 246.872968 58.973018 
+L 250.472968 60.773018 
+L 246.872968 62.573018 
+z
+" style="fill: #333333; stroke: #333333; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(275.581283 54.150256)">ViT3D</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(275.023283 62.759768)">4.23M</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(272.382908 71.369281)">params</text>
+   </g>
+   <g id="text_11">
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(266.524204 97.030739)">64³ → nWBV;</text>
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(246.828189 104.803216)">LayerNorm + head (769)</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 322.930289 60.773018 
+Q 329.189172 60.773018 333.882808 60.773018 
+" style="fill: none; stroke: #333333; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 330.282808 58.973018 
+L 333.882808 60.773018 
+L 330.282808 62.573018 
+z
+" style="fill: #333333; stroke: #333333; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(351.631935 54.150256)">Inference</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(354.86856 62.759768)">4.53 ms</text>
+    <text style="font-weight: 700; font-size: 7.2px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(359.402873 71.369281)">(CPU)</text>
+   </g>
+   <g id="text_13">
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(348.811271 97.030739)">forward pass;</text>
+    <text style="font-style: italic; font-size: 6.5px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #616161" transform="translate(341.98424 104.803216)">51 ms end-to-end</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle" x="208.62" y="10.518281" transform="rotate(-0 208.62 10.518281)">Three-Stage Training Pipeline</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p75b0094940">
+   <rect x="2.16" y="16.518281" width="412.92" height="97.02"/>
+  </clipPath>
+ </defs>
+</svg>

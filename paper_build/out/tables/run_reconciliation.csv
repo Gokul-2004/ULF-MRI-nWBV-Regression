@@ -1,0 +1,4 @@
+Run,MAE,Bias,n < 0.020,r
+headline_loocv_cross_session,0.0134,-0.0022,19,-0.119
+ablation_adapter_ln_head,0.0137,-0.0022,19,-0.047
+multiseed_seed42,0.0133,-0.0021,21,+0.032
