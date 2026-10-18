@@ -271,9 +271,61 @@ def fig_external(numbers, figdata, out):
     return _save(fig, out, "fig_external")
 
 
+def fig24_external(numbers, figdata, out):
+    """Fig. 24 in the submitted two-panel layout, plotting the headline-recipe adapter
+    (five-seed mean) instead of the old 15-subject adapter the submitted version showed."""
+    ex = figdata["external"]
+    y, P = ex["y"], ex["preds"]
+    ad, un = P["vit_ln_head_seedmean"], P["vit_unadapted"]
+    lo_ds, hi_ds = ex["ds_range"]
+    mu_ds = _v(numbers, "ds006557.truth_mean")
+    r_ad, p_ad = _v(numbers, "external.vit_ln_head_seedmean.r")
+    c_ds, c_ext, c_ad, c_un, c_ref = "#1f4e79", "#2e7d32", "#c62828", "#8e24aa", "#616161"
+    style = {"font.family": "sans-serif", "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
+             "font.size": 9, "axes.spines.top": True, "axes.spines.right": True, "axes.grid": False,
+             "legend.frameon": True}
+    with plt.rc_context(style):
+        fig, (axA, axB) = plt.subplots(1, 2, figsize=(10.0, 4.1), gridspec_kw={"width_ratios": [1, 1.05]})
+        lo, hi = 0.735, 0.885
+        axA.plot([lo, hi], [lo, hi], "--", color=c_ref, lw=1.0, label="identity", zorder=1)
+        axA.axhspan(lo_ds, hi_ds, color=c_ds, alpha=0.09, zorder=0)
+        axA.text(lo + 0.003, hi_ds - 0.003, "adaptation-cohort nWBV range", ha="left", va="top", fontsize=6.8, color=c_ds)
+        axA.scatter(y, un, s=42, color=c_ext, edgecolor="black", linewidth=0.6,
+                    label=f"OASIS (unadapted)  MAE {_v(numbers, 'external.vit_unadapted.mae'):.4f}", zorder=3)
+        axA.scatter(y, ad, s=42, color=c_ad, edgecolor="black", linewidth=0.6,
+                    label=f"64 mT-adapted (5-seed mean)  MAE {_v(numbers, 'external.vit_ln_head_seedmean.mae'):.4f}", zorder=3)
+        axA.set_xlim(lo, hi); axA.set_ylim(lo, hi); axA.set_aspect("equal")
+        axA.set_xlabel("FastSurfer nWBV (ground truth)"); axA.set_ylabel("predicted nWBV")
+        axA.grid(linewidth=0.4, alpha=0.5, zorder=0); axA.set_axisbelow(True)
+        axA.legend(loc="upper left", fontsize=7.0)
+        axA.set_title(f"(A)  External cohort, n = {_v(numbers, 'external.n')}", fontsize=9, loc="left")
+
+        series = [("ds006557 truth\n(adaptation cohort)", lo_ds, hi_ds, c_ds, mu_ds),
+                  ("Zenodo truth\n(external cohort)", y.min(), y.max(), c_ext, y.mean()),
+                  ("64 mT-adapted\npredictions", ad.min(), ad.max(), c_ad, ad.mean()),
+                  ("OASIS unadapted\npredictions", un.min(), un.max(), c_un, un.mean())]
+        for i, (lab, a, b, col, mu) in enumerate(series):
+            yy = len(series) - 1 - i
+            axB.hlines(yy, a, b, color=col, lw=8, alpha=0.75, zorder=3)
+            axB.plot([mu], [yy], "|", color="black", ms=13, mew=1.6, zorder=4)
+            axB.text(b + 0.003, yy, f"[{a:.4f}, {b:.4f}]", va="center", fontsize=6.9, color=col)
+        axB.set_yticks(range(len(series)))
+        axB.set_yticklabels([s[0] for s in reversed(series)], fontsize=7.4)
+        axB.set_xlabel("nWBV"); axB.set_xlim(0.745, 0.895)
+        axB.grid(axis="x", linewidth=0.4, alpha=0.5, zorder=0); axB.set_axisbelow(True)
+        axB.set_title("(B)  Training and external label ranges do not overlap", fontsize=9, loc="left")
+        axB.text(0.5, -0.19,
+                 f"Adapted predictions centre on {ad.mean():.4f} against an adaptation-cohort mean of {mu_ds:.4f}\n"
+                 f"and do not track the external labels (r = {r_ad:.3f}, p = {p_ad:.3f}).",
+                 transform=axB.transAxes, ha="center", va="top", fontsize=7.0, color=c_ref)
+        fig.tight_layout()
+        return _save(fig, out, "fig24_external_validation")
+
+
 def build_all(numbers, tables, figdata, out: Path):
     return [fig_pipeline(numbers, figdata, out), fig_sensitivity(numbers, figdata, out),
             fig_oasis(numbers, tables, figdata, out), fig_physics_blur(numbers, figdata, out),
             fig_readouts(numbers, figdata, out), fig_readout_scatter(numbers, figdata, out),
             fig_reproducibility(numbers, figdata, out), fig_multiseed(numbers, figdata, out),
-            fig_conformal(numbers, figdata, out), fig_external(numbers, figdata, out)]
+            fig_conformal(numbers, figdata, out), fig_external(numbers, figdata, out),
+            fig24_external(numbers, figdata, out)]

@@ -85,6 +85,25 @@ def crosscheck(numbers):
                 "paper_build": sorted(covs), "experiment_file": "—", "ok": len(covs) == 1})
     a, b = S.sessions()[1]["frozen_single_model"]
     _close("ICC frozen recomputed twice", icc_c1(a, b), icc_c1(b, a), 1e-12, out)
+    # figures and tables carried over from the round-2 manuscript (kept.py)
+    pt = S.load("permutation_test/results.json")
+    _close("permutation replay p (ICC) vs permutation_test", v("kept.perm.p_icc"), pt["test1_intersession_icc"]["p_value"], 6e-5, out)
+    _close("permutation replay p (|r|) vs permutation_test", v("kept.perm.p_r"), pt["test2_anatomical_tracking"]["p_value"], 6e-5, out)
+    ft = S.load("oasis_finetune/finetune_results.json")
+    _close("OASIS ViT3D MAE vs oasis_cnn_comparison", v("kept.oasis.mae"), S.load("oasis_cnn_comparison/results.json")["ViT3D"]["mae"], 6e-5, out)
+    _close("OASIS ViT3D r (rows) vs finetune_results", v("kept.oasis.r"), ft["test_btf_pearson_r"], 2e-3, out)
+    sd = S.load("simulated_dementia/results.json")["cdr_stratified"]
+    for key in ("CDR_None", "CDR_0.0", "CDR_0.5", "CDR_1.0"):
+        _close(f"CDR-stratified MAE {key} vs simulated_dementia", v(f"kept.cdr_mae.{key}"), sd[key]["mae"], 6e-5, out)
+    ab = S.load("ablation_adapter/results.json")["results"]
+    for key in ("head_only", "ln_head", "full_ft"):
+        _close(f"adapter {key} MAE vs ablation_adapter", v(f"kept.adapter.{key}.mae"), ab[key]["mae"], 6e-5, out)
+    _close("adapter LoRA MAE vs ablation_lora", v("kept.adapter.lora.mae"), S.load("ablation_lora/results.json")["lora"]["mae"], 6e-5, out)
+    vc = S.load("ablation_vit_vs_cnn/results.json")
+    _close("unadapted ViT3D MAE vs ablation_vit_vs_cnn", v("kept.unadapted.ViT3D.mae"), vc["ViT3D"]["mae"], 6e-5, out)
+    _close("unadapted CNN3D MAE vs ablation_vit_vs_cnn", v("kept.unadapted.CNN3D.mae"), vc["CNN3D"]["mae"], 6e-5, out)
+    _close("MC Dropout 95% coverage vs mc_dropout_ci", v("kept.mc.coverage95") * 100, S.load("real64mt_eval/mc_dropout_ci.json")["gt_coverage_pct"], 6e-2, out)
+    _close("unpaired physics-vs-blur Mann-Whitney p (manuscript 0.81)", v("kept.blur_unpaired.mw_p"), 0.81, 6e-3, out)
     return out
 
 

@@ -3,8 +3,13 @@ Statistics used by every table and figure in the paper.
 
 Self-contained (numpy + scipy only) so the build runs without torch, GPUs or
 MRI data. All resampling uses np.random.default_rng(SEED); nothing else in
-paper_build may draw random numbers (enforced by paper_build/lint.py).
+paper_build may draw random numbers (enforced by paper_build/lint.py). The one
+exception is the round-2 permutation test, which is replayed with the same
+seeded Python generator it was run with (scripts/permutation_test_loocv.py), so
+that its null distributions and p-values are reproduced exactly.
 """
+
+import random
 
 import numpy as np
 from scipy import stats
@@ -121,3 +126,43 @@ def jackknife_conformal(pred, y, alpha):
     covered = e <= q
     return {"k": k, "m": m, "q": q, "covered": covered, "coverage": float(covered.mean()),
             "mean_width": float(np.mean(2 * q))}
+
+
+def boot_dist(fn, *arrays, n_boot=N_BOOT):
+    """The bootstrap distribution itself (same resampling as boot_ci), for plotting."""
+    rng = _rng()
+    arrays = [np.asarray(a, float) for a in arrays]
+    n = len(arrays[0])
+    return np.array([fn(*[a[idx] for a in arrays]) for idx in (rng.integers(0, n, n) for _ in range(n_boot))])
+
+
+def _pearson(a, b):
+    a, b = np.asarray(a, float), np.asarray(b, float)
+    da, db = a - a.mean(), b - b.mean()
+    den = np.sqrt((da ** 2).sum() * (db ** 2).sum())
+    return float((da * db).sum() / den) if den > 0 else 0.0
+
+
+def permutation_replay(hfc, hfe, truth, n_perm=20_000, seed=SEED):
+    """Replay of scripts/permutation_test_loocv.py: same generator, same order of draws.
+
+    Test 1 shuffles the HFE predictions against HFC and recomputes ICC(C,1);
+    test 2 shuffles the truth against the HFE predictions and recomputes |r|.
+    Returns both null distributions and the add-one p-values."""
+    gen = random.Random(seed)
+    hfc, hfe, truth = list(map(float, hfc)), list(map(float, hfe)), list(map(float, truth))
+    obs_icc = icc_c1(hfc, hfe)
+    null_icc = []
+    for _ in range(n_perm):
+        perm = hfe[:]
+        gen.shuffle(perm)
+        null_icc.append(icc_c1(hfc, perm))
+    obs_r = _pearson(hfe, truth)
+    null_r = []
+    for _ in range(n_perm):
+        perm = truth[:]
+        gen.shuffle(perm)
+        null_r.append(abs(_pearson(hfe, perm)))
+    null_icc, null_r = np.array(null_icc), np.array(null_r)
+    return {"obs_icc": obs_icc, "null_icc": null_icc, "p_icc": float(((null_icc >= obs_icc).sum() + 1) / (n_perm + 1)),
+            "obs_r": obs_r, "null_abs_r": null_r, "p_r": float(((null_r >= abs(obs_r)).sum() + 1) / (n_perm + 1))}

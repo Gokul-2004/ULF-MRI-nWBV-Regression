@@ -5,8 +5,10 @@ Several contain synthetic fallbacks (`np.random` placeholder intervals or noise)
 hard-coded values, or stale numbers (for example a 47 ms latency). They are kept
 only so the history of the earlier figures can be inspected.
 
-Every table, figure and number in the current manuscript is produced by
-`paper_build/` from the committed result files in `experiments/`:
+Every table, figure and number in the current manuscript (except Figure 1, MRI
+slices, and Figure 19, whose per-subject values were not saved) is produced by
+`paper_build/` from the committed result files in `experiments/`; the manuscript
+figures are in `paper_build/out/figures/manuscript/`:
 
     python -m paper_build
 

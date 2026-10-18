@@ -36,7 +36,17 @@ modified. The build also refuses to run if any of its code draws random numbers
 outside the seeded bootstrap (seed 42, 10,000 resamples) or contains a typed-in
 result. Bootstrap confidence intervals are therefore identical on every run.
 
-Not regenerated: Figure 1 (example MRI slices; needs the image data).
+Manuscript figures (`figures/manuscript/Figure_NN_*`, numbered as in the paper):
+Figures 2–18 and 20–23 are rebuilt in their manuscript layout by
+`kept_figures.py` from `kept.py`; Figure 24 is `figures/fig24_external_validation`.
+The `figures/fig_*` files are the round-3 analysis figures that back the new
+tables. Tables II, IV, VI, VIII and IX are `tables/kept_table*.md`.
+
+Not regenerated, with the reason:
+- Figure 1 — example MRI slices drawn from the raw scans (needs the image data).
+- Figure 19 — MC Dropout intervals on OASIS-1: that run saved only its summary
+  (`experiments/oasis_mc_dropout/results.json`: 23.7 % coverage, width 0.0284),
+  not the per-subject intervals. The figure in the manuscript is from that run.
 
 ## Level 2 — re-run the evaluations
 
@@ -111,4 +121,5 @@ the release.
 ## Legacy code
 
 `scripts/legacy_figures/` holds the figure scripts of earlier versions. Some use
-synthetic placeholders; none is used for the current manuscript.
+synthetic placeholders; none is used for the current manuscript. Every manuscript
+figure except Figures 1 and 19 is produced by `paper_build` (see Level 1).

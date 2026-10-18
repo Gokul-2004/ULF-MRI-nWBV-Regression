@@ -12,7 +12,7 @@ import json
 import sys
 from datetime import datetime, timezone
 
-from . import checks, figures
+from . import checks, figures, kept_figures
 from .compute import compute_all
 from .sources import ROOT
 
@@ -61,6 +61,7 @@ def main():
         (OUT / "tables" / f"{name}.md").write_text(_md_table(t) + "\n")
         (OUT / "tables" / f"{name}.csv").write_text(_csv(t))
     figs = figures.build_all(numbers, tables, figdata, OUT / "figures")
+    figs += kept_figures.build_kept(numbers, figdata["kept"], OUT / "figures")
     xc = checks.crosscheck(numbers)
     inputs = checks.committed()
     state = checks.git_state()

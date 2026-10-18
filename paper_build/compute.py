@@ -10,6 +10,7 @@ Figures read only from these two objects.
 import numpy as np
 from scipy import stats
 
+from . import kept
 from . import sources as S
 from .stats import (THRESHOLD, icc_a1, icc_c1, jackknife_conformal, loo_mean, readout_row)
 
@@ -414,5 +415,6 @@ def compute_all():
     cf = conformal(numbers, tables, ro)
     ex = external(numbers, tables)
     mi = misc(numbers, tables)
-    figdata = {"readouts": ro, "repro": rep, "oasis": oa, "physics_blur": pb, "conformal": cf, "external": ex, "misc": mi}
+    kp = kept.compute_kept(numbers, tables)
+    figdata = {"kept": kp, "readouts": ro, "repro": rep, "oasis": oa, "physics_blur": pb, "conformal": cf, "external": ex, "misc": mi}
     return numbers, tables, figdata

@@ -27,4 +27,14 @@ Access-2026-45125 resubmission) and the earlier experiment scripts listed in the
 repository `CLAUDE.md`. Re-running those needs the public datasets (IXI, OASIS-1,
 OpenNeuro ds006557, van den Broek et al. on Zenodo) and the checkpoints.
 
-Not regenerated here: Figure 1 (MRI slices; needs the image data).
+Manuscript figures (`figures/manuscript/Figure_NN_*`, numbered as in the paper):
+Figures 2–18 and 20–23 are rebuilt in their manuscript layout by
+`kept_figures.py` from `kept.py`; Figure 24 is `figures/fig24_external_validation`.
+The `figures/fig_*` files are the round-3 analysis figures that back the new
+tables. Tables II, IV, VI, VIII and IX are `tables/kept_table*.md`.
+
+Not regenerated, with the reason:
+- Figure 1 — example MRI slices drawn from the raw scans (needs the image data).
+- Figure 19 — MC Dropout intervals on OASIS-1: that run saved only its summary
+  (`experiments/oasis_mc_dropout/results.json`: 23.7 % coverage, width 0.0284),
+  not the per-subject intervals. The figure in the manuscript is from that run.
